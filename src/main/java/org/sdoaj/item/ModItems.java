@@ -30,7 +30,7 @@ public class ModItems {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
             fire.fallTime = 1;
             return fire;
-        }, 5, 5.0, null).setCreativeTab(CreativeTabs.COMBAT);
+        }, 5, 5.0, 1.0, null).setCreativeTab(CreativeTabs.COMBAT);
     }
 
     static void addItem(ItemBasic item) {

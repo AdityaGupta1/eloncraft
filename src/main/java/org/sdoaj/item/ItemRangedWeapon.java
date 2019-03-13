@@ -17,18 +17,22 @@ public class ItemRangedWeapon extends ItemBasic {
     private final Function<World, Entity> projectileCreator;
     private final int projectiles;
     private final double velocity;
+    private final double inaccuracy;
+    private final DoubleSupplier randomVelocity;
     private final ItemStack ammunition;
 
-    public ItemRangedWeapon(String name, Function<World, Entity> projectileCreator, int projectiles, double velocity, ItemStack ammunition) {
+    public ItemRangedWeapon(String name, Function<World, Entity> projectileCreator, int projectiles, double velocity,
+                            double inaccuracy, ItemStack ammunition) {
         super(name);
         this.projectileCreator = projectileCreator;
         this.projectiles = projectiles;
         this.velocity = velocity;
+        this.inaccuracy = inaccuracy;
+        randomVelocity = () -> inaccuracy * ((random.nextDouble() * 2) - 1);
         this.ammunition = ammunition;
     }
 
     private static final Random random = new Random();
-    private static final DoubleSupplier randomVelocity = () -> random.nextDouble() / 2;
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
@@ -51,11 +55,10 @@ public class ItemRangedWeapon extends ItemBasic {
                 projectile.setPositionAndRotation(player.posX, player.posY, player.posZ, player.cameraYaw, player.cameraPitch);
 
                 Vec3d look = player.getLookVec().scale(velocity);
-                Vec3d norm = look.normalize().scale(velocity);
                 Vec3d velocity = new Vec3d(
-                        look.x + norm.x * randomVelocity.getAsDouble() + player.motionX,
-                        look.y + norm.y * randomVelocity.getAsDouble() + player.motionY,
-                        look.z + norm.z * randomVelocity.getAsDouble() + player.motionZ
+                        look.x + randomVelocity.getAsDouble() + player.motionX,
+                        look.y + randomVelocity.getAsDouble() + player.motionY,
+                        look.z + randomVelocity.getAsDouble() + player.motionZ
                 );
                 projectile.setVelocity(velocity.x, velocity.y, velocity.z);
 
