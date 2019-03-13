@@ -2,6 +2,9 @@ package org.sdoaj.item;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -23,6 +26,11 @@ public class ModItems {
 
     public static void init() {
         new ItemBasic("elon_ingot").setCreativeTab(CreativeTabs.MISC);
+        new ItemRangedWeapon("flamethrower", world -> {
+            EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
+            fire.fallTime = 1;
+            return fire;
+        }, 5, 5.0, null).setCreativeTab(CreativeTabs.COMBAT);
     }
 
     static void addItem(ItemBasic item) {
