@@ -1,4 +1,12 @@
-item.elon_ingot.name=Elon Ingot
+item.aluminum_ingot.name=Aluminum Ingot
+item.titanium_ingot.name=Titanium Ingot
 item.flamethrower.name=Not a Flamethrower
 
+tile.aluminum_ore.name=Aluminum Ore
+tile.titanium_ore.name=Titanium Ore
 tile.components.name=Components
+
+itemGroup.eloncraft=Eloncraft
+itemGroup.tesla=Tesla
+itemGroup.spacex=SpaceX
+itemGroup.boring_Company=The Boring Company
