@@ -4,7 +4,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.sdoaj.item.ModItems;
+import org.sdoaj.items.block.ModBlocks;
+import org.sdoaj.items.item.ModItems;
 
 @Mod(modid = Main.MODID, name = Main.NAME, version = Main.VERSION)
 public class Main {
@@ -15,7 +16,9 @@ public class Main {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         System.out.println(MODID + ": preInit");
+
         ModItems.init();
+        ModBlocks.init();
     }
 
     @Mod.EventHandler

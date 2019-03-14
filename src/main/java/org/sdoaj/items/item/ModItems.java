@@ -1,9 +1,7 @@
-package org.sdoaj.item;
+package org.sdoaj.items.item;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -15,41 +13,42 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.eloncraft.Main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ModItems {
-    private static final List<ItemBasic> allItems = new ArrayList<>();
-    public static final Map<String, ItemBasic> items = new HashMap<>();
+    private static final List<ItemBasic> items = new ArrayList<>();
+
+    public static Item elonIngot;
+
+    public static Item flamethrower;
 
     public static void init() {
-        new ItemBasic("elon_ingot").setCreativeTab(CreativeTabs.MISC);
-        new ItemRangedWeapon("flamethrower", world -> {
-            EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
-            fire.fallTime = 1;
-            return fire;
-        }, 5, 5.0, 1.0, null).setCreativeTab(CreativeTabs.COMBAT);
+        elonIngot = new ItemBasic("elon_ingot");
+
+        flamethrower = new ItemRangedWeapon("flamethrower", world -> {
+                    EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
+                    fire.fallTime = 1;
+                    return fire;
+                }, 5, 5.0, 1.0, null).setMaxStackSize(1);
     }
 
     static void addItem(ItemBasic item) {
-        allItems.add(item);
-        items.put(item.getName(), item);
+        items.add(item);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        allItems.forEach(registry::register);
+        items.forEach(registry::register);
     }
 
-    private static void registerRender(ItemBasic item) {
+    private static void registerRender(Item item) {
         ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
-        allItems.forEach(ModItems::registerRender);
+        items.forEach(ModItems::registerRender);
     }
 }
