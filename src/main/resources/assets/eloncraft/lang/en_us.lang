@@ -1,10 +1,20 @@
+item.flamethrower.name=Not a Flamethrower
+
 item.aluminum_ingot.name=Aluminum Ingot
 item.titanium_ingot.name=Titanium Ingot
-item.flamethrower.name=Not a Flamethrower
+item.lithium_ingot.name=Lithium Ingot
+item.nickel_ingot.name=Nickel Ingot
+item.chromium_ingot.name=Chromium Ingot
+
+tile.components.name=Components
 
 tile.aluminum_ore.name=Aluminum Ore
 tile.titanium_ore.name=Titanium Ore
-tile.components.name=Components
+tile.lithium_ore.name=Lithium Ore
+tile.nickel_ore.name=Nickel Ore
+tile.chromium_ore.name=Chromium Ore
+
+tile.alloy_furnace.name=Alloy Furnace
 
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla

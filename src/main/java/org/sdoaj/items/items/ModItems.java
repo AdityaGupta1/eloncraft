@@ -1,4 +1,4 @@
-package org.sdoaj.items.item;
+package org.sdoaj.items.items;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityFallingBlock;
@@ -22,12 +22,23 @@ public class ModItems {
 
     public static Item aluminumIngot;
     public static Item titaniumIngot;
+    public static Item lithiumIngot;
+    public static Item nickelIngot;
+    public static Item chromiumIngot;
 
     public static Item flamethrower;
 
     public static void init() {
-        aluminumIngot = new ItemBasic("aluminum_ingot").setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        titaniumIngot = new ItemBasic("titanium_ingot").setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        aluminumIngot = new ItemBasic("aluminum_ingot");
+        aluminumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        titaniumIngot = new ItemBasic("titanium_ingot");
+        titaniumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        lithiumIngot = new ItemBasic("lithium_ingot");
+        lithiumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        nickelIngot = new ItemBasic("nickel_ingot");
+        nickelIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        chromiumIngot = new ItemBasic("chromium_ingot");
+        chromiumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         flamethrower = new ItemRangedWeapon("flamethrower", world -> {
                     EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());

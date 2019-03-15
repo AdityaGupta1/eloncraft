@@ -1,4 +1,4 @@
-package org.sdoaj.items.block;
+package org.sdoaj.items.blocks;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -23,12 +23,18 @@ public class ModOreGen implements IWorldGenerator {
                 break;
             // overworld
             case 0:
-                runGenerator(ModBlocks.aluminum_ore.getDefaultState(), 8, 50, 0, 63,
-                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.titanium_ore.getDefaultState(), 8, 20, 0, 31,
+                runGenerator(ModBlocks.components.getDefaultState(), 10, 10, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
-                runGenerator(ModBlocks.components.getDefaultState(), 10, 10, 0, 63,
+                runGenerator(ModBlocks.aluminumOre.getDefaultState(), 8, 50, 0, 63,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.titaniumOre.getDefaultState(), 8, 20, 0, 15,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.lithiumOre.getDefaultState(), 8, 30, 0, 47,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.nickelOre.getDefaultState(), 8, 15, 0, 31,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.chromiumOre.getDefaultState(), 8, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 break;
             // end

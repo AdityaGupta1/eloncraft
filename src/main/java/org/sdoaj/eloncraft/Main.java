@@ -5,12 +5,16 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.sdoaj.items.block.ModBlocks;
-import org.sdoaj.items.block.ModOreGen;
-import org.sdoaj.items.item.ModItems;
+import org.sdoaj.items.blocks.ModBlocks;
+import org.sdoaj.items.blocks.ModOreGen;
+import org.sdoaj.items.items.ModItems;
+import org.sdoaj.items.recipes.ModSmeltingRecipes;
 
 @Mod(modid = Main.MODID, name = Main.NAME, version = Main.VERSION)
 public class Main {
+    @Mod.Instance
+    public static Main instance;
+
     public static final String MODID = "eloncraft";
     public static final String NAME = "ElonCraft";
     public static final String VERSION = "0.1";
@@ -28,6 +32,8 @@ public class Main {
         System.out.println(MODID + ": init");
 
         GameRegistry.registerWorldGenerator(new ModOreGen(), 0);
+
+        ModSmeltingRecipes.init();
     }
 
     @Mod.EventHandler

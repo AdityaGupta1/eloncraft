@@ -1,4 +1,4 @@
-package org.sdoaj.items.item;
+package org.sdoaj.items.items;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

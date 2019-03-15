@@ -3,13 +3,13 @@ package org.sdoaj.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.sdoaj.items.block.ModBlocks;
-import org.sdoaj.items.item.ModItems;
+import org.sdoaj.items.blocks.ModBlocks;
+import org.sdoaj.items.items.ModItems;
 
 import java.util.function.Supplier;
 
 public class ModCreativeTabs {
-    // uses a Supplier<ItemStack> because otherwise the item is not initalized when the CreativeTabs is created
+    // uses a Supplier<ItemStack> because otherwise the items is not initalized when the CreativeTabs is created
     private static CreativeTabs createTab(String name, Supplier<ItemStack> tabItem) {
         return new CreativeTabs(name) {
             @Override
