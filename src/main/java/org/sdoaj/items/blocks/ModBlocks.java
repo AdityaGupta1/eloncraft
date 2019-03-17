@@ -18,13 +18,14 @@ import org.sdoaj.items.Drop;
 import org.sdoaj.items.DropRange;
 import org.sdoaj.items.Drops;
 import org.sdoaj.items.ModCreativeTabs;
+import org.sdoaj.items.blocks.machines.metalroller.BlockMetalRoller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ModBlocks {
-    private static final List<BlockBasic> blocks = new ArrayList<>();
+    private static final List<Block> blocks = new ArrayList<>();
 
     public static Block components;
 
@@ -33,6 +34,8 @@ public class ModBlocks {
     public static Block lithiumOre;
     public static Block nickelOre;
     public static Block chromiumOre;
+
+    public static Block metalRoller;
 
     public static void init() {
         components = new BlockOre("components", Material.IRON, new Drops(
@@ -58,9 +61,13 @@ public class ModBlocks {
         chromiumOre = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
         chromiumOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+
+        metalRoller = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
+        metalRoller.setHarvestLevel("pickaxe", 3);
+        metalRoller.setCreativeTab(ModCreativeTabs.ELONCRAFT);
     }
 
-    static void addBlock(BlockBasic block) {
+    public static void addBlock(Block block) {
         blocks.add(block);
     }
 

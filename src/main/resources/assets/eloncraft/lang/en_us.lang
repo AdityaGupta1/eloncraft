@@ -14,7 +14,8 @@ tile.lithium_ore.name=Lithium Ore
 tile.nickel_ore.name=Nickel Ore
 tile.chromium_ore.name=Chromium Ore
 
-tile.alloy_furnace.name=Alloy Furnace
+tile.metal_roller.name=Metal Roller
+container.eloncraft.metal_roller.name=Metal Roller
 
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla

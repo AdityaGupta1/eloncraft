@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "on=false": { "model": "eloncraft:metal_roller" },
+    "on=true": { "model": "eloncraft:metal_roller" }
+  }
+}
