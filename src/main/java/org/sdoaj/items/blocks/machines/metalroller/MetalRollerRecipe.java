@@ -2,6 +2,7 @@
 
 package org.sdoaj.items.blocks.machines.metalroller;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
@@ -12,6 +13,10 @@ public class MetalRollerRecipe {
     public MetalRollerRecipe(Ingredient input, ItemStack output) {
         this.input = input;
         this.output = output;
+    }
+
+    public MetalRollerRecipe(Item input, Item output) {
+        this(Ingredient.fromItem(input), new ItemStack(output));
     }
 
     public boolean matches(ItemStack stack) {

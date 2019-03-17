@@ -2,6 +2,7 @@
 
 package org.sdoaj.items.blocks.machines.metalroller;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public final class MetalRollerRecipes {
         }
 
         return null;
+    }
 
+    public static void init() {
+        addRecipe(new MetalRollerRecipe(Items.APPLE, Items.REDSTONE));
     }
 }
