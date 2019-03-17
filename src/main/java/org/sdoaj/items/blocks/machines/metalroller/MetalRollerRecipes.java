@@ -15,7 +15,13 @@ public final class MetalRollerRecipes {
     }
 
     public static MetalRollerRecipe getRecipeFromInput(ItemStack input) {
-        return recipes.stream().filter(recipe -> recipe.matches(input)).findFirst().orElse(null);
+        for (MetalRollerRecipe recipe : recipes) {
+            if (recipe.matches(input)) {
+                return recipe;
+            }
+        }
+
+        return null;
 
     }
 }

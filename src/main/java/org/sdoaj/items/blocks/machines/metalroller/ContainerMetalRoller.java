@@ -33,7 +33,7 @@ public class ContainerMetalRoller extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {
-        int inventoryStart = 3;
+        int inventoryStart = 2;
         int inventoryEnd = inventoryStart + 26;
         int hotbarStart = inventoryEnd + 1;
         int hotbarEnd = hotbarStart + 8;
