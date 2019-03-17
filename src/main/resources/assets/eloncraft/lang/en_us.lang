@@ -6,6 +6,8 @@ item.lithium_ingot.name=Lithium Ingot
 item.nickel_ingot.name=Nickel Ingot
 item.chromium_ingot.name=Chromium Ingot
 
+item.aluminum_plate.name=Aluminum Plate
+
 tile.components.name=Components
 
 tile.aluminum_ore.name=Aluminum Ore

@@ -26,6 +26,8 @@ public class ModItems {
     public static Item nickelIngot;
     public static Item chromiumIngot;
 
+    public static Item aluminumPlate;
+
     public static Item flamethrower;
 
     public static void init() {
@@ -39,6 +41,9 @@ public class ModItems {
         nickelIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         chromiumIngot = new ItemBasic("chromium_ingot");
         chromiumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+
+        aluminumPlate = new ItemBasic("aluminum_plate");
+        aluminumPlate.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         flamethrower = new ItemRangedWeapon("flamethrower", world -> {
                     EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
