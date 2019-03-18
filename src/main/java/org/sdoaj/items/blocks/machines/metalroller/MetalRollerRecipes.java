@@ -27,5 +27,9 @@ public final class MetalRollerRecipes {
 
     public static void init() {
         addRecipe(new MetalRollerRecipe(ModItems.aluminumIngot, ModItems.aluminumPlate));
+        addRecipe(new MetalRollerRecipe(ModItems.titaniumIngot, ModItems.titaniumPlate));
+        addRecipe(new MetalRollerRecipe(ModItems.lithiumIngot, ModItems.lithiumPlate));
+        addRecipe(new MetalRollerRecipe(ModItems.nickelIngot, ModItems.nickelPlate));
+        addRecipe(new MetalRollerRecipe(ModItems.chromiumIngot, ModItems.chromiumPlate));
     }
 }

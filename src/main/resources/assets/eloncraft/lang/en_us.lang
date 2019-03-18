@@ -7,6 +7,10 @@ item.nickel_ingot.name=Nickel Ingot
 item.chromium_ingot.name=Chromium Ingot
 
 item.aluminum_plate.name=Aluminum Plate
+item.titanium_plate.name=Titanium Plate
+item.lithium_plate.name=Lithium Plate
+item.nickel_plate.name=Nickel Plate
+item.chromium_plate.name=Chromium Plate
 
 tile.components.name=Components
 
@@ -22,4 +26,4 @@ container.eloncraft.metal_roller.name=Metal Roller
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla
 itemGroup.spacex=SpaceX
-itemGroup.boring_Company=The Boring Company
+itemGroup.boring_company=The Boring Company
