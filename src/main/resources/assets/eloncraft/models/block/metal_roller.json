@@ -1,12 +1,12 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "particle": "minecraft:blocks/iron_block",
-    "up": "minecraft:blocks/cobblestone",
-    "down": "minecraft:blocks/iron_block",
-    "north": "minecraft:blocks/iron_block",
-    "east": "minecraft:blocks/iron_block",
-    "south": "minecraft:blocks/iron_block",
-    "west": "minecraft:blocks/iron_block"
+    "particle": "eloncraft:blocks/machine_base",
+    "up": "eloncraft:blocks/machine_base",
+    "down": "eloncraft:blocks/machine_base",
+    "north": "eloncraft:blocks/metal_roller_side_off",
+    "east": "eloncraft:blocks/metal_roller_side_off",
+    "south": "eloncraft:blocks/metal_roller_side_off",
+    "west": "eloncraft:blocks/metal_roller_side_off"
   }
 }

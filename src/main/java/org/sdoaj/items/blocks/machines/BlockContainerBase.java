@@ -144,12 +144,6 @@ public abstract class BlockContainerBase extends BlockContainer {
         }
     }
 
-    protected boolean tryUseItemOnTank(EntityPlayer player, EnumHand hand, FluidTank tank) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        return StackUtil.isValid(heldItem) && FluidUtil.interactWithFluidHandler(player, hand, tank);
-
-    }
-
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
         this.updateRedstoneState(world, pos);

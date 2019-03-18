@@ -35,16 +35,18 @@ public class BlockMetalRoller extends BlockContainerBase {
         return new TileEntityMetalRoller();
     }
 
+    private double randomCoordinateAdd(Random random) {
+        return (random.nextDouble() - 0.5) * 0.75;
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         if (state.getValue(IS_ON)) {
-            for (int i = 0; i < 5; i++) {
-                double xRand = random.nextDouble() / 0.75D - 0.5D;
-                double zRand = random.nextDouble() / 0.75D - 0.5D;
-                world.spawnParticle(EnumParticleTypes.CRIT, (double) pos.getX() + 0.4F, (double) pos.getY() + 0.8F, (double) pos.getZ() + 0.4F, xRand, 0.5D, zRand);
+            for (int i = 0; i < 3; i++) {
+                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5 + randomCoordinateAdd(random),
+                        pos.getY() + 1.1, pos.getZ() + 0.5 + randomCoordinateAdd(random), 0.0D, 0.0D, 0.0D);
             }
-            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, (double) pos.getX() + 0.5F, (double) pos.getY() + 1.0F, (double) pos.getZ() + 0.5F, 0.0D, 0.0D, 0.0D);
         }
     }
 
