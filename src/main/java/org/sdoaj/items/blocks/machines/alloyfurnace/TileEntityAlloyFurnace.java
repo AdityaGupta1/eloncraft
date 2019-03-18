@@ -53,13 +53,8 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
         if (!this.world.isRemote) {
             boolean processed = false;
             boolean canProcess = this.canProcess();
-            boolean shouldPlaySound = false;
 
             if (canProcess) {
-                if (this.processTime % 20 == 0) {
-                    shouldPlaySound = true;
-                }
-
                 this.processTime++;
                 if (this.processTime >= this.getMaxProcessTime()) {
                     this.finishProcessing();
@@ -93,11 +88,6 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
             if ((this.lastProcess != this.processTime) && this.sendUpdateWithInterval()) {
                 this.lastProcess = this.processTime;
             }
-
-            // TODO sound
-            // if (shouldPlaySound) {
-            //     this.world.playSound(null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), SoundHandler.crusher, SoundCategory.BLOCKS, 0.025F, 1.0F);
-            // }
         }
     }
 
