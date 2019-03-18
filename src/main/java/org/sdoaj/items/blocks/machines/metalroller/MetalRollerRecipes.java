@@ -2,6 +2,7 @@
 
 package org.sdoaj.items.blocks.machines.metalroller;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.items.items.ModItems;
 
@@ -26,6 +27,8 @@ public final class MetalRollerRecipes {
     }
 
     public static void init() {
+        addRecipe(new MetalRollerRecipe(Items.IRON_INGOT, ModItems.IRON_PLATE));
+        addRecipe(new MetalRollerRecipe(Items.GOLD_INGOT, ModItems.GOLD_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_INGOT, ModItems.ALUMINUM_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.TITANIUM_INGOT, ModItems.TITANIUM_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.LITHIUM_INGOT, ModItems.LITHIUM_PLATE));

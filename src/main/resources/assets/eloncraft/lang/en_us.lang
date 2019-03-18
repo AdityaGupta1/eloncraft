@@ -6,6 +6,8 @@ item.lithium_ingot.name=Lithium Ingot
 item.nickel_ingot.name=Nickel Ingot
 item.chromium_ingot.name=Chromium Ingot
 
+item.iron_plate.name=Iron Plate
+item.gold_plate.name=Gold Plate
 item.aluminum_plate.name=Aluminum Plate
 item.titanium_plate.name=Titanium Plate
 item.lithium_plate.name=Lithium Plate

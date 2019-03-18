@@ -26,6 +26,8 @@ public class ModItems {
     public static Item NICKEL_INGOT;
     public static Item CHROMIUM_INGOT;
 
+    public static Item IRON_PLATE;
+    public static Item GOLD_PLATE;
     public static Item ALUMINUM_PLATE;
     public static Item TITANIUM_PLATE;
     public static Item LITHIUM_PLATE;
@@ -38,29 +40,20 @@ public class ModItems {
 
     public static void init() {
         ALUMINUM_INGOT = new ItemBasic("aluminum_ingot");
-        ALUMINUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         TITANIUM_INGOT = new ItemBasic("titanium_ingot");
-        TITANIUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         LITHIUM_INGOT = new ItemBasic("lithium_ingot");
-        LITHIUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         NICKEL_INGOT = new ItemBasic("nickel_ingot");
-        NICKEL_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         CHROMIUM_INGOT = new ItemBasic("chromium_ingot");
-        CHROMIUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
+        IRON_PLATE = new ItemBasic("iron_plate");
+        GOLD_PLATE = new ItemBasic("gold_plate");
         ALUMINUM_PLATE = new ItemBasic("aluminum_plate");
-        ALUMINUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         TITANIUM_PLATE = new ItemBasic("titanium_plate");
-        TITANIUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         LITHIUM_PLATE = new ItemBasic("lithium_plate");
-        LITHIUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         NICKEL_PLATE = new ItemBasic("nickel_plate");
-        NICKEL_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         CHROMIUM_PLATE = new ItemBasic("chromium_plate");
-        CHROMIUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         INCONEL_BARS = new ItemBasic("inconel_bars");
-        INCONEL_BARS.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
                     EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
