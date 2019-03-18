@@ -28,47 +28,48 @@ import java.util.List;
 public class ModBlocks {
     private static final List<Block> blocks = new ArrayList<>();
 
-    public static Block components;
+    public static Block COMPONENTS;
 
-    public static Block aluminumOre;
-    public static Block titaniumOre;
-    public static Block lithiumOre;
-    public static Block nickelOre;
-    public static Block chromiumOre;
+    public static Block ALUMINUM_ORE;
+    public static Block TITANIUM_ORE;
+    public static Block LITHIUM_ORE;
+    public static Block NICKEL_ORE;
+    public static Block CHROMIUM_ORE;
 
-    public static Block metalRoller;
+    public static Block METAL_ROLLER;
+    public static Block ALLOY_FURNACE;
 
     public static void init() {
-        components = new BlockOre("components", Material.IRON, new Drops(
+        COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
                 new Drop(new ItemStack(Items.REDSTONE), new DropRange(3, 5), 2),
                 new Drop(new ItemStack(Items.REPEATER), new DropRange(1, 2), 1),
                 new Drop(new ItemStack(Items.COMPARATOR), new DropRange(1, 2), 1)))
                 .setHardness(5.0F).setResistance(10.0F);
-        components.setHarvestLevel("pickaxe", 2);
-        components.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        COMPONENTS.setHarvestLevel("pickaxe", 2);
+        COMPONENTS.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
-        aluminumOre = new BlockOreStone("aluminum_ore").setHarvestLevel(2).setHardness(3.0F)
+        ALUMINUM_ORE = new BlockOreStone("aluminum_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        aluminumOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        titaniumOre = new BlockOreStone("titanium_ore").setHarvestLevel(3).setHardness(3.0F)
+        ALUMINUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        TITANIUM_ORE = new BlockOreStone("titanium_ore").setHarvestLevel(3).setHardness(3.0F)
                 .setResistance(5.0F);
-        titaniumOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        lithiumOre = new BlockOreStone("lithium_ore").setHarvestLevel(2).setHardness(3.0F)
+        TITANIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        LITHIUM_ORE = new BlockOreStone("lithium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        lithiumOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        nickelOre = new BlockOreStone("nickel_ore").setHarvestLevel(2).setHardness(3.0F)
+        LITHIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        NICKEL_ORE = new BlockOreStone("nickel_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        nickelOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        chromiumOre = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
+        NICKEL_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        CHROMIUM_ORE = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        chromiumOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        CHROMIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
-        metalRoller = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
-        metalRoller.setHarvestLevel("pickaxe", 3);
-        metalRoller.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        metalRoller = new BlockAlloyFurnace("alloy_furnace", Material.IRON).setHardness(20.0F).setResistance(40.0F);
-        metalRoller.setHarvestLevel("pickaxe", 3);
-        metalRoller.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
+        METAL_ROLLER.setHarvestLevel("pickaxe", 3);
+        METAL_ROLLER.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON).setHardness(20.0F).setResistance(40.0F);
+        ALLOY_FURNACE.setHarvestLevel("pickaxe", 3);
+        ALLOY_FURNACE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
     }
 
     public static void addBlock(Block block) {

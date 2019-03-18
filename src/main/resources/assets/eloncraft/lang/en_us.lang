@@ -12,6 +12,8 @@ item.lithium_plate.name=Lithium Plate
 item.nickel_plate.name=Nickel Plate
 item.chromium_plate.name=Chromium Plate
 
+item.inconel_bars.name=Inconel Bars
+
 tile.components.name=Components
 
 tile.aluminum_ore.name=Aluminum Ore

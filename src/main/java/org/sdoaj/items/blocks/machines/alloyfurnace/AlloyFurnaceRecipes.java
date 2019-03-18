@@ -28,9 +28,9 @@ public final class AlloyFurnaceRecipes {
 
     public static void init() {
         addRecipe(new AlloyFurnaceRecipe(new ArrayList<ItemStack>() {{
-            add(new ItemStack(ModItems.nickelIngot, 7));
-            add(new ItemStack(ModItems.chromiumIngot, 2));
+            add(new ItemStack(ModItems.NICKEL_INGOT, 7));
+            add(new ItemStack(ModItems.CHROMIUM_INGOT, 2));
             add(new ItemStack(Items.IRON_INGOT, 1));
-        }}, new ItemStack(Items.APPLE, 10)));
+        }}, new ItemStack(ModItems.INCONEL_BARS, 10)));
     }
 }

@@ -26,10 +26,10 @@ public final class MetalRollerRecipes {
     }
 
     public static void init() {
-        addRecipe(new MetalRollerRecipe(ModItems.aluminumIngot, ModItems.aluminumPlate));
-        addRecipe(new MetalRollerRecipe(ModItems.titaniumIngot, ModItems.titaniumPlate));
-        addRecipe(new MetalRollerRecipe(ModItems.lithiumIngot, ModItems.lithiumPlate));
-        addRecipe(new MetalRollerRecipe(ModItems.nickelIngot, ModItems.nickelPlate));
-        addRecipe(new MetalRollerRecipe(ModItems.chromiumIngot, ModItems.chromiumPlate));
+        addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_INGOT, ModItems.ALUMINUM_PLATE));
+        addRecipe(new MetalRollerRecipe(ModItems.TITANIUM_INGOT, ModItems.TITANIUM_PLATE));
+        addRecipe(new MetalRollerRecipe(ModItems.LITHIUM_INGOT, ModItems.LITHIUM_PLATE));
+        addRecipe(new MetalRollerRecipe(ModItems.NICKEL_INGOT, ModItems.NICKEL_PLATE));
+        addRecipe(new MetalRollerRecipe(ModItems.CHROMIUM_INGOT, ModItems.CHROMIUM_PLATE));
     }
 }

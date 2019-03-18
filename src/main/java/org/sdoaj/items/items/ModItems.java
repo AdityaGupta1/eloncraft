@@ -20,44 +20,49 @@ import java.util.List;
 public class ModItems {
     private static final List<ItemBasic> items = new ArrayList<>();
 
-    public static Item aluminumIngot;
-    public static Item titaniumIngot;
-    public static Item lithiumIngot;
-    public static Item nickelIngot;
-    public static Item chromiumIngot;
+    public static Item ALUMINUM_INGOT;
+    public static Item TITANIUM_INGOT;
+    public static Item LITHIUM_INGOT;
+    public static Item NICKEL_INGOT;
+    public static Item CHROMIUM_INGOT;
 
-    public static Item aluminumPlate;
-    public static Item titaniumPlate;
-    public static Item lithiumPlate;
-    public static Item nickelPlate;
-    public static Item chromiumPlate;
+    public static Item ALUMINUM_PLATE;
+    public static Item TITANIUM_PLATE;
+    public static Item LITHIUM_PLATE;
+    public static Item NICKEL_PLATE;
+    public static Item CHROMIUM_PLATE;
 
-    public static Item flamethrower;
+    public static Item INCONEL_BARS;
+
+    public static Item FLAMETHROWER;
 
     public static void init() {
-        aluminumIngot = new ItemBasic("aluminum_ingot");
-        aluminumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        titaniumIngot = new ItemBasic("titanium_ingot");
-        titaniumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        lithiumIngot = new ItemBasic("lithium_ingot");
-        lithiumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        nickelIngot = new ItemBasic("nickel_ingot");
-        nickelIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        chromiumIngot = new ItemBasic("chromium_ingot");
-        chromiumIngot.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        ALUMINUM_INGOT = new ItemBasic("aluminum_ingot");
+        ALUMINUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        TITANIUM_INGOT = new ItemBasic("titanium_ingot");
+        TITANIUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        LITHIUM_INGOT = new ItemBasic("lithium_ingot");
+        LITHIUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        NICKEL_INGOT = new ItemBasic("nickel_ingot");
+        NICKEL_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        CHROMIUM_INGOT = new ItemBasic("chromium_ingot");
+        CHROMIUM_INGOT.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
-        aluminumPlate = new ItemBasic("aluminum_plate");
-        aluminumPlate.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        titaniumPlate = new ItemBasic("titanium_plate");
-        titaniumPlate.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        lithiumPlate = new ItemBasic("lithium_plate");
-        lithiumPlate.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        nickelPlate = new ItemBasic("nickel_plate");
-        nickelPlate.setCreativeTab(ModCreativeTabs.ELONCRAFT);
-        chromiumPlate = new ItemBasic("chromium_plate");
-        chromiumPlate.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        ALUMINUM_PLATE = new ItemBasic("aluminum_plate");
+        ALUMINUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        TITANIUM_PLATE = new ItemBasic("titanium_plate");
+        TITANIUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        LITHIUM_PLATE = new ItemBasic("lithium_plate");
+        LITHIUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        NICKEL_PLATE = new ItemBasic("nickel_plate");
+        NICKEL_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        CHROMIUM_PLATE = new ItemBasic("chromium_plate");
+        CHROMIUM_PLATE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
-        flamethrower = new ItemRangedWeapon("flamethrower", world -> {
+        INCONEL_BARS = new ItemBasic("inconel_bars");
+        INCONEL_BARS.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+
+        FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
                     EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
                     fire.fallTime = 1;
                     return fire;

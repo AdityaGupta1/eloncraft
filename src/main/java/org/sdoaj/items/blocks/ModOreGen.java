@@ -23,18 +23,18 @@ public class ModOreGen implements IWorldGenerator {
                 break;
             // overworld
             case 0:
-                runGenerator(ModBlocks.components.getDefaultState(), 10, 10, 0, 63,
+                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 10, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
-                runGenerator(ModBlocks.aluminumOre.getDefaultState(), 8, 50, 0, 63,
+                runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 8, 50, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.titaniumOre.getDefaultState(), 8, 20, 0, 15,
+                runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 8, 20, 0, 15,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.lithiumOre.getDefaultState(), 8, 30, 0, 47,
+                runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 8, 30, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.nickelOre.getDefaultState(), 8, 15, 0, 31,
+                runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.chromiumOre.getDefaultState(), 8, 15, 0, 31,
+                runGenerator(ModBlocks.CHROMIUM_ORE.getDefaultState(), 8, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 break;
             // end
