@@ -1,6 +1,6 @@
 // based on BlockGrinder from Actually Additions
 
-package org.sdoaj.items.blocks.machines.metalroller;
+package org.sdoaj.items.blocks.machines.alloyfurnace;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -22,17 +22,17 @@ import org.sdoaj.items.blocks.machines.BlockContainerBase;
 
 import java.util.Random;
 
-public class BlockMetalRoller extends BlockContainerBase {
+public class BlockAlloyFurnace extends BlockContainerBase {
     public static final PropertyBool IS_ON = PropertyBool.create("on");
 
-    public BlockMetalRoller(String name, Material material) {
+    public BlockAlloyFurnace(String name, Material material) {
         super(name, material);
         this.setTickRandomly(true);
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-        return new TileEntityMetalRoller();
+        return new TileEntityAlloyFurnace();
     }
 
     private double randomCoordinateAdd(Random random) {
@@ -53,9 +53,9 @@ public class BlockMetalRoller extends BlockContainerBase {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
-            TileEntityMetalRoller tileEntity = (TileEntityMetalRoller) world.getTileEntity(pos);
+            TileEntityAlloyFurnace tileEntity = (TileEntityAlloyFurnace) world.getTileEntity(pos);
             if (tileEntity != null) {
-                player.openGui(Main.INSTANCE, Reference.GUI_METAL_ROLLER, world, pos.getX(), pos.getY(), pos.getZ());
+                player.openGui(Main.INSTANCE, Reference.GUI_ALLOY_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
             }
             return true;
         }

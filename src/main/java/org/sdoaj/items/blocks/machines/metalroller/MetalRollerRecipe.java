@@ -5,25 +5,26 @@ package org.sdoaj.items.blocks.machines.metalroller;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import org.sdoaj.util.StackUtil;
 
 public class MetalRollerRecipe {
-    protected Ingredient input;
+    protected ItemStack input;
     protected ItemStack output;
 
-    public MetalRollerRecipe(Ingredient input, ItemStack output) {
+    public MetalRollerRecipe(ItemStack input, ItemStack output) {
         this.input = input;
         this.output = output;
     }
 
     public MetalRollerRecipe(Item input, Item output) {
-        this(Ingredient.fromItem(input), new ItemStack(output));
+        this(new ItemStack(input), new ItemStack(output));
     }
 
     public boolean matches(ItemStack stack) {
-        return this.input.apply(stack);
+        return StackUtil.ingredientApplies(input, stack);
     }
 
-    public Ingredient getInput() {
+    public ItemStack getInput() {
         return this.input;
     }
 

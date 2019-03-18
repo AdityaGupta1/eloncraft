@@ -23,7 +23,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Style;
@@ -31,8 +30,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidUtil;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.util.StackUtil;
@@ -63,8 +60,8 @@ public abstract class BlockContainerBase extends BlockContainer {
             TileEntity aTile = world.getTileEntity(position);
             if (aTile instanceof TileEntityInventoryBase) {
                 TileEntityInventoryBase tile = (TileEntityInventoryBase) aTile;
-                if (tile.inv.getSlots() > 0) {
-                    for (int i = 0; i < tile.inv.getSlots(); i++) {
+                if (tile.inventory.getSlots() > 0) {
+                    for (int i = 0; i < tile.inventory.getSlots(); i++) {
                         this.dropSlotFromInventory(i, tile, world, position);
                     }
                 }
@@ -73,7 +70,7 @@ public abstract class BlockContainerBase extends BlockContainer {
     }
 
     private void dropSlotFromInventory(int i, TileEntityInventoryBase tile, World world, BlockPos pos) {
-        ItemStack stack = tile.inv.getStackInSlot(i);
+        ItemStack stack = tile.inventory.getStackInSlot(i);
         if (StackUtil.isValid(stack)) {
             float dX = world.rand.nextFloat() * 0.8F + 0.1F;
             float dY = world.rand.nextFloat() * 0.8F + 0.1F;

@@ -1,25 +1,33 @@
 // based on ContainerGrinder from Actually Additions
 
-package org.sdoaj.items.blocks.machines.metalroller;
+package org.sdoaj.items.blocks.machines.alloyfurnace;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import org.sdoaj.items.blocks.machines.TileEntityBase;
 import org.sdoaj.items.blocks.machines.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.items.blocks.machines.gui.slot.SlotOutput;
-import org.sdoaj.items.blocks.machines.TileEntityBase;
 import org.sdoaj.util.StackUtil;
 
-public class ContainerMetalRoller extends Container {
-    public final TileEntityMetalRoller tileEntity;
+import java.util.Arrays;
 
-    public ContainerMetalRoller(InventoryPlayer inventory, TileEntityBase tileEntity) {
-        this.tileEntity = (TileEntityMetalRoller) tileEntity;
+public class ContainerAlloyFurnace extends Container {
+    public final TileEntityAlloyFurnace tileEntity;
 
-        this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_INPUT, 47, 35));
-        this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_OUTPUT, 107, 35));
+    public ContainerAlloyFurnace(InventoryPlayer inventory, TileEntityBase tileEntity) {
+        this.tileEntity = (TileEntityAlloyFurnace) tileEntity;
+
+        int[][] slots = {
+                {10, 10}, {10, 33}, {10, 56}, {34, 22}, {34, 45}, {126, 22}, {126, 45}, {150, 10}, {150, 33}, {150, 56}
+        };
+
+        for (int i = 0; i < TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1; i++) {
+            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, slots[i][0], slots[i][1], 1));
+        }
+        this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityAlloyFurnace.SLOT_OUTPUT, 80, 18));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -33,7 +41,7 @@ public class ContainerMetalRoller extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotId) {
-        int inventoryStart = TileEntityMetalRoller.SLOT_OUTPUT + 1;
+        int inventoryStart = TileEntityAlloyFurnace.SLOT_OUTPUT + 1;
         int inventoryEnd = inventoryStart + 26;
         int hotbarStart = inventoryEnd + 1;
         int hotbarEnd = hotbarStart + 8;
@@ -44,17 +52,14 @@ public class ContainerMetalRoller extends Container {
             ItemStack newStack = slot.getStack();
             ItemStack currentStack = newStack.copy();
 
-            if (slotId == TileEntityMetalRoller.SLOT_INPUT || slotId == TileEntityMetalRoller.SLOT_OUTPUT) {
+            // purposely leaving out shift-clicking into input slots (similar to crafting table)
+            if (slotId < inventoryStart) {
                 if (!this.mergeItemStack(newStack, inventoryStart, hotbarEnd + 1, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(newStack, currentStack);
             } else {
-                if (MetalRollerRecipes.getRecipeFromInput(newStack) != null) {
-                    if (!this.mergeItemStack(newStack, TileEntityMetalRoller.SLOT_INPUT, TileEntityMetalRoller.SLOT_INPUT + 1, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (slotId <= inventoryEnd) {
+                if (slotId <= inventoryEnd) {
                     if (!this.mergeItemStack(newStack, hotbarStart, hotbarEnd + 1, false)) {
                         return ItemStack.EMPTY;
                     }

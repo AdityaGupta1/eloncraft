@@ -22,6 +22,8 @@ tile.chromium_ore.name=Chromium Ore
 
 tile.metal_roller.name=Metal Roller
 container.eloncraft.metal_roller.name=Metal Roller
+tile.alloy_furnace.name=Alloy Furnace
+container.eloncraft.alloy_furnace.name=Alloy Furnace
 
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla

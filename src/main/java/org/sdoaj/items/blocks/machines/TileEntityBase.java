@@ -28,7 +28,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.sdoaj.eloncraft.Main;
+import org.sdoaj.items.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.TileEntityMetalRoller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;
@@ -45,6 +49,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
 
     public static void init() {
         register(TileEntityMetalRoller.class);
+        register(TileEntityAlloyFurnace.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {

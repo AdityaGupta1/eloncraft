@@ -18,22 +18,27 @@ import org.sdoaj.util.ItemStackHandler;
 import javax.annotation.Nonnull;
 
 public class SlotItemHandlerUnconditioned extends SlotItemHandler {
+    private final ItemStackHandler inventory;
+    private final int stackSizeLimit;
 
-    private final ItemStackHandler inv;
+    public SlotItemHandlerUnconditioned(ItemStackHandler inventory, int index, int xPosition, int yPosition, int stackSizeLimit) {
+        super(inventory, index, xPosition, yPosition);
+        this.inventory = inventory;
+        this.stackSizeLimit = Math.min(stackSizeLimit, 64);
+    }
 
-    public SlotItemHandlerUnconditioned(ItemStackHandler inv, int index, int xPosition, int yPosition) {
-        super(inv, index, xPosition, yPosition);
-        this.inv = inv;
+    public SlotItemHandlerUnconditioned(ItemStackHandler inventory, int index, int xPosition, int yPosition) {
+        this(inventory, index, xPosition, yPosition, 64);
     }
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        if (stack.isEmpty() || !this.inv.canAccept(this.getSlotIndex(), stack, false)) return false;
+        if (stack.isEmpty() || !this.inventory.canAccept(this.getSlotIndex(), stack, false)) return false;
 
-        ItemStack currentStack = this.inv.getStackInSlot(this.getSlotIndex());
-        this.inv.setStackInSlot(this.getSlotIndex(), ItemStack.EMPTY);
-        ItemStack remainder = this.inv.insertItem(this.getSlotIndex(), stack, true, false);
-        this.inv.setStackInSlot(this.getSlotIndex(), currentStack);
+        ItemStack currentStack = this.inventory.getStackInSlot(this.getSlotIndex());
+        this.inventory.setStackInSlot(this.getSlotIndex(), ItemStack.EMPTY);
+        ItemStack remainder = this.inventory.insertItem(this.getSlotIndex(), stack, true, false);
+        this.inventory.setStackInSlot(this.getSlotIndex(), currentStack);
         return remainder.isEmpty() || remainder.getCount() < stack.getCount();
     }
 
@@ -43,33 +48,38 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
     @Override
     @Nonnull
     public ItemStack getStack() {
-        return this.inv.getStackInSlot(this.getSlotIndex());
+        return this.inventory.getStackInSlot(this.getSlotIndex());
     }
 
     @Override
     public void putStack(ItemStack stack) {
-        this.inv.setStackInSlot(this.getSlotIndex(), stack);
+        this.inventory.setStackInSlot(this.getSlotIndex(), stack);
         this.onSlotChanged();
+    }
+
+    @Override
+    public int getSlotStackLimit() {
+        return stackSizeLimit;
     }
 
     @Override
     public int getItemStackLimit(ItemStack stack) {
         ItemStack maxAdd = stack.copy();
-        maxAdd.setCount(stack.getMaxStackSize());
-        ItemStack currentStack = this.inv.getStackInSlot(this.getSlotIndex());
-        this.inv.setStackInSlot(this.getSlotIndex(), ItemStack.EMPTY);
-        ItemStack remainder = this.inv.insertItem(this.getSlotIndex(), maxAdd, true, false);
-        this.inv.setStackInSlot(this.getSlotIndex(), currentStack);
-        return stack.getMaxStackSize() - remainder.getCount();
+        maxAdd.setCount(getSlotStackLimit());
+        ItemStack currentStack = this.inventory.getStackInSlot(this.getSlotIndex());
+        this.inventory.setStackInSlot(this.getSlotIndex(), ItemStack.EMPTY);
+        ItemStack remainder = this.inventory.insertItem(this.getSlotIndex(), maxAdd, true, false);
+        this.inventory.setStackInSlot(this.getSlotIndex(), currentStack);
+        return getSlotStackLimit() - remainder.getCount();
     }
 
     @Override
     public boolean canTakeStack(EntityPlayer playerIn) {
-        return !this.inv.extractItem(this.getSlotIndex(), 1, true, false).isEmpty();
+        return !this.inventory.extractItem(this.getSlotIndex(), 1, true, false).isEmpty();
     }
 
     @Override
     public ItemStack decrStackSize(int amount) {
-        return this.inv.extractItem(this.getSlotIndex(), amount, false, false);
+        return this.inventory.extractItem(this.getSlotIndex(), amount, false, false);
     }
 }

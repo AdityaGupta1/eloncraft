@@ -18,6 +18,7 @@ import org.sdoaj.items.Drop;
 import org.sdoaj.items.DropRange;
 import org.sdoaj.items.Drops;
 import org.sdoaj.items.ModCreativeTabs;
+import org.sdoaj.items.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.BlockMetalRoller;
 
 import java.util.ArrayList;
@@ -63,6 +64,9 @@ public class ModBlocks {
         chromiumOre.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         metalRoller = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
+        metalRoller.setHarvestLevel("pickaxe", 3);
+        metalRoller.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        metalRoller = new BlockAlloyFurnace("alloy_furnace", Material.IRON).setHardness(20.0F).setResistance(40.0F);
         metalRoller.setHarvestLevel("pickaxe", 3);
         metalRoller.setCreativeTab(ModCreativeTabs.ELONCRAFT);
     }

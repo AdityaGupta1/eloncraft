@@ -16,4 +16,17 @@ public class StackUtil {
         stack.shrink(amount);
         return stack;
     }
+
+    public static boolean ingredientApplies(ItemStack ingredient, ItemStack actual) {
+        if (ingredient == null || actual == null) {
+            return false;
+        }
+
+        if (!ingredient.isItemEqual(actual) || ingredient.getCount() > actual.getCount()) {
+            return false;
+        }
+
+        return ingredient.getMetadata() == Util.wildcard || ingredient.getMetadata() == actual.getMetadata();
+
+    }
 }

@@ -1,6 +1,6 @@
 // based on TileEntityGrinder from Actually Additions
 
-package org.sdoaj.items.blocks.machines.metalroller;
+package org.sdoaj.items.blocks.machines.alloyfurnace;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -10,17 +10,23 @@ import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.Util;
 
-public class TileEntityMetalRoller extends TileEntityInventoryBase {
-    public static final int SLOT_INPUT = 0;
-    public static final int SLOT_OUTPUT = 1;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
+    public static final int SLOT_INPUT_1 = 0;
+    public static final int INPUT_SLOTS = 10;
+    public static final int SLOT_OUTPUT = 10;
     public int processTime;
     private int lastProcess;
     private boolean lastProcessed;
 
     final int guiTopHeight = 79;
 
-    public TileEntityMetalRoller() {
-        super(2, "metal_roller");
+    public TileEntityAlloyFurnace() {
+        super(11, "alloy_furnace");
     }
 
     @Override
@@ -66,7 +72,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
             }
 
             IBlockState currentState = this.world.getBlockState(this.pos);
-            boolean current = currentState.getValue(BlockMetalRoller.IS_ON);
+            boolean current = currentState.getValue(BlockAlloyFurnace.IS_ON);
             boolean changeTo = current;
             if (lastProcessed != processed) {
                 changeTo = processed;
@@ -79,7 +85,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
             }
 
             if (changeTo != current) {
-                world.setBlockState(this.pos, currentState.withProperty(BlockMetalRoller.IS_ON, changeTo));
+                world.setBlockState(this.pos, currentState.withProperty(BlockAlloyFurnace.IS_ON, changeTo));
             }
 
             this.lastProcessed = processed;
@@ -97,7 +103,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
 
     @Override
     public ItemStackHandler.IAcceptor getAcceptor() {
-        return (slot, stack, automation) -> !automation || slot == SLOT_INPUT && MetalRollerRecipes.getRecipeFromInput(stack) != null;
+        return (slot, stack, automation) -> !automation || (slot >= SLOT_INPUT_1 && slot < SLOT_INPUT_1 + INPUT_SLOTS);
     }
 
     @Override
@@ -105,9 +111,21 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
         return (slot, automation) -> !automation || slot == SLOT_OUTPUT;
     }
 
+    private List<ItemStack> getInputStacks() {
+        return IntStream.range(SLOT_INPUT_1, SLOT_INPUT_1 + INPUT_SLOTS).mapToObj(this.inventory::getStackInSlot).collect(Collectors.toList());
+    }
+
     public boolean canProcess() {
-        if (StackUtil.isValid(this.inventory.getStackInSlot(SLOT_INPUT))) {
-            MetalRollerRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
+        boolean valid = true;
+
+        for (ItemStack stack : getInputStacks()) {
+            if (!StackUtil.isValid(stack)) {
+                valid = false;
+            }
+        }
+
+        if (valid) {
+            AlloyFurnaceRecipe recipe = AlloyFurnaceRecipes.getRecipeFromInput(getInputStacks());
             if (recipe == null) {
                 return false;
             }
@@ -127,11 +145,11 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
     }
 
     private int getMaxProcessTime() {
-        return 120;
+        return 600;
     }
 
     public void finishProcessing() {
-        MetalRollerRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
+        AlloyFurnaceRecipe recipe = AlloyFurnaceRecipes.getRecipeFromInput(getInputStacks());
         if (recipe == null) {
             return;
         }
@@ -149,7 +167,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
             }
         }
 
-        this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInput().getCount());
+        getInputStacks().forEach(stack -> stack.shrink(1));
     }
 
     public int getTimeToScale(int i) {

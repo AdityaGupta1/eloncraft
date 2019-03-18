@@ -21,11 +21,11 @@ import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
 
 public abstract class TileEntityInventoryBase extends TileEntityBase {
-    public final ItemStackHandler inv;
+    public final ItemStackHandler inventory;
 
     public TileEntityInventoryBase(int slots, String name) {
         super(name);
-        this.inv = new TileStackHandler(slots);
+        this.inventory = new TileStackHandler(slots);
     }
 
     public static void saveSlots(IItemHandler slots, NBTTagCompound compound) {
@@ -57,13 +57,13 @@ public abstract class TileEntityInventoryBase extends TileEntityBase {
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.writeSyncableNBT(compound, type);
         if (type == NBTType.SAVE_TILE || type == NBTType.SYNC && this.shouldSyncSlots()) {
-            saveSlots(this.inv, compound);
+            saveSlots(this.inventory, compound);
         }
     }
 
     @Override
     public IItemHandler getItemHandler(EnumFacing facing) {
-        return this.inv;
+        return this.inventory;
     }
 
     public ItemStackHandler.IAcceptor getAcceptor() {
@@ -93,14 +93,14 @@ public abstract class TileEntityInventoryBase extends TileEntityBase {
 
     @Override
     public int getComparatorStrength() {
-        return ItemHandlerHelper.calcRedstoneFromInventory(this.inv);
+        return ItemHandlerHelper.calcRedstoneFromInventory(this.inventory);
     }
 
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.readSyncableNBT(compound, type);
         if (type == NBTType.SAVE_TILE || type == NBTType.SYNC && this.shouldSyncSlots()) {
-            loadSlots(this.inv, compound);
+            loadSlots(this.inventory, compound);
         }
     }
 

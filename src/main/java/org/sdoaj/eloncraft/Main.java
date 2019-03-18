@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.items.blocks.ModOreGen;
 import org.sdoaj.items.blocks.machines.TileEntityBase;
+import org.sdoaj.items.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
 import org.sdoaj.items.blocks.machines.gui.GuiHandler;
 import org.sdoaj.items.blocks.machines.metalroller.MetalRollerRecipes;
 import org.sdoaj.items.items.ModItems;
@@ -47,5 +48,6 @@ public class Main {
         ModSmeltingRecipes.init();
 
         MetalRollerRecipes.init();
+        AlloyFurnaceRecipes.init();
     }
 }
