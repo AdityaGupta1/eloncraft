@@ -11,11 +11,13 @@ import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.Util;
 
 public class TileEntityMetalRoller extends TileEntityInventoryBase {
-    public static final int SLOT_INPUT_1 = 0;
-    public static final int SLOT_OUTPUT_1 = 1;
+    public static final int SLOT_INPUT = 0;
+    public static final int SLOT_OUTPUT = 1;
     public int processTime;
     private int lastProcess;
     private boolean lastProcessed;
+
+    final int guiTopHeight = 79;
 
     public TileEntityMetalRoller(int slots, String name) {
         super(slots, name);
@@ -48,7 +50,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
         super.updateEntity();
         if (!this.world.isRemote) {
             boolean crushed = false;
-            boolean canProcess = this.canProcess(SLOT_INPUT_1, SLOT_OUTPUT_1);
+            boolean canProcess = this.canProcess(SLOT_INPUT, SLOT_OUTPUT);
             boolean shouldPlaySound = false;
 
             if (canProcess) {
@@ -58,7 +60,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
 
                 this.processTime++;
                 if (this.processTime >= this.getMaxProcessTime()) {
-                    this.finishProcessing(SLOT_INPUT_1, SLOT_OUTPUT_1);
+                    this.finishProcessing(SLOT_INPUT, SLOT_OUTPUT);
                     this.processTime = 0;
                 }
 
@@ -93,12 +95,12 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
 
     @Override
     public ItemStackHandler.IAcceptor getAcceptor() {
-        return (slot, stack, automation) -> !automation || slot == SLOT_INPUT_1 && MetalRollerRecipes.getRecipeFromInput(stack) != null;
+        return (slot, stack, automation) -> !automation || slot == SLOT_INPUT && MetalRollerRecipes.getRecipeFromInput(stack) != null;
     }
 
     @Override
     public ItemStackHandler.IRemover getRemover() {
-        return (slot, automation) -> !automation || slot == SLOT_OUTPUT_1;
+        return (slot, automation) -> !automation || slot == SLOT_OUTPUT;
     }
 
     public boolean canProcess(int input, int output) {
@@ -123,7 +125,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
     }
 
     private int getMaxProcessTime() {
-        return 100;
+        return 120;
     }
 
     public void finishProcessing(int input, int output) {

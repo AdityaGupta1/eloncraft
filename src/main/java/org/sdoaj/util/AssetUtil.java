@@ -17,12 +17,12 @@ public final class AssetUtil {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void displayNameString(FontRenderer font, int xSize, int yPositionOfMachineText, String text) {
-        font.drawString(text, xSize / 2 - font.getStringWidth(text) / 2, yPositionOfMachineText, StringUtil.DECIMAL_COLOR_WHITE);
+    public static void displayNameString(FontRenderer fontRenderer, int xSize, int yPositionOfMachineText, String text) {
+        fontRenderer.drawString(text, xSize / 2 - fontRenderer.getStringWidth(text) / 2, yPositionOfMachineText, StringUtil.DECIMAL_COLOR_WHITE);
     }
 
     @SideOnly(Side.CLIENT)
-    public static void displayNameString(FontRenderer font, int xSize, int yPositionOfMachineText, TileEntityBase tile) {
-        displayNameString(font, xSize, yPositionOfMachineText, StringUtil.localize(tile.getNameForTranslation()));
+    public static void displayNameString(FontRenderer fontRenderer, int xSize, int yPositionOfMachineText, TileEntityBase tile) {
+        displayNameString(fontRenderer, xSize, yPositionOfMachineText, StringUtil.localize(tile.getNameForTranslation()));
     }
 }

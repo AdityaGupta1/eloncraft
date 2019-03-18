@@ -20,7 +20,7 @@ public class GuiMetalRoller extends GuiBase {
         super(new ContainerMetalRoller(inventory, tile));
         this.tileEntity = (TileEntityMetalRoller) tile;
         this.xSize = 176;
-        this.ySize = 93 + 86;
+        this.ySize = tileEntity.guiTopHeight + 86;
     }
 
     @Override
@@ -33,14 +33,14 @@ public class GuiMetalRoller extends GuiBase {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         this.mc.getTextureManager().bindTexture(AssetUtil.GUI_INVENTORY_LOCATION);
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop + 93, 0, 0, 176, 86);
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop + tileEntity.guiTopHeight, 0, 0, 176, 86);
 
         this.mc.getTextureManager().bindTexture(resourceLocation);
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, 93);
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
         if (this.tileEntity.processTime > 0) {
-            int i = this.tileEntity.getTimeToScale(23);
-            this.drawTexturedModalRect(this.guiLeft + (80), this.guiTop + 40, 176, 0, 24, i);
+            int i = this.tileEntity.getTimeToScale(24);
+            this.drawTexturedModalRect(this.guiLeft + 70, this.guiTop + 35, 176, 0, i, 17);
         }
     }
 }
