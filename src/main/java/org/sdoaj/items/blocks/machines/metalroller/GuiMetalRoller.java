@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.items.blocks.machines.gui.GuiBase;
 import org.sdoaj.items.blocks.machines.TileEntityBase;
+import org.sdoaj.items.blocks.machines.gui.EnergyDisplay;
 import org.sdoaj.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
@@ -16,11 +17,25 @@ public class GuiMetalRoller extends GuiBase {
     private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_metal_roller");
     private final TileEntityMetalRoller tileEntity;
 
+    private EnergyDisplay energy;
+
     public GuiMetalRoller(InventoryPlayer inventory, TileEntityBase tile) {
         super(new ContainerMetalRoller(inventory, tile));
         this.tileEntity = (TileEntityMetalRoller) tile;
         this.xSize = 176;
         this.ySize = tileEntity.guiTopHeight + 86;
+    }
+
+    @Override
+    public void initGui() {
+        super.initGui();
+        this.energy = new EnergyDisplay(this.guiLeft - EnergyDisplay.WIDTH_OUTLINE, this.guiTop, this.tileEntity.storage, true, false);
+    }
+
+    @Override
+    public void drawScreen(int x, int y, float f){
+        super.drawScreen(x, y, f);
+        this.energy.drawOverlay(x, y);
     }
 
     @Override
@@ -39,8 +54,10 @@ public class GuiMetalRoller extends GuiBase {
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
         if (this.tileEntity.processTime > 0) {
-            int i = this.tileEntity.getTimeToScale(24);
+            int i = this.tileEntity.getTimeScaled(24);
             this.drawTexturedModalRect(this.guiLeft + 70, this.guiTop + 35, 176, 0, i, 17);
         }
+
+        this.energy.draw();
     }
 }

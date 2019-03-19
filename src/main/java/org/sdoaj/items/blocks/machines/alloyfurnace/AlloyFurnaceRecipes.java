@@ -1,5 +1,3 @@
-// based on CrusherRecipeRegistry from Actually Additions
-
 package org.sdoaj.items.blocks.machines.alloyfurnace;
 
 import net.minecraft.init.Items;

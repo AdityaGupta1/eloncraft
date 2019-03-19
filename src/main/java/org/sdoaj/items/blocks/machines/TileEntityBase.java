@@ -24,6 +24,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -211,9 +213,18 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
             if (handler != null) {
                 return (T) handler;
             }
+        } else if (capability == CapabilityEnergy.ENERGY) {
+            IEnergyStorage storage = this.getEnergyStorage(facing);
+            if (storage != null) {
+                return (T) storage;
+            }
         }
 
         return super.getCapability(capability, facing);
+    }
+
+    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
+        return null;
     }
 
     public IItemHandler getItemHandler(EnumFacing facing) {

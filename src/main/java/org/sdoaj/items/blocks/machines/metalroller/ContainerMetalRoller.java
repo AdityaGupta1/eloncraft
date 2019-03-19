@@ -18,8 +18,8 @@ public class ContainerMetalRoller extends Container {
     public ContainerMetalRoller(InventoryPlayer inventory, TileEntityBase tileEntity) {
         this.tileEntity = (TileEntityMetalRoller) tileEntity;
 
-        this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_INPUT, 47, 35));
-        this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_OUTPUT, 107, 35));
+        this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_INPUT, 48, 35));
+        this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_OUTPUT, 108, 35));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {

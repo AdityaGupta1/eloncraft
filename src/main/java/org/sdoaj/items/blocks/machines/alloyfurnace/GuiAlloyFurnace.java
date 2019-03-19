@@ -39,7 +39,7 @@ public class GuiAlloyFurnace extends GuiBase {
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
         if (this.tileEntity.processTime > 0) {
-            int i = this.tileEntity.getTimeToScale(24);
+            int i = this.tileEntity.getTimeScaled(24);
             this.drawTexturedModalRect(this.guiLeft + 76, this.guiTop + 46, 180, 0, i, 26);
         }
     }

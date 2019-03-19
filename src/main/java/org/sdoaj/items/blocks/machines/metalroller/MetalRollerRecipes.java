@@ -1,5 +1,3 @@
-// based on CrusherRecipeRegistry from Actually Additions
-
 package org.sdoaj.items.blocks.machines.metalroller;
 
 import net.minecraft.init.Items;

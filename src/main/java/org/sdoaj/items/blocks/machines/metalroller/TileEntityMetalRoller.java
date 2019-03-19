@@ -5,6 +5,9 @@ package org.sdoaj.items.blocks.machines.metalroller;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.energy.IEnergyStorage;
+import org.sdoaj.items.blocks.machines.CustomEnergyStorage;
 import org.sdoaj.items.blocks.machines.TileEntityInventoryBase;
 import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
@@ -16,6 +19,10 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
     public int processTime;
     private int lastProcess;
     private boolean lastProcessed;
+
+    public static final int ENERGY_USE = 100; // FE/t
+    public final CustomEnergyStorage storage = new CustomEnergyStorage(100000, 100000, 0);
+    private int lastEnergy;
 
     final int guiTopHeight = 79;
 
@@ -29,6 +36,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
             compound.setInteger("FirstProcessTime", this.processTime);
         }
 
+        this.storage.writeToNBT(compound);
         super.writeSyncableNBT(compound, type);
     }
 
@@ -38,6 +46,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
             this.processTime = compound.getInteger("FirstProcessTime");
         }
 
+        this.storage.readFromNBT(compound);
         super.readSyncableNBT(compound, type);
     }
 
@@ -47,20 +56,18 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
         if (!this.world.isRemote) {
             boolean processed = false;
             boolean canProcess = this.canProcess();
-            boolean shouldPlaySound = false;
 
             if (canProcess) {
-                if (this.processTime % 20 == 0) {
-                    shouldPlaySound = true;
+                if (this.storage.getEnergyStored() >= ENERGY_USE) {
+                    this.processTime++;
+                    if (this.processTime >= this.getMaxProcessTime()) {
+                        this.finishProcessing();
+                        this.processTime = 0;
+                    }
+                    this.storage.extractEnergyInternal(ENERGY_USE, false);
                 }
 
-                this.processTime++;
-                if (this.processTime >= this.getMaxProcessTime()) {
-                    this.finishProcessing();
-                    this.processTime = 0;
-                }
-
-                processed = true;
+                processed = this.storage.getEnergyStored() >= ENERGY_USE;
             } else {
                 this.processTime = 0;
             }
@@ -84,14 +91,10 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
 
             this.lastProcessed = processed;
 
-            if ((this.lastProcess != this.processTime) && this.sendUpdateWithInterval()) {
+            if ((this.lastProcess != this.processTime || this.lastEnergy != this.storage.getEnergyStored()) && this.sendUpdateWithInterval()) {
                 this.lastProcess = this.processTime;
+                this.lastEnergy = this.storage.getEnergyStored();
             }
-
-            // TODO sound
-            // if (shouldPlaySound) {
-            //     this.world.playSound(null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), SoundHandler.crusher, SoundCategory.BLOCKS, 0.025F, 1.0F);
-            // }
         }
     }
 
@@ -152,7 +155,12 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
         this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInput().getCount());
     }
 
-    public int getTimeToScale(int i) {
+    public int getTimeScaled(int i) {
         return this.processTime * i / this.getMaxProcessTime();
+    }
+
+    @Override
+    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
+        return this.storage;
     }
 }

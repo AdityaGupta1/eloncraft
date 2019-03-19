@@ -160,7 +160,7 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
         getInputStacks().forEach(stack -> stack.shrink(1));
     }
 
-    public int getTimeToScale(int i) {
+    public int getTimeScaled(int i) {
         return this.processTime * i / this.getMaxProcessTime();
     }
 }
