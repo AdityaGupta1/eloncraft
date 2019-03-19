@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.items.blocks.machines;
+package org.sdoaj.items.blocks.tileentities;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.EnergyStorage;

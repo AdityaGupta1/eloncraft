@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.energy.IEnergyStorage;
-import org.sdoaj.items.blocks.machines.CustomEnergyStorage;
-import org.sdoaj.items.blocks.machines.TileEntityInventoryBase;
+import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
+import org.sdoaj.items.blocks.tileentities.TileEntityInventoryBase;
 import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.Util;
@@ -20,7 +20,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
     private int lastProcess;
     private boolean lastProcessed;
 
-    public static final int ENERGY_USE = 100; // FE/t
+    public static final int ENERGY_USE = 5000; // FE/operation
     public final CustomEnergyStorage storage = new CustomEnergyStorage(100000, 100000, 0);
     private int lastEnergy;
 
@@ -33,7 +33,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
     @Override
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
         if (type != NBTType.SAVE_BLOCK) {
-            compound.setInteger("FirstProcessTime", this.processTime);
+            compound.setInteger("ProcessTime", this.processTime);
         }
 
         this.storage.writeToNBT(compound);
@@ -43,7 +43,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         if (type != NBTType.SAVE_BLOCK) {
-            this.processTime = compound.getInteger("FirstProcessTime");
+            this.processTime = compound.getInteger("ProcessTime");
         }
 
         this.storage.readFromNBT(compound);
@@ -58,16 +58,16 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
             boolean canProcess = this.canProcess();
 
             if (canProcess) {
-                if (this.storage.getEnergyStored() >= ENERGY_USE) {
+                if (this.storage.getEnergyStored() >= getEnergyPerTick()) {
                     this.processTime++;
                     if (this.processTime >= this.getMaxProcessTime()) {
                         this.finishProcessing();
                         this.processTime = 0;
                     }
-                    this.storage.extractEnergyInternal(ENERGY_USE, false);
+                    this.storage.extractEnergyInternal(getEnergyPerTick(), false);
                 }
 
-                processed = this.storage.getEnergyStored() >= ENERGY_USE;
+                processed = this.storage.getEnergyStored() >= getEnergyPerTick();
             } else {
                 this.processTime = 0;
             }
@@ -131,6 +131,10 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
 
     private int getMaxProcessTime() {
         return 120;
+    }
+
+    private int getEnergyPerTick() {
+        return ENERGY_USE / getMaxProcessTime();
     }
 
     public void finishProcessing() {

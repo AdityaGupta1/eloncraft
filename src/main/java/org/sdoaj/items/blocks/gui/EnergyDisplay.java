@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.items.blocks.machines.gui;
+package org.sdoaj.items.blocks.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.sdoaj.items.blocks.machines.CustomEnergyStorage;
+import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.util.AssetUtil;
 import org.sdoaj.util.StringUtil;
 

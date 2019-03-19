@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.eloncraft.Reference;
-import org.sdoaj.items.blocks.machines.BlockContainerBase;
+import org.sdoaj.items.blocks.tileentities.BlockContainerBase;
 
 import java.util.Random;
 import java.util.stream.Stream;

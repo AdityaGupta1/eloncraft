@@ -1,6 +1,6 @@
 // from Actually Additions
 
-package org.sdoaj.items.blocks.machines;
+package org.sdoaj.items.blocks.tileentities;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.management.PlayerChunkMapEntry;

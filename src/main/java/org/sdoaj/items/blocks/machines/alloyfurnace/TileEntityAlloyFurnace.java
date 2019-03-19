@@ -5,12 +5,14 @@ package org.sdoaj.items.blocks.machines.alloyfurnace;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import org.sdoaj.items.blocks.machines.TileEntityInventoryBase;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.energy.IEnergyStorage;
+import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
+import org.sdoaj.items.blocks.tileentities.TileEntityInventoryBase;
 import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,6 +25,10 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
     private int lastProcess;
     private boolean lastProcessed;
 
+    public static final int ENERGY_USE = 10000; // FE/operation
+    public final CustomEnergyStorage storage = new CustomEnergyStorage(100000, 100000, 0);
+    private int lastEnergy;
+
     final int guiTopHeight = 79;
 
     public TileEntityAlloyFurnace() {
@@ -32,18 +38,20 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
     @Override
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
         if (type != NBTType.SAVE_BLOCK) {
-            compound.setInteger("FirstProcessTime", this.processTime);
+            compound.setInteger("ProcessTime", this.processTime);
         }
 
+        this.storage.writeToNBT(compound);
         super.writeSyncableNBT(compound, type);
     }
 
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         if (type != NBTType.SAVE_BLOCK) {
-            this.processTime = compound.getInteger("FirstProcessTime");
+            this.processTime = compound.getInteger("ProcessTime");
         }
 
+        this.storage.readFromNBT(compound);
         super.readSyncableNBT(compound, type);
     }
 
@@ -55,13 +63,16 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
             boolean canProcess = this.canProcess();
 
             if (canProcess) {
-                this.processTime++;
-                if (this.processTime >= this.getMaxProcessTime()) {
-                    this.finishProcessing();
-                    this.processTime = 0;
+                if (this.storage.getEnergyStored() >= getEnergyPerTick()) {
+                    this.processTime++;
+                    if (this.processTime >= this.getMaxProcessTime()) {
+                        this.finishProcessing();
+                        this.processTime = 0;
+                    }
+                    this.storage.extractEnergyInternal(getEnergyPerTick(), false);
                 }
 
-                processed = true;
+                processed = this.storage.getEnergyStored() >= getEnergyPerTick();
             } else {
                 this.processTime = 0;
             }
@@ -85,8 +96,9 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
 
             this.lastProcessed = processed;
 
-            if ((this.lastProcess != this.processTime) && this.sendUpdateWithInterval()) {
+            if ((this.lastProcess != this.processTime || this.lastEnergy != this.storage.getEnergyStored()) && this.sendUpdateWithInterval()) {
                 this.lastProcess = this.processTime;
+                this.lastEnergy = this.storage.getEnergyStored();
             }
         }
     }
@@ -135,7 +147,11 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
     }
 
     private int getMaxProcessTime() {
-        return 600;
+        return 500;
+    }
+
+    private int getEnergyPerTick() {
+        return ENERGY_USE / getMaxProcessTime();
     }
 
     public void finishProcessing() {
@@ -162,5 +178,10 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
 
     public int getTimeScaled(int i) {
         return this.processTime * i / this.getMaxProcessTime();
+    }
+
+    @Override
+    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
+        return this.storage;
     }
 }

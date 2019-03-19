@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.items.blocks.machines.gui;
+package org.sdoaj.items.blocks.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.eloncraft.Reference;
-import org.sdoaj.items.blocks.machines.TileEntityBase;
+import org.sdoaj.items.blocks.tileentities.TileEntityBase;
 import org.sdoaj.items.blocks.machines.alloyfurnace.ContainerAlloyFurnace;
 import org.sdoaj.items.blocks.machines.alloyfurnace.GuiAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.ContainerMetalRoller;

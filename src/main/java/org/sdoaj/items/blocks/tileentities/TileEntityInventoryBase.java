@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.items.blocks.machines;
+package org.sdoaj.items.blocks.tileentities;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

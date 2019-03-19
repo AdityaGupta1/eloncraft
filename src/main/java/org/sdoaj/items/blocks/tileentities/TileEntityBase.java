@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.items.blocks.machines;
+package org.sdoaj.items.blocks.tileentities;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,9 +32,6 @@ import net.minecraftforge.items.IItemHandler;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.TileEntityMetalRoller;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;

@@ -7,9 +7,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.sdoaj.items.blocks.machines.gui.GuiBase;
-import org.sdoaj.items.blocks.machines.TileEntityBase;
-import org.sdoaj.items.blocks.machines.gui.EnergyDisplay;
+import org.sdoaj.items.blocks.gui.GuiBase;
+import org.sdoaj.items.blocks.tileentities.TileEntityBase;
+import org.sdoaj.items.blocks.gui.EnergyDisplay;
 import org.sdoaj.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)

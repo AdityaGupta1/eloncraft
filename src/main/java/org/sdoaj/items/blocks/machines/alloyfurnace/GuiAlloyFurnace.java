@@ -7,8 +7,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.sdoaj.items.blocks.machines.TileEntityBase;
-import org.sdoaj.items.blocks.machines.gui.GuiBase;
+import org.sdoaj.items.blocks.tileentities.TileEntityBase;
+import org.sdoaj.items.blocks.gui.EnergyDisplay;
+import org.sdoaj.items.blocks.gui.GuiBase;
 import org.sdoaj.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
@@ -16,11 +17,25 @@ public class GuiAlloyFurnace extends GuiBase {
     private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_alloy_furnace");
     private final TileEntityAlloyFurnace tileEntity;
 
+    private EnergyDisplay energy;
+
     public GuiAlloyFurnace(InventoryPlayer inventory, TileEntityBase tile) {
         super(new ContainerAlloyFurnace(inventory, tile));
         this.tileEntity = (TileEntityAlloyFurnace) tile;
         this.xSize = 176;
         this.ySize = tileEntity.guiTopHeight + 86;
+    }
+
+    @Override
+    public void initGui() {
+        super.initGui();
+        this.energy = new EnergyDisplay(this.guiLeft - EnergyDisplay.WIDTH_OUTLINE, this.guiTop, this.tileEntity.storage, true, false);
+    }
+
+    @Override
+    public void drawScreen(int x, int y, float f){
+        super.drawScreen(x, y, f);
+        this.energy.drawOverlay(x, y);
     }
 
     @Override
@@ -42,5 +57,7 @@ public class GuiAlloyFurnace extends GuiBase {
             int i = this.tileEntity.getTimeScaled(24);
             this.drawTexturedModalRect(this.guiLeft + 76, this.guiTop + 46, 180, 0, i, 26);
         }
+
+        this.energy.draw();
     }
 }

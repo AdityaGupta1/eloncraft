@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.items.blocks.machines.gui.slot;
+package org.sdoaj.items.blocks.gui.slot;
 
 import net.minecraft.item.ItemStack;
 import org.sdoaj.util.ItemStackHandler;

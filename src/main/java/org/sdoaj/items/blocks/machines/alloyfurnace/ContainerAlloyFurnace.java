@@ -7,12 +7,10 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import org.sdoaj.items.blocks.machines.TileEntityBase;
-import org.sdoaj.items.blocks.machines.gui.slot.SlotItemHandlerUnconditioned;
-import org.sdoaj.items.blocks.machines.gui.slot.SlotOutput;
+import org.sdoaj.items.blocks.tileentities.TileEntityBase;
+import org.sdoaj.items.blocks.gui.slot.SlotItemHandlerUnconditioned;
+import org.sdoaj.items.blocks.gui.slot.SlotOutput;
 import org.sdoaj.util.StackUtil;
-
-import java.util.Arrays;
 
 public class ContainerAlloyFurnace extends Container {
     public final TileEntityAlloyFurnace tileEntity;

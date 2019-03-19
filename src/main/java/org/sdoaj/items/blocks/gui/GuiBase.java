@@ -1,6 +1,6 @@
 // based on GuiWtfMojang (interesting name) from Actually Additions
 
-package org.sdoaj.items.blocks.machines.gui;
+package org.sdoaj.items.blocks.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
