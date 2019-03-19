@@ -53,7 +53,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {
         try {
-            //This is hacky and dirty but it works so whatever
+            // sus but it works
             ResourceLocation name = new ResourceLocation(Main.MODID, tileEntityClass.newInstance().name);
             GameRegistry.registerTileEntity(tileEntityClass, name);
         } catch (Exception exception) {

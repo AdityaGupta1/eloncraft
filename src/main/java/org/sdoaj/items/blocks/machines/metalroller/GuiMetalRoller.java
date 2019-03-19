@@ -29,7 +29,8 @@ public class GuiMetalRoller extends GuiBase {
     @Override
     public void initGui() {
         super.initGui();
-        this.energy = new EnergyDisplay(this.guiLeft - EnergyDisplay.WIDTH_OUTLINE, this.guiTop, this.tileEntity.storage, true, false);
+        this.energy = new EnergyDisplay(this.guiLeft - EnergyDisplay.WIDTH_OUTLINE, this.guiTop,
+                this.tileEntity.getCustomEnergyStorage(), true, false);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class GuiMetalRoller extends GuiBase {
         this.mc.getTextureManager().bindTexture(resourceLocation);
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
-        if (this.tileEntity.processTime > 0) {
+        if (this.tileEntity.guiShowProgress()) {
             int i = this.tileEntity.getTimeScaled(24);
             this.drawTexturedModalRect(this.guiLeft + 70, this.guiTop + 35, 176, 0, i, 17);
         }

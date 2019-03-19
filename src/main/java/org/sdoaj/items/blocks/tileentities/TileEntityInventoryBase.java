@@ -23,7 +23,7 @@ import org.sdoaj.util.StackUtil;
 public abstract class TileEntityInventoryBase extends TileEntityBase {
     public final ItemStackHandler inventory;
 
-    public TileEntityInventoryBase(int slots, String name) {
+    public TileEntityInventoryBase(String name, int slots) {
         super(name);
         this.inventory = new TileStackHandler(slots);
     }

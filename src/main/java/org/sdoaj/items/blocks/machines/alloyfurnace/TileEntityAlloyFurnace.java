@@ -2,13 +2,9 @@
 
 package org.sdoaj.items.blocks.machines.alloyfurnace;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.energy.IEnergyStorage;
+import org.sdoaj.items.blocks.machines.TileEntityInventoryMachine;
 import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
-import org.sdoaj.items.blocks.tileentities.TileEntityInventoryBase;
 import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.Util;
@@ -17,90 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
+public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
     public static final int SLOT_INPUT_1 = 0;
     public static final int INPUT_SLOTS = 10;
     public static final int SLOT_OUTPUT = 10;
-    public int processTime;
-    private int lastProcess;
-    private boolean lastProcessed;
-
-    public static final int ENERGY_USE = 10000; // FE/operation
-    public final CustomEnergyStorage storage = new CustomEnergyStorage(100000, 100000, 0);
-    private int lastEnergy;
 
     final int guiTopHeight = 79;
 
     public TileEntityAlloyFurnace() {
-        super(11, "alloy_furnace");
-    }
-
-    @Override
-    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
-        if (type != NBTType.SAVE_BLOCK) {
-            compound.setInteger("ProcessTime", this.processTime);
-        }
-
-        this.storage.writeToNBT(compound);
-        super.writeSyncableNBT(compound, type);
-    }
-
-    @Override
-    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
-        if (type != NBTType.SAVE_BLOCK) {
-            this.processTime = compound.getInteger("ProcessTime");
-        }
-
-        this.storage.readFromNBT(compound);
-        super.readSyncableNBT(compound, type);
-    }
-
-    @Override
-    public void updateEntity() {
-        super.updateEntity();
-        if (!this.world.isRemote) {
-            boolean processed = false;
-            boolean canProcess = this.canProcess();
-
-            if (canProcess) {
-                if (this.storage.getEnergyStored() >= getEnergyPerTick()) {
-                    this.processTime++;
-                    if (this.processTime >= this.getMaxProcessTime()) {
-                        this.finishProcessing();
-                        this.processTime = 0;
-                    }
-                    this.storage.extractEnergyInternal(getEnergyPerTick(), false);
-                }
-
-                processed = this.storage.getEnergyStored() >= getEnergyPerTick();
-            } else {
-                this.processTime = 0;
-            }
-
-            IBlockState currentState = this.world.getBlockState(this.pos);
-            boolean current = currentState.getValue(BlockAlloyFurnace.IS_ON);
-            boolean changeTo = current;
-            if (lastProcessed != processed) {
-                changeTo = processed;
-            }
-            if (this.isRedstonePowered) {
-                changeTo = true;
-            }
-            if (!processed && !this.isRedstonePowered) {
-                changeTo = false;
-            }
-
-            if (changeTo != current) {
-                world.setBlockState(this.pos, currentState.withProperty(BlockAlloyFurnace.IS_ON, changeTo));
-            }
-
-            this.lastProcessed = processed;
-
-            if ((this.lastProcess != this.processTime || this.lastEnergy != this.storage.getEnergyStored()) && this.sendUpdateWithInterval()) {
-                this.lastProcess = this.processTime;
-                this.lastEnergy = this.storage.getEnergyStored();
-            }
-        }
+        super("alloy_furnace", 11, 600, 10000,
+                new CustomEnergyStorage(100000, 100000, 0), BlockAlloyFurnace.IS_ON);
     }
 
     @Override
@@ -117,6 +39,7 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
         return IntStream.range(SLOT_INPUT_1, SLOT_INPUT_1 + INPUT_SLOTS).mapToObj(this.inventory::getStackInSlot).collect(Collectors.toList());
     }
 
+    @Override
     public boolean canProcess() {
         boolean valid = true;
 
@@ -146,14 +69,7 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
         return false;
     }
 
-    private int getMaxProcessTime() {
-        return 500;
-    }
-
-    private int getEnergyPerTick() {
-        return ENERGY_USE / getMaxProcessTime();
-    }
-
+    @Override
     public void finishProcessing() {
         AlloyFurnaceRecipe recipe = AlloyFurnaceRecipes.getRecipeFromInput(getInputStacks());
         if (recipe == null) {
@@ -178,10 +94,5 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryBase {
 
     public int getTimeScaled(int i) {
         return this.processTime * i / this.getMaxProcessTime();
-    }
-
-    @Override
-    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
-        return this.storage;
     }
 }

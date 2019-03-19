@@ -2,100 +2,22 @@
 
 package org.sdoaj.items.blocks.machines.metalroller;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.energy.IEnergyStorage;
+import org.sdoaj.items.blocks.machines.TileEntityInventoryMachine;
 import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
-import org.sdoaj.items.blocks.tileentities.TileEntityInventoryBase;
 import org.sdoaj.util.ItemStackHandler;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.Util;
 
-public class TileEntityMetalRoller extends TileEntityInventoryBase {
+public class TileEntityMetalRoller extends TileEntityInventoryMachine {
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 1;
-    public int processTime;
-    private int lastProcess;
-    private boolean lastProcessed;
-
-    public static final int ENERGY_USE = 5000; // FE/operation
-    public final CustomEnergyStorage storage = new CustomEnergyStorage(100000, 100000, 0);
-    private int lastEnergy;
 
     final int guiTopHeight = 79;
 
     public TileEntityMetalRoller() {
-        super(2, "metal_roller");
-    }
-
-    @Override
-    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
-        if (type != NBTType.SAVE_BLOCK) {
-            compound.setInteger("ProcessTime", this.processTime);
-        }
-
-        this.storage.writeToNBT(compound);
-        super.writeSyncableNBT(compound, type);
-    }
-
-    @Override
-    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
-        if (type != NBTType.SAVE_BLOCK) {
-            this.processTime = compound.getInteger("ProcessTime");
-        }
-
-        this.storage.readFromNBT(compound);
-        super.readSyncableNBT(compound, type);
-    }
-
-    @Override
-    public void updateEntity() {
-        super.updateEntity();
-        if (!this.world.isRemote) {
-            boolean processed = false;
-            boolean canProcess = this.canProcess();
-
-            if (canProcess) {
-                if (this.storage.getEnergyStored() >= getEnergyPerTick()) {
-                    this.processTime++;
-                    if (this.processTime >= this.getMaxProcessTime()) {
-                        this.finishProcessing();
-                        this.processTime = 0;
-                    }
-                    this.storage.extractEnergyInternal(getEnergyPerTick(), false);
-                }
-
-                processed = this.storage.getEnergyStored() >= getEnergyPerTick();
-            } else {
-                this.processTime = 0;
-            }
-
-            IBlockState currentState = this.world.getBlockState(this.pos);
-            boolean current = currentState.getValue(BlockMetalRoller.IS_ON);
-            boolean changeTo = current;
-            if (lastProcessed != processed) {
-                changeTo = processed;
-            }
-            if (this.isRedstonePowered) {
-                changeTo = true;
-            }
-            if (!processed && !this.isRedstonePowered) {
-                changeTo = false;
-            }
-
-            if (changeTo != current) {
-                world.setBlockState(this.pos, currentState.withProperty(BlockMetalRoller.IS_ON, changeTo));
-            }
-
-            this.lastProcessed = processed;
-
-            if ((this.lastProcess != this.processTime || this.lastEnergy != this.storage.getEnergyStored()) && this.sendUpdateWithInterval()) {
-                this.lastProcess = this.processTime;
-                this.lastEnergy = this.storage.getEnergyStored();
-            }
-        }
+        super("metal_roller", 2, 120, 5000,
+                new CustomEnergyStorage(100000, 100000, 0), BlockMetalRoller.IS_ON);
     }
 
     @Override
@@ -108,6 +30,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
         return (slot, automation) -> !automation || slot == SLOT_OUTPUT;
     }
 
+    @Override
     public boolean canProcess() {
         if (StackUtil.isValid(this.inventory.getStackInSlot(SLOT_INPUT))) {
             MetalRollerRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
@@ -129,14 +52,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
         return false;
     }
 
-    private int getMaxProcessTime() {
-        return 120;
-    }
-
-    private int getEnergyPerTick() {
-        return ENERGY_USE / getMaxProcessTime();
-    }
-
+    @Override
     public void finishProcessing() {
         MetalRollerRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
         if (recipe == null) {
@@ -161,10 +77,5 @@ public class TileEntityMetalRoller extends TileEntityInventoryBase {
 
     public int getTimeScaled(int i) {
         return this.processTime * i / this.getMaxProcessTime();
-    }
-
-    @Override
-    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
-        return this.storage;
     }
 }
