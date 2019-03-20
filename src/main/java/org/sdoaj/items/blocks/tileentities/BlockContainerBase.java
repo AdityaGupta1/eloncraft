@@ -31,6 +31,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.sdoaj.eloncraft.Main;
+import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.WorldUtil;
@@ -41,18 +42,12 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class BlockContainerBase extends BlockContainer {
-    private final String name;
-
     public BlockContainerBase(String name, Material material) {
         super(material);
-        this.name = name;
         setUnlocalizedName(name);
         setRegistryName(name);
         ModBlocks.addBlock(this);
-    }
-
-    protected String getBaseName() {
-        return this.name;
+        setCreativeTab(ModCreativeTabs.ELONCRAFT);
     }
 
     private void dropInventory(World world, BlockPos position) {

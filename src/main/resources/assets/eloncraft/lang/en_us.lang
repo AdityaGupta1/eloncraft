@@ -40,6 +40,8 @@ container.eloncraft.metal_roller.name=Metal Roller
 tile.alloy_furnace.name=Alloy Furnace
 container.eloncraft.alloy_furnace.name=Alloy Furnace
 
+tile.elon_workbench.name=§3Elon Musk's Magical Workbench
+
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla
 itemGroup.spacex=SpaceX

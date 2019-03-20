@@ -17,7 +17,6 @@ import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.Drop;
 import org.sdoaj.items.DropRange;
 import org.sdoaj.items.Drops;
-import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.items.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.BlockMetalRoller;
 
@@ -40,6 +39,8 @@ public class ModBlocks {
     public static Block METAL_ROLLER;
     public static Block ALLOY_FURNACE;
 
+    public static Block ELON_WORKBENCH;
+
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
                 new Drop(new ItemStack(Items.REDSTONE), new DropRange(3, 5), 2),
@@ -47,33 +48,26 @@ public class ModBlocks {
                 new Drop(new ItemStack(Items.COMPARATOR), new DropRange(1, 2), 1)))
                 .setHardness(5.0F).setResistance(10.0F);
         COMPONENTS.setHarvestLevel("pickaxe", 2);
-        COMPONENTS.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         ALUMINUM_ORE = new BlockOreStone("aluminum_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        ALUMINUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         TITANIUM_ORE = new BlockOreStone("titanium_ore").setHarvestLevel(3).setHardness(3.0F)
                 .setResistance(5.0F);
-        TITANIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         LITHIUM_ORE = new BlockOreStone("lithium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        LITHIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         NICKEL_ORE = new BlockOreStone("nickel_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        NICKEL_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         CHROMIUM_ORE = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        CHROMIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        COPPER_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
         METAL_ROLLER.setHarvestLevel("pickaxe", 3);
-        METAL_ROLLER.setCreativeTab(ModCreativeTabs.ELONCRAFT);
         ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON).setHardness(20.0F).setResistance(40.0F);
         ALLOY_FURNACE.setHarvestLevel("pickaxe", 3);
-        ALLOY_FURNACE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+
+        ELON_WORKBENCH = new BlockBasic("elon_workbench", Material.IRON);
     }
 
     public static void addBlock(Block block) {

@@ -1,7 +1,6 @@
 package org.sdoaj.items.items;
 
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -12,14 +11,10 @@ import java.util.List;
 
 public class ItemBasic extends Item {
     public ItemBasic(String name) {
-        this(name, ModCreativeTabs.ELONCRAFT);
-    }
-
-    public ItemBasic(String name, CreativeTabs tab) {
         setUnlocalizedName(name);
         setRegistryName(name);
         ModItems.addItem(this);
-        setCreativeTab(tab);
+        setCreativeTab(ModCreativeTabs.ELONCRAFT);
     }
 
     private final List<String> lore = new ArrayList<>();
