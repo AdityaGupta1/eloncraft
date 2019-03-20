@@ -3,6 +3,7 @@
 package org.sdoaj.items.blocks.machines.metalroller;
 
 import net.minecraft.item.ItemStack;
+import org.sdoaj.items.blocks.machines.BlockMachine;
 import org.sdoaj.items.blocks.machines.TileEntityInventoryMachine;
 import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.util.ItemStackHandler;
@@ -17,7 +18,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
 
     public TileEntityMetalRoller() {
         super("metal_roller", 2, 120, 5000,
-                new CustomEnergyStorage(100000, 100000, 0), BlockMetalRoller.IS_ON);
+                new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
     }
 
     @Override

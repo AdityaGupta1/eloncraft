@@ -3,6 +3,7 @@
 package org.sdoaj.items.blocks.machines.alloyfurnace;
 
 import net.minecraft.item.ItemStack;
+import org.sdoaj.items.blocks.machines.BlockMachine;
 import org.sdoaj.items.blocks.machines.TileEntityInventoryMachine;
 import org.sdoaj.items.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.util.ItemStackHandler;
@@ -22,7 +23,7 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
 
     public TileEntityAlloyFurnace() {
         super("alloy_furnace", 11, 600, 10000,
-                new CustomEnergyStorage(100000, 100000, 0), BlockAlloyFurnace.IS_ON);
+                new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
     }
 
     @Override

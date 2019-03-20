@@ -3,8 +3,6 @@
 package org.sdoaj.items.blocks.machines.metalroller;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,22 +10,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.eloncraft.Reference;
-import org.sdoaj.items.blocks.tileentities.BlockContainerBase;
+import org.sdoaj.items.blocks.machines.BlockMachine;
 
 import java.util.Random;
 
-public class BlockMetalRoller extends BlockContainerBase {
-    public static final PropertyBool IS_ON = PropertyBool.create("on");
-
+public class BlockMetalRoller extends BlockMachine {
     public BlockMetalRoller(String name, Material material) {
         super(name, material);
-        this.setTickRandomly(true);
     }
 
     @Override
@@ -60,31 +54,5 @@ public class BlockMetalRoller extends BlockContainerBase {
             return true;
         }
         return true;
-    }
-
-    @Override
-    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return this.getMetaFromState(state) == 1 ? 12 : 0;
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return 0;
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        boolean isOn = meta == 1;
-        return this.getDefaultState().withProperty(IS_ON, isOn);
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(IS_ON) ? 1 : 0;
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, IS_ON);
     }
 }

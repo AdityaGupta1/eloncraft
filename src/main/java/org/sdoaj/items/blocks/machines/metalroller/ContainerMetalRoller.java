@@ -4,18 +4,19 @@ package org.sdoaj.items.blocks.machines.metalroller;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.items.blocks.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.items.blocks.gui.slot.SlotOutput;
+import org.sdoaj.items.blocks.machines.ContainerMachine;
 import org.sdoaj.items.blocks.tileentities.TileEntityBase;
 import org.sdoaj.util.StackUtil;
 
-public class ContainerMetalRoller extends Container {
+public class ContainerMetalRoller extends ContainerMachine {
     public final TileEntityMetalRoller tileEntity;
 
     public ContainerMetalRoller(InventoryPlayer inventory, TileEntityBase tileEntity) {
+        super(tileEntity);
         this.tileEntity = (TileEntityMetalRoller) tileEntity;
 
         this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityMetalRoller.SLOT_INPUT, 48, 35));
@@ -77,10 +78,5 @@ public class ContainerMetalRoller extends Container {
             return currentStack;
         }
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer player) {
-        return this.tileEntity.canPlayerUse(player);
     }
 }
