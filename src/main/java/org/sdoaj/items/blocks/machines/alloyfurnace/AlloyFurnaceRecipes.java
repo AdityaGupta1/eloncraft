@@ -30,5 +30,11 @@ public final class AlloyFurnaceRecipes {
             add(new ItemStack(ModItems.CHROMIUM_INGOT, 2));
             add(new ItemStack(Items.IRON_INGOT, 1));
         }}, new ItemStack(ModItems.INCONEL_BARS, 10)));
+
+        addRecipe(new AlloyFurnaceRecipe(new ArrayList<ItemStack>() {{
+            add(new ItemStack(ModItems.ALUMINUM_INGOT, 8));
+            add(new ItemStack(ModItems.COPPER_NUGGET, 1));
+            add(new ItemStack(ModItems.LITHIUM_NUGGET, 1));
+        }}, new ItemStack(ModItems.ALUMINUM_2198_INGOT, 8)));
     }
 }

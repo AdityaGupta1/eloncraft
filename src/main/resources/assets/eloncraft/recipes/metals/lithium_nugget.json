@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "eloncraft:lithium_ingot"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:lithium_nugget",
+    "count": 9
+  }
+}

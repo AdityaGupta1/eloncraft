@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "nnn",
+    "nnn",
+    "nnn"
+  ],
+  "key": {
+    "n": {
+      "item": "eloncraft:copper_nugget"
+    }
+  },
+  "result": {
+    "item": "eloncraft:copper_ingot",
+    "count": 1
+  }
+}

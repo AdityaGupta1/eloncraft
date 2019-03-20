@@ -5,6 +5,14 @@ item.titanium_ingot.name=Titanium Ingot
 item.lithium_ingot.name=Lithium Ingot
 item.nickel_ingot.name=Nickel Ingot
 item.chromium_ingot.name=Chromium Ingot
+item.copper_ingot.name=Copper Ingot
+
+item.aluminum_nugget.name=Aluminum Nugget
+item.titanium_nugget.name=Titanium Nugget
+item.lithium_nugget.name=Lithium Nugget
+item.nickel_nugget.name=Nickel Nugget
+item.chromium_nugget.name=Chromium Nugget
+item.copper_nugget.name=Copper Nugget
 
 item.iron_plate.name=Iron Plate
 item.gold_plate.name=Gold Plate
@@ -13,8 +21,10 @@ item.titanium_plate.name=Titanium Plate
 item.lithium_plate.name=Lithium Plate
 item.nickel_plate.name=Nickel Plate
 item.chromium_plate.name=Chromium Plate
+item.copper_plate.name=Copper Plate
 
-item.inconel_bars.name=Inconel Bars
+item.inconel_bars.name=§6Inconel Bars
+item.aluminum_2198_ingot.name=§bAluminum 2198
 
 tile.components.name=Components
 
@@ -23,6 +33,7 @@ tile.titanium_ore.name=Titanium Ore
 tile.lithium_ore.name=Lithium Ore
 tile.nickel_ore.name=Nickel Ore
 tile.chromium_ore.name=Chromium Ore
+tile.copper_ore.name=Copper Ore
 
 tile.metal_roller.name=Metal Roller
 container.eloncraft.metal_roller.name=Metal Roller

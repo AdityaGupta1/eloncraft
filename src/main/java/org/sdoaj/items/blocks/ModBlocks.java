@@ -35,6 +35,7 @@ public class ModBlocks {
     public static Block LITHIUM_ORE;
     public static Block NICKEL_ORE;
     public static Block CHROMIUM_ORE;
+    public static Block COPPER_ORE;
 
     public static Block METAL_ROLLER;
     public static Block ALLOY_FURNACE;
@@ -63,6 +64,9 @@ public class ModBlocks {
         CHROMIUM_ORE = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
         CHROMIUM_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
+                .setResistance(5.0F);
+        COPPER_ORE.setCreativeTab(ModCreativeTabs.ELONCRAFT);
 
         METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
         METAL_ROLLER.setHarvestLevel("pickaxe", 3);
