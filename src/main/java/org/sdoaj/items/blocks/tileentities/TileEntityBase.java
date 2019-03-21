@@ -32,12 +32,12 @@ import net.minecraftforge.items.IItemHandler;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.TileEntityMetalRoller;
+import org.sdoaj.items.blocks.machines.workbench.TileEntityWorkbench;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;
     public boolean isRedstonePowered;
     public boolean isPulseMode;
-    public boolean stopFromDropping;
     protected int ticksElapsed;
     protected TileEntity[] tilesAround = new TileEntity[6];
     protected boolean hasSavedDataOnChangeOrWorldStart;
@@ -49,11 +49,12 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     public static void init() {
         register(TileEntityMetalRoller.class);
         register(TileEntityAlloyFurnace.class);
+        register(TileEntityWorkbench.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {
         try {
-            // sus but it works
+            // apparently sus but it works
             ResourceLocation name = new ResourceLocation(Main.MODID, tileEntityClass.newInstance().name);
             GameRegistry.registerTileEntity(tileEntityClass, name);
         } catch (Exception exception) {
@@ -106,9 +107,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         if (type == NBTType.SAVE_TILE) {
             compound.setBoolean("Redstone", this.isRedstonePowered);
             compound.setInteger("TicksElapsed", this.ticksElapsed);
-            compound.setBoolean("StopDrop", this.stopFromDropping);
-        } else if (type == NBTType.SYNC && this.stopFromDropping)
-            compound.setBoolean("StopDrop", this.stopFromDropping);
+        }
 
         if (this.isRedstoneToggle() && (type != NBTType.SAVE_BLOCK || this.isPulseMode)) {
             compound.setBoolean("IsPulseMode", this.isPulseMode);
@@ -121,8 +120,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         if (type == NBTType.SAVE_TILE) {
             this.isRedstonePowered = compound.getBoolean("Redstone");
             this.ticksElapsed = compound.getInteger("TicksElapsed");
-            this.stopFromDropping = compound.getBoolean("StopDrop");
-        } else if (type == NBTType.SYNC) this.stopFromDropping = compound.getBoolean("StopDrop");
+        }
 
         if (this.isRedstoneToggle()) {
             this.isPulseMode = compound.getBoolean("IsPulseMode");
@@ -135,7 +133,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     }
 
     public String getNameForTranslation() {
-        return "container." + Main.MODID + "." + this.name + ".name";
+        return "container." + this.name + ".name";
     }
 
     @Override

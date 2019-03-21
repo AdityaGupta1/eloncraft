@@ -17,7 +17,7 @@ import java.util.stream.IntStream;
 public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
     public static final int SLOT_INPUT_1 = 0;
     public static final int INPUT_SLOTS = 10;
-    public static final int SLOT_OUTPUT = 10;
+    public static final int SLOT_OUTPUT = SLOT_INPUT_1 + INPUT_SLOTS;
 
     final int guiTopHeight = 79;
 

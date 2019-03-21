@@ -19,6 +19,7 @@ import org.sdoaj.items.DropRange;
 import org.sdoaj.items.Drops;
 import org.sdoaj.items.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.BlockMetalRoller;
+import org.sdoaj.items.blocks.machines.workbench.BlockWorkbench;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,10 @@ public class ModBlocks {
     public static Block CHROMIUM_ORE;
     public static Block COPPER_ORE;
 
+    public static Block ELON_WORKBENCH;
+
     public static Block METAL_ROLLER;
     public static Block ALLOY_FURNACE;
-
-    public static Block ELON_WORKBENCH;
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
@@ -62,12 +63,13 @@ public class ModBlocks {
         COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
 
+        ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON).setHardness(10.0F).setResistance(25.0F);
+        ELON_WORKBENCH.setHarvestLevel("pickaxe", 3);
+
         METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
         METAL_ROLLER.setHarvestLevel("pickaxe", 3);
         ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON).setHardness(20.0F).setResistance(40.0F);
         ALLOY_FURNACE.setHarvestLevel("pickaxe", 3);
-
-        ELON_WORKBENCH = new BlockBasic("elon_workbench", Material.IRON);
     }
 
     public static void addBlock(Block block) {

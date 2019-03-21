@@ -17,6 +17,8 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.eloncraft.Reference;
+import org.sdoaj.items.blocks.machines.workbench.ContainerWorkbench;
+import org.sdoaj.items.blocks.machines.workbench.GuiWorkbench;
 import org.sdoaj.items.blocks.tileentities.TileEntityBase;
 import org.sdoaj.items.blocks.machines.alloyfurnace.ContainerAlloyFurnace;
 import org.sdoaj.items.blocks.machines.alloyfurnace.GuiAlloyFurnace;
@@ -33,6 +35,8 @@ public class GuiHandler implements IGuiHandler {
         TileEntityBase tileEntity = (TileEntityBase) world.getTileEntity(new BlockPos(x, y, z));
 
         switch (id) {
+            case Reference.GUI_WORKBENCH:
+                return new ContainerWorkbench(player.inventory, tileEntity);
             case Reference.GUI_METAL_ROLLER:
                 return new ContainerMetalRoller(player.inventory, tileEntity);
             case Reference.GUI_ALLOY_FURNACE:
@@ -47,6 +51,8 @@ public class GuiHandler implements IGuiHandler {
         TileEntityBase tileEntity = (TileEntityBase) world.getTileEntity(new BlockPos(x, y, z));
 
         switch (id) {
+            case Reference.GUI_WORKBENCH:
+                return new GuiWorkbench(player.inventory, tileEntity);
             case Reference.GUI_METAL_ROLLER:
                 return new GuiMetalRoller(player.inventory, tileEntity);
             case Reference.GUI_ALLOY_FURNACE:

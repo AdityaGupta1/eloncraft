@@ -54,48 +54,51 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (!this.world.isRemote) {
-            boolean processed = false;
-            boolean canProcess = this.canProcess();
 
-            if (canProcess) {
-                if (this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
-                    this.processTime++;
-                    if (this.processTime >= this.getMaxProcessTime()) {
-                        this.finishProcessing();
-                        this.processTime = 0;
-                    }
-                    this.energyStorage.extractEnergyInternal(getEnergyPerTick(), false);
+        if (this.world.isRemote) {
+            return;
+        }
+
+        boolean processed = false;
+        boolean canProcess = this.canProcess();
+
+        if (canProcess) {
+            if (this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
+                this.processTime++;
+                if (this.processTime >= this.getMaxProcessTime()) {
+                    this.finishProcessing();
+                    this.processTime = 0;
                 }
-
-                processed = this.energyStorage.getEnergyStored() >= getEnergyPerTick();
-            } else {
-                this.processTime = 0;
+                this.energyStorage.extractEnergyInternal(getEnergyPerTick(), false);
             }
 
-            IBlockState currentState = this.world.getBlockState(this.pos);
-            boolean current = currentState.getValue(BlockAlloyFurnace.IS_ON);
-            boolean changeTo = current;
-            if (lastProcessed != processed) {
-                changeTo = processed;
-            }
-            if (this.isRedstonePowered) {
-                changeTo = true;
-            }
-            if (!processed && !this.isRedstonePowered) {
-                changeTo = false;
-            }
+            processed = this.energyStorage.getEnergyStored() >= getEnergyPerTick();
+        } else {
+            this.processTime = 0;
+        }
 
-            if (changeTo != current) {
-                world.setBlockState(this.pos, currentState.withProperty(IS_ON, changeTo));
-            }
+        IBlockState currentState = this.world.getBlockState(this.pos);
+        boolean current = currentState.getValue(BlockAlloyFurnace.IS_ON);
+        boolean changeTo = current;
+        if (lastProcessed != processed) {
+            changeTo = processed;
+        }
+        if (this.isRedstonePowered) {
+            changeTo = true;
+        }
+        if (!processed && !this.isRedstonePowered) {
+            changeTo = false;
+        }
 
-            this.lastProcessed = processed;
+        if (changeTo != current) {
+            world.setBlockState(this.pos, currentState.withProperty(IS_ON, changeTo));
+        }
 
-            if ((this.lastProcess != this.processTime || this.lastEnergy != this.energyStorage.getEnergyStored()) && this.sendUpdateWithInterval()) {
-                this.lastProcess = this.processTime;
-                this.lastEnergy = this.energyStorage.getEnergyStored();
-            }
+        this.lastProcessed = processed;
+
+        if ((this.lastProcess != this.processTime || this.lastEnergy != this.energyStorage.getEnergyStored()) && this.sendUpdateWithInterval()) {
+            this.lastProcess = this.processTime;
+            this.lastEnergy = this.energyStorage.getEnergyStored();
         }
     }
 

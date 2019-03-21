@@ -36,11 +36,12 @@ tile.chromium_ore.name=Chromium Ore
 tile.copper_ore.name=Copper Ore
 
 tile.metal_roller.name=Metal Roller
-container.eloncraft.metal_roller.name=Metal Roller
+container.metal_roller.name=Metal Roller
 tile.alloy_furnace.name=Alloy Furnace
-container.eloncraft.alloy_furnace.name=Alloy Furnace
+container.alloy_furnace.name=Alloy Furnace
 
 tile.elon_workbench.name=§3Elon Musk's Magical Workbench
+container.elon_workbench.name=Elon Musk's Magical Workbench
 
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla

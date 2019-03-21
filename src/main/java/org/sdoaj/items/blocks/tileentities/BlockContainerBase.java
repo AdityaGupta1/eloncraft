@@ -25,12 +25,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.util.StackUtil;
@@ -156,16 +152,6 @@ public abstract class BlockContainerBase extends BlockContainer {
     }
 
     @Override
-    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
-        if (!player.capabilities.isCreativeMode) {
-            TileEntity tile = world.getTileEntity(pos);
-            if (tile instanceof TileEntityBase && ((TileEntityBase) tile).stopFromDropping) {
-                player.sendMessage(new TextComponentTranslation("info." + Main.MODID + ".machineBroke").setStyle(new Style().setColor(TextFormatting.RED)));
-            }
-        }
-    }
-
-    @Override
     public boolean hasComparatorInputOverride(IBlockState state) {
         return true;
     }
@@ -184,34 +170,32 @@ public abstract class BlockContainerBase extends BlockContainer {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntityBase) {
             TileEntityBase base = (TileEntityBase) tile;
-            if (!base.stopFromDropping) {
-                NBTTagCompound data = new NBTTagCompound();
-                base.writeSyncableNBT(data, TileEntityBase.NBTType.SAVE_BLOCK);
+            NBTTagCompound data = new NBTTagCompound();
+            base.writeSyncableNBT(data, TileEntityBase.NBTType.SAVE_BLOCK);
 
-                //Remove unnecessarily saved default values to avoid unstackability
-                List<String> keysToRemove = new ArrayList<>();
-                for (String key : data.getKeySet()) {
-                    NBTBase tag = data.getTag(key);
-                    //Remove only ints because they are the most common ones
-                    //Add else if below here to remove more types
-                    if (tag instanceof NBTTagInt) {
-                        if (((NBTTagInt) tag).getInt() == 0) {
-                            keysToRemove.add(key);
-                        }
+            //Remove unnecessarily saved default values to avoid unstackability
+            List<String> keysToRemove = new ArrayList<>();
+            for (String key : data.getKeySet()) {
+                NBTBase tag = data.getTag(key);
+                //Remove only ints because they are the most common ones
+                //Add else if below here to remove more types
+                if (tag instanceof NBTTagInt) {
+                    if (((NBTTagInt) tag).getInt() == 0) {
+                        keysToRemove.add(key);
                     }
                 }
-                for (String key : keysToRemove) {
-                    data.removeTag(key);
-                }
-
-                ItemStack stack = new ItemStack(this.getItemDropped(state, tile.getWorld().rand, fortune), 1, this.damageDropped(state));
-                if (!data.hasNoTags()) {
-                    stack.setTagCompound(new NBTTagCompound());
-                    stack.getTagCompound().setTag("Data", data);
-                }
-
-                drops.add(stack);
             }
+            for (String key : keysToRemove) {
+                data.removeTag(key);
+            }
+
+            ItemStack stack = new ItemStack(this.getItemDropped(state, tile.getWorld().rand, fortune), 1, this.damageDropped(state));
+            if (!data.hasNoTags()) {
+                stack.setTagCompound(new NBTTagCompound());
+                stack.getTagCompound().setTag("Data", data);
+            }
+
+            drops.add(stack);
         } else {
             super.getDrops(drops, world, pos, state, fortune);
         }
