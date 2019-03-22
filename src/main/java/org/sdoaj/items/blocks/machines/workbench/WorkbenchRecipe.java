@@ -1,6 +1,7 @@
 package org.sdoaj.items.blocks.machines.workbench;
 
 import net.minecraft.item.ItemStack;
+import org.apache.logging.log4j.core.util.ArrayUtils;
 import org.sdoaj.util.StackUtil;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ public class WorkbenchRecipe {
         ItemStack[][] output = new ItemStack[stacks[0].length][stacks.length];
         for (int i = 0; i < stacks[0].length; i++) {
             for (int j = stacks.length - 1; j >= 0; j--) {
-                output[i][j] = stacks[j][i];
+                output[i][j] = stacks[j][i].copy();
             }
         }
         return output;
@@ -33,9 +34,9 @@ public class WorkbenchRecipe {
     }
 
     public boolean matches(ItemStack[][] stacks) {
+        System.out.println("=======" + inputs[0][0]);
         int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
         boolean valid = false;
-        System.out.println(Arrays.toString(stacks));
         for (int i = 0; i < stacks.length; i++) {
             for (int j = 0; j < stacks[i].length; j++) {
                 if (!StackUtil.isValid(stacks[i][j])) {
@@ -55,17 +56,26 @@ public class WorkbenchRecipe {
             return false;
         }
 
+        System.out.println("valid");
+
         if (maxX - minX + 1 != inputs.length || maxY - minY + 1 != inputs[0].length) {
             return false;
         }
 
+        System.out.println("length");
+
         for (int i = 0; i < inputs.length; i++) {
             for (int j = 0; j < inputs[i].length; j++) {
-                if (!ItemStack.areItemStacksEqual(stacks[minX + i][minY + j], inputs[i][j])) {
+                System.out.println(i + ", " + j);
+                System.out.println(inputs[i][j]);
+                System.out.println(stacks[minX + i][minY + j]);
+                if (!StackUtil.areItemsEqual(stacks[minX + i][minY + j], inputs[i][j])) {
                     return false;
                 }
             }
         }
+
+        System.out.println("epic");
 
         return true;
     }

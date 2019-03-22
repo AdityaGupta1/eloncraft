@@ -10,16 +10,33 @@
 
 package org.sdoaj.items.blocks.gui.slot;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.util.ItemStackHandler;
 
+import javax.annotation.Nonnull;
+import java.util.function.BiConsumer;
+
 public class SlotOutput extends SlotItemHandlerUnconditioned {
-    public SlotOutput(ItemStackHandler inventory, int id, int x, int y) {
+    private final BiConsumer<EntityPlayer, ItemStack> onSlotChanged;
+
+    public SlotOutput(ItemStackHandler inventory, int id, int x, int y, BiConsumer<EntityPlayer, ItemStack> onSlotChanged) {
         super(inventory, id, x, y);
+        this.onSlotChanged = onSlotChanged;
+    }
+
+    public SlotOutput(ItemStackHandler inventory, int id, int x, int y) {
+        this(inventory, id, x, y, (player, stack) -> {});
     }
 
     @Override
     public boolean isItemValid(ItemStack stack) {
         return false;
+    }
+
+    @Override
+    public ItemStack onTake(EntityPlayer player, ItemStack stack) {
+        onSlotChanged.accept(player, stack);
+        return super.onTake(player, stack);
     }
 }

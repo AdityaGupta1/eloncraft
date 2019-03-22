@@ -28,7 +28,8 @@ public class ContainerWorkbench extends ContainerMachine {
                         TileEntityWorkbench.SLOT_INPUT_1 + 13 * i + j, 9 + 18 * i, 9 + 18 * j));
             }
         }
-        this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityWorkbench.SLOT_OUTPUT, 207, 291));
+        this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityWorkbench.SLOT_OUTPUT, 207, 291,
+                (player, stack) -> this.tileEntity.decrementInputs()));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {

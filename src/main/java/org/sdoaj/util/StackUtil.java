@@ -27,6 +27,13 @@ public class StackUtil {
         }
 
         return ingredient.getMetadata() == Util.wildcard || ingredient.getMetadata() == actual.getMetadata();
+    }
 
+    public static boolean areItemsEqual(ItemStack a, ItemStack b) {
+        if (a.isEmpty() && b.isEmpty()) {
+            return true;
+        }
+
+        return a.getItem() == b.getItem() && a.getMetadata() == b.getMetadata();
     }
 }
