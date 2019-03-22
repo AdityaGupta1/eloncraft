@@ -1,5 +1,6 @@
 package org.sdoaj.items.blocks.machines.workbench;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public final class WorkbenchRecipes {
     }
 
     public static void init() {
-        // TODO add recipes
+        addRecipe(new WorkbenchRecipe(new ItemStack[][]{
+                {new ItemStack(Items.COMPARATOR), ItemStack.EMPTY, ItemStack.EMPTY, new ItemStack(Items.COMPARATOR)},
+                {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY},
+                {new ItemStack(Items.COMPARATOR), ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY}
+        }, new ItemStack(Items.REDSTONE)));
     }
 }

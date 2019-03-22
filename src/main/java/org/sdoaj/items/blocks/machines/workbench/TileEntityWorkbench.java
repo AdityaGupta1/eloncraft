@@ -44,6 +44,8 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
             }
         }
 
+        System.out.println(stacks[0][0]);
+
         return stacks;
     }
 
