@@ -4,8 +4,11 @@ package org.sdoaj.items.blocks.machines.workbench;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.InventoryCraftResult;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import org.sdoaj.items.blocks.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.items.blocks.gui.slot.SlotOutput;
 import org.sdoaj.items.blocks.machines.ContainerMachine;
@@ -54,6 +57,7 @@ public class ContainerWorkbench extends ContainerMachine {
             if (slotId < inventoryStart) {
                 if (slotId == TileEntityWorkbench.SLOT_OUTPUT) {
                     // TODO shift click crafting outputs
+                    return ItemStack.EMPTY;
                 }
 
                 if (!this.mergeItemStack(newStack, inventoryStart, hotbarEnd + 1, true)) {

@@ -27,7 +27,12 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
             return;
         }
 
-        getOutput().ifPresent(stack -> this.inventory.setStackInSlot(SLOT_OUTPUT, stack));
+        Optional<ItemStack> output = getOutput();
+        if (output.isPresent()) {
+            this.inventory.setStackInSlot(SLOT_OUTPUT, output.get());
+        } else {
+            this.inventory.setStackInSlot(SLOT_OUTPUT, ItemStack.EMPTY);
+        }
     }
 
     @Override
@@ -44,8 +49,6 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
             }
         }
 
-        System.out.println(stacks[0][0]);
-
         return stacks;
     }
 
@@ -56,7 +59,7 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
             return Optional.empty();
         }
 
-        return Optional.of(recipe.output);
+        return Optional.of(recipe.output.copy());
     }
 
     public void decrementInputs() {

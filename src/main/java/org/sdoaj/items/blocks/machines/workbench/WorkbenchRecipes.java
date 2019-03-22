@@ -29,5 +29,8 @@ public final class WorkbenchRecipes {
                 {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY},
                 {new ItemStack(Items.COMPARATOR), ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY}
         }, new ItemStack(Items.REDSTONE)));
+        addRecipe(new WorkbenchRecipe(new ItemStack[][]{
+                {new ItemStack(Items.REPEATER)}
+        }, new ItemStack(Items.REDSTONE)));
     }
 }
