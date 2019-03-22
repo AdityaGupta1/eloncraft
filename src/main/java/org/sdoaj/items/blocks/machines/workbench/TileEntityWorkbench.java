@@ -54,7 +54,7 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
             return Optional.empty();
         }
 
-        return Optional.of(recipe.output.copy());
+        return Optional.of(recipe.getOutput().copy());
     }
 
     public boolean finishCraftingIfPossible() {

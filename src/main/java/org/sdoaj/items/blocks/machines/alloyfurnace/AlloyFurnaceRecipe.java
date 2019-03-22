@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlloyFurnaceRecipe {
-    protected List<ItemStack> inputs;
-    protected ItemStack output;
+    private List<ItemStack> inputs;
+    private ItemStack output;
 
     public AlloyFurnaceRecipe(List<ItemStack> inputs, ItemStack output) {
         this.inputs = inputs;

@@ -1,14 +1,14 @@
 package org.sdoaj.items.blocks.machines.workbench;
 
 import net.minecraft.item.ItemStack;
-import org.apache.logging.log4j.core.util.ArrayUtils;
+import org.sdoaj.items.blocks.machines.RecipeKey;
 import org.sdoaj.util.StackUtil;
 
 import java.util.Arrays;
 
 public class WorkbenchRecipe {
-    protected ItemStack[][] inputs;
-    protected ItemStack output;
+    private ItemStack[][] inputs;
+    private ItemStack output;
 
     // rotates grid clockwise and makes a copy of each input stack
     private ItemStack[][] rotate(ItemStack[][] stacks) {
@@ -21,16 +21,55 @@ public class WorkbenchRecipe {
         return output;
     }
 
-    public WorkbenchRecipe(ItemStack[][] inputs, ItemStack output) {
-        this.inputs = rotate(inputs);
-        this.output = output;
-
+    private void checkInputs() {
         Arrays.stream(inputs).flatMap(Arrays::stream).forEach(stack -> {
             if (stack.getCount() > 1) {
                 stack.setCount(1);
                 System.err.println("warning: ItemStack with count > 1 passed to WorkbenchRecipe");
             }
         });
+    }
+
+    public WorkbenchRecipe(ItemStack[][] inputs, ItemStack output) {
+        this.inputs = rotate(inputs);
+        this.output = output.copy();
+        checkInputs();
+    }
+
+    public WorkbenchRecipe(String[] grid, ItemStack output, RecipeKey... keys) {
+        int maxLength = Arrays.stream(grid).mapToInt(String::length).max().getAsInt();
+
+        ItemStack[][] stacks = new ItemStack[maxLength][grid.length];
+
+        for (int i = 0; i < grid.length; i++) {
+            String row = grid[i];
+
+            for (int j = 0; j < maxLength; j++) {
+                ItemStack stack = ItemStack.EMPTY;
+
+                if (j < row.length()) {
+                    char c = row.charAt(j);
+
+                    if (c != ' ') {
+                        for (RecipeKey key : keys) {
+                            if (key.matches(c)) {
+                                stack = key.get();
+                            }
+                        }
+
+                        if (!StackUtil.isValid(stack)) {
+                            throw new IllegalArgumentException("missing recipe key for character: " + c);
+                        }
+                    }
+                }
+
+                stacks[j][i] = stack;
+            }
+        }
+
+        this.inputs = stacks;
+        this.output = output.copy();
+        checkInputs();
     }
 
     public boolean matches(ItemStack[][] stacks) {

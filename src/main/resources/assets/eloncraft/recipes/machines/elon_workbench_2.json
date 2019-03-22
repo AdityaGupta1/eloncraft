@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "tdt",
+    "dcd",
+    "tdt"
+  ],
+  "key": {
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "t": {
+      "item": "eloncraft:titanium_ingot"
+    },
+    "c": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "item": "eloncraft:elon_workbench",
+    "count": 1
+  }
+}

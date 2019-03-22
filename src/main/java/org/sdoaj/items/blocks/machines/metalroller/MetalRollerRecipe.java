@@ -2,12 +2,11 @@ package org.sdoaj.items.blocks.machines.metalroller;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.util.StackUtil;
 
 public class MetalRollerRecipe {
-    protected ItemStack input;
-    protected ItemStack output;
+    private ItemStack input;
+    private ItemStack output;
 
     public MetalRollerRecipe(ItemStack input, ItemStack output) {
         this.input = input;

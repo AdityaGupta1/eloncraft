@@ -1,7 +1,10 @@
 package org.sdoaj.items.blocks.machines.workbench;
 
-import net.minecraft.init.Items;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import org.sdoaj.items.blocks.ModBlocks;
+import org.sdoaj.items.blocks.machines.RecipeKey;
+import org.sdoaj.items.items.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +27,17 @@ public final class WorkbenchRecipes {
     }
 
     public static void init() {
-        addRecipe(new WorkbenchRecipe(new ItemStack[][]{
-                {new ItemStack(Items.COMPARATOR), ItemStack.EMPTY, ItemStack.EMPTY, new ItemStack(Items.COMPARATOR)},
-                {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY},
-                {new ItemStack(Items.COMPARATOR), ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY}
-        }, new ItemStack(Items.REDSTONE)));
-        addRecipe(new WorkbenchRecipe(new ItemStack[][]{
-                {new ItemStack(Items.REPEATER)}
-        }, new ItemStack(Items.REDSTONE)));
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttt",
+                "tPPPt",
+                "tbbbt",
+                "t p t",
+                "BBBBB"
+        }, new ItemStack(ModBlocks.METAL_ROLLER),
+                new RecipeKey('t', ModItems.TITANIUM_INGOT),
+                new RecipeKey('P', Blocks.STICKY_PISTON),
+                new RecipeKey('b', Blocks.IRON_BLOCK),
+                new RecipeKey('B', Blocks.OBSIDIAN),
+                new RecipeKey('p', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)));
     }
 }
