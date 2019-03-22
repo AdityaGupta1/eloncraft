@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -228,5 +229,16 @@ public abstract class BlockContainerBase extends BlockContainer {
 
     public boolean shouldDropInventory(World world, BlockPos pos) {
         return true;
+    }
+
+    private final List<String> lore = new ArrayList<>();
+
+    public void addLore(String lore) {
+        this.lore.add(lore);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag) {
+        tooltip.addAll(lore);
     }
 }

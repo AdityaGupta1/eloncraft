@@ -3,7 +3,6 @@ package org.sdoaj.items.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -20,6 +19,7 @@ import org.sdoaj.items.Drops;
 import org.sdoaj.items.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.items.blocks.machines.metalroller.BlockMetalRoller;
 import org.sdoaj.items.blocks.machines.workbench.BlockWorkbench;
+import org.sdoaj.items.items.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,16 +37,14 @@ public class ModBlocks {
     public static Block CHROMIUM_ORE;
     public static Block COPPER_ORE;
 
-    public static Block ELON_WORKBENCH;
+    public static BlockWorkbench ELON_WORKBENCH;
 
-    public static Block METAL_ROLLER;
-    public static Block ALLOY_FURNACE;
+    public static BlockMetalRoller METAL_ROLLER;
+    public static BlockAlloyFurnace ALLOY_FURNACE;
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
-                new Drop(new ItemStack(Items.REDSTONE), new DropRange(3, 5), 2),
-                new Drop(new ItemStack(Items.REPEATER), new DropRange(1, 2), 1),
-                new Drop(new ItemStack(Items.COMPARATOR), new DropRange(1, 2), 1)))
+                new Drop(new ItemStack(ModItems.BROKEN_STEEL_GEAR), new DropRange(2, 3), 1)))
                 .setHardness(5.0F).setResistance(10.0F);
         COMPONENTS.setHarvestLevel("pickaxe", 2);
 
@@ -63,13 +61,14 @@ public class ModBlocks {
         COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
 
-        ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON).setHardness(10.0F).setResistance(25.0F);
-        ELON_WORKBENCH.setHarvestLevel("pickaxe", 3);
+        ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON);
+        ELON_WORKBENCH.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
 
-        METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON).setHardness(10.0F).setResistance(25.0F);
-        METAL_ROLLER.setHarvestLevel("pickaxe", 3);
-        ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON).setHardness(20.0F).setResistance(40.0F);
-        ALLOY_FURNACE.setHarvestLevel("pickaxe", 3);
+        METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON);
+        METAL_ROLLER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
+        ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON);
+        ALLOY_FURNACE.setHardness(20.0F).setResistance(40.0F).setHarvestLevel("pickaxe", 3);
+        ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace which can also serve as a blast furnace.");
     }
 
     public static void addBlock(Block block) {

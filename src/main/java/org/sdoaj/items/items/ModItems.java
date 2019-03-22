@@ -20,6 +20,8 @@ import java.util.List;
 public class ModItems {
     private static final List<ItemBasic> items = new ArrayList<>();
 
+    // metals from ores
+
     public static ItemBasic ALUMINUM_INGOT;
     public static ItemBasic TITANIUM_INGOT;
     public static ItemBasic LITHIUM_INGOT;
@@ -43,8 +45,20 @@ public class ModItems {
     public static ItemBasic CHROMIUM_PLATE;
     public static ItemBasic COPPER_PLATE;
 
+    // alloys
+
+    public static ItemBasic STEEL_INGOT;
+
+    public static ItemBasic STEEL_PLATE;
+
     public static ItemBasic INCONEL_BARS;
     public static ItemBasic ALUMINUM_2198_INGOT;
+
+    // other metal items
+
+    public static ItemBasic BROKEN_STEEL_GEAR;
+
+    // tools/weapons
 
     public static Item FLAMETHROWER;
 
@@ -68,6 +82,10 @@ public class ModItems {
         CHROMIUM_PLATE = new ItemBasic("chromium_plate");
         COPPER_PLATE = new ItemBasic("copper_plate");
 
+        STEEL_INGOT = new ItemBasic("steel_ingot");
+
+        STEEL_PLATE = new ItemBasic("steel_plate");
+
         INCONEL_BARS = new ItemBasic("inconel_bars");
         INCONEL_BARS.addLore("A heat-resistant nickel-chromium superalloy often used in rocket engines.");
         INCONEL_BARS.setGlows();
@@ -75,12 +93,14 @@ public class ModItems {
         ALUMINUM_2198_INGOT.addLore("An aluminum-lithium alloy found in spacecraft fuel and oxidizer tanks.");
         ALUMINUM_2198_INGOT.setGlows();
 
+        BROKEN_STEEL_GEAR = new ItemBasic("broken_steel_gear");
+
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
-                    EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
-                    fire.fallTime = 1;
-                    return fire;
-                }, 5, 5.0, 1.0, null).setMaxStackSize(1)
-        .setCreativeTab(ModCreativeTabs.BORING_COMPANY);
+            EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
+            fire.fallTime = 1;
+            return fire;
+        }, 5, 5.0, 1.0, null).setMaxStackSize(1)
+                .setCreativeTab(ModCreativeTabs.BORING_COMPANY);
     }
 
     static void addItem(ItemBasic item) {

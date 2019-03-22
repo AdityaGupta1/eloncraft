@@ -16,6 +16,8 @@ public class ModSmeltingRecipes {
         addSmelting(NICKEL_ORE, NICKEL_INGOT);
         addSmelting(CHROMIUM_ORE, CHROMIUM_INGOT);
         addSmelting(COPPER_ORE, COPPER_INGOT);
+
+        addSmelting(BROKEN_STEEL_GEAR, STEEL_INGOT);
     }
 
     private static void addSmelting(Item input, Item output) {

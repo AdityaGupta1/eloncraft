@@ -1,4 +1,11 @@
-item.flamethrower.name=Not a Flamethrower
+# ========================================
+# ITEMS
+# ========================================
+
+
+# ====================
+# metals from ores
+# ====================
 
 item.aluminum_ingot.name=Aluminum Ingot
 item.titanium_ingot.name=Titanium Ingot
@@ -23,8 +30,37 @@ item.nickel_plate.name=Nickel Plate
 item.chromium_plate.name=Chromium Plate
 item.copper_plate.name=Copper Plate
 
+# ====================
+# alloys
+# ====================
+
+item.steel_ingot.name=Steel Ingot
+
+item.steel_plate.name=Steel Plate
+
 item.inconel_bars.name=§6Inconel Bars
 item.aluminum_2198_ingot.name=§bAluminum 2198
+
+# ====================
+# other metal items
+# ====================
+
+item.broken_steel_gear.name=Broken Steel Gear
+
+# ====================
+# tools/weapons
+# ====================
+
+item.flamethrower.name=Not a Flamethrower
+
+
+# ========================================
+# BLOCKS
+# ========================================
+
+
+# ores
+# ====================
 
 tile.components.name=Components
 
@@ -35,6 +71,10 @@ tile.nickel_ore.name=Nickel Ore
 tile.chromium_ore.name=Chromium Ore
 tile.copper_ore.name=Copper Ore
 
+# ====================
+# machines
+# ====================
+
 tile.metal_roller.name=Metal Roller
 container.metal_roller.name=Metal Roller
 tile.alloy_furnace.name=Alloy Furnace
@@ -42,6 +82,16 @@ container.alloy_furnace.name=Alloy Furnace
 
 tile.elon_workbench.name=§3Elon Musk's Magical Workbench
 container.elon_workbench.name=Elon Musk's Magical Workbench
+
+
+# ========================================
+# OTHER
+# ========================================
+
+
+# ====================
+# creative tabs
+# ====================
 
 itemGroup.eloncraft=Eloncraft
 itemGroup.tesla=Tesla

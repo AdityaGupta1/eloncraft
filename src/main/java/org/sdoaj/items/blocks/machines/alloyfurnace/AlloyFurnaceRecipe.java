@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 import org.sdoaj.util.StackUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AlloyFurnaceRecipe {
@@ -17,6 +18,10 @@ public class AlloyFurnaceRecipe {
         if (inputs.stream().mapToInt(ItemStack::getCount).sum() != TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1) {
             throw new IllegalArgumentException("wrong amount of inputs in AlloyFurnaceRecipe");
         }
+    }
+
+    public AlloyFurnaceRecipe(ItemStack[] inputs, ItemStack output) {
+        this(Arrays.asList(inputs), output);
     }
 
     private List<ItemStack> mergeStacks(List<ItemStack> stacks) {

@@ -39,5 +39,20 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.IRON_BLOCK),
                 new RecipeKey('B', Blocks.OBSIDIAN),
                 new RecipeKey('p', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "cst   tsc",
+                "cst   tsc",
+                "cst   tsc",
+                "cst   tsc",
+                "cst   tsc",
+                "TstttttsT",
+                "TsssssssT",
+                "TTTTTTTTT",
+        }, new ItemStack(ModBlocks.ALLOY_FURNACE),
+                new RecipeKey('t', Blocks.HARDENED_CLAY),
+                new RecipeKey('s', ModItems.STEEL_PLATE),
+                new RecipeKey('c', ModItems.COPPER_INGOT),
+                new RecipeKey('T', ModItems.TITANIUM_PLATE)));
     }
 }

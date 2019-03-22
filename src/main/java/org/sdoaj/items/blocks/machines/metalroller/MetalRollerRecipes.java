@@ -33,5 +33,7 @@ public final class MetalRollerRecipes {
         addRecipe(new MetalRollerRecipe(ModItems.NICKEL_INGOT, ModItems.NICKEL_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.CHROMIUM_INGOT, ModItems.CHROMIUM_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.COPPER_INGOT, ModItems.COPPER_PLATE));
+
+        addRecipe(new MetalRollerRecipe(ModItems.STEEL_INGOT, ModItems.STEEL_PLATE));
     }
 }
