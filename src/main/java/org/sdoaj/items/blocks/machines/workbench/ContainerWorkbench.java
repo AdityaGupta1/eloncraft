@@ -4,11 +4,8 @@ package org.sdoaj.items.blocks.machines.workbench;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import org.sdoaj.items.blocks.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.items.blocks.gui.slot.SlotOutput;
 import org.sdoaj.items.blocks.machines.ContainerMachine;
@@ -57,10 +54,19 @@ public class ContainerWorkbench extends ContainerMachine {
             // purposely leaving out shift-clicking into input slots (similar to crafting table)
             if (slotId < inventoryStart) {
                 if (slotId == TileEntityWorkbench.SLOT_OUTPUT) {
+                    boolean merged;
                     do {
-                        tileEntity.getOutput().ifPresent(stack -> this.mergeItemStack(stack, inventoryStart, hotbarEnd + 1, true));
-                    } while(tileEntity.finishCraftingIfPossible());
-                    return ItemStack.EMPTY;
+                        if (tileEntity.getOutput().isPresent()) {
+                            merged = this.mergeItemStack(tileEntity.getOutput().get().copy(), inventoryStart, hotbarEnd + 1, true);
+                            if (merged) {
+                                tileEntity.finishCraftingIfPossible();
+                            } else {
+                                return ItemStack.EMPTY;
+                            }
+                        } else {
+                            return ItemStack.EMPTY;
+                        }
+                    } while(true);
                 }
 
                 if (!this.mergeItemStack(newStack, inventoryStart, hotbarEnd + 1, true)) {
