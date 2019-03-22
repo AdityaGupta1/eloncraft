@@ -27,12 +27,7 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
             return;
         }
 
-        Optional<ItemStack> output = getOutput();
-        if (output.isPresent()) {
-            this.inventory.setStackInSlot(SLOT_OUTPUT, output.get());
-        } else {
-            this.inventory.setStackInSlot(SLOT_OUTPUT, ItemStack.EMPTY);
-        }
+        this.inventory.setStackInSlot(SLOT_OUTPUT, getOutput().orElse(ItemStack.EMPTY));
     }
 
     @Override
@@ -62,8 +57,17 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
         return Optional.of(recipe.output.copy());
     }
 
+    public boolean finishCraftingIfPossible() {
+        if (getOutput().isPresent()) {
+            decrementInputs();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // TODO make this work with non-consumed ingredients (e.g. lava bucket turns into regular bucket)
-    public void decrementInputs() {
+    private void decrementInputs() {
         IntStream.range(SLOT_INPUT_1, INPUT_SLOTS).forEach(i -> {
             ItemStack stack = this.inventory.getStackInSlot(i);
             if (StackUtil.isValid(stack)) {

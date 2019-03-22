@@ -29,7 +29,7 @@ public class ContainerWorkbench extends ContainerMachine {
             }
         }
         this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityWorkbench.SLOT_OUTPUT, 207, 291,
-                (player, stack) -> this.tileEntity.decrementInputs()));
+                (player, stack) -> this.tileEntity.finishCraftingIfPossible()));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -57,7 +57,9 @@ public class ContainerWorkbench extends ContainerMachine {
             // purposely leaving out shift-clicking into input slots (similar to crafting table)
             if (slotId < inventoryStart) {
                 if (slotId == TileEntityWorkbench.SLOT_OUTPUT) {
-                    // TODO shift click crafting outputs
+                    do {
+                        tileEntity.getOutput().ifPresent(stack -> this.mergeItemStack(stack, inventoryStart, hotbarEnd + 1, true));
+                    } while(tileEntity.finishCraftingIfPossible());
                     return ItemStack.EMPTY;
                 }
 
