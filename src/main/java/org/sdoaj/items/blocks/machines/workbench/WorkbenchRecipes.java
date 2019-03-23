@@ -1,6 +1,7 @@
 package org.sdoaj.items.blocks.machines.workbench;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.items.blocks.machines.RecipeKey;
@@ -28,6 +29,16 @@ public final class WorkbenchRecipes {
 
     public static void init() {
         addRecipe(new WorkbenchRecipe(new String[]{
+                "p p p",
+                " ppp ",
+                "pptpp",
+                " ppp ",
+                "p p p"
+        }, new ItemStack(ModItems.TITANIUM_FAN),
+                new RecipeKey('t', ModItems.TITANIUM_INGOT),
+                new RecipeKey('p', ModItems.TITANIUM_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
                 "ttttt",
                 "tPPPt",
                 "tbbbt",
@@ -54,5 +65,29 @@ public final class WorkbenchRecipes {
                 new RecipeKey('s', ModItems.STEEL_PLATE),
                 new RecipeKey('c', ModItems.COPPER_INGOT),
                 new RecipeKey('T', ModItems.TITANIUM_PLATE)));
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "  tcr     ",
+                "  nnn     ",
+                " n   pPp  ",
+                " n   n I  ",
+                " n   nPp  ",
+                "  n n p   ",
+                "  n n pAAA",
+                " n   n pPA",
+                "ppppppppIA",
+                "n     n   ",
+                "n     n   ",
+                "n     n   ",
+        }, new ItemStack(ModItems.MERLIN_ENGINE),
+                new RecipeKey('n', ModItems.NIOBIUM_C103_PLATE),
+                new RecipeKey('p', ModItems.FUEL_PIPE),
+                new RecipeKey('P', ModItems.TITANIUM_FAN),
+                new RecipeKey('A', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('I', ModItems.INCONEL_PLATE),
+                new RecipeKey('t', Blocks.REDSTONE_TORCH),
+                new RecipeKey('c', Items.COMPARATOR),
+                new RecipeKey('r', Items.REPEATER)));
     }
 }

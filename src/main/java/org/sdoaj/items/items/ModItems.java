@@ -28,6 +28,8 @@ public class ModItems {
     public static ItemBasic NICKEL_INGOT;
     public static ItemBasic CHROMIUM_INGOT;
     public static ItemBasic COPPER_INGOT;
+    public static ItemBasic NIOBIUM_INGOT;
+    public static ItemBasic HAFNIUM_INGOT;
 
     public static ItemBasic ALUMINUM_NUGGET;
     public static ItemBasic TITANIUM_NUGGET;
@@ -44,6 +46,8 @@ public class ModItems {
     public static ItemBasic NICKEL_PLATE;
     public static ItemBasic CHROMIUM_PLATE;
     public static ItemBasic COPPER_PLATE;
+    public static ItemBasic NIOBIUM_PLATE;
+    public static ItemBasic HAFNIUM_PLATE;
 
     // alloys
 
@@ -53,10 +57,22 @@ public class ModItems {
 
     public static ItemBasic INCONEL_BARS;
     public static ItemBasic ALUMINUM_2198_INGOT;
+    public static ItemBasic NIOBIUM_C103_INGOT;
+
+    public static ItemBasic INCONEL_PLATE;
+    public static ItemBasic ALUMINUM_2198_PLATE;
+    public static ItemBasic NIOBIUM_C103_PLATE;
 
     // other metal items
 
     public static ItemBasic BROKEN_STEEL_GEAR;
+
+    public static ItemBasic TITANIUM_FAN;
+    public static ItemBasic FUEL_PIPE;
+
+    // rocket parts
+
+    public static ItemBasic MERLIN_ENGINE;
 
     // tools/weapons
 
@@ -69,7 +85,10 @@ public class ModItems {
         NICKEL_INGOT = new ItemBasic("nickel_ingot");
         CHROMIUM_INGOT = new ItemBasic("chromium_ingot");
         COPPER_INGOT = new ItemBasic("copper_ingot");
+        NIOBIUM_INGOT = new ItemBasic("niobium_ingot");
+        HAFNIUM_INGOT = new ItemBasic("hafnium_ingot");
 
+        TITANIUM_NUGGET = new ItemBasic("titanium_nugget");
         LITHIUM_NUGGET = new ItemBasic("lithium_nugget");
         COPPER_NUGGET = new ItemBasic("copper_nugget");
 
@@ -81,6 +100,8 @@ public class ModItems {
         NICKEL_PLATE = new ItemBasic("nickel_plate");
         CHROMIUM_PLATE = new ItemBasic("chromium_plate");
         COPPER_PLATE = new ItemBasic("copper_plate");
+        NIOBIUM_PLATE = new ItemBasic("niobium_plate");
+        HAFNIUM_PLATE = new ItemBasic("hafnium_plate");
 
         STEEL_INGOT = new ItemBasic("steel_ingot");
 
@@ -92,8 +113,23 @@ public class ModItems {
         ALUMINUM_2198_INGOT = new ItemBasic("aluminum_2198_ingot");
         ALUMINUM_2198_INGOT.addLore("An aluminum-lithium alloy found in spacecraft fuel and oxidizer tanks.");
         ALUMINUM_2198_INGOT.setGlows();
+        NIOBIUM_C103_INGOT = new ItemBasic("niobium_c103_ingot");
+        NIOBIUM_C103_INGOT.addLore("A high-performance, heat-resistant niobium-hafnium-titanium alloy used in rocket engine nozzles.");
+        NIOBIUM_C103_INGOT.setGlows();
+
+        INCONEL_PLATE = new ItemBasic("inconel_plate");
+        INCONEL_PLATE.setGlows();
+        ALUMINUM_2198_PLATE = new ItemBasic("aluminum_2198_plate");
+        ALUMINUM_2198_PLATE.setGlows();
+        NIOBIUM_C103_PLATE = new ItemBasic("niobium_c103_plate");
+        NIOBIUM_C103_PLATE.setGlows();
 
         BROKEN_STEEL_GEAR = new ItemBasic("broken_steel_gear");
+
+        TITANIUM_FAN = new ItemBasic("titanium_fan");
+        FUEL_PIPE = new ItemBasic("fuel_pipe");
+
+        MERLIN_ENGINE = new ItemBasic("merlin_engine");
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());

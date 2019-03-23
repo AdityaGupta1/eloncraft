@@ -36,6 +36,8 @@ public class ModBlocks {
     public static Block NICKEL_ORE;
     public static Block CHROMIUM_ORE;
     public static Block COPPER_ORE;
+    public static Block NIOBIUM_ORE;
+    public static Block HAFNIUM_ORE;
 
     public static BlockWorkbench ELON_WORKBENCH;
 
@@ -59,6 +61,10 @@ public class ModBlocks {
         CHROMIUM_ORE = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
         COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
+                .setResistance(5.0F);
+        NIOBIUM_ORE = new BlockOreStone("niobium_ore").setHarvestLevel(3).setHardness(3.0F)
+                .setResistance(5.0F);
+        HAFNIUM_ORE = new BlockOreStone("hafnium_ore").setHarvestLevel(3).setHardness(3.0F)
                 .setResistance(5.0F);
 
         ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON);

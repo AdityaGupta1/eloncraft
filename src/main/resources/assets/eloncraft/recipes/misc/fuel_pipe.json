@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p p",
+    "p p",
+    "p p"
+  ],
+  "key": {
+    "p": {
+      "item": "eloncraft:aluminum_2198_plate"
+    }
+  },
+  "result": {
+    "item": "eloncraft:fuel_pipe",
+    "count": 6
+  }
+}

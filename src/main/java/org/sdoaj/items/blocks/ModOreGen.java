@@ -15,9 +15,8 @@ import java.util.function.Predicate;
 
 public class ModOreGen implements IWorldGenerator {
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
-                         IChunkProvider chunkProvider) {
-        switch(world.provider.getDimension()) {
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        switch (world.provider.getDimension()) {
             // nether
             case -1:
                 break;
@@ -26,17 +25,21 @@ public class ModOreGen implements IWorldGenerator {
                 runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 10, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
-                runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 8, 70, 0, 63,
+                runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 12, 70, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 8, 20, 0, 15,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 8, 30, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 15, 0, 31,
+                runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 25, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.CHROMIUM_ORE.getDefaultState(), 8, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.COPPER_ORE.getDefaultState(), 8, 50, 0, 63,
+                runGenerator(ModBlocks.COPPER_ORE.getDefaultState(), 12, 50, 0, 63,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.NIOBIUM_ORE.getDefaultState(), 8, 25, 0, 31,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.HAFNIUM_ORE.getDefaultState(), 8, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 break;
             // end
@@ -48,13 +51,13 @@ public class ModOreGen implements IWorldGenerator {
     }
 
     private void runGenerator(IBlockState blockToGenerate, int veinSize, int spawnChances, int minY, int maxY,
-                              Predicate<IBlockState> blockToReplace, World world, Random random, int chunkX, int chunkZ){
+                              Predicate<IBlockState> blockToReplace, World world, Random random, int chunkX, int chunkZ) {
         if (minY < 0 || maxY > 256 || minY > maxY)
             throw new IllegalArgumentException("illegal height arguments for ModOreGen");
 
         WorldGenMinable generator = new WorldGenMinable(blockToGenerate, veinSize, (com.google.common.base.Predicate<IBlockState>) blockToReplace);
         int dy = maxY - minY + 1;
-        for (int i = 0; i < spawnChances; i++){
+        for (int i = 0; i < spawnChances; i++) {
             int x = chunkX * 16 + random.nextInt(16);
             int y = minY + random.nextInt(dy);
             int z = chunkZ * 16 + random.nextInt(16);
