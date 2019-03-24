@@ -27,6 +27,13 @@ public final class AlloyFurnaceRecipes {
 
     public static void init() {
         addRecipe(new AlloyFurnaceRecipe(new ItemStack[]{
+                new ItemStack(Blocks.COAL_BLOCK, 1),
+                new ItemStack(Items.IRON_INGOT, 9)
+        }, new ItemStack(ModItems.STEEL_INGOT, 9)));
+
+
+
+        addRecipe(new AlloyFurnaceRecipe(new ItemStack[]{
                 new ItemStack(ModItems.NICKEL_INGOT, 7),
                 new ItemStack(ModItems.CHROMIUM_INGOT, 2),
                 new ItemStack(Items.IRON_INGOT, 1)
@@ -39,14 +46,21 @@ public final class AlloyFurnaceRecipes {
         }, new ItemStack(ModItems.ALUMINUM_2198_INGOT, 8)));
 
         addRecipe(new AlloyFurnaceRecipe(new ItemStack[]{
-                new ItemStack(Blocks.COAL_BLOCK, 1),
-                new ItemStack(Items.IRON_INGOT, 9)
-        }, new ItemStack(ModItems.STEEL_INGOT, 9)));
+                new ItemStack(ModItems.ALUMINUM_INGOT, 8),
+                new ItemStack(ModItems.ZINC_INGOT, 1),
+                new ItemStack(ModItems.MAGNESIUM_NUGGET, 1)
+        }, new ItemStack(ModItems.ALUMINUM_7XXX_INGOT, 9)));
 
         addRecipe(new AlloyFurnaceRecipe(new ItemStack[]{
                 new ItemStack(ModItems.NIOBIUM_INGOT, 8),
                 new ItemStack(ModItems.HAFNIUM_INGOT, 1),
                 new ItemStack(ModItems.TITANIUM_NUGGET, 1)
         }, new ItemStack(ModItems.NIOBIUM_C103_INGOT, 9)));
+
+        addRecipe(new AlloyFurnaceRecipe(new ItemStack[]{
+                new ItemStack(ModItems.NIOBIUM_INGOT, 8),
+                new ItemStack(ModItems.HAFNIUM_INGOT, 1),
+                new ItemStack(ModItems.TITANIUM_NUGGET, 1)
+        }, new ItemStack(ModItems.ALUMINUM_7XXX_INGOT, 9)));
     }
 }

@@ -41,6 +41,10 @@ public class ModOreGen implements IWorldGenerator {
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.HAFNIUM_ORE.getDefaultState(), 8, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.MAGNESIUM_ORE.getDefaultState(), 8, 30, 0, 47,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+                runGenerator(ModBlocks.ZINC_ORE.getDefaultState(), 8, 30, 0, 47,
+                        BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 break;
             // end
             case 1:

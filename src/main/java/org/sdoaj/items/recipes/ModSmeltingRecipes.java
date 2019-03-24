@@ -18,6 +18,8 @@ public class ModSmeltingRecipes {
         addSmelting(COPPER_ORE, COPPER_INGOT);
         addSmelting(NIOBIUM_ORE, NIOBIUM_INGOT);
         addSmelting(HAFNIUM_ORE, HAFNIUM_INGOT);
+        addSmelting(MAGNESIUM_ORE, MAGNESIUM_INGOT);
+        addSmelting(ZINC_ORE, ZINC_INGOT);
 
         addSmelting(BROKEN_STEEL_GEAR, STEEL_INGOT);
     }

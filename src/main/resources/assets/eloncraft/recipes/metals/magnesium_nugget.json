@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "eloncraft:magnesium_nugget"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:magnesium_nugget",
+    "count": 9
+  }
+}

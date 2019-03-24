@@ -15,6 +15,8 @@ item.chromium_ingot.name=Chromium Ingot
 item.copper_ingot.name=Copper Ingot
 item.niobium_ingot.name=Niobium Ingot
 item.hafnium_ingot.name=Hafnium Ingot
+item.magnesium_ingot.name=Magnesium Ingot
+item.zinc_ingot.name=Zinc Ingot
 
 item.aluminum_nugget.name=Aluminum Nugget
 item.titanium_nugget.name=Titanium Nugget
@@ -24,6 +26,8 @@ item.chromium_nugget.name=Chromium Nugget
 item.copper_nugget.name=Copper Nugget
 item.niobium_nugget.name=Niobium Nugget
 item.hafnium_nugget.name=Hafnium Nugget
+item.magnesium_nugget.name=Magnesium Nugget
+item.zinc_nugget.name=Zinc Nugget
 
 item.iron_plate.name=Iron Plate
 item.gold_plate.name=Gold Plate
@@ -35,6 +39,8 @@ item.chromium_plate.name=Chromium Plate
 item.copper_plate.name=Copper Plate
 item.niobium_plate.name=Niobium Plate
 item.hafnium_plate.name=Hafnium Plate
+item.magnesium_plate.name=Magnesium Plate
+item.zinc_plate.name=Zinc Plate
 
 # ====================
 # alloys
@@ -46,10 +52,12 @@ item.steel_plate.name=Steel Plate
 
 item.inconel_bars.name=§6Inconel Bars
 item.aluminum_2198_ingot.name=§bAluminum 2198 Ingot
+item.aluminum_7xxx_ingot.name=§8Aluminum 7XXX Ingot
 item.niobium_c103_ingot.name=§dNiobium C-103 Ingot
 
 item.inconel_plate.name=§6Inconel Plate
 item.aluminum_2198_plate.name=§bAluminum 2198 Plate
+item.aluminum_7xxx_plate.name=§8Aluminum 7XXX Plate
 item.niobium_c103_plate.name=§dNiobium C-103 Plate
 
 # ====================
@@ -66,6 +74,8 @@ item.fuel_pipe.name=Fuel Pipe
 # ====================
 
 item.merlin_engine.name=Merlin Engine
+
+item.octaweb.name=Octaweb
 
 # ====================
 # tools/weapons
@@ -93,6 +103,8 @@ tile.chromium_ore.name=Chromium Ore
 tile.copper_ore.name=Copper Ore
 tile.niobium_ore.name=Niobium Ore
 tile.hafnium_ore.name=Hafnium Ore
+tile.magnesium_ore.name=Magnesium Ore
+tile.zinc_ore.name=Zinc Ore
 
 # ====================
 # machines

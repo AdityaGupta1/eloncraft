@@ -35,11 +35,14 @@ public final class MetalRollerRecipes {
         addRecipe(new MetalRollerRecipe(ModItems.COPPER_INGOT, ModItems.COPPER_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.NIOBIUM_INGOT, ModItems.NIOBIUM_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.HAFNIUM_INGOT, ModItems.HAFNIUM_PLATE));
+        // addRecipe(new MetalRollerRecipe(ModItems.MAGNESIUM_INGOT, ModItems.MAGNESIUM_PLATE));
+        // addRecipe(new MetalRollerRecipe(ModItems.ZINC_INGOT, ModItems.ZINC_PLATE));
 
         addRecipe(new MetalRollerRecipe(ModItems.STEEL_INGOT, ModItems.STEEL_PLATE));
 
         addRecipe(new MetalRollerRecipe(ModItems.INCONEL_BARS, ModItems.INCONEL_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_2198_INGOT, ModItems.ALUMINUM_2198_PLATE));
+        addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_7XXX_INGOT, ModItems.ALUMINUM_7XXX_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.NIOBIUM_C103_INGOT, ModItems.NIOBIUM_C103_PLATE));
     }
 }

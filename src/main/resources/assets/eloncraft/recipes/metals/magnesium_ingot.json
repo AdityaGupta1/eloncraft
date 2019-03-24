@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "nnn",
+    "nnn",
+    "nnn"
+  ],
+  "key": {
+    "n": {
+      "item": "eloncraft:magnesium_nugget"
+    }
+  },
+  "result": {
+    "item": "eloncraft:magnesium_ingot",
+    "count": 1
+  }
+}

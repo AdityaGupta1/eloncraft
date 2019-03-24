@@ -89,5 +89,26 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', Blocks.REDSTONE_TORCH),
                 new RecipeKey('c', Items.COMPARATOR),
                 new RecipeKey('r', Items.REPEATER)));
+
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "    ppppp    ",
+                "  ppppppppp  ",
+                " pppppeppppp ",
+                " ppepppppepp ",
+                "ppppppppppppp",
+                "ppppppppppppp",
+                "ppepppepppepp",
+                "ppppppppppppp",
+                "ppppppppppppp",
+                " ppepppppepp ",
+                " pppppeppppp ",
+                "  ppppppppp  ",
+                "    ppppp    ",
+        }, new ItemStack(ModItems.OCTAWEB),
+                new RecipeKey('p', ModItems.ALUMINUM_7XXX_PLATE),
+                new RecipeKey('e', ModItems.MERLIN_ENGINE)));
     }
 }

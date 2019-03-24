@@ -38,6 +38,8 @@ public class ModBlocks {
     public static Block COPPER_ORE;
     public static Block NIOBIUM_ORE;
     public static Block HAFNIUM_ORE;
+    public static Block MAGNESIUM_ORE;
+    public static Block ZINC_ORE;
 
     public static BlockWorkbench ELON_WORKBENCH;
 
@@ -52,8 +54,8 @@ public class ModBlocks {
 
         ALUMINUM_ORE = new BlockOreStone("aluminum_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        TITANIUM_ORE = new BlockOreStone("titanium_ore").setHarvestLevel(3).setHardness(3.0F)
-                .setResistance(5.0F);
+        TITANIUM_ORE = new BlockOreStone("titanium_ore").setHarvestLevel(3).setHardness(7.0F)
+                .setResistance(20.0F);
         LITHIUM_ORE = new BlockOreStone("lithium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
         NICKEL_ORE = new BlockOreStone("nickel_ore").setHarvestLevel(2).setHardness(3.0F)
@@ -62,9 +64,13 @@ public class ModBlocks {
                 .setResistance(5.0F);
         COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        NIOBIUM_ORE = new BlockOreStone("niobium_ore").setHarvestLevel(3).setHardness(3.0F)
+        NIOBIUM_ORE = new BlockOreStone("niobium_ore").setHarvestLevel(3).setHardness(5.0F)
+                .setResistance(8.0F);
+        HAFNIUM_ORE = new BlockOreStone("hafnium_ore").setHarvestLevel(3).setHardness(5.0F)
+                .setResistance(8.0F);
+        MAGNESIUM_ORE = new BlockOreStone("magnesium_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
-        HAFNIUM_ORE = new BlockOreStone("hafnium_ore").setHarvestLevel(3).setHardness(3.0F)
+        ZINC_ORE = new BlockOreStone("zinc_ore").setHarvestLevel(2).setHardness(3.0F)
                 .setResistance(5.0F);
 
         ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON);
