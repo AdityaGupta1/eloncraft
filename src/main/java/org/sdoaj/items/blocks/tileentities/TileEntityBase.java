@@ -31,6 +31,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
+import org.sdoaj.items.blocks.machines.crusher.TileEntityCrusher;
 import org.sdoaj.items.blocks.machines.metalroller.TileEntityMetalRoller;
 import org.sdoaj.items.blocks.machines.workbench.TileEntityWorkbench;
 
@@ -49,6 +50,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     public static void init() {
         register(TileEntityMetalRoller.class);
         register(TileEntityAlloyFurnace.class);
+        register(TileEntityCrusher.class);
         register(TileEntityWorkbench.class);
     }
 

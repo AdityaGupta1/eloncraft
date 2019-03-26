@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.items.blocks.ModOreGen;
+import org.sdoaj.items.blocks.machines.crusher.CrusherRecipes;
 import org.sdoaj.items.blocks.machines.workbench.WorkbenchRecipes;
 import org.sdoaj.items.blocks.tileentities.TileEntityBase;
 import org.sdoaj.items.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
@@ -50,6 +51,7 @@ public class Main {
 
         MetalRollerRecipes.init();
         AlloyFurnaceRecipes.init();
+        CrusherRecipes.init();
         WorkbenchRecipes.init();
     }
 }

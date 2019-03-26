@@ -17,6 +17,7 @@ import org.sdoaj.items.Drop;
 import org.sdoaj.items.DropRange;
 import org.sdoaj.items.Drops;
 import org.sdoaj.items.blocks.machines.alloyfurnace.BlockAlloyFurnace;
+import org.sdoaj.items.blocks.machines.crusher.BlockCrusher;
 import org.sdoaj.items.blocks.machines.metalroller.BlockMetalRoller;
 import org.sdoaj.items.blocks.machines.workbench.BlockWorkbench;
 import org.sdoaj.items.items.ModItems;
@@ -44,6 +45,7 @@ public class ModBlocks {
     public static BlockWorkbench ELON_WORKBENCH;
 
     public static BlockMetalRoller METAL_ROLLER;
+    public static BlockCrusher CRUSHER;
     public static BlockAlloyFurnace ALLOY_FURNACE;
 
     public static void init() {
@@ -78,6 +80,9 @@ public class ModBlocks {
 
         METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON);
         METAL_ROLLER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
+        CRUSHER = new BlockCrusher("crusher", Material.IRON);
+        CRUSHER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
+        CRUSHER.addLore("Pulverizer, SAG Mill, etc. - whatever you want to call it.");
         ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON);
         ALLOY_FURNACE.setHardness(20.0F).setResistance(40.0F).setHarvestLevel("pickaxe", 3);
         ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace which can also serve as a blast furnace.");

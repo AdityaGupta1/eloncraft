@@ -17,6 +17,8 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.eloncraft.Reference;
+import org.sdoaj.items.blocks.machines.crusher.ContainerCrusher;
+import org.sdoaj.items.blocks.machines.crusher.GuiCrusher;
 import org.sdoaj.items.blocks.machines.workbench.ContainerWorkbench;
 import org.sdoaj.items.blocks.machines.workbench.GuiWorkbench;
 import org.sdoaj.items.blocks.tileentities.TileEntityBase;
@@ -39,6 +41,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerWorkbench(player.inventory, tileEntity);
             case Reference.GUI_METAL_ROLLER:
                 return new ContainerMetalRoller(player.inventory, tileEntity);
+            case Reference.GUI_CRUSHER:
+                return new ContainerCrusher(player.inventory, tileEntity);
             case Reference.GUI_ALLOY_FURNACE:
                 return new ContainerAlloyFurnace(player.inventory, tileEntity);
             default:
@@ -55,6 +59,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiWorkbench(player.inventory, tileEntity);
             case Reference.GUI_METAL_ROLLER:
                 return new GuiMetalRoller(player.inventory, tileEntity);
+            case Reference.GUI_CRUSHER:
+                return new GuiCrusher(player.inventory, tileEntity);
             case Reference.GUI_ALLOY_FURNACE:
                 return new GuiAlloyFurnace(player.inventory, tileEntity);
             default:

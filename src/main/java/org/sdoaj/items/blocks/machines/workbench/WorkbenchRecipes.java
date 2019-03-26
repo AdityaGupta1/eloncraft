@@ -66,7 +66,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', ModItems.COPPER_INGOT),
                 new RecipeKey('T', ModItems.TITANIUM_PLATE)));
 
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  tcr     ",
                 "  nnn     ",
@@ -89,9 +88,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', Blocks.REDSTONE_TORCH),
                 new RecipeKey('c', Items.COMPARATOR),
                 new RecipeKey('r', Items.REPEATER)));
-
-
-
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "    ppppp    ",

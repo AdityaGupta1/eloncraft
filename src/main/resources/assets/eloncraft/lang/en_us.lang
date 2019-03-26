@@ -112,6 +112,8 @@ tile.zinc_ore.name=Zinc Ore
 
 tile.metal_roller.name=Metal Roller
 container.metal_roller.name=Metal Roller
+tile.crusher.name=Crusher
+container.crusher.name=Crusher
 tile.alloy_furnace.name=Alloy Furnace
 container.alloy_furnace.name=Alloy Furnace
 

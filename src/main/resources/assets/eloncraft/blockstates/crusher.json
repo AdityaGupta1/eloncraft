@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "on=false": { "model": "eloncraft:crusher_off" },
+    "on=true": { "model": "eloncraft:crusher_on" }
+  }
+}
