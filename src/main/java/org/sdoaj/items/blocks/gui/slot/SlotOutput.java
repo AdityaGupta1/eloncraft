@@ -14,15 +14,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.util.ItemStackHandler;
 
-import javax.annotation.Nonnull;
 import java.util.function.BiConsumer;
 
 public class SlotOutput extends SlotItemHandlerUnconditioned {
-    private final BiConsumer<EntityPlayer, ItemStack> onSlotChanged;
+    private final BiConsumer<EntityPlayer, ItemStack> onItemTake;
 
-    public SlotOutput(ItemStackHandler inventory, int id, int x, int y, BiConsumer<EntityPlayer, ItemStack> onSlotChanged) {
+    public SlotOutput(ItemStackHandler inventory, int id, int x, int y,
+                      BiConsumer<EntityPlayer, ItemStack> onItemTake) {
         super(inventory, id, x, y);
-        this.onSlotChanged = onSlotChanged;
+        this.onItemTake = onItemTake;
     }
 
     public SlotOutput(ItemStackHandler inventory, int id, int x, int y) {
@@ -36,7 +36,7 @@ public class SlotOutput extends SlotItemHandlerUnconditioned {
 
     @Override
     public ItemStack onTake(EntityPlayer player, ItemStack stack) {
-        onSlotChanged.accept(player, stack);
+        onItemTake.accept(player, stack);
         return super.onTake(player, stack);
     }
 }

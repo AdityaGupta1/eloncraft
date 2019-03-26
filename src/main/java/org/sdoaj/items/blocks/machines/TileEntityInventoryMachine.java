@@ -106,6 +106,11 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
 
     public abstract void finishProcessing();
 
+    public void reset() {
+        this.processTime = 0;
+        this.lastProcess = 0;
+    }
+
     public boolean guiShowProgress() {
         return processTime > 0;
     }

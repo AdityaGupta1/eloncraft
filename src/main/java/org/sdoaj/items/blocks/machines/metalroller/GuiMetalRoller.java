@@ -55,7 +55,7 @@ public class GuiMetalRoller extends GuiBase {
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
         if (this.tileEntity.guiShowProgress()) {
-            int i = this.tileEntity.getTimeScaled(24);
+            int i = this.tileEntity.getTimeScaled(24) + 1;
             this.drawTexturedModalRect(this.guiLeft + 71, this.guiTop + 35, 176, 0, i, 17);
         }
 

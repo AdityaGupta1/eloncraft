@@ -19,7 +19,8 @@ public class ContainerCrusher extends ContainerMachine {
         super(tileEntity);
         this.tileEntity = (TileEntityCrusher) tileEntity;
 
-        this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityCrusher.SLOT_INPUT, 48, 35));
+        this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityCrusher.SLOT_INPUT, 48, 35)
+                .setOnSlotChanged(this.tileEntity::reset));
         this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityCrusher.SLOT_OUTPUT, 108, 35));
 
         for (int i = 0; i < 3; i++) {

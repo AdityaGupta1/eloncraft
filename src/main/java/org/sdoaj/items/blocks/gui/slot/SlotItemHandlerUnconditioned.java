@@ -21,6 +21,8 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
     private final ItemStackHandler inventory;
     private final int stackSizeLimit;
 
+    private Runnable onSlotChanged;
+
     public SlotItemHandlerUnconditioned(ItemStackHandler inventory, int index, int xPosition, int yPosition, int stackSizeLimit) {
         super(inventory, index, xPosition, yPosition);
         this.inventory = inventory;
@@ -29,6 +31,11 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
 
     public SlotItemHandlerUnconditioned(ItemStackHandler inventory, int index, int xPosition, int yPosition) {
         this(inventory, index, xPosition, yPosition, 64);
+    }
+
+    public SlotItemHandlerUnconditioned setOnSlotChanged(Runnable onSlotChanged) {
+        this.onSlotChanged = onSlotChanged;
+        return this;
     }
 
     @Override
@@ -81,5 +88,27 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
     @Override
     public ItemStack decrStackSize(int amount) {
         return this.inventory.extractItem(this.getSlotIndex(), amount, false, false);
+    }
+
+    private ItemStack lastStack;
+
+    // only does stuff when item in slot becomes different (may change if necessary)
+    @Override
+    public void onSlotChanged() {
+        if (lastStack == null) {
+            lastStack = this.getStack();
+        } else {
+            if (this.getStack().isItemEqual(lastStack)) {
+                return;
+            }
+
+            lastStack = this.getStack();
+        }
+
+        if (onSlotChanged != null) {
+            onSlotChanged.run();
+        }
+
+        super.onSlotChanged();
     }
 }

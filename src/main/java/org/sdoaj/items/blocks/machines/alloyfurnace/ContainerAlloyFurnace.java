@@ -24,7 +24,8 @@ public class ContainerAlloyFurnace extends ContainerMachine {
         };
 
         for (int i = 0; i < TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1; i++) {
-            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, slots[i][0], slots[i][1], 1));
+            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, slots[i][0], slots[i][1], 1)
+                    .setOnSlotChanged(this.tileEntity::reset));
         }
         this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityAlloyFurnace.SLOT_OUTPUT, 80, 18));
 
