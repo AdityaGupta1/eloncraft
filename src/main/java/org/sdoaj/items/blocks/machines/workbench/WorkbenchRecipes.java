@@ -52,6 +52,18 @@ public final class WorkbenchRecipes {
                 new RecipeKey('p', Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttt",
+                "tPfPt",
+                "tf ft",
+                "tPfPt",
+                "BBBBB"
+        }, new ItemStack(ModBlocks.CRUSHER),
+                new RecipeKey('t', ModItems.TITANIUM_INGOT),
+                new RecipeKey('f', Items.FLINT),
+                new RecipeKey('P', Blocks.PISTON),
+                new RecipeKey('B', Blocks.OBSIDIAN)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
                 "cst   tsc",
                 "cst   tsc",
                 "cst   tsc",

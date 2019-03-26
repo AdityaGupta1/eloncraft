@@ -83,6 +83,8 @@ public class ModItems {
     // random items
 
     public static ItemBasic CRUSHED_COAL;
+    public static ItemBasic UNTREATED_CARBON_FIBERS;
+    public static ItemBasic CARBON_FIBERS;
 
     // rocket parts
 
@@ -154,6 +156,10 @@ public class ModItems {
         FUEL_PIPE = new ItemBasic("fuel_pipe");
 
         CRUSHED_COAL = new ItemBasic("crushed_coal");
+        UNTREATED_CARBON_FIBERS = new ItemBasic("untreated_carbon_fibers");
+        CARBON_FIBERS = new ItemBasic("carbon_fibers");
+        CARBON_FIBERS.addLore("Most carbon fibers aren't actually made of coal.");
+        CARBON_FIBERS.setGlows();
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
 

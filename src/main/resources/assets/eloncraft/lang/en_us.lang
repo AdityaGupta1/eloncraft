@@ -74,6 +74,8 @@ item.fuel_pipe.name=Fuel Pipe
 # ====================
 
 item.crushed_coal.name=Crushed Coal
+item.untreated_carbon_fibers.name=Untreated Carbon Fibers
+item.carbon_fibers.name=Carbon Fibers
 
 # ====================
 # rocket parts

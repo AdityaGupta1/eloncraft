@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "eloncraft:crushed_coal"
+    },
+    {
+      "item": "eloncraft:crushed_coal"
+    },
+    {
+      "item": "eloncraft:crushed_coal"
+    },
+    {
+      "item": "eloncraft:crushed_coal"
+    },
+    {
+      "item": "eloncraft:crushed_coal"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:untreated_carbon_fibers",
+    "count": 2
+  }
+}

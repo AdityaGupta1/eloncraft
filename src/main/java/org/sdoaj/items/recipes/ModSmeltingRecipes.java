@@ -22,6 +22,8 @@ public class ModSmeltingRecipes {
         addSmelting(ZINC_ORE, ZINC_INGOT);
 
         addSmelting(BROKEN_STEEL_GEAR, STEEL_INGOT);
+
+        addSmelting(UNTREATED_CARBON_FIBERS, CARBON_FIBERS);
     }
 
     private static void addSmelting(Item input, Item output) {
