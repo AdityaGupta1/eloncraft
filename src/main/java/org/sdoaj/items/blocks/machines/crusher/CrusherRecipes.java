@@ -3,6 +3,7 @@ package org.sdoaj.items.blocks.machines.crusher;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import org.sdoaj.items.items.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +27,6 @@ public final class CrusherRecipes {
 
     public static void init() {
         addRecipe(new CrusherRecipe(new ItemStack(Blocks.COAL_ORE), new ItemStack(Items.COAL, 2)));
+        addRecipe(new CrusherRecipe(new ItemStack(Items.COAL), new ItemStack(ModItems.CRUSHED_COAL, 2)));
     }
 }

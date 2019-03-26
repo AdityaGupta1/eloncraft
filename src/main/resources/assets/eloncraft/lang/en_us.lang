@@ -70,6 +70,12 @@ item.titanium_fan.name=Titanium Impeller
 item.fuel_pipe.name=Fuel Pipe
 
 # ====================
+# other metal items
+# ====================
+
+item.crushed_coal.name=Crushed Coal
+
+# ====================
 # rocket parts
 # ====================
 

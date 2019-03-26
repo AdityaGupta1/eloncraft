@@ -80,6 +80,10 @@ public class ModItems {
     public static ItemBasic TITANIUM_FAN;
     public static ItemBasic FUEL_PIPE;
 
+    // random items
+
+    public static ItemBasic CRUSHED_COAL;
+
     // rocket parts
 
     public static ItemBasic MERLIN_ENGINE;
@@ -148,6 +152,8 @@ public class ModItems {
 
         TITANIUM_FAN = new ItemBasic("titanium_fan");
         FUEL_PIPE = new ItemBasic("fuel_pipe");
+
+        CRUSHED_COAL = new ItemBasic("crushed_coal");
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
 

@@ -7,12 +7,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.items.blocks.ModOreGen;
+import org.sdoaj.items.blocks.gui.GuiHandler;
+import org.sdoaj.items.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
 import org.sdoaj.items.blocks.machines.crusher.CrusherRecipes;
+import org.sdoaj.items.blocks.machines.metalroller.MetalRollerRecipes;
 import org.sdoaj.items.blocks.machines.workbench.WorkbenchRecipes;
 import org.sdoaj.items.blocks.tileentities.TileEntityBase;
-import org.sdoaj.items.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
-import org.sdoaj.items.blocks.gui.GuiHandler;
-import org.sdoaj.items.blocks.machines.metalroller.MetalRollerRecipes;
 import org.sdoaj.items.items.ModItems;
 import org.sdoaj.items.recipes.ModSmeltingRecipes;
 
@@ -47,6 +47,10 @@ public class Main {
     public void postInit(FMLPostInitializationEvent event) {
         System.out.println(MODID + ": postInit");
 
+        registerRecipes();
+    }
+
+    private void registerRecipes() {
         ModSmeltingRecipes.init();
 
         MetalRollerRecipes.init();
