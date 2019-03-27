@@ -30,6 +30,7 @@ public class ItemRangedWeapon extends ItemBasic {
         this.inaccuracy = inaccuracy;
         randomVelocity = () -> inaccuracy * ((random.nextDouble() * 2) - 1);
         this.ammunition = ammunition;
+        this.setMaxStackSize(1);
     }
 
     private static final Random random = new Random();

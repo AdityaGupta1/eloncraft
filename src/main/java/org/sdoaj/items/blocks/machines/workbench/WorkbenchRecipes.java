@@ -138,8 +138,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('P', Blocks.PISTON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "p  ppp  p",
-                "p pp pp p",
+                "p ppppp p",
                 "ppp   ppp",
                 "pp     pp",
                 "pp     pp",
@@ -147,25 +146,26 @@ public final class WorkbenchRecipes {
                 "pp     pp",
                 "pp     pp",
                 "pp     pp",
+                "pp     pp",
+                "pp     pp",
                 "ppp   ppp",
-                "p pp pp p",
-                "p  ppp  p"
+                "p ppppp p"
         }, new ItemStack(ModItems.FUEL_TANK_LOX_1),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "p  ppP  p",
-                "p pp Pp p",
+                "p pppPp p",
                 "ppp  Pppp",
                 "pp   P pp",
                 "pp   P pp",
                 "pp   P pp",
+                "pp   P pp",
+                "pp  P  pp",
                 "pp  P  pp",
                 "pp  P  pp",
                 "pp  P  pp",
                 "ppp P ppp",
-                "p ppPpp p",
-                "p  pPp  p"
+                "p ppPpp p"
         }, new ItemStack(ModItems.FUEL_TANK_RP1_1),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
@@ -206,5 +206,26 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
                 new RecipeKey('P', Blocks.PISTON),
                 new RecipeKey('f', ModItems.GRID_FIN)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p ppppp p",
+                "ppp   ppp",
+                "pp     pp",
+                "pp     pp",
+                "ppp   ppp",
+                "p ppppp p"
+        }, new ItemStack(ModItems.FUEL_TANK_LOX_2),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p pppPp p",
+                "ppp  Pppp",
+                "pp   P pp",
+                "pp  P  pp",
+                "ppp P ppp",
+                "p ppPpp p"
+        }, new ItemStack(ModItems.FUEL_TANK_RP1_2),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('P', ModItems.FUEL_PIPE)));
     }
 }
