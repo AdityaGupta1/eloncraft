@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.sdoaj.eloncraft.Main;
-import org.sdoaj.eloncraft.Reference;
+import org.sdoaj.items.blocks.gui.GuiReference;
 import org.sdoaj.items.blocks.tileentities.BlockContainerBase;
 
 public class BlockWorkbench extends BlockContainerBase {
@@ -29,7 +29,7 @@ public class BlockWorkbench extends BlockContainerBase {
         if (!world.isRemote) {
             TileEntityWorkbench tileEntity = (TileEntityWorkbench) world.getTileEntity(pos);
             if (tileEntity != null) {
-                player.openGui(Main.INSTANCE, Reference.GUI_WORKBENCH, world, pos.getX(), pos.getY(), pos.getZ());
+                player.openGui(Main.INSTANCE, GuiReference.WORKBENCH, world, pos.getX(), pos.getY(), pos.getZ());
             }
             return true;
         }

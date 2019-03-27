@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
-import org.sdoaj.eloncraft.Reference;
+import org.sdoaj.items.blocks.gui.GuiReference;
 import org.sdoaj.items.blocks.machines.BlockMachine;
 
 import java.util.Random;
@@ -49,7 +49,7 @@ public class BlockMetalRoller extends BlockMachine {
         if (!world.isRemote) {
             TileEntityMetalRoller tileEntity = (TileEntityMetalRoller) world.getTileEntity(pos);
             if (tileEntity != null) {
-                player.openGui(Main.INSTANCE, Reference.GUI_METAL_ROLLER, world, pos.getX(), pos.getY(), pos.getZ());
+                player.openGui(Main.INSTANCE, GuiReference.METAL_ROLLER, world, pos.getX(), pos.getY(), pos.getZ());
             }
             return true;
         }

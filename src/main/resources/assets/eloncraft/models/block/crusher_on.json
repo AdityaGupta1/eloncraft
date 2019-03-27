@@ -4,9 +4,9 @@
     "particle": "eloncraft:blocks/machine_base",
     "up": "eloncraft:blocks/machine_base",
     "down": "eloncraft:blocks/machine_base",
-    "north": "eloncraft:blocks/metal_roller_side_on",
-    "east": "eloncraft:blocks/metal_roller_side_on",
-    "south": "eloncraft:blocks/metal_roller_side_on",
-    "west": "eloncraft:blocks/metal_roller_side_on"
+    "north": "eloncraft:blocks/crusher_side_on",
+    "east": "eloncraft:blocks/crusher_side_on",
+    "south": "eloncraft:blocks/crusher_side_on",
+    "west": "eloncraft:blocks/crusher_side_on"
   }
 }

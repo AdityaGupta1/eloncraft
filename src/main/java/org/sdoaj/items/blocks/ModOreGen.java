@@ -22,12 +22,12 @@ public class ModOreGen implements IWorldGenerator {
                 break;
             // overworld
             case 0:
-                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 10, 0, 63,
+                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 10, 8, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
                 runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 12, 70, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 8, 20, 0, 15,
+                runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 6, 25, 0, 15,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 8, 30, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
