@@ -59,14 +59,14 @@ public class WorkbenchRecipe {
 
     public boolean matches(ItemStack[][] stacks) {
         int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
-        boolean valid = false;
+        boolean sizeMatches = false;
         for (int i = 0; i < stacks.length; i++) {
             for (int j = 0; j < stacks[i].length; j++) {
                 if (!StackUtil.isValid(stacks[i][j])) {
                     continue;
                 }
 
-                valid = true;
+                sizeMatches = true;
 
                 minX = Math.min(minX, i);
                 maxX = Math.max(maxX, i);
@@ -75,7 +75,7 @@ public class WorkbenchRecipe {
             }
         }
 
-        if (!valid) {
+        if (!sizeMatches) {
             return false;
         }
 
