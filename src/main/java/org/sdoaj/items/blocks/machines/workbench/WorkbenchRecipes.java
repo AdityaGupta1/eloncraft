@@ -136,5 +136,75 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
                 new RecipeKey('a', ModItems.ALUMINUM_PLATE),
                 new RecipeKey('P', Blocks.PISTON)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p  ppp  p",
+                "p pp pp p",
+                "ppp   ppp",
+                "pp     pp",
+                "pp     pp",
+                "pp     pp",
+                "pp     pp",
+                "pp     pp",
+                "pp     pp",
+                "ppp   ppp",
+                "p pp pp p",
+                "p  ppp  p"
+        }, new ItemStack(ModItems.FUEL_TANK_LOX_1),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p  ppP  p",
+                "p pp Pp p",
+                "ppp  Pppp",
+                "pp   P pp",
+                "pp   P pp",
+                "pp   P pp",
+                "pp  P  pp",
+                "pp  P  pp",
+                "pp  P  pp",
+                "ppp P ppp",
+                "p ppPpp p",
+                "p  pPp  p"
+        }, new ItemStack(ModItems.FUEL_TANK_RP1_1),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('P', ModItems.FUEL_PIPE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "  ipi ",
+                " iiiii",
+                "ip p pi",
+                "i p p i",
+                "ip p pi",
+                "i p p i",
+                "iiiiiii",
+        }, new ItemStack(ModItems.GRID_FIN, 2),
+                new RecipeKey('i', ModItems.TITANIUM_INGOT),
+                new RecipeKey('p', ModItems.TITANIUM_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "  ipi ",
+                " iiiii",
+                "i p p i",
+                "ip p pi",
+                "i p p i",
+                "ip p pi",
+                "iiiiiii",
+        }, new ItemStack(ModItems.GRID_FIN, 2),
+                new RecipeKey('i', ModItems.TITANIUM_INGOT),
+                new RecipeKey('p', ModItems.TITANIUM_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " cp     pc ",
+                " cp     pc ",
+                " cp     pc ",
+                " cp     pc ",
+                "fcpP   Ppcf",
+                "fcpP   Ppcf"
+        }, new ItemStack(ModItems.INTERSTAGE),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
+                new RecipeKey('P', Blocks.PISTON),
+                new RecipeKey('f', ModItems.GRID_FIN)));
     }
 }

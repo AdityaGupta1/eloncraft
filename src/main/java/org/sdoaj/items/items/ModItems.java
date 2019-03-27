@@ -10,6 +10,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import org.apache.logging.log4j.core.jackson.Log4jXmlObjectMapper;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.items.ModCreativeTabs;
 
@@ -93,6 +94,10 @@ public class ModItems {
 
     public static ItemBasic OCTAWEB;
     public static ItemBasic LANDING_LEG;
+    public static ItemBasic FUEL_TANK_LOX_1;
+    public static ItemBasic FUEL_TANK_RP1_1;
+    public static ItemBasic GRID_FIN;
+    public static ItemBasic INTERSTAGE;
 
     // tools/weapons
 
@@ -134,10 +139,10 @@ public class ModItems {
         INCONEL_BARS.addLore("A heat-resistant nickel-chromium superalloy often used in rocket engines.");
         INCONEL_BARS.setGlows();
         ALUMINUM_2198_INGOT = new ItemBasic("aluminum_2198_ingot");
-        ALUMINUM_2198_INGOT.addLore("An aluminum-lithium alloy found in spacecraft fuel and oxidizer tanks.");
+        ALUMINUM_2198_INGOT.addLore("An aluminum-lithium alloy found in rocket fuel and oxidizer tanks.");
         ALUMINUM_2198_INGOT.setGlows();
         ALUMINUM_7XXX_INGOT = new ItemBasic("aluminum_7xxx_ingot");
-        ALUMINUM_7XXX_INGOT.addLore("7000 series aluminum alloys are made from ~90% aluminum, ~7% zinc, ~2% magnesium, and ~1% other elements. These alloys are commonly used in aerospace plates.");
+        ALUMINUM_7XXX_INGOT.addLore("7000 series aluminum alloys are made from ~90% aluminum, ~7% zinc, ~2% magnesium, and ~1% other elements. 7000 series alloys are commonly used in aerospace plates.");
         ALUMINUM_7XXX_INGOT.setGlows();
         NIOBIUM_C103_INGOT = new ItemBasic("niobium_c103_ingot");
         NIOBIUM_C103_INGOT.addLore("A high-performance, heat-resistant niobium-hafnium-titanium alloy used in rocket engine nozzles.");
@@ -173,6 +178,14 @@ public class ModItems {
         OCTAWEB.addLore("\"A metal structure that supports eight engines surrounding a center engine at the base of the launch vehicle.\"");
         LANDING_LEG = new ItemBasic("landing_leg");
         LANDING_LEG.addLore("\"The Falcon 9 first stage carries landing legs which will deploy after stage separation and allow for the rocket's soft return to Earth.\"");
+        FUEL_TANK_LOX_1 = new ItemBasic("fuel_tank_lox_1");
+        FUEL_TANK_LOX_1.addLore("A first stage component that contains a fuel tank for liquid oxygen, an oxidizer essential for the combustion reaction used by liquid-propelled rockets to provide thrust.");
+        FUEL_TANK_RP1_1 = new ItemBasic("fuel_tank_rp1_1");
+        FUEL_TANK_RP1_1.addLore("A first stage component that contains a fuel tank for RP-1 (Rocket Propellant-1), a highly refined form of kerosene used as rocket fuel.");
+        GRID_FIN = new ItemBasic("grid_fin");
+        GRID_FIN.addLore("\"Falcon 9's first stage is equipped with hypersonic grid fins that manipulate the direction of the stage's lift during re-entry.\"");
+        INTERSTAGE = new ItemBasic("interstage");
+        INTERSTAGE.addLore("The interstage connects the first and second stages and facilitates their separation. It also has grid fins for steering and alignment during re-entry and landing.");
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
@@ -182,7 +195,8 @@ public class ModItems {
 
         ModCreativeTabs.addAll(ModCreativeTabs.SPACEX, INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
-                TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG);
+                TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
+                GRID_FIN, INTERSTAGE);
 
         ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
     }

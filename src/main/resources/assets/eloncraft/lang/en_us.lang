@@ -86,6 +86,10 @@ item.merlin_engine.name=§lMerlin Engine
 
 item.octaweb.name=§lOctaweb
 item.landing_leg.name=§lLanding Leg
+item.fuel_tank_lox_1.name=§lStage 1 LOX Tank
+item.fuel_tank_rp1_1.name=§lStage 1 RP-1 Tank
+item.grid_fin.name=§lGrid Fin
+item.interstage.name=§lInterstage
 
 # ====================
 # tools/weapons
@@ -141,6 +145,6 @@ container.elon_workbench.name=Elon Musk's Magical Workbench
 # ====================
 
 itemGroup.eloncraft=Eloncraft
-itemGroup.tesla=Tesla
-itemGroup.spacex=SpaceX
-itemGroup.boring_company=The Boring Company
+itemGroup.tesla=Eloncraft: Tesla
+itemGroup.spacex=Eloncraft: SpaceX
+itemGroup.boring_company=Eloncraft: The Boring Company

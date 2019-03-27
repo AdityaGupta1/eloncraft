@@ -87,12 +87,18 @@ public class WorkbenchRecipe {
             for (int j = 0; j < inputs[i].length; j++) {
                 ItemStack stack = stacks[minX + i][minY + j];
 
-                if (!StackUtil.isValid(stack) && inputs[i][j] == null) {
-                    continue;
-                }
+                if (inputs[i][j] == null) {
+                    if (StackUtil.isValid(stack)) {
+                       return false;
+                    }
+                } else {
+                    if (!StackUtil.isValid(stack)) {
+                        return false;
+                    }
 
-                if (!inputs[i][j].apply(stack)) {
-                    return false;
+                    if (!inputs[i][j].apply(stack)) {
+                        return false;
+                    }
                 }
             }
         }
