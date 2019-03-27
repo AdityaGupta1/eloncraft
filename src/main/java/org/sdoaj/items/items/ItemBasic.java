@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemBasic extends Item {
+    private int burnTime = -1;
+
     public ItemBasic(String name) {
         setUnlocalizedName(name);
         setRegistryName(name);
@@ -37,5 +39,14 @@ public class ItemBasic extends Item {
     @Override
     public boolean hasEffect(ItemStack stack) {
         return glows;
+    }
+
+    public void setBurnTime(int burnTime) {
+        this.burnTime = burnTime;
+    }
+
+    @Override
+    public int getItemBurnTime(ItemStack itemStack) {
+        return this.burnTime;
     }
 }

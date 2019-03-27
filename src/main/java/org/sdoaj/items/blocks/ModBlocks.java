@@ -101,7 +101,15 @@ public class ModBlocks {
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        blocks.forEach(block -> registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName())));
+        blocks.forEach(block -> {
+            ItemBlock itemBlock = new ItemBlock(block);
+
+            if (block instanceof BlockBasic) {
+                itemBlock = ((BlockBasic) block).getItemBlock();
+            }
+
+            registry.register(itemBlock.setRegistryName(block.getRegistryName()));
+        });
     }
 
     private static void registerRender(Item item) {

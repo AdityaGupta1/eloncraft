@@ -1,6 +1,5 @@
 package org.sdoaj.items.items;
 
-import com.sun.org.apache.bcel.internal.generic.LAND;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
@@ -159,6 +158,7 @@ public class ModItems {
         FUEL_PIPE = new ItemBasic("fuel_pipe");
 
         CRUSHED_COAL = new ItemBasic("crushed_coal");
+        CRUSHED_COAL.setBurnTime(800);
         UNTREATED_CARBON_FIBERS = new ItemBasic("untreated_carbon_fibers");
         CARBON_FIBERS = new ItemBasic("carbon_fibers");
         CARBON_FIBERS.addLore("Most carbon fibers aren't actually made of coal.");
