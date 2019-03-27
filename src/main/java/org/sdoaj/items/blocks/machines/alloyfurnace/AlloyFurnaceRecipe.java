@@ -49,7 +49,7 @@ public class AlloyFurnaceRecipe {
             boolean matches = false;
 
             for (ItemStack actual : stacks) {
-                if (StackUtil.ingredientApplies(ingredient, actual)) {
+                if (StackUtil.itemStackApplies(ingredient, actual)) {
                     matches = true;
                 }
             }

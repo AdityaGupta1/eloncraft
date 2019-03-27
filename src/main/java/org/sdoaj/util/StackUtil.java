@@ -17,7 +17,7 @@ public class StackUtil {
         return stack;
     }
 
-    public static boolean ingredientApplies(ItemStack ingredient, ItemStack actual) {
+    public static boolean itemStackApplies(ItemStack ingredient, ItemStack actual) {
         if (ingredient == null || actual == null) {
             return false;
         }
@@ -27,13 +27,5 @@ public class StackUtil {
         }
 
         return ingredient.getMetadata() == Util.wildcard || ingredient.getMetadata() == actual.getMetadata();
-    }
-
-    public static boolean areItemsEqual(ItemStack a, ItemStack b) {
-        if (a.isEmpty() && b.isEmpty()) {
-            return true;
-        }
-
-        return a.getItem() == b.getItem() && a.getMetadata() == b.getMetadata();
     }
 }

@@ -18,7 +18,7 @@ public class CrusherRecipe {
     }
 
     public boolean matches(ItemStack stack) {
-        return StackUtil.ingredientApplies(input, stack);
+        return StackUtil.itemStackApplies(input, stack);
     }
 
     public ItemStack getInput() {

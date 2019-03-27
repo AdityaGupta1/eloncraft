@@ -1,13 +1,14 @@
 package org.sdoaj.items.blocks.machines.workbench;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.items.blocks.machines.RecipeKey;
 import org.sdoaj.util.StackUtil;
 
 import java.util.Arrays;
 
 public class WorkbenchRecipe {
-    private ItemStack[][] inputs;
+    private Ingredient[][] inputs;
     private ItemStack output;
 
     // rotates grid clockwise and makes a copy of each input stack
@@ -21,31 +22,16 @@ public class WorkbenchRecipe {
         return output;
     }
 
-    private void checkInputs() {
-        Arrays.stream(inputs).flatMap(Arrays::stream).forEach(stack -> {
-            if (stack.getCount() > 1) {
-                stack.setCount(1);
-                System.err.println("warning: ItemStack with count > 1 passed to WorkbenchRecipe");
-            }
-        });
-    }
-
-    public WorkbenchRecipe(ItemStack[][] inputs, ItemStack output) {
-        this.inputs = rotate(inputs);
-        this.output = output.copy();
-        checkInputs();
-    }
-
     public WorkbenchRecipe(String[] grid, ItemStack output, RecipeKey... keys) {
         int maxLength = Arrays.stream(grid).mapToInt(String::length).max().getAsInt();
 
-        ItemStack[][] stacks = new ItemStack[maxLength][grid.length];
+        Ingredient[][] ingredients = new Ingredient[maxLength][grid.length];
 
         for (int i = 0; i < grid.length; i++) {
             String row = grid[i];
 
             for (int j = 0; j < maxLength; j++) {
-                ItemStack stack = ItemStack.EMPTY;
+                Ingredient ingredient = null;
 
                 if (j < row.length()) {
                     char c = row.charAt(j);
@@ -53,23 +39,22 @@ public class WorkbenchRecipe {
                     if (c != ' ') {
                         for (RecipeKey key : keys) {
                             if (key.matches(c)) {
-                                stack = key.get();
+                                ingredient = key.get();
                             }
                         }
 
-                        if (!StackUtil.isValid(stack)) {
+                        if (ingredient == null) {
                             throw new IllegalArgumentException("missing recipe key for character: " + c);
                         }
                     }
                 }
 
-                stacks[j][i] = stack;
+                ingredients[j][i] = ingredient;
             }
         }
 
-        this.inputs = stacks;
+        this.inputs = ingredients;
         this.output = output.copy();
-        checkInputs();
     }
 
     public boolean matches(ItemStack[][] stacks) {
@@ -100,7 +85,13 @@ public class WorkbenchRecipe {
 
         for (int i = 0; i < inputs.length; i++) {
             for (int j = 0; j < inputs[i].length; j++) {
-                if (!StackUtil.areItemsEqual(stacks[minX + i][minY + j], inputs[i][j])) {
+                ItemStack stack = stacks[minX + i][minY + j];
+
+                if (!StackUtil.isValid(stack) && inputs[i][j] == null) {
+                    continue;
+                }
+
+                if (!inputs[i][j].apply(stack)) {
                     return false;
                 }
             }
@@ -109,7 +100,7 @@ public class WorkbenchRecipe {
         return true;
     }
 
-    public ItemStack[][] getInputs() {
+    public Ingredient[][] getInputs() {
         return this.inputs;
     }
 
