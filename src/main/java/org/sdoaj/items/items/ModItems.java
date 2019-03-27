@@ -1,5 +1,6 @@
 package org.sdoaj.items.items;
 
+import com.sun.org.apache.bcel.internal.generic.LAND;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
@@ -85,12 +86,14 @@ public class ModItems {
     public static ItemBasic CRUSHED_COAL;
     public static ItemBasic UNTREATED_CARBON_FIBERS;
     public static ItemBasic CARBON_FIBERS;
+    public static ItemBasic CARBON_FIBER_PLATE;
 
     // rocket parts
 
     public static ItemBasic MERLIN_ENGINE;
 
     public static ItemBasic OCTAWEB;
+    public static ItemBasic LANDING_LEG;
 
     // tools/weapons
 
@@ -160,17 +163,28 @@ public class ModItems {
         CARBON_FIBERS = new ItemBasic("carbon_fibers");
         CARBON_FIBERS.addLore("Most carbon fibers aren't actually made of coal.");
         CARBON_FIBERS.setGlows();
+        CARBON_FIBER_PLATE = new ItemBasic("carbon_fiber_plate");
+        CARBON_FIBER_PLATE.setGlows();
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
+        MERLIN_ENGINE.addLore("\"Merlin's thrust-to-weight ratio exceeds 150, making the Merlin the most efficient booster engine ever built, while still maintaining the structural and thermal safety margins needed to carry astronauts.\"");
 
         OCTAWEB = new ItemBasic("octaweb");
+        OCTAWEB.addLore("\"A metal structure that supports eight engines surrounding a center engine at the base of the launch vehicle.\"");
+        LANDING_LEG = new ItemBasic("landing_leg");
+        LANDING_LEG.addLore("\"The Falcon 9 first stage carries landing legs which will deploy after stage separation and allow for the rocket's soft return to Earth.\"");
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
             fire.fallTime = 1;
             return fire;
-        }, 5, 5.0, 1.0, null).setMaxStackSize(1)
-                .setCreativeTab(ModCreativeTabs.BORING_COMPANY);
+        }, 5, 5.0, 1.0, null).setMaxStackSize(1);
+
+        ModCreativeTabs.addAll(ModCreativeTabs.SPACEX, INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
+                NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
+                TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG);
+
+        ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
     }
 
     static void addItem(ItemBasic item) {

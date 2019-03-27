@@ -4,26 +4,25 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import static org.sdoaj.items.blocks.ModBlocks.*;
-import static org.sdoaj.items.items.ModItems.*;
+import org.sdoaj.items.blocks.ModBlocks;
+import org.sdoaj.items.items.ModItems;
 
 public class ModSmeltingRecipes {
     public static void init() {
-        addSmelting(ALUMINUM_ORE, ALUMINUM_INGOT);
-        addSmelting(TITANIUM_ORE, TITANIUM_INGOT);
-        addSmelting(LITHIUM_ORE, LITHIUM_INGOT);
-        addSmelting(NICKEL_ORE, NICKEL_INGOT);
-        addSmelting(CHROMIUM_ORE, CHROMIUM_INGOT);
-        addSmelting(COPPER_ORE, COPPER_INGOT);
-        addSmelting(NIOBIUM_ORE, NIOBIUM_INGOT);
-        addSmelting(HAFNIUM_ORE, HAFNIUM_INGOT);
-        addSmelting(MAGNESIUM_ORE, MAGNESIUM_INGOT);
-        addSmelting(ZINC_ORE, ZINC_INGOT);
+        addSmelting(ModBlocks.ALUMINUM_ORE, ModItems.ALUMINUM_INGOT);
+        addSmelting(ModBlocks.TITANIUM_ORE, ModItems.TITANIUM_INGOT);
+        addSmelting(ModBlocks.LITHIUM_ORE, ModItems.LITHIUM_INGOT);
+        addSmelting(ModBlocks.NICKEL_ORE, ModItems.NICKEL_INGOT);
+        addSmelting(ModBlocks.CHROMIUM_ORE, ModItems.CHROMIUM_INGOT);
+        addSmelting(ModBlocks.COPPER_ORE, ModItems.COPPER_INGOT);
+        addSmelting(ModBlocks.NIOBIUM_ORE, ModItems.NIOBIUM_INGOT);
+        addSmelting(ModBlocks.HAFNIUM_ORE, ModItems.HAFNIUM_INGOT);
+        addSmelting(ModBlocks.MAGNESIUM_ORE, ModItems.MAGNESIUM_INGOT);
+        addSmelting(ModBlocks.ZINC_ORE, ModItems.ZINC_INGOT);
 
-        addSmelting(BROKEN_STEEL_GEAR, STEEL_INGOT);
+        addSmelting(ModItems.BROKEN_STEEL_GEAR, ModItems.STEEL_INGOT);
 
-        addSmelting(UNTREATED_CARBON_FIBERS, CARBON_FIBERS);
+        addSmelting(ModItems.UNTREATED_CARBON_FIBERS, ModItems.CARBON_FIBERS);
     }
 
     private static void addSmelting(Item input, Item output) {

@@ -28,5 +28,4 @@ public class CrusherRecipe {
     public ItemStack getOutput() {
         return this.output;
     }
-
 }

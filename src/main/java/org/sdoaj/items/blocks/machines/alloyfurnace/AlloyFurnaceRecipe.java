@@ -69,5 +69,4 @@ public class AlloyFurnaceRecipe {
     public ItemStack getOutput() {
         return this.output;
     }
-
 }

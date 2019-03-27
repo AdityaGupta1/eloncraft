@@ -38,6 +38,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', ModItems.TITANIUM_INGOT),
                 new RecipeKey('p', ModItems.TITANIUM_PLATE)));
 
+
+
         addRecipe(new WorkbenchRecipe(new String[]{
                 "ttttt",
                 "tPPPt",
@@ -71,12 +73,14 @@ public final class WorkbenchRecipes {
                 "cst   tsc",
                 "TstttttsT",
                 "TsssssssT",
-                "TTTTTTTTT",
+                "TTTTTTTTT"
         }, new ItemStack(ModBlocks.ALLOY_FURNACE),
                 new RecipeKey('t', Blocks.HARDENED_CLAY),
                 new RecipeKey('s', ModItems.STEEL_PLATE),
                 new RecipeKey('c', ModItems.COPPER_INGOT),
                 new RecipeKey('T', ModItems.TITANIUM_PLATE)));
+
+
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  tcr     ",
@@ -90,7 +94,7 @@ public final class WorkbenchRecipes {
                 "ppppppppIA",
                 "n     n   ",
                 "n     n   ",
-                "n     n   ",
+                "n     n   "
         }, new ItemStack(ModItems.MERLIN_ENGINE),
                 new RecipeKey('n', ModItems.NIOBIUM_C103_PLATE),
                 new RecipeKey('p', ModItems.FUEL_PIPE),
@@ -114,9 +118,23 @@ public final class WorkbenchRecipes {
                 " ppepppppepp ",
                 " pppppeppppp ",
                 "  ppppppppp  ",
-                "    ppppp    ",
+                "    ppppp    "
         }, new ItemStack(ModItems.OCTAWEB),
                 new RecipeKey('p', ModItems.ALUMINUM_7XXX_PLATE),
                 new RecipeKey('e', ModItems.MERLIN_ENGINE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ccc        ",
+                "caPa       ",
+                "cac ac     ",
+                "cac cac    ",
+                "cac  cac   ",
+                "cac   cac  ",
+                "cac    cac ",
+                "ccc     ccc"
+        }, new ItemStack(ModItems.LANDING_LEG),
+                new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
+                new RecipeKey('a', ModItems.ALUMINUM_PLATE),
+                new RecipeKey('P', Blocks.PISTON)));
     }
 }

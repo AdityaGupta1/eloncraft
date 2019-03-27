@@ -28,5 +28,4 @@ public class MetalRollerRecipe {
     public ItemStack getOutput() {
         return this.output;
     }
-
 }

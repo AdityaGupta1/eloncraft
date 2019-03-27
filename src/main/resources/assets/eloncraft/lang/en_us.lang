@@ -75,15 +75,17 @@ item.fuel_pipe.name=Fuel Pipe
 
 item.crushed_coal.name=Crushed Coal
 item.untreated_carbon_fibers.name=Untreated Carbon Fibers
-item.carbon_fibers.name=Carbon Fibers
+item.carbon_fibers.name=§8Carbon Fibers
+item.carbon_fiber_plate.name=§8Carbon Fiber Plate
 
 # ====================
 # rocket parts
 # ====================
 
-item.merlin_engine.name=Merlin Engine
+item.merlin_engine.name=§lMerlin Engine
 
-item.octaweb.name=Octaweb
+item.octaweb.name=§lOctaweb
+item.landing_leg.name=§lLanding Leg
 
 # ====================
 # tools/weapons

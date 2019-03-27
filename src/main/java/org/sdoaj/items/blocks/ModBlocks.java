@@ -85,7 +85,7 @@ public class ModBlocks {
         CRUSHER.addLore("Pulverizer, SAG Mill, etc. - whatever you want to call it.");
         ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON);
         ALLOY_FURNACE.setHardness(20.0F).setResistance(40.0F).setHarvestLevel("pickaxe", 3);
-        ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace which can also serve as a blast furnace.");
+        ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace that can also serve as a blast furnace.");
     }
 
     public static void addBlock(Block block) {

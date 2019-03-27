@@ -1,7 +1,9 @@
 package org.sdoaj.items;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.items.items.ModItems;
@@ -27,4 +29,16 @@ public class ModCreativeTabs {
             () -> new ItemStack(Items.REDSTONE));
     public static final CreativeTabs BORING_COMPANY = createTab("boring_company",
             () -> new ItemStack(ModItems.FLAMETHROWER));
+
+    public static void addAll(CreativeTabs tab, Item... items) {
+        for (Item item : items) {
+            item.setCreativeTab(tab);
+        }
+    }
+
+    public static void addAll(CreativeTabs tab, Block... blocks) {
+        for (Block block : blocks) {
+            block.setCreativeTab(tab);
+        }
+    }
 }

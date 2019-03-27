@@ -44,5 +44,7 @@ public final class MetalRollerRecipes {
         addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_2198_INGOT, ModItems.ALUMINUM_2198_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_7XXX_INGOT, ModItems.ALUMINUM_7XXX_PLATE));
         addRecipe(new MetalRollerRecipe(ModItems.NIOBIUM_C103_INGOT, ModItems.NIOBIUM_C103_PLATE));
+
+        addRecipe(new MetalRollerRecipe(ModItems.CARBON_FIBERS, ModItems.CARBON_FIBER_PLATE));
     }
 }
