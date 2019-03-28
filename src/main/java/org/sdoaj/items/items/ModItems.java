@@ -96,6 +96,7 @@ public class ModItems {
     public static ItemBasic FUEL_TANK_LOX_1;
     public static ItemBasic FUEL_TANK_RP1_1;
     public static ItemBasic GRID_FIN;
+    public static ItemBasic COLD_GAS_THRUSTER;
     public static ItemBasic INTERSTAGE;
     public static ItemBasic FUEL_TANK_LOX_2;
     public static ItemBasic FUEL_TANK_RP1_2;
@@ -191,8 +192,11 @@ public class ModItems {
         GRID_FIN = new ItemBasic("grid_fin");
         GRID_FIN.addLore("\"Falcon 9's first stage is equipped with hypersonic grid fins that manipulate the direction of the stage's lift during re-entry.\"");
         GRID_FIN.setMaxStackSize(4);
+        COLD_GAS_THRUSTER = new ItemBasic("cold_gas_thruster");
+        COLD_GAS_THRUSTER.addLore("Used to flip the rocket around as it begins its journey back to Earth.");
+        COLD_GAS_THRUSTER.setMaxStackSize(2);
         INTERSTAGE = new ItemBasic("interstage");
-        INTERSTAGE.addLore("The interstage connects the first and second stages and facilitates their separation. It also has grid fins for steering and alignment during re-entry and landing.");
+        INTERSTAGE.addLore("The interstage connects the first and second stages and facilitates their separation. It also has grid fins and cold gas thrusters for steering and alignment during re-entry and landing.");
         INTERSTAGE.setMaxStackSize(1);
         FUEL_TANK_LOX_2 = new ItemBasic("fuel_tank_lox_2");
         FUEL_TANK_LOX_2.addLore("A second stage component that contains a fuel tank for liquid oxygen, an oxidizer essential for the combustion reaction used by liquid-propelled rockets to provide thrust.");
@@ -210,7 +214,7 @@ public class ModItems {
         ModCreativeTabs.addAll(ModCreativeTabs.SPACEX, INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
-                GRID_FIN, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2);
+                GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2);
 
         ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
     }

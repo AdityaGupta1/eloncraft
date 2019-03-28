@@ -171,8 +171,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "  ipi ",
-                " iiiii",
+                "  ipi  ",
+                " iiiii ",
                 "ip p pi",
                 "i p p i",
                 "ip p pi",
@@ -181,6 +181,15 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.GRID_FIN, 2),
                 new RecipeKey('i', ModItems.TITANIUM_INGOT),
                 new RecipeKey('p', ModItems.TITANIUM_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " ppp ",
+                "ppppp",
+                "PpPpP",
+                "ppppp",
+        }, new ItemStack(ModItems.COLD_GAS_THRUSTER, 1),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('P', Blocks.PISTON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  ipi ",
@@ -199,13 +208,14 @@ public final class WorkbenchRecipes {
                 " cp     pc ",
                 " cp     pc ",
                 " cp     pc ",
-                "fcpP   Ppcf",
-                "fcpP   Ppcf"
+                "fcpP t Ppcf",
+                "fcpP t Ppcf"
         }, new ItemStack(ModItems.INTERSTAGE),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
                 new RecipeKey('P', Blocks.PISTON),
-                new RecipeKey('f', ModItems.GRID_FIN)));
+                new RecipeKey('f', ModItems.GRID_FIN),
+                new RecipeKey('t', ModItems.COLD_GAS_THRUSTER)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "p ppppp p",
