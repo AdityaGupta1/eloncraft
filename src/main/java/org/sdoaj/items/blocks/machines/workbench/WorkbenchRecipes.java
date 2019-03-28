@@ -3,6 +3,7 @@ package org.sdoaj.items.blocks.machines.workbench;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.items.blocks.ModBlocks;
 import org.sdoaj.items.blocks.machines.RecipeKey;
 import org.sdoaj.items.items.ModItems;
@@ -237,5 +238,48 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "bbbbbbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbbbbbbrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr"
+        }, new ItemStack(ModItems.USA_FLAG),
+                new RecipeKey('r', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 14))),
+                new RecipeKey('w', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 0))),
+                new RecipeKey('b', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 11))),
+                new RecipeKey('s', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 0)))));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "bbbbbbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbbbbbFrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr"
+        }, new ItemStack(ModItems.USA_FLAG_EPIC),
+                new RecipeKey('r', Blocks.NETHER_WART_BLOCK),
+                new RecipeKey('w', Blocks.SEA_LANTERN),
+                new RecipeKey('b', Blocks.DIAMOND_BLOCK),
+                new RecipeKey('s', Items.NETHER_STAR),
+                new RecipeKey('F', ModItems.USA_FLAG)));
     }
 }

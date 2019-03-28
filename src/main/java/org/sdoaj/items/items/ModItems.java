@@ -101,6 +101,9 @@ public class ModItems {
     public static ItemBasic FUEL_TANK_LOX_2;
     public static ItemBasic FUEL_TANK_RP1_2;
 
+    public static ItemBasic USA_FLAG;
+    public static ItemBasic USA_FLAG_EPIC;
+
     // tools/weapons
 
     public static Item FLAMETHROWER;
@@ -204,6 +207,12 @@ public class ModItems {
         FUEL_TANK_RP1_2 = new ItemBasic("fuel_tank_rp1_2");
         FUEL_TANK_RP1_2.addLore("A second stage component that contains a fuel tank for RP-1 (Rocket Propellant-1), a highly refined form of kerosene used as rocket fuel.");
         FUEL_TANK_RP1_2.setMaxStackSize(1);
+
+        USA_FLAG = new ItemBasic("usa_flag");
+        USA_FLAG.setMaxStackSize(1);
+        USA_FLAG_EPIC = new ItemBasic("usa_flag_epic");
+        USA_FLAG_EPIC.setMaxStackSize(1);
+        USA_FLAG_EPIC.setGlows();
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
