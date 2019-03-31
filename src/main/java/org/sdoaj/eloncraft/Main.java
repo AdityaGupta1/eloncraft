@@ -5,16 +5,17 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.sdoaj.items.blocks.ModBlocks;
-import org.sdoaj.items.blocks.ModOreGen;
-import org.sdoaj.items.blocks.gui.GuiHandler;
-import org.sdoaj.items.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
-import org.sdoaj.items.blocks.machines.crusher.CrusherRecipes;
-import org.sdoaj.items.blocks.machines.metalroller.MetalRollerRecipes;
-import org.sdoaj.items.blocks.machines.workbench.WorkbenchRecipes;
-import org.sdoaj.items.blocks.tileentities.TileEntityBase;
-import org.sdoaj.items.items.ModItems;
-import org.sdoaj.items.recipes.ModSmeltingRecipes;
+import org.sdoaj.entity.ModEntities;
+import org.sdoaj.item.blocks.ModBlocks;
+import org.sdoaj.item.blocks.ModOreGen;
+import org.sdoaj.item.blocks.gui.GuiHandler;
+import org.sdoaj.item.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
+import org.sdoaj.item.blocks.machines.crusher.CrusherRecipes;
+import org.sdoaj.item.blocks.machines.metalroller.MetalRollerRecipes;
+import org.sdoaj.item.blocks.machines.workbench.WorkbenchRecipes;
+import org.sdoaj.item.blocks.tileentities.TileEntityBase;
+import org.sdoaj.item.items.ModItems;
+import org.sdoaj.item.recipes.ModSmeltingRecipes;
 
 @Mod(modid = Main.MODID, name = Main.NAME, version = Main.VERSION)
 public class Main {
@@ -31,6 +32,8 @@ public class Main {
 
         ModItems.init();
         ModBlocks.init();
+
+        ModEntities.initModels();
     }
 
     @Mod.EventHandler
