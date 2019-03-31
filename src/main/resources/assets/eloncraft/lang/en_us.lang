@@ -95,7 +95,7 @@ item.fuel_tank_lox_2.name=§lStage 2 LOX Tank
 item.fuel_tank_rp1_2.name=§lStage 2 RP-1 Tank
 
 item.usa_flag.name=§lAmerican Flag
-item.usa_flag_epic.name=§4§lEpic §1§lAmerican §f§lFlag
+item.usa_flag_epic.name=§4§lEpic §f§lAmerican §1§lFlag
 
 # ====================
 # tools/weapons
