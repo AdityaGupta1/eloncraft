@@ -3,6 +3,7 @@ package org.sdoaj.item.blocks.machines.workbench;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.item.blocks.ModBlocks;
 import org.sdoaj.item.blocks.machines.RecipeKey;
 import org.sdoaj.item.items.ModItems;
@@ -138,8 +139,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('P', Blocks.PISTON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "p  ppp  p",
-                "p pp pp p",
+                "p ppppp p",
                 "ppp   ppp",
                 "pp     pp",
                 "pp     pp",
@@ -147,32 +147,33 @@ public final class WorkbenchRecipes {
                 "pp     pp",
                 "pp     pp",
                 "pp     pp",
+                "pp     pp",
+                "pp     pp",
                 "ppp   ppp",
-                "p pp pp p",
-                "p  ppp  p"
+                "p ppppp p"
         }, new ItemStack(ModItems.FUEL_TANK_LOX_1),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "p  ppP  p",
-                "p pp Pp p",
+                "p pppPp p",
                 "ppp  Pppp",
                 "pp   P pp",
                 "pp   P pp",
                 "pp   P pp",
+                "pp   P pp",
+                "pp  P  pp",
                 "pp  P  pp",
                 "pp  P  pp",
                 "pp  P  pp",
                 "ppp P ppp",
-                "p ppPpp p",
-                "p  pPp  p"
+                "p ppPpp p"
         }, new ItemStack(ModItems.FUEL_TANK_RP1_1),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "  ipi ",
-                " iiiii",
+                "  ipi  ",
+                " iiiii ",
                 "ip p pi",
                 "i p p i",
                 "ip p pi",
@@ -181,6 +182,15 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.GRID_FIN, 2),
                 new RecipeKey('i', ModItems.TITANIUM_INGOT),
                 new RecipeKey('p', ModItems.TITANIUM_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " ppp ",
+                "ppppp",
+                "PpPpP",
+                "ppppp",
+        }, new ItemStack(ModItems.COLD_GAS_THRUSTER, 1),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('P', Blocks.PISTON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  ipi ",
@@ -199,12 +209,77 @@ public final class WorkbenchRecipes {
                 " cp     pc ",
                 " cp     pc ",
                 " cp     pc ",
-                "fcpP   Ppcf",
-                "fcpP   Ppcf"
+                "fcpP t Ppcf",
+                "fcpP t Ppcf"
         }, new ItemStack(ModItems.INTERSTAGE),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
                 new RecipeKey('P', Blocks.PISTON),
-                new RecipeKey('f', ModItems.GRID_FIN)));
+                new RecipeKey('f', ModItems.GRID_FIN),
+                new RecipeKey('t', ModItems.COLD_GAS_THRUSTER)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p ppppp p",
+                "ppp   ppp",
+                "pp     pp",
+                "pp     pp",
+                "ppp   ppp",
+                "p ppppp p"
+        }, new ItemStack(ModItems.FUEL_TANK_LOX_2),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p pppPp p",
+                "ppp  Pppp",
+                "pp   P pp",
+                "pp  P  pp",
+                "ppp P ppp",
+                "p ppPpp p"
+        }, new ItemStack(ModItems.FUEL_TANK_RP1_2),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('P', ModItems.FUEL_PIPE)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "bbbbbbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbbbbbbrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr"
+        }, new ItemStack(ModItems.USA_FLAG),
+                new RecipeKey('r', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 14))),
+                new RecipeKey('w', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 0))),
+                new RecipeKey('b', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 11))),
+                new RecipeKey('s', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 0)))));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "bbbbbbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbsbsbbrrrrrr",
+                "bsbsbsbwwwwww",
+                "bbbbbbFrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr",
+                "wwwwwwwwwwwww",
+                "rrrrrrrrrrrrr"
+        }, new ItemStack(ModItems.USA_FLAG_EPIC),
+                new RecipeKey('r', Blocks.NETHER_WART_BLOCK),
+                new RecipeKey('w', Blocks.SEA_LANTERN),
+                new RecipeKey('b', Blocks.DIAMOND_BLOCK),
+                new RecipeKey('s', Items.NETHER_STAR),
+                new RecipeKey('F', ModItems.USA_FLAG)));
     }
 }

@@ -44,7 +44,7 @@ public class WorkbenchRecipe {
                         }
 
                         if (ingredient == null) {
-                            throw new IllegalArgumentException("missing recipe key for character: " + c);
+                            throw new IllegalArgumentException("missing key for character '" + c + "' in " + output + " recipe");
                         }
                     }
                 }

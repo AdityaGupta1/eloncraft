@@ -89,7 +89,13 @@ item.landing_leg.name=§lLanding Leg
 item.fuel_tank_lox_1.name=§lStage 1 LOX Tank
 item.fuel_tank_rp1_1.name=§lStage 1 RP-1 Tank
 item.grid_fin.name=§lGrid Fin
+item.cold_gas_thruster.name=§lCold Gas Thruster
 item.interstage.name=§lInterstage
+item.fuel_tank_lox_2.name=§lStage 2 LOX Tank
+item.fuel_tank_rp1_2.name=§lStage 2 RP-1 Tank
+
+item.usa_flag.name=§lAmerican Flag
+item.usa_flag_epic.name=§4§lEpic §1§lAmerican §f§lFlag
 
 # ====================
 # tools/weapons
@@ -145,6 +151,6 @@ container.elon_workbench.name=Elon Musk's Magical Workbench
 # ====================
 
 itemGroup.eloncraft=Eloncraft
-itemGroup.tesla=Eloncraft: Tesla
 itemGroup.spacex=Eloncraft: SpaceX
+itemGroup.tesla=Eloncraft: Tesla
 itemGroup.boring_company=Eloncraft: The Boring Company

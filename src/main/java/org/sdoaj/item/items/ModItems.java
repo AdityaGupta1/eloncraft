@@ -96,7 +96,13 @@ public class ModItems {
     public static ItemBasic FUEL_TANK_LOX_1;
     public static ItemBasic FUEL_TANK_RP1_1;
     public static ItemBasic GRID_FIN;
+    public static ItemBasic COLD_GAS_THRUSTER;
     public static ItemBasic INTERSTAGE;
+    public static ItemBasic FUEL_TANK_LOX_2;
+    public static ItemBasic FUEL_TANK_RP1_2;
+
+    public static ItemBasic USA_FLAG;
+    public static ItemBasic USA_FLAG_EPIC;
 
     // tools/weapons
 
@@ -172,30 +178,52 @@ public class ModItems {
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
         MERLIN_ENGINE.addLore("\"Merlin's thrust-to-weight ratio exceeds 150, making the Merlin the most efficient booster engine ever built, while still maintaining the structural and thermal safety margins needed to carry astronauts.\"");
+        MERLIN_ENGINE.setMaxStackSize(16);
 
         OCTAWEB = new ItemBasic("octaweb");
         OCTAWEB.addLore("\"A metal structure that supports eight engines surrounding a center engine at the base of the launch vehicle.\"");
+        OCTAWEB.setMaxStackSize(1);
         LANDING_LEG = new ItemBasic("landing_leg");
         LANDING_LEG.addLore("\"The Falcon 9 first stage carries landing legs which will deploy after stage separation and allow for the rocket's soft return to Earth.\"");
+        LANDING_LEG.setMaxStackSize(4);
         FUEL_TANK_LOX_1 = new ItemBasic("fuel_tank_lox_1");
         FUEL_TANK_LOX_1.addLore("A first stage component that contains a fuel tank for liquid oxygen, an oxidizer essential for the combustion reaction used by liquid-propelled rockets to provide thrust.");
+        FUEL_TANK_LOX_1.setMaxStackSize(1);
         FUEL_TANK_RP1_1 = new ItemBasic("fuel_tank_rp1_1");
         FUEL_TANK_RP1_1.addLore("A first stage component that contains a fuel tank for RP-1 (Rocket Propellant-1), a highly refined form of kerosene used as rocket fuel.");
+        FUEL_TANK_RP1_1.setMaxStackSize(1);
         GRID_FIN = new ItemBasic("grid_fin");
         GRID_FIN.addLore("\"Falcon 9's first stage is equipped with hypersonic grid fins that manipulate the direction of the stage's lift during re-entry.\"");
+        GRID_FIN.setMaxStackSize(4);
+        COLD_GAS_THRUSTER = new ItemBasic("cold_gas_thruster");
+        COLD_GAS_THRUSTER.addLore("Used to flip the rocket around as it begins its journey back to Earth.");
+        COLD_GAS_THRUSTER.setMaxStackSize(2);
         INTERSTAGE = new ItemBasic("interstage");
-        INTERSTAGE.addLore("The interstage connects the first and second stages and facilitates their separation. It also has grid fins for steering and alignment during re-entry and landing.");
+        INTERSTAGE.addLore("The interstage connects the first and second stages and facilitates their separation. It also has grid fins and cold gas thrusters for steering and alignment during re-entry and landing.");
+        INTERSTAGE.setMaxStackSize(1);
+        FUEL_TANK_LOX_2 = new ItemBasic("fuel_tank_lox_2");
+        FUEL_TANK_LOX_2.addLore("A second stage component that contains a fuel tank for liquid oxygen, an oxidizer essential for the combustion reaction used by liquid-propelled rockets to provide thrust.");
+        FUEL_TANK_LOX_2.setMaxStackSize(1);
+        FUEL_TANK_RP1_2 = new ItemBasic("fuel_tank_rp1_2");
+        FUEL_TANK_RP1_2.addLore("A second stage component that contains a fuel tank for RP-1 (Rocket Propellant-1), a highly refined form of kerosene used as rocket fuel.");
+        FUEL_TANK_RP1_2.setMaxStackSize(1);
+
+        USA_FLAG = new ItemBasic("usa_flag");
+        USA_FLAG.setMaxStackSize(1);
+        USA_FLAG_EPIC = new ItemBasic("usa_flag_epic");
+        USA_FLAG_EPIC.setMaxStackSize(1);
+        USA_FLAG_EPIC.setGlows();
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
             fire.fallTime = 1;
             return fire;
-        }, 5, 5.0, 1.0, null).setMaxStackSize(1);
+        }, 5, 5.0, 1.0, null);
 
         ModCreativeTabs.addAll(ModCreativeTabs.SPACEX, INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
-                GRID_FIN, INTERSTAGE);
+                GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2);
 
         ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
     }
