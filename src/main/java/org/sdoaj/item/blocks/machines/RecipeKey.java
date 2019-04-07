@@ -25,6 +25,10 @@ public class RecipeKey {
         this(key, Ingredient.fromStacks(new ItemStack(block)));
     }
 
+    public RecipeKey(char key, ItemStack... stacks) {
+        this(key, Ingredient.fromStacks(stacks));
+    }
+
     public boolean matches(char key) {
         return this.key == key;
     }

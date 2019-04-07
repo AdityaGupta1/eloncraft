@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,6 +17,8 @@ import org.sdoaj.eloncraft.Main;
 import org.sdoaj.item.Drop;
 import org.sdoaj.item.DropRange;
 import org.sdoaj.item.Drops;
+import org.sdoaj.item.ModCreativeTabs;
+import org.sdoaj.item.blocks.launch.BlockLaunchpad;
 import org.sdoaj.item.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.item.blocks.machines.crusher.BlockCrusher;
 import org.sdoaj.item.blocks.machines.metalroller.BlockMetalRoller;
@@ -47,6 +50,8 @@ public class ModBlocks {
     public static BlockMetalRoller METAL_ROLLER;
     public static BlockCrusher CRUSHER;
     public static BlockAlloyFurnace ALLOY_FURNACE;
+
+    public static Block LAUNCHPAD;
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
@@ -80,12 +85,19 @@ public class ModBlocks {
 
         METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON);
         METAL_ROLLER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
+        METAL_ROLLER.setHarvestLevel("pickaxe", 2);
         CRUSHER = new BlockCrusher("crusher", Material.IRON);
         CRUSHER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
         CRUSHER.addLore("Pulverizer, SAG Mill, etc. - whatever you want to call it.");
+        CRUSHER.setHarvestLevel("pickaxe", 2);
         ALLOY_FURNACE = new BlockAlloyFurnace("alloy_furnace", Material.IRON);
         ALLOY_FURNACE.setHardness(20.0F).setResistance(40.0F).setHarvestLevel("pickaxe", 3);
         ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace that can also serve as a blast furnace.");
+        ALLOY_FURNACE.setHarvestLevel("pickaxe", 2);
+
+        LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON).setHardness(5.0F).setResistance(10.0F);
+        LAUNCHPAD.setHarvestLevel("pickaxe", 2);
+        LAUNCHPAD.setCreativeTab(ModCreativeTabs.SPACEX);
     }
 
     public static void addBlock(Block block) {

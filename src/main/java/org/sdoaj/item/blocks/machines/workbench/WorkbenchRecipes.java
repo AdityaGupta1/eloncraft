@@ -301,5 +301,13 @@ public final class WorkbenchRecipes {
                 new RecipeKey('e', ModItems.MERLIN_ENGINE),
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('s', ModItems.FUEL_TANK_LOX_2)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ccccccc",
+                "ccccccc"
+        }, new ItemStack(ModBlocks.LAUNCHPAD, 7),
+                new RecipeKey('c', new ItemStack(Blocks.CONCRETE, 1, 8))));
     }
 }
