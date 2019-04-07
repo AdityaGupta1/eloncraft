@@ -13,7 +13,7 @@ public class ModelFalcon9Base extends ModelBase {
     private final ModelRenderer thrusters;
     private final ModelRenderer engines;
 
-    static float modelScale = 9f;
+    static float modelScale = 56.9f / (127.0f / 16.0f); // 56.9 meters (blocks) tall
 
     public ModelFalcon9Base() {
         textureWidth = 144;

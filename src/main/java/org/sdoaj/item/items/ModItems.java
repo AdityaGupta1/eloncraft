@@ -104,6 +104,8 @@ public class ModItems {
     public static ItemBasic USA_FLAG;
     public static ItemBasic USA_FLAG_EPIC;
 
+    public static ItemBasic FALCON9_BASE;
+
     // tools/weapons
 
     public static Item FLAMETHROWER;
@@ -213,6 +215,10 @@ public class ModItems {
         USA_FLAG_EPIC = new ItemBasic("usa_flag_epic");
         USA_FLAG_EPIC.setMaxStackSize(1);
         USA_FLAG_EPIC.setGlows();
+
+        FALCON9_BASE = new ItemBasic("falcon9_base");
+        FALCON9_BASE.addLore("One small step for a Steve, one giant leap for mankind.");
+        FALCON9_BASE.setMaxStackSize(1);
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());

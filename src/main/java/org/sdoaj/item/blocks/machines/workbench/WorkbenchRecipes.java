@@ -281,5 +281,25 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.DIAMOND_BLOCK),
                 new RecipeKey('s', Items.NETHER_STAR),
                 new RecipeKey('F', ModItems.USA_FLAG)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " s ",
+                " S ",
+                " e ",
+                " i ",
+                " t ",
+                "lTl",
+                "lwl"
+        }, new ItemStack(ModItems.FALCON9_BASE),
+                new RecipeKey('w', ModItems.OCTAWEB),
+                new RecipeKey('l', ModItems.LANDING_LEG),
+                new RecipeKey('T', ModItems.FUEL_TANK_RP1_1),
+                new RecipeKey('t', ModItems.FUEL_TANK_LOX_1),
+                new RecipeKey('i', ModItems.INTERSTAGE),
+                new RecipeKey('e', ModItems.MERLIN_ENGINE),
+                new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
+                new RecipeKey('s', ModItems.FUEL_TANK_LOX_2)));
     }
 }
