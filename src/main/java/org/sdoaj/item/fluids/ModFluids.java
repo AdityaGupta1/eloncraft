@@ -5,18 +5,25 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.sdoaj.eloncraft.Main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ModFluids {
-    public static FluidOil OIL;
-    public static BlockFluidOil BLOCK_OIL;
+    private static final List<BlockFluid> blocks = new ArrayList<>();
+
+    public static ModFluid OIL;
 
     public static void init() {
-        OIL = new FluidOil();
-        BLOCK_OIL = new BlockFluidOil();
+        OIL = new ModFluid("oil");
+    }
+
+    public static void addBlock(BlockFluid block) {
+        blocks.add(block);
     }
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
-        BLOCK_OIL.render();
+        blocks.forEach(BlockFluid::render);
     }
 }

@@ -148,6 +148,12 @@ container.elon_workbench.name=Elon Musk's Magical Workbench
 
 tile.launchpad.name=Launchpad
 
+# ====================
+# fluids
+# ====================
+
+fluid.oil=Oil
+
 
 # ========================================
 # OTHER

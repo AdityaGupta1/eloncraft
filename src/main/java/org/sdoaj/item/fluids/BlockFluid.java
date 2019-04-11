@@ -6,11 +6,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import org.sdoaj.item.blocks.ModBlocks;
 
-class BlockFluidOil extends BlockFluidClassic {
-    BlockFluidOil() {
-        super(ModFluids.OIL, Material.WATER);
-        setRegistryName("oil");
-        setUnlocalizedName(getRegistryName().toString());
+class BlockFluid extends BlockFluidClassic {
+    BlockFluid(ModFluid fluid) {
+        super(fluid, Material.WATER);
+        setUnlocalizedName(fluid.getName());
+        setRegistryName(fluid.getName());
         ModBlocks.addBlock(this);
     }
 
