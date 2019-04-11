@@ -1,5 +1,6 @@
 package org.sdoaj.eloncraft;
 
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -14,6 +15,7 @@ import org.sdoaj.item.blocks.machines.crusher.CrusherRecipes;
 import org.sdoaj.item.blocks.machines.metalroller.MetalRollerRecipes;
 import org.sdoaj.item.blocks.machines.workbench.WorkbenchRecipes;
 import org.sdoaj.item.blocks.tileentities.TileEntityBase;
+import org.sdoaj.item.fluids.ModFluids;
 import org.sdoaj.item.items.ModItems;
 import org.sdoaj.item.recipes.ModSmeltingRecipes;
 
@@ -26,12 +28,18 @@ public class Main {
     public static final String NAME = "ElonCraft";
     public static final String VERSION = "0.1";
 
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         System.out.println(MODID + ": preInit");
 
         ModItems.init();
         ModBlocks.init();
+
+        ModFluids.init();
 
         ModEntities.initModels();
     }
