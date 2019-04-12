@@ -15,7 +15,7 @@ public class ModFluids {
     public static ModFluid OIL;
 
     public static void init() {
-        OIL = new ModFluid("oil").setMaxFlowDistance(6).setDensity(930).setViscosity(8000).setLuminosity(15); // luminosity only for testing
+        OIL = new ModFluid("oil").setMaxFlowDistance(6).setDensity(930).setViscosity(8000).createBlock();
     }
 
     public static void addBlock(BlockFluid block) {

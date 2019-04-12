@@ -6,16 +6,15 @@ import net.minecraftforge.fluids.FluidRegistry;
 import org.sdoaj.eloncraft.Main;
 
 class ModFluid extends Fluid {
-    private final BlockFluid block;
+    private BlockFluid block;
+
+    private int maxFlowDistance = 8;
 
     ModFluid(String name) {
         super(name, new ResourceLocation(Main.MODID, "fluids/" + name + "_still"),
                 new ResourceLocation(Main.MODID, "fluids/" + name + "_flow"));
         FluidRegistry.registerFluid(this);
         FluidRegistry.addBucketForFluid(this);
-
-        block = new BlockFluid(this);
-        ModFluids.addBlock(block);
     }
 
     public BlockFluid getFluidBlock() {
@@ -23,7 +22,7 @@ class ModFluid extends Fluid {
     }
 
     public ModFluid setMaxFlowDistance(int distance) {
-        this.block.setMaxFlowDistance(distance);
+        this.maxFlowDistance = distance;
         return this;
     }
 
@@ -42,6 +41,14 @@ class ModFluid extends Fluid {
     @Override
     public ModFluid setLuminosity(int luminosity) {
         super.setLuminosity(luminosity);
+        return this;
+    }
+
+    // call this after setting fluid properties
+    ModFluid createBlock() {
+        block = new BlockFluid(this);
+        block.setMaxFlowDistance(maxFlowDistance);
+        ModFluids.addBlock(block);
         return this;
     }
 }
