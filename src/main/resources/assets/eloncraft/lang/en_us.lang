@@ -153,6 +153,7 @@ tile.launchpad.name=Launchpad
 # ====================
 
 fluid.oil=Oil
+tile.oil.name=Oil
 
 
 # ========================================
