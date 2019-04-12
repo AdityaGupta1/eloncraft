@@ -21,4 +21,27 @@ class ModFluid extends Fluid {
     public BlockFluid getFluidBlock() {
         return block;
     }
+
+    public ModFluid setMaxFlowDistance(int distance) {
+        this.block.setMaxFlowDistance(distance);
+        return this;
+    }
+
+    @Override
+    public ModFluid setDensity(int density) {
+        super.setDensity(density);
+        return this;
+    }
+
+    @Override
+    public ModFluid setViscosity(int viscosity) {
+        super.setViscosity(viscosity);
+        return this;
+    }
+
+    @Override
+    public ModFluid setLuminosity(int luminosity) {
+        super.setLuminosity(luminosity);
+        return this;
+    }
 }
