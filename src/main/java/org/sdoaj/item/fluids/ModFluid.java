@@ -44,6 +44,12 @@ class ModFluid extends Fluid {
         return this;
     }
 
+    @Override
+    public ModFluid setTemperature(int temperature) {
+        super.setTemperature(temperature);
+        return this;
+    }
+
     // call this after setting fluid properties
     ModFluid createBlock() {
         block = new BlockFluid(this);

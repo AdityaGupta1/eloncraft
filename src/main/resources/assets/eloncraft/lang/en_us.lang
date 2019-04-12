@@ -155,6 +155,11 @@ tile.launchpad.name=Launchpad
 fluid.oil=Oil
 tile.oil.name=Oil
 
+fluid.rp1=RP-1
+tile.rp1.name=RP-1
+fluid.lox=Liquid Oxygen
+tile.lox.name=Liquid Oxygen
+
 
 # ========================================
 # OTHER
