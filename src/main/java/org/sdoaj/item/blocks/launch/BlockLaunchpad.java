@@ -60,7 +60,7 @@ public class BlockLaunchpad extends BlockNotFull {
             return 1;
         }
 
-        if (!checkBlocks(world, new BlockPos(x - r, y + 1, z - r), new BlockPos(x + r, y + 1, z + r), Blocks.AIR)) {
+        if (!checkBlocks(world, new BlockPos(x - r, y + 1, z - r), new BlockPos(x + r, world.getHeight(), z + r), Blocks.AIR)) {
             return 2;
         }
 
@@ -80,7 +80,8 @@ public class BlockLaunchpad extends BlockNotFull {
         for (int x = pos.getX() - r; x <= pos.getX() + r; x++) {
             for (int z = pos.getZ() - r; z <= pos.getZ() + r; z++) {
                 BlockPos otherPos = new BlockPos(x, pos.getY(), z);
-                if (isValid(world, otherPos) == 0) {
+                int valid = isValid(world, otherPos);
+                if (valid == 0 || valid == 2) { // returns even if sky is obstructed
                     return Optional.of(otherPos);
                 }
             }
