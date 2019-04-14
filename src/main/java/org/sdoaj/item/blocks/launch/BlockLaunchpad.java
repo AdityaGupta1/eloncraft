@@ -151,6 +151,10 @@ public class BlockLaunchpad extends BlockNotFull {
         rockets.put(pos, rocket);
     }
 
+    public static void removeRocket(BlockPos pos) {
+        rockets.remove(pos);
+    }
+
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
         return super.canPlaceBlockAt(world, pos) && world.isBlockFullCube(pos.add(0, -1, 0));

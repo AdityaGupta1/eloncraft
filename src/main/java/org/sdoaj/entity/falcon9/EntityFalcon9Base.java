@@ -2,10 +2,12 @@ package org.sdoaj.entity.falcon9;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.sdoaj.item.blocks.launch.BlockLaunchpad;
+import org.sdoaj.item.items.ModItems;
 
 import java.util.Arrays;
 
@@ -60,5 +62,21 @@ public class EntityFalcon9Base extends EntityLiving {
                 BlockLaunchpad.addRocket(this, launchpad);
             }
         }
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        setDead(); // skip death animation - immediately disappear and drop item
+    }
+
+    @Override
+    public void setDead() {
+        if (!world.isRemote) {
+            this.dropItem(ModItems.FALCON9_BASE, 1);
+        }
+
+        BlockLaunchpad.removeRocket(launchpad);
+
+        super.setDead();
     }
 }
