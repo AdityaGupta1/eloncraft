@@ -3,6 +3,7 @@ package org.sdoaj.entity.falcon9;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.sdoaj.item.blocks.launch.BlockLaunchpad;
 
@@ -15,13 +16,26 @@ public class EntityFalcon9Base extends EntityLiving {
     }
 
     private BlockPos launchpad = null;
+    private Vec3d launchpadTopPos = null;
 
     public void setLaunchpad(BlockPos pos) {
-        this.launchpad = pos;
+        launchpad = pos;
+        launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
+        setPosition(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z);
     }
 
     public void removeLaunchpad() {
         launchpad = null;
+        launchpadTopPos = null;
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (launchpadTopPos != null) {
+            setLocationAndAngles(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z, 0f, 0f);
+        }
     }
 
     @Override
@@ -39,10 +53,11 @@ public class EntityFalcon9Base extends EntityLiving {
             String pos = compound.getString("Launchpad");
 
             if (pos.equals("null")) {
-                launchpad = null;
+                removeLaunchpad();
             } else {
                 int[] posArray = Arrays.stream(pos.split(",")).mapToInt(Integer::parseInt).toArray();
-                BlockLaunchpad.addRocket(this, new BlockPos(posArray[0], posArray[1], posArray[2]));
+                setLaunchpad(new BlockPos(posArray[0], posArray[1], posArray[2]));
+                BlockLaunchpad.addRocket(this, launchpad);
             }
         }
     }

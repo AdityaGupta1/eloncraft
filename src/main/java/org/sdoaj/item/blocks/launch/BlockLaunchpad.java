@@ -140,8 +140,6 @@ public class BlockLaunchpad extends BlockNotFull {
         }
 
         EntityFalcon9Base rocket = new EntityFalcon9Base(world);
-        Vec3d rocketPos = new Vec3d(pos).addVector(0.5, 0.25, 0.5);
-        rocket.setPosition(rocketPos.x, rocketPos.y, rocketPos.z);
         rocket.setLaunchpad(pos);
         rockets.put(pos, rocket);
         world.spawnEntity(rocket);
