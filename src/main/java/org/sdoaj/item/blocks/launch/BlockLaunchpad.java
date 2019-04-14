@@ -3,9 +3,8 @@ package org.sdoaj.item.blocks.launch;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.chat.IChatListener;
-import net.minecraft.command.CommandSenderWrapper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -112,7 +111,7 @@ public class BlockLaunchpad extends BlockNotFull {
             return onBlockActivated(world, center.get(), state, player, hand, facing, hitX, hitY, hitZ);
         }
 
-        if (!world.isRemote || rockets.containsKey(pos) || player.getHeldItem(hand).getItem() != ModItems.FALCON9_BASE) {
+        if (world.isRemote || rockets.containsKey(pos) || player.getHeldItem(hand).getItem() != ModItems.FALCON9_BASE) {
             return false;
         }
 
@@ -140,12 +139,18 @@ public class BlockLaunchpad extends BlockNotFull {
             player.getHeldItem(hand).shrink(1);
         }
 
+        EntityFalcon9Base rocket = new EntityFalcon9Base(world);
         Vec3d rocketPos = new Vec3d(pos).addVector(0.5, 0.25, 0.5);
-        EntityFalcon9Base rocket = new EntityFalcon9Base(world, () -> rocketPos);
+        rocket.setPosition(rocketPos.x, rocketPos.y, rocketPos.z);
+        rocket.setLaunchpad(pos);
         rockets.put(pos, rocket);
         world.spawnEntity(rocket);
 
         return true;
+    }
+
+    public static void addRocket(EntityFalcon9Base rocket, BlockPos pos) {
+        rockets.put(pos, rocket);
     }
 
     @Override

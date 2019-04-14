@@ -1,54 +1,49 @@
 package org.sdoaj.entity.falcon9;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.sdoaj.item.blocks.launch.BlockLaunchpad;
+
+import java.util.Arrays;
 
 public class EntityFalcon9Base extends EntityLiving {
-    private IRocketController controller;
-
-    public EntityFalcon9Base(World world, IRocketController controller) {
+    public EntityFalcon9Base(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Base.modelScale, 127.0F / 16.0F * ModelFalcon9Base.modelScale);
-        this.controller = controller;
-        updatePosition();
     }
 
-    public EntityFalcon9Base(World world) {
-        this(world, null);
+    private BlockPos launchpad = null;
+
+    public void setLaunchpad(BlockPos pos) {
+        this.launchpad = pos;
     }
 
-    private void updatePosition() {
-        if (controller == null) {
-            this.setDead();
-            return;
-        }
-
-        Vec3d pos = controller.getPos();
-
-        if (pos == null) {
-            return;
-        }
-
-        this.setPosition(pos.x, pos.y, pos.z);
+    public void removeLaunchpad() {
+        launchpad = null;
     }
 
     @Override
-    public void onUpdate() {
-        updatePosition();
-    }
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
 
-    public void setController(IRocketController controller) {
-        this.controller = controller;
+        compound.setString("Launchpad", launchpad == null ? "null" : launchpad.getX() + "," + launchpad.getY() + "," + launchpad.getZ());
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (source == DamageSource.OUT_OF_WORLD) {
-            return super.attackEntityFrom(source, amount);
-        }
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
 
-        return false;
+        if (compound.hasKey("Launchpad")) {
+            String pos = compound.getString("Launchpad");
+
+            if (pos.equals("null")) {
+                launchpad = null;
+            } else {
+                int[] posArray = Arrays.stream(pos.split(",")).mapToInt(Integer::parseInt).toArray();
+                BlockLaunchpad.addRocket(this, new BlockPos(posArray[0], posArray[1], posArray[2]));
+            }
+        }
     }
 }
