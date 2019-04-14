@@ -2,18 +2,18 @@ package org.sdoaj.item.blocks.launch;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.sdoaj.entity.falcon9.EntityFalcon9Base;
 import org.sdoaj.item.blocks.BlockNotFull;
@@ -163,5 +163,21 @@ public class BlockLaunchpad extends BlockNotFull {
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         getCenterLaunchpad(pos).ifPresent(centerPos -> rockets.remove(centerPos).setDead());
+        super.breakBlock(world, pos, state);
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor, BlockPos neighborPos) {
+        super.onNeighborChange(world, pos, neighborPos);
+
+        // break this block if it loses support underneath
+        if (pos.add(0, -1, 0).equals(neighborPos) && world.getBlockState(neighborPos).getBlock() == Blocks.AIR) {
+            world.destroyBlock(pos, true);
+        }
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
+        return face == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 }
