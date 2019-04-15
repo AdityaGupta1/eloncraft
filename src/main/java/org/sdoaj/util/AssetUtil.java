@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
-import org.sdoaj.item.blocks.tileentities.TileEntityBase;
+import org.sdoaj.blocks.tileentities.TileEntityBase;
 
 public final class AssetUtil {
     public static final ResourceLocation GUI_INVENTORY_LOCATION = getGuiLocation("gui_inventory");

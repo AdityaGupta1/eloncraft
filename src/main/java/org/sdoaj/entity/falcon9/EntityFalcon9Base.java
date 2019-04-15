@@ -6,8 +6,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.sdoaj.item.blocks.launch.BlockLaunchpad;
-import org.sdoaj.item.items.ModItems;
+import org.sdoaj.blocks.launch.BlockLaunchpad;
+import org.sdoaj.items.ModItems;
 
 import java.util.Arrays;
 
