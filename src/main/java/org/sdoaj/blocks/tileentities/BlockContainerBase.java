@@ -82,9 +82,6 @@ public abstract class BlockContainerBase extends BlockContainer {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileEntityBase) {
                 TileEntityBase base = (TileEntityBase) tile;
-                if (base.respondsToPulses()) {
-                    base.activateOnPulse();
-                }
             }
         }
     }
@@ -122,9 +119,6 @@ public abstract class BlockContainerBase extends BlockContainer {
                 boolean powered = WorldUtil.getRedstonePowerFromNeighbors(world, pos) > 0;
                 boolean wasPowered = base.isRedstonePowered;
                 if (powered && !wasPowered) {
-                    if (base.respondsToPulses()) {
-                        world.scheduleUpdate(pos, this, this.tickRate(world));
-                    }
                     base.setRedstonePowered(true);
                 } else if (!powered && wasPowered) {
                     base.setRedstonePowered(false);
