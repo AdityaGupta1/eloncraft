@@ -41,7 +41,6 @@ import org.sdoaj.eloncraft.Main;
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;
     public boolean isRedstonePowered;
-    public boolean isPulseMode;
     protected int ticksElapsed;
     protected TileEntity[] tilesAround = new TileEntity[6];
     protected boolean hasSavedDataOnChangeOrWorldStart;
