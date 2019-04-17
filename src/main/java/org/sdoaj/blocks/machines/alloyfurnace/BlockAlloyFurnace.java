@@ -15,9 +15,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.sdoaj.eloncraft.Main;
 import org.sdoaj.blocks.gui.GuiReference;
 import org.sdoaj.blocks.machines.BlockMachine;
+import org.sdoaj.eloncraft.Main;
 
 import java.util.Random;
 import java.util.stream.Stream;
@@ -58,13 +58,18 @@ public class BlockAlloyFurnace extends BlockMachine {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote) {
-            TileEntityAlloyFurnace tileEntity = (TileEntityAlloyFurnace) world.getTileEntity(pos);
-            if (tileEntity != null) {
-                player.openGui(Main.INSTANCE, GuiReference.ALLOY_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
-            }
+        if (world.isRemote) {
             return true;
         }
+
+        TileEntityAlloyFurnace tileEntity = (TileEntityAlloyFurnace) world.getTileEntity(pos);
+
+        if (tileEntity == null) {
+            throw new RuntimeException("Missing tile entity!");
+        }
+
+        player.openGui(Main.INSTANCE, GuiReference.ALLOY_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
+
         return true;
     }
 }

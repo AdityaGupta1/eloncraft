@@ -75,8 +75,4 @@ public class TileEntityCrusher extends TileEntityInventoryMachine {
 
         this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInput().getCount());
     }
-
-    public int getTimeScaled(int i) {
-        return this.processTime * i / this.getMaxProcessTime();
-    }
 }

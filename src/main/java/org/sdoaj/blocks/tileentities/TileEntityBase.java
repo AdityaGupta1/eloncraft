@@ -26,14 +26,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import org.sdoaj.eloncraft.Main;
 import org.sdoaj.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.blocks.machines.crusher.TileEntityCrusher;
 import org.sdoaj.blocks.machines.metalroller.TileEntityMetalRoller;
+import org.sdoaj.blocks.machines.refinery.TileEntityRefinery;
 import org.sdoaj.blocks.machines.workbench.TileEntityWorkbench;
+import org.sdoaj.eloncraft.Main;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;
@@ -48,17 +51,18 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     }
 
     public static void init() {
-        register(TileEntityMetalRoller.class);
-        register(TileEntityAlloyFurnace.class);
-        register(TileEntityCrusher.class);
         register(TileEntityWorkbench.class);
+
+        register(TileEntityMetalRoller.class);
+        register(TileEntityCrusher.class);
+        register(TileEntityAlloyFurnace.class);
+        register(TileEntityRefinery.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {
         try {
             // apparently sus but it works
-            ResourceLocation name = new ResourceLocation(Main.MODID, tileEntityClass.newInstance().name);
-            GameRegistry.registerTileEntity(tileEntityClass, name);
+            GameRegistry.registerTileEntity(tileEntityClass, new ResourceLocation(Main.MODID, tileEntityClass.newInstance().name));
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -210,6 +214,11 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
             if (handler != null) {
                 return (T) handler;
             }
+        } else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            IFluidHandler tank = this.getFluidHandler(facing);
+            if (tank != null) {
+                return (T) tank;
+            }
         } else if (capability == CapabilityEnergy.ENERGY) {
             IEnergyStorage storage = this.getEnergyStorage(facing);
             if (storage != null) {
@@ -220,11 +229,15 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         return super.getCapability(capability, facing);
     }
 
-    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
+    public IItemHandler getItemHandler(EnumFacing facing) {
         return null;
     }
 
-    public IItemHandler getItemHandler(EnumFacing facing) {
+    public IFluidHandler getFluidHandler(EnumFacing facing) {
+        return null;
+    }
+
+    public IEnergyStorage getEnergyStorage(EnumFacing facing) {
         return null;
     }
 

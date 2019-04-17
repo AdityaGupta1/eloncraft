@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "on=false": { "model": "eloncraft:alloy_furnace_off" },
+    "on=true": { "model": "eloncraft:alloy_furnace_on" }
+  }
+}

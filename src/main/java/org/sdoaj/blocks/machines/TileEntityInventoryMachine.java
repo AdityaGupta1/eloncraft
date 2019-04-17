@@ -10,16 +10,16 @@ import org.sdoaj.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.blocks.tileentities.TileEntityInventoryBase;
 
 public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase {
-    private final int maxProcessTime;
-    private final int energyPerOperation;
+    protected final int maxProcessTime;
+    protected final int energyPerOperation;
     protected int processTime;
-    private int lastProcess;
-    private boolean lastProcessed;
+    protected int lastProcess;
+    protected boolean lastProcessed;
 
-    private final CustomEnergyStorage energyStorage;
-    private int lastEnergy;
+    protected final CustomEnergyStorage energyStorage;
+    protected int lastEnergy;
 
-    private final PropertyBool IS_ON;
+    protected final PropertyBool IS_ON;
 
     public TileEntityInventoryMachine(String name, int slots, int maxProcessTime, int energyPerOperation,
                                       CustomEnergyStorage energyStorage, PropertyBool on) {
@@ -28,6 +28,7 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         this.energyPerOperation = energyPerOperation;
 
         this.energyStorage = energyStorage;
+
         this.IS_ON = on;
     }
 
@@ -134,5 +135,9 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
 
     public CustomEnergyStorage getCustomEnergyStorage() {
         return energyStorage;
+    }
+
+    public int getTimeScaled(int i) {
+        return this.processTime * i / this.getMaxProcessTime();
     }
 }

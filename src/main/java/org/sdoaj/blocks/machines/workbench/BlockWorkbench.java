@@ -10,9 +10,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.sdoaj.eloncraft.Main;
 import org.sdoaj.blocks.gui.GuiReference;
 import org.sdoaj.blocks.tileentities.BlockContainerBase;
+import org.sdoaj.eloncraft.Main;
 
 public class BlockWorkbench extends BlockContainerBase {
     public BlockWorkbench(String name, Material material) {
@@ -26,13 +26,18 @@ public class BlockWorkbench extends BlockContainerBase {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote) {
-            TileEntityWorkbench tileEntity = (TileEntityWorkbench) world.getTileEntity(pos);
-            if (tileEntity != null) {
-                player.openGui(Main.INSTANCE, GuiReference.WORKBENCH, world, pos.getX(), pos.getY(), pos.getZ());
-            }
+        if (world.isRemote) {
             return true;
         }
+
+        TileEntityWorkbench tileEntity = (TileEntityWorkbench) world.getTileEntity(pos);
+
+        if (tileEntity == null) {
+            throw new RuntimeException("Missing tile entity!");
+        }
+
+        player.openGui(Main.INSTANCE, GuiReference.WORKBENCH, world, pos.getX(), pos.getY(), pos.getZ());
+
         return true;
     }
 }

@@ -15,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import org.sdoaj.blocks.machines.refinery.ContainerRefinery;
+import org.sdoaj.blocks.machines.refinery.GuiRefinery;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.blocks.machines.crusher.ContainerCrusher;
 import org.sdoaj.blocks.machines.crusher.GuiCrusher;
@@ -44,6 +46,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerCrusher(player.inventory, tileEntity);
             case GuiReference.ALLOY_FURNACE:
                 return new ContainerAlloyFurnace(player.inventory, tileEntity);
+            case GuiReference.REFINERY:
+                return new ContainerRefinery(player.inventory, tileEntity);
             default:
                 return null;
         }
@@ -62,6 +66,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiCrusher(player.inventory, tileEntity);
             case GuiReference.ALLOY_FURNACE:
                 return new GuiAlloyFurnace(player.inventory, tileEntity);
+            case GuiReference.REFINERY:
+                return new GuiRefinery(player.inventory, tileEntity);
             default:
                 return null;
         }

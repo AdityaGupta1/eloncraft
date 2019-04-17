@@ -92,8 +92,4 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
 
         getInputStacks().forEach(stack -> stack.shrink(1));
     }
-
-    public int getTimeScaled(int i) {
-        return this.processTime * i / this.getMaxProcessTime();
-    }
 }

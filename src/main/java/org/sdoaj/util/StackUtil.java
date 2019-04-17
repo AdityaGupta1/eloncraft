@@ -1,6 +1,7 @@
 package org.sdoaj.util;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class StackUtil {
     public static boolean isValid(ItemStack stack) {
@@ -27,5 +28,13 @@ public class StackUtil {
         }
 
         return ingredient.getMetadata() == Util.wildcard || ingredient.getMetadata() == actual.getMetadata();
+    }
+
+    public static boolean fluidStackApplies(FluidStack ingredient, FluidStack actual) {
+        if (ingredient == null || actual == null) {
+            return false;
+        }
+
+        return actual.containsFluid(ingredient);
     }
 }

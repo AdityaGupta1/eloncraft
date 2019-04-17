@@ -12,17 +12,18 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.sdoaj.eloncraft.Main;
-import org.sdoaj.items.util.Drop;
-import org.sdoaj.items.util.DropRange;
-import org.sdoaj.items.util.Drops;
-import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
 import org.sdoaj.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.blocks.machines.crusher.BlockCrusher;
 import org.sdoaj.blocks.machines.metalroller.BlockMetalRoller;
+import org.sdoaj.blocks.machines.refinery.BlockRefinery;
 import org.sdoaj.blocks.machines.workbench.BlockWorkbench;
+import org.sdoaj.eloncraft.Main;
+import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.items.ModItems;
+import org.sdoaj.items.util.Drop;
+import org.sdoaj.items.util.DropRange;
+import org.sdoaj.items.util.Drops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,7 @@ public class ModBlocks {
     public static BlockMetalRoller METAL_ROLLER;
     public static BlockCrusher CRUSHER;
     public static BlockAlloyFurnace ALLOY_FURNACE;
+    public static BlockRefinery REFINERY;
 
     public static Block LAUNCHPAD;
 
@@ -93,6 +95,9 @@ public class ModBlocks {
         ALLOY_FURNACE.setHardness(20.0F).setResistance(40.0F).setHarvestLevel("pickaxe", 3);
         ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace that can also serve as a blast furnace.");
         ALLOY_FURNACE.setHarvestLevel("pickaxe", 2);
+        REFINERY = new BlockRefinery("refinery", Material.IRON);
+        REFINERY.addLore("Used to refine petroleum oil into rocket fuel (which can't melt steel beams).");
+        REFINERY.setHarvestLevel("pickaxe", 2);
 
         LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON).setHardness(5.0F).setResistance(10.0F);
         LAUNCHPAD.setHarvestLevel("pickaxe", 2);

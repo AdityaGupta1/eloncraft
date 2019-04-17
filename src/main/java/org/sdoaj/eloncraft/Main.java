@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.sdoaj.blocks.machines.refinery.RefineryRecipes;
 import org.sdoaj.entity.ModEntities;
 import org.sdoaj.blocks.ModBlocks;
 import org.sdoaj.blocks.ModOreGen;
@@ -64,9 +65,11 @@ public class Main {
     private void registerRecipes() {
         ModSmeltingRecipes.init();
 
-        MetalRollerRecipes.init();
-        AlloyFurnaceRecipes.init();
-        CrusherRecipes.init();
         WorkbenchRecipes.init();
+
+        MetalRollerRecipes.init();
+        CrusherRecipes.init();
+        AlloyFurnaceRecipes.init();
+        RefineryRecipes.init();
     }
 }

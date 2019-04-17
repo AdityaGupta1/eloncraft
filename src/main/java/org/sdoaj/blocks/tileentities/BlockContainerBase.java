@@ -28,8 +28,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.blocks.ModBlocks;
+import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.WorldUtil;
 
@@ -143,11 +143,7 @@ public abstract class BlockContainerBase extends BlockContainer {
         if (stack.hasTagCompound()) {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileEntityBase) {
-                TileEntityBase base = (TileEntityBase) tile;
-                NBTTagCompound compound = stack.getTagCompound().getCompoundTag("Data");
-                if (compound != null) {
-                    base.readSyncableNBT(compound, TileEntityBase.NBTType.SAVE_BLOCK);
-                }
+                ((TileEntityBase) tile).readSyncableNBT(stack.getTagCompound().getCompoundTag("Data"), TileEntityBase.NBTType.SAVE_BLOCK);
             }
         }
     }
