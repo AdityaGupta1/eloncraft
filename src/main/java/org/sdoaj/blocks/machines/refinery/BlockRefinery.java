@@ -62,8 +62,9 @@ public class BlockRefinery extends BlockMachine {
         ItemStack heldItem = player.getHeldItem(hand);
 
         if (StackUtil.isValid(heldItem) && FluidUtil.getFluidHandler(heldItem) != null) {
-            FluidUtil.interactWithFluidHandler(player, hand, tileEntity.inputTank);
-            FluidUtil.interactWithFluidHandler(player, hand, tileEntity.outputTank);
+            if (!FluidUtil.interactWithFluidHandler(player, hand, tileEntity.inputTank)) {
+                FluidUtil.interactWithFluidHandler(player, hand, tileEntity.outputTank);
+            }
         } else {
             player.openGui(Main.INSTANCE, GuiReference.REFINERY, world, pos.getX(), pos.getY(), pos.getZ());
         }

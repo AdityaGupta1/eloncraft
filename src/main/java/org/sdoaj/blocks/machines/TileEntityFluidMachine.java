@@ -1,7 +1,6 @@
 package org.sdoaj.blocks.machines;
 
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -15,18 +14,6 @@ public abstract class TileEntityFluidMachine extends TileEntityInventoryMachine 
     public TileEntityFluidMachine(String name, int slots, int maxProcessTime, int energyPerOperation,
                                   CustomEnergyStorage energyStorage, PropertyBool on) {
         super(name, slots, maxProcessTime, energyPerOperation, energyStorage, on);
-    }
-
-    @Override
-    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
-        fluidTanks.keySet().forEach(tank -> tank.writeToNBT(compound));
-        super.writeSyncableNBT(compound, type);
-    }
-
-    @Override
-    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
-        fluidTanks.keySet().forEach(tank -> tank.readFromNBT(compound));
-        super.readSyncableNBT(compound, type);
     }
 
     protected void setFluidTanks(Map<FluidTank, EnumFacing[]> fluidTanks) {

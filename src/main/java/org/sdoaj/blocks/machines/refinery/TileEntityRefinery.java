@@ -1,6 +1,8 @@
 package org.sdoaj.blocks.machines.refinery;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import org.sdoaj.blocks.machines.BlockMachine;
@@ -51,6 +53,28 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
         fluidTanks.put(inputTank, new EnumFacing[]{EnumFacing.UP, EnumFacing.DOWN});
         fluidTanks.put(outputTank, new EnumFacing[]{EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST});
         setFluidTanks(fluidTanks);
+    }
+
+    @Override
+    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
+        super.writeSyncableNBT(compound, type);
+
+        compound.setString("InputTank", inputTank.getFluidAmount() == 0 ? "empty" : inputTank.getFluid().getFluid().getName() + ":" + inputTank.getFluidAmount());
+        compound.setString("OutputTank", outputTank.getFluidAmount() == 0 ? "empty" : outputTank.getFluid().getFluid().getName() + ":" + outputTank.getFluidAmount());
+    }
+
+    @Override
+    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
+        super.readSyncableNBT(compound, type);
+
+        if (!compound.getString("InputTank").equals("empty")) {
+            String[] data = compound.getString("InputTank").split(":");
+            inputTank.setFluid(new FluidStack(FluidRegistry.getFluid(data[0]), Integer.valueOf(data[1])));
+        }
+        if (!compound.getString("OutputTank").equals("empty")) {
+            String[] data = compound.getString("OutputTank").split(":");
+            outputTank.setFluid(new FluidStack(FluidRegistry.getFluid(data[0]), Integer.valueOf(data[1])));
+        }
     }
 
     @Override
