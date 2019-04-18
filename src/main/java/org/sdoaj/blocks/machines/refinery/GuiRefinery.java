@@ -60,8 +60,8 @@ public class GuiRefinery extends GuiBase {
             this.drawTexturedModalRect(this.guiLeft + 71, this.guiTop + 35, 176, 0, i, 17);
         }
 
-        this.drawHoveringText("" + this.tileEntity.getTankScaled(EnumFacing.UP, 100), this.guiLeft, this.guiTop);
-        this.drawHoveringText("" + this.tileEntity.getTankScaled(EnumFacing.WEST, 100), this.guiLeft, this.guiTop + 20);
+        this.drawHoveringText("" + this.tileEntity.getTankScaled(EnumFacing.UP, 8000), this.guiLeft, this.guiTop);
+        this.drawHoveringText("" + this.tileEntity.getTankScaled(EnumFacing.WEST, 8000), this.guiLeft, this.guiTop + 20);
 
         this.energy.draw();
     }

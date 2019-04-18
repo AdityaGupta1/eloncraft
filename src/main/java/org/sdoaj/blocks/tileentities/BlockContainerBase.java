@@ -164,12 +164,12 @@ public abstract class BlockContainerBase extends BlockContainer {
             NBTTagCompound data = new NBTTagCompound();
             base.writeSyncableNBT(data, TileEntityBase.NBTType.SAVE_BLOCK);
 
-            //Remove unnecessarily saved default values to avoid unstackability
+            // remove unnecessarily saved default values to avoid unstackability
             List<String> keysToRemove = new ArrayList<>();
             for (String key : data.getKeySet()) {
                 NBTBase tag = data.getTag(key);
-                //Remove only ints because they are the most common ones
-                //Add else if below here to remove more types
+                // remove only ints because they are the most common ones
+                // add else if below here to remove more types
                 if (tag instanceof NBTTagInt) {
                     if (((NBTTagInt) tag).getInt() == 0) {
                         keysToRemove.add(key);

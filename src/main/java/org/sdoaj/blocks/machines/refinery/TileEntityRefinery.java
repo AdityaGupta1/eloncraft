@@ -1,11 +1,14 @@
 package org.sdoaj.blocks.machines.refinery;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 import org.sdoaj.blocks.machines.BlockMachine;
+import org.sdoaj.blocks.machines.ModFluidTank;
 import org.sdoaj.blocks.machines.TileEntityFluidMachine;
 import org.sdoaj.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.util.ItemStackHandler;
@@ -17,7 +20,7 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
     final int guiTopHeight = 79;
 
     private final int capacity = 8000;
-    final FluidTank inputTank = new FluidTank(capacity) {
+    final ModFluidTank inputTank = new ModFluidTank("InputTank", capacity) {
         @Override
         public boolean canFillFluidType(FluidStack stack) {
             return stack != null && RefineryRecipes.getRecipeFromInput(stack) != null;
@@ -28,7 +31,8 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
             return false;
         }
     };
-    final FluidTank outputTank = new FluidTank(capacity) {
+    private int lastInputAmount;
+    final ModFluidTank outputTank = new ModFluidTank("OutputTank", capacity) {
         @Override
         public boolean canFill() {
             return false;
@@ -39,6 +43,7 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
             return true;
         }
     };
+    private int lastOutputAmount;
 
     {
         inputTank.setTileEntity(this);
@@ -58,23 +63,15 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
     @Override
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.writeSyncableNBT(compound, type);
-
-        compound.setString("InputTank", inputTank.getFluidAmount() == 0 ? "empty" : inputTank.getFluid().getFluid().getName() + ":" + inputTank.getFluidAmount());
-        compound.setString("OutputTank", outputTank.getFluidAmount() == 0 ? "empty" : outputTank.getFluid().getFluid().getName() + ":" + outputTank.getFluidAmount());
+        inputTank.writeToNBT(compound);
+        outputTank.writeToNBT(compound);
     }
 
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.readSyncableNBT(compound, type);
-
-        if (!compound.getString("InputTank").equals("empty")) {
-            String[] data = compound.getString("InputTank").split(":");
-            inputTank.setFluid(new FluidStack(FluidRegistry.getFluid(data[0]), Integer.valueOf(data[1])));
-        }
-        if (!compound.getString("OutputTank").equals("empty")) {
-            String[] data = compound.getString("OutputTank").split(":");
-            outputTank.setFluid(new FluidStack(FluidRegistry.getFluid(data[0]), Integer.valueOf(data[1])));
-        }
+        inputTank.readFromNBT(compound);
+        outputTank.readFromNBT(compound);
     }
 
     @Override
@@ -85,6 +82,18 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
     @Override
     public ItemStackHandler.IRemover getRemover() {
         return ItemStackHandler.REMOVE_FALSE;
+    }
+
+    @Override
+    protected boolean hasChanged() {
+        return super.hasChanged() || inputTank.getFluidAmount() != lastInputAmount || outputTank.getFluidAmount() != lastOutputAmount;
+    }
+
+    @Override
+    protected void updatePreviousValues() {
+        super.updatePreviousValues();
+        lastInputAmount = inputTank.getFluidAmount();
+        lastOutputAmount = outputTank.getFluidAmount();
     }
 
     @Override
@@ -112,5 +121,12 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
 
         outputTank.fillInternal(recipe.getOutput(), true);
         inputTank.drainInternal(recipe.getInput(), true);
+    }
+
+    @Override
+    protected void onUseBucket(EntityPlayer player, EnumHand hand) {
+        if (!FluidUtil.interactWithFluidHandler(player, hand, inputTank)) {
+            FluidUtil.interactWithFluidHandler(player, hand, outputTank);
+        }
     }
 }

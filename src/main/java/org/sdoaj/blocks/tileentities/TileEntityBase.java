@@ -45,6 +45,8 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     protected TileEntity[] tilesAround = new TileEntity[6];
     protected boolean hasSavedDataOnChangeOrWorldStart;
 
+    private static final int ticksPerUpdate = 2; // 5 = tile entity update interval
+
     public TileEntityBase(String name) {
         this.name = name;
     }
@@ -103,7 +105,9 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     }
 
     public final void sendUpdate() {
-        if (this.world != null && !this.world.isRemote) VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
+        if (this.world != null && !this.world.isRemote) {
+            VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
+        }
     }
 
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
@@ -184,7 +188,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     }
 
     protected boolean sendUpdateWithInterval() {
-        if (this.ticksElapsed % 5 == 0) { // 5 = tile entity update interval
+        if (this.ticksElapsed % ticksPerUpdate == 0) {
             this.sendUpdate();
             return true;
         } else {
@@ -245,5 +249,12 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
          * idk what this is
          */
         SAVE_BLOCK
+    }
+
+    protected void markChanged() {
+        this.world.markBlockRangeForRenderUpdate(pos, pos);
+        this.world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
+        this.world.scheduleBlockUpdate(pos,this.getBlockType(),0,0);
+        markDirty();
     }
 }

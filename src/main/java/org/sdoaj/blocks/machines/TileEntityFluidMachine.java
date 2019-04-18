@@ -1,7 +1,9 @@
 package org.sdoaj.blocks.machines;
 
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.sdoaj.blocks.tileentities.CustomEnergyStorage;
@@ -41,4 +43,6 @@ public abstract class TileEntityFluidMachine extends TileEntityInventoryMachine 
         FluidTank tank = getTank(facing);
         return tank.getFluidAmount() * i / tank.getCapacity();
     }
+
+    protected abstract void onUseBucket(EntityPlayer player, EnumHand hand);
 }

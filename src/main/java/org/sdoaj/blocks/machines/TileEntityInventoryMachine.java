@@ -52,6 +52,15 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         super.readSyncableNBT(compound, type);
     }
 
+    protected boolean hasChanged() {
+        return this.lastProcess != this.processTime || this.lastEnergy != this.energyStorage.getEnergyStored();
+    }
+
+    protected void updatePreviousValues() {
+        this.lastProcess = this.processTime;
+        this.lastEnergy = this.energyStorage.getEnergyStored();
+    }
+
     @Override
     public void updateEntity() {
         super.updateEntity();
@@ -97,9 +106,9 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
 
         this.lastProcessed = processed;
 
-        if ((this.lastProcess != this.processTime || this.lastEnergy != this.energyStorage.getEnergyStored()) && this.sendUpdateWithInterval()) {
-            this.lastProcess = this.processTime;
-            this.lastEnergy = this.energyStorage.getEnergyStored();
+        if (this.hasChanged() && this.sendUpdateWithInterval()) {
+            this.updatePreviousValues();
+            this.markChanged();
         }
     }
 
