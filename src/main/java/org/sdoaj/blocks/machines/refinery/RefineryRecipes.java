@@ -24,6 +24,6 @@ public final class RefineryRecipes {
     }
 
     public static void init() {
-        addRecipe(new RefineryRecipe(new FluidStack(ModFluids.OIL, 10), new FluidStack(ModFluids.RP1, 10)));
+        addRecipe(new RefineryRecipe(new FluidStack(ModFluids.OIL, 4), new FluidStack(ModFluids.RP1, 4)));
     }
 }

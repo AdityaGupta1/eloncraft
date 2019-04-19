@@ -114,4 +114,9 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
             FluidUtil.interactWithFluidHandler(player, hand, outputTank);
         }
     }
+
+    @Override
+    public boolean guiShowProgress() {
+        return this.world.getBlockState(this.pos).getValue(this.IS_ON);
+    }
 }

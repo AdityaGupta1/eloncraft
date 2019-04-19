@@ -154,8 +154,8 @@ tile.launchpad.name=Launchpad
 # fluids
 # ====================
 
-fluid.oil=Oil
-tile.oil.name=Oil
+fluid.oil=Petroleum Oil
+tile.oil.name=Petroleum Oil
 
 fluid.rp1=RP-1
 tile.rp1.name=RP-1

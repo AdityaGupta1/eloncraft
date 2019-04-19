@@ -67,7 +67,7 @@ public class GuiRefinery extends GuiBase {
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
         if (this.tileEntity.guiShowProgress()) {
-            this.drawTexturedModalRect(this.guiLeft + 71, this.guiTop + 35, 176, 0, 24, 17);
+            this.drawTexturedModalRect(this.guiLeft + 73, this.guiTop + 8, 176, 0, 30, 85);
         }
 
         this.energy.draw();
