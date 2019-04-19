@@ -2,6 +2,7 @@ package org.sdoaj.blocks.machines;
 
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fluids.FluidTank;
@@ -23,6 +24,22 @@ public abstract class TileEntityFluidMachine extends TileEntityInventoryMachine 
     }
 
     @Override
+    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
+        super.writeSyncableNBT(compound, type);
+        if (this.fluidTanks != null) {
+            this.fluidTanks.keySet().forEach(tank -> tank.writeToNBT(compound));
+        }
+    }
+
+    @Override
+    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
+        super.readSyncableNBT(compound, type);
+        if (this.fluidTanks != null) {
+            this.fluidTanks.keySet().forEach(tank -> tank.readFromNBT(compound));
+        }
+    }
+
+    @Override
     public IFluidHandler getFluidHandler(EnumFacing facing) {
         return getTank(facing);
     }
@@ -37,11 +54,6 @@ public abstract class TileEntityFluidMachine extends TileEntityInventoryMachine 
         }
 
         return null;
-    }
-
-    public int getTankScaled(EnumFacing facing, int i) {
-        FluidTank tank = getTank(facing);
-        return tank.getFluidAmount() * i / tank.getCapacity();
     }
 
     protected abstract void onUseBucket(EntityPlayer player, EnumHand hand);

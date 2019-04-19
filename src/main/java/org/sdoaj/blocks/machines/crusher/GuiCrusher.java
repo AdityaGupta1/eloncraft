@@ -34,7 +34,7 @@ public class GuiCrusher extends GuiBase {
     }
 
     @Override
-    public void drawScreen(int x, int y, float f){
+    public void drawScreen(int x, int y, float f) {
         super.drawScreen(x, y, f);
         this.energy.drawOverlay(x, y);
     }

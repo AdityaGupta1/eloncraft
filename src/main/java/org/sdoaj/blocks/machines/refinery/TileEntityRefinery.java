@@ -1,7 +1,6 @@
 package org.sdoaj.blocks.machines.refinery;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fluids.FluidStack;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TileEntityRefinery extends TileEntityFluidMachine {
-    final int guiTopHeight = 79;
+    final int guiTopHeight = 99;
 
     private final int capacity = 8000;
     final ModFluidTank inputTank = new ModFluidTank("InputTank", capacity) {
@@ -51,27 +50,13 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
     }
 
     public TileEntityRefinery() {
-        super("refinery", 0, 1, 10,
+        super("refinery", 0, 1, 50,
                 new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
 
         Map<FluidTank, EnumFacing[]> fluidTanks = new HashMap<>();
         fluidTanks.put(inputTank, new EnumFacing[]{EnumFacing.UP, EnumFacing.DOWN});
         fluidTanks.put(outputTank, new EnumFacing[]{EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST});
         setFluidTanks(fluidTanks);
-    }
-
-    @Override
-    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
-        super.writeSyncableNBT(compound, type);
-        inputTank.writeToNBT(compound);
-        outputTank.writeToNBT(compound);
-    }
-
-    @Override
-    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
-        super.readSyncableNBT(compound, type);
-        inputTank.readFromNBT(compound);
-        outputTank.readFromNBT(compound);
     }
 
     @Override
