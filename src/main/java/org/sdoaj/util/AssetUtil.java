@@ -26,7 +26,7 @@ public final class AssetUtil {
         displayNameString(fontRenderer, xSize, yPositionOfMachineText, StringUtil.localize(tile.getNameForTranslation()));
     }
 
-    // for all getColor methods with a paramater `float pos`, pos should be some number x % 256
+    // for all getColor methods with a parameter `float pos`, pos should be some number x % 256
 
     private static final double energyColorPeriod = 2;
 
