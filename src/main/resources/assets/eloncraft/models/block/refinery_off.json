@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "eloncraft:blocks/machine_base",
+    "up": "eloncraft:blocks/machine_base",
+    "down": "eloncraft:blocks/machine_base",
+    "north": "eloncraft:blocks/refinery_side_off",
+    "east": "eloncraft:blocks/refinery_side_off",
+    "south": "eloncraft:blocks/refinery_side_off",
+    "west": "eloncraft:blocks/refinery_side_off"
+  }
+}
