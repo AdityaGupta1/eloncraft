@@ -98,6 +98,36 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', ModItems.TITANIUM_PLATE),
                 new RecipeKey('f', Blocks.FURNACE)));
 
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttttt",
+                "tiiiiit",
+                "ticccit",
+                "ticiiit",
+                "ticccit",
+                "tiiicit",
+                "ticccit",
+                "tiiiiit",
+                "ttttttt"
+        }, new ItemStack(ModBlocks.LOX_COLLECTOR),
+                new RecipeKey('t', ModItems.TITANIUM_PLATE),
+                new RecipeKey('c', ModItems.COPPER_NUGGET),
+                new RecipeKey('i', Blocks.PACKED_ICE)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttttt",
+                "tiiiiit",
+                "ticccit",
+                "tiiicit",
+                "ticccit",
+                "ticiiit",
+                "ticccit",
+                "tiiiiit",
+                "ttttttt"
+        }, new ItemStack(ModBlocks.LOX_COLLECTOR),
+                new RecipeKey('t', ModItems.TITANIUM_PLATE),
+                new RecipeKey('c', ModItems.COPPER_NUGGET),
+                new RecipeKey('i', Blocks.PACKED_ICE)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
