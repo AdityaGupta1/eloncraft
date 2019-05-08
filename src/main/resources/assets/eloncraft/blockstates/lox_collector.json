@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "on=false": { "model": "eloncraft:lox_collector_off" },
+    "on=true": { "model": "eloncraft:lox_collector_on" }
+  }
+}

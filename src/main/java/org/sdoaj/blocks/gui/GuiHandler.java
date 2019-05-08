@@ -15,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import org.sdoaj.blocks.machines.loxcollector.ContainerLOXCollector;
+import org.sdoaj.blocks.machines.loxcollector.GuiLOXCollector;
 import org.sdoaj.blocks.machines.refinery.ContainerRefinery;
 import org.sdoaj.blocks.machines.refinery.GuiRefinery;
 import org.sdoaj.eloncraft.Main;
@@ -48,6 +50,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerAlloyFurnace(player.inventory, tileEntity);
             case GuiReference.REFINERY:
                 return new ContainerRefinery(player.inventory, tileEntity);
+            case GuiReference.LOX_COLLECTOR:
+                return new ContainerLOXCollector(player.inventory, tileEntity);
             default:
                 return null;
         }
@@ -68,6 +72,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiAlloyFurnace(player.inventory, tileEntity);
             case GuiReference.REFINERY:
                 return new GuiRefinery(player.inventory, tileEntity);
+            case GuiReference.LOX_COLLECTOR:
+                return new GuiLOXCollector(player.inventory, tileEntity);
             default:
                 return null;
         }

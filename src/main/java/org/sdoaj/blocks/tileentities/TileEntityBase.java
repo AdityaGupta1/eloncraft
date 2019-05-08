@@ -33,6 +33,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import org.sdoaj.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.blocks.machines.crusher.TileEntityCrusher;
+import org.sdoaj.blocks.machines.loxcollector.TileEntityLOXCollector;
 import org.sdoaj.blocks.machines.metalroller.TileEntityMetalRoller;
 import org.sdoaj.blocks.machines.refinery.TileEntityRefinery;
 import org.sdoaj.blocks.machines.workbench.TileEntityWorkbench;
@@ -58,6 +59,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         register(TileEntityCrusher.class);
         register(TileEntityAlloyFurnace.class);
         register(TileEntityRefinery.class);
+        register(TileEntityLOXCollector.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {
@@ -111,7 +113,9 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     }
 
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
-        if (type != NBTType.SAVE_BLOCK) super.writeToNBT(compound);
+        if (type != NBTType.SAVE_BLOCK) {
+            super.writeToNBT(compound);
+        }
 
         if (type == NBTType.SAVE_TILE) {
             compound.setBoolean("Redstone", this.isRedstonePowered);
@@ -120,7 +124,9 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     }
 
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
-        if (type != NBTType.SAVE_BLOCK) super.readFromNBT(compound);
+        if (type != NBTType.SAVE_BLOCK) {
+            super.readFromNBT(compound);
+        }
 
         if (type == NBTType.SAVE_TILE) {
             this.isRedstonePowered = compound.getBoolean("Redstone");

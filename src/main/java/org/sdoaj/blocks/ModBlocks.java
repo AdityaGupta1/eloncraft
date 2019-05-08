@@ -15,6 +15,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
 import org.sdoaj.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.blocks.machines.crusher.BlockCrusher;
+import org.sdoaj.blocks.machines.loxcollector.BlockLOXCollector;
 import org.sdoaj.blocks.machines.metalroller.BlockMetalRoller;
 import org.sdoaj.blocks.machines.refinery.BlockRefinery;
 import org.sdoaj.blocks.machines.workbench.BlockWorkbench;
@@ -51,6 +52,7 @@ public class ModBlocks {
     public static BlockCrusher CRUSHER;
     public static BlockAlloyFurnace ALLOY_FURNACE;
     public static BlockRefinery REFINERY;
+    public static BlockLOXCollector LOX_COLLECTOR;
 
     public static Block LAUNCHPAD;
 
@@ -98,6 +100,9 @@ public class ModBlocks {
         REFINERY = new BlockRefinery("refinery", Material.IRON);
         REFINERY.addLore("Used to refine petroleum oil into rocket fuel (which can't melt steel beams).");
         REFINERY.setHarvestLevel("pickaxe", 2);
+        LOX_COLLECTOR = new BlockLOXCollector("lox_collector", Material.IRON);
+        LOX_COLLECTOR.addLore("Condenses and purifies air into pure liquid oxygen.");
+        LOX_COLLECTOR.setHarvestLevel("pickaxe", 2);
 
         LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON).setHardness(5.0F).setResistance(10.0F);
         LAUNCHPAD.setHarvestLevel("pickaxe", 2);

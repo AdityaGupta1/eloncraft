@@ -46,7 +46,13 @@ public abstract class TileEntityFluidMachine extends TileEntityInventoryMachine 
 
     private FluidTank getTank(EnumFacing facing) {
         for (FluidTank tank : fluidTanks.keySet()) {
-            for (EnumFacing side : fluidTanks.get(tank)) {
+            EnumFacing[] sides = fluidTanks.get(tank);
+
+            if (sides == null) {
+                return tank;
+            }
+
+            for (EnumFacing side : sides) {
                 if (facing == side) {
                     return tank;
                 }

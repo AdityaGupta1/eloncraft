@@ -138,8 +138,10 @@ tile.crusher.name=Crusher
 container.crusher.name=Crusher
 tile.alloy_furnace.name=Alloy Furnace
 container.alloy_furnace.name=Alloy Furnace
-tile.refinery.name=Refinery
-container.refinery.name=Refinery
+tile.refinery.name=Fuel Refinery
+container.refinery.name=Fuel Refinery
+tile.lox_collector.name=LOX Condenser
+container.lox_collector.name=LOX Condenser
 
 tile.elon_workbench.name=§3Elon Musk's Magical Workbench
 container.elon_workbench.name=Elon Musk's Magical Workbench
