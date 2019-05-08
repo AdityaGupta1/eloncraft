@@ -81,6 +81,23 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', ModItems.COPPER_INGOT),
                 new RecipeKey('T', ModItems.TITANIUM_PLATE)));
 
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttttt",
+                "ttssstt",
+                "ts   st",
+                "ts   st",
+                "ts   st",
+                "ts   st",
+                "ts   st",
+                "ts   st",
+                "ts   st",
+                "ttsssff",
+                "tttttff"
+        }, new ItemStack(ModBlocks.REFINERY),
+                new RecipeKey('s', ModItems.STEEL_PLATE),
+                new RecipeKey('t', ModItems.TITANIUM_PLATE),
+                new RecipeKey('f', Blocks.FURNACE)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
