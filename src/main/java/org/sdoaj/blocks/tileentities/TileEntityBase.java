@@ -46,7 +46,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     protected TileEntity[] tilesAround = new TileEntity[6];
     protected boolean hasSavedDataOnChangeOrWorldStart;
 
-    private static final int ticksPerUpdate = 2; // 5 = tile entity update interval
+    private static final int ticksPerUpdate = 1; // 5 = tile entity update interval
 
     public TileEntityBase(String name) {
         this.name = name;
