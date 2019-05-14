@@ -105,7 +105,7 @@ public class BlockLaunchpad extends BlockNotFull {
         return ErrorCode.OK;
     }
 
-    private Optional<BlockPos> findNearestValidLaunchpad(World world, BlockPos pos) {
+    private Optional<BlockPos> findNearestCompleteLaunchpad(World world, BlockPos pos) {
         for (int x = pos.getX() - r; x <= pos.getX() + r; x++) {
             for (int z = pos.getZ() - r; z <= pos.getZ() + r; z++) {
                 BlockPos otherPos = new BlockPos(x, pos.getY(), z);
@@ -166,15 +166,21 @@ public class BlockLaunchpad extends BlockNotFull {
             return false;
         }
 
+        Optional<BlockPos> nearest = findNearestCompleteLaunchpad(world, pos);
         switch (isValid(world, pos)) {
             case MISSING_CONTROLLER:
+                if (nearest.isPresent()) {
+                    return onBlockActivated(world, nearest.get(), state, player, hand, facing, hitX, hitY, hitZ);
+                }
                 sendErrorMessage(player, "Missing launch controller!");
                 return false;
             case TOO_MANY_CONTROLLERS:
+                if (nearest.isPresent()) {
+                    return onBlockActivated(world, nearest.get(), state, player, hand, facing, hitX, hitY, hitZ);
+                }
                 sendErrorMessage(player, "Too many launch controllers!");
                 return false;
             case MISSING_LAUNCHPAD:
-                Optional<BlockPos> nearest = findNearestValidLaunchpad(world, pos);
                 if (nearest.isPresent()) {
                     return onBlockActivated(world, nearest.get(), state, player, hand, facing, hitX, hitY, hitZ);
                 }
