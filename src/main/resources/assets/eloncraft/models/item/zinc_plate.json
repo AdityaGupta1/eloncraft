@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "eloncraft:items/fuel_tank_lox_1"
+    "layer0": "eloncraft:items/zinc_plate"
   }
 }

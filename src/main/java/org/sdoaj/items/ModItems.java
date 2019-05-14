@@ -136,6 +136,8 @@ public class ModItems {
         COPPER_PLATE = new ItemBasic("copper_plate");
         NIOBIUM_PLATE = new ItemBasic("niobium_plate");
         HAFNIUM_PLATE = new ItemBasic("hafnium_plate");
+        MAGNESIUM_PLATE = new ItemBasic("magnesium_plate");
+        ZINC_PLATE = new ItemBasic("zinc_plate");
 
         STEEL_INGOT = new ItemBasic("steel_ingot");
 

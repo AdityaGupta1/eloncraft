@@ -96,6 +96,9 @@ public class FluidDisplay extends Gui {
             GlStateManager.popMatrix();
         }
 
+        mc.getTextureManager().bindTexture(AssetUtil.GUI_INVENTORY_LOCATION);
+        this.drawTexturedModalRect(barX, barY, 0, 86, 18, 85);
+
         if (this.drawTextNextTo) {
             this.drawString(mc.fontRenderer, this.getOverlayText(), barX + 25, barY + 78, StringUtil.DECIMAL_COLOR_WHITE);
         }
