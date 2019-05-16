@@ -18,13 +18,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.sdoaj.eloncraft.Main;
-import org.sdoaj.entity.falcon9.EntityFalcon9Base;
 import org.sdoaj.blocks.BlockNotFull;
 import org.sdoaj.blocks.ModBlocks;
+import org.sdoaj.eloncraft.Main;
+import org.sdoaj.entity.falcon9.EntityFalcon9Base;
 import org.sdoaj.items.ModItems;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class BlockLaunchpad extends BlockNotFull {
@@ -53,105 +54,159 @@ public class BlockLaunchpad extends BlockNotFull {
     }
 
     private enum ErrorCode {
-        NOT_LAUNCHPAD, OK, MISSING_CONTROLLER, TOO_MANY_CONTROLLERS, MISSING_LAUNCHPAD, OBSTRUCTED_SKY, ALREADY_USED
+        OK(),
+        NOT_LAUNCHPAD(),
+        NO_SQUARES("No valid 7x7 squares found!"),
+        IN_USE("No nearby 7x7 squares not already in use!"),
+        CONTROLLER_NUMBER("Either not enough or too many launch controllers (should have only one)!"),
+        CONTROLLER_PLACEMENT("Controller not placed correctly! Make sure it is at the middle of an edge."),
+        OBSTRUCTED_SKY("Sky is obstructed!");
+
+        private final String message;
+
+        ErrorCode(String message) {
+            this.message = message;
+        }
+
+        ErrorCode() {
+            this(null);
+        }
     }
 
-    private ErrorCode isValid(World world, BlockPos pos) {
+    private class Error {
+        private final ErrorCode code;
+        private final BlockPos pos;
+
+        Error(BlockPos pos) {
+            this.code = ErrorCode.OK;
+            this.pos = pos;
+        }
+
+        Error(ErrorCode code) {
+            this.code = code;
+            this.pos = null;
+        }
+
+        public boolean isError() {
+            return code != ErrorCode.OK;
+        }
+
+        public ErrorCode getCode() {
+            return code;
+        }
+
+        public BlockPos getPos() {
+            return pos;
+        }
+
+        public void sendMessage(Entity recipient) {
+            recipient.sendMessage(new TextComponentString(TextFormatting.RED + this.code.message));
+        }
+    }
+
+    private Error findValidPos(World world, BlockPos pos) {
         if (world.getBlockState(pos) != this.getDefaultState()) {
-            return ErrorCode.NOT_LAUNCHPAD;
+            return new Error(ErrorCode.NOT_LAUNCHPAD);
         }
 
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
 
-        List<BlockPos> possibleControllers = new ArrayList<>();
-        possibleControllers.add(pos.add(3, 0, 0));
-        possibleControllers.add(pos.add(-3, 0, 0));
-        possibleControllers.add(pos.add(0, 0, 3));
-        possibleControllers.add(pos.add(0, 0, -3));
-        BlockPos controllerPos = null;
-        for (BlockPos possiblePos : possibleControllers) {
-            if (world.getBlockState(possiblePos).getBlock() == controllerBlock) {
-                if (controllerPos != null) {
-                    return ErrorCode.TOO_MANY_CONTROLLERS;
-                }
-
-                controllerPos = possiblePos;
-            }
-        }
-
-        if (controllerPos == null) {
-            return ErrorCode.MISSING_CONTROLLER;
-        }
-
-        if (!checkBlocks(world, new BlockPos(x - r, y, z - r), new BlockPos(x + r, y, z + r), ModBlocks.LAUNCHPAD, controllerPos)) {
-            return ErrorCode.MISSING_LAUNCHPAD;
-        }
-
-        if (!checkBlocks(world, new BlockPos(x - r, y + 1, z - r), new BlockPos(x + r, world.getHeight(), z + r), Blocks.AIR)) {
-            return ErrorCode.OBSTRUCTED_SKY;
-        }
+        List<BlockPos> validCenters = new ArrayList<>();
 
         for (int x1 = x - r; x1 <= x + r; x1++) {
             for (int z1 = z - r; z1 <= z + r; z1++) {
-                // if a launchpad that this one would use as part of its r*r square is already part of a square, return error
-                if (getCenterLaunchpad(new BlockPos(x1, y, z1)).isPresent()) {
-                    return ErrorCode.ALREADY_USED;
-                }
+                validCenters.add(new BlockPos(x1, y, z1));
             }
         }
 
-        return ErrorCode.OK;
-    }
+        validCenters.removeIf(center -> !checkBlocks(world, center, ModBlocks.LAUNCHPAD, controllerBlock));
 
-    private Optional<BlockPos> findNearestCompleteLaunchpad(World world, BlockPos pos) {
-        for (int x = pos.getX() - r; x <= pos.getX() + r; x++) {
-            for (int z = pos.getZ() - r; z <= pos.getZ() + r; z++) {
-                BlockPos otherPos = new BlockPos(x, pos.getY(), z);
-                ErrorCode error = isValid(world, otherPos);
-                if (error == ErrorCode.OK  || error == ErrorCode.OBSTRUCTED_SKY) { // returns even if sky is obstructed
-                    return Optional.of(otherPos);
-                }
-            }
+        if (validCenters.isEmpty()) {
+            return new Error(ErrorCode.NO_SQUARES);
         }
 
-        return Optional.empty();
+        validCenters.removeIf(center -> getBlockPosAround(world, center).stream().anyMatch(block ->
+                getCenterLaunchpad(block).isPresent()));
+
+        if (validCenters.isEmpty()) {
+            return new Error(ErrorCode.IN_USE);
+        }
+
+        validCenters.removeIf(center -> getBlocksAround(world, center).stream().filter(block -> block == controllerBlock)
+                .count() != 1);
+
+        if (validCenters.isEmpty()) {
+            return new Error(ErrorCode.CONTROLLER_NUMBER);
+        }
+
+        validCenters.removeIf(center -> {
+            BlockPos[] validControllers = {
+                    center.add(r, 0, 0),
+                    center.add(-r, 0, 0),
+                    center.add(0, 0, r),
+                    center.add(0, 0, -r)
+            };
+
+            for (BlockPos controllerPos : validControllers) {
+                // there should only be one controller in the square, so if it's in the right position, the entire square is valid
+                if (world.getBlockState(controllerPos).getBlock() == controllerBlock) {
+                    return false; // false = don't remove
+                }
+            }
+
+            return true; // true = remove
+        });
+
+        if (validCenters.isEmpty()) {
+            return new Error(ErrorCode.CONTROLLER_PLACEMENT);
+        }
+
+        validCenters.removeIf(center -> !getBlocksBetween(world, center.add(-r, 1, -r),
+                new BlockPos(center.getX() + r, 256, center.getZ() + r)).stream()
+                .allMatch(block -> block == Blocks.AIR));
+
+        if (validCenters.isEmpty()) {
+            return new Error(ErrorCode.OBSTRUCTED_SKY);
+        }
+
+        return new Error(validCenters.get(0));
     }
 
-    private boolean checkBlocks(World world, BlockPos a, BlockPos b, Block block) {
+    private List<BlockPos> getBlockPosBetween(World world, BlockPos a, BlockPos b) {
+        List<BlockPos> blocks = new ArrayList<>();
+
         for (int x = a.getX(); x <= b.getX(); x++) {
             for (int y = a.getY(); y <= b.getY(); y++) {
                 for (int z = a.getZ(); z <= b.getZ(); z++) {
-                    if (world.getBlockState(new BlockPos(x, y, z)).getBlock() != block) {
-                        return false;
-                    }
+                    blocks.add(new BlockPos(x, y, z));
                 }
             }
         }
 
-        return true;
+        return blocks;
     }
 
-    private boolean checkBlocks(World world, BlockPos a, BlockPos b, Block block, BlockPos... skip) {
-        List<BlockPos> skipList = skip == null ? new ArrayList<>() : Arrays.asList(skip);
+    private List<Block> getBlocksBetween(World world, BlockPos a, BlockPos b) {
+        return getBlockPosBetween(world, a, b).stream().map(pos -> world.getBlockState(pos).getBlock())
+                .collect(Collectors.toList());
+    }
 
-        for (int x = a.getX(); x <= b.getX(); x++) {
-            for (int y = a.getY(); y <= b.getY(); y++) {
-                for (int z = a.getZ(); z <= b.getZ(); z++) {
-                    BlockPos pos = new BlockPos(x, y, z);
-                    if (skipList.contains(pos)) {
-                        continue;
-                    }
+    private List<BlockPos> getBlockPosAround(World world, BlockPos center) {
+        return getBlockPosBetween(world, center.add(-r, 0, -r), center.add(r, 0, r));
+    }
 
-                    if (world.getBlockState(pos).getBlock() != block) {
-                        return false;
-                    }
-                }
-            }
-        }
+    private List<Block> getBlocksAround(World world, BlockPos center) {
+        return getBlocksBetween(world, center.add(-r, 0, -r), center.add(r, 0, r));
+    }
 
-        return true;
+    private boolean checkBlocks(World world, BlockPos a, BlockPos b, Block... validBlocks) {
+        return Arrays.asList(validBlocks).containsAll(getBlocksBetween(world, a, b));
+    }
+
+    private boolean checkBlocks(World world, BlockPos center, Block... validBlocks) {
+        return Arrays.asList(validBlocks).containsAll(getBlocksAround(world, center));
     }
 
     @Override
@@ -162,40 +217,15 @@ public class BlockLaunchpad extends BlockNotFull {
             return onBlockActivated(world, center.get(), state, player, hand, facing, hitX, hitY, hitZ);
         }
 
-        if (world.isRemote || rockets.containsKey(pos) || player.getHeldItem(hand).getItem() != ModItems.FALCON9_BASE) {
+        if (world.isRemote || player.getHeldItem(hand).getItem() != ModItems.FALCON9_BASE) {
             return false;
         }
 
-        Optional<BlockPos> nearest = findNearestCompleteLaunchpad(world, pos);
-        switch (isValid(world, pos)) {
-            case MISSING_CONTROLLER:
-                if (nearest.isPresent()) {
-                    return onBlockActivated(world, nearest.get(), state, player, hand, facing, hitX, hitY, hitZ);
-                }
-                sendErrorMessage(player, "Missing launch controller!");
-                return false;
-            case TOO_MANY_CONTROLLERS:
-                if (nearest.isPresent()) {
-                    return onBlockActivated(world, nearest.get(), state, player, hand, facing, hitX, hitY, hitZ);
-                }
-                sendErrorMessage(player, "Too many launch controllers!");
-                return false;
-            case MISSING_LAUNCHPAD:
-                if (nearest.isPresent()) {
-                    return onBlockActivated(world, nearest.get(), state, player, hand, facing, hitX, hitY, hitZ);
-                }
+        Error error = findValidPos(world, pos);
 
-                final int d = r * 2 + 1;
-                sendErrorMessage(player, "Missing launchpad(s)! Required platform size: " + d + "x" + d + "!");
-                return false;
-            case OBSTRUCTED_SKY:
-                sendErrorMessage(player, "Space above launchpad is obstructed!");
-                return false;
-            case ALREADY_USED:
-                sendErrorMessage(player, "Launchpad already has a rocket!");
-                return false;
-            default:
-                break;
+        if (error.isError()) {
+            error.sendMessage(player);
+            return false;
         }
 
         if (!player.isCreative()) {
