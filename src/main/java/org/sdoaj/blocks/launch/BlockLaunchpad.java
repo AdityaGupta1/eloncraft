@@ -49,10 +49,6 @@ public class BlockLaunchpad extends BlockNotFull {
         return Optional.empty();
     }
 
-    private void sendErrorMessage(Entity receiver, String message) {
-        receiver.sendMessage(new TextComponentString(TextFormatting.RED + message));
-    }
-
     private enum ErrorCode {
         OK(),
         NOT_LAUNCHPAD(),
@@ -232,9 +228,10 @@ public class BlockLaunchpad extends BlockNotFull {
             player.getHeldItem(hand).shrink(1);
         }
 
+        BlockPos centerPos = error.getPos();
         EntityFalcon9Base rocket = new EntityFalcon9Base(world);
-        rocket.setLaunchpad(pos);
-        rockets.put(pos, rocket);
+        rocket.setLaunchpad(centerPos);
+        rockets.put(centerPos, rocket);
         world.spawnEntity(rocket);
 
         return true;
