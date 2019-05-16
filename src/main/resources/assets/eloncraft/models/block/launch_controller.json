@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "eloncraft:blocks/machine_base",
+    "up": "eloncraft:blocks/machine_base",
+    "down": "eloncraft:blocks/machine_base",
+    "north": "eloncraft:blocks/launch_controller_side",
+    "east": "eloncraft:blocks/launch_controller_side",
+    "south": "eloncraft:blocks/launch_controller_side",
+    "west": "eloncraft:blocks/launch_controller_side"
+  }
+}
