@@ -3,12 +3,15 @@ package org.sdoaj.entity.falcon9;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
 import org.sdoaj.items.ModItems;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 
 public class EntityFalcon9Base extends EntityLiving {
@@ -78,5 +81,15 @@ public class EntityFalcon9Base extends EntityLiving {
         BlockLaunchpad.removeRocket(launchpad);
 
         super.setDead();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return new SoundEvent(new ResourceLocation("block.anvil.land"));
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return getHurtSound(null);
     }
 }
