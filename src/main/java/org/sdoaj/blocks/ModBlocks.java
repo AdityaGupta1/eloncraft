@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
+import org.sdoaj.blocks.launch.controller.BlockLaunchController;
 import org.sdoaj.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.blocks.machines.crusher.BlockCrusher;
 import org.sdoaj.blocks.machines.loxcollector.BlockLOXCollector;
@@ -54,6 +55,7 @@ public class ModBlocks {
     public static BlockRefinery REFINERY;
     public static BlockLOXCollector LOX_COLLECTOR;
 
+    public static BlockLaunchController LAUNCH_CONTROLLER;
     public static Block LAUNCHPAD;
 
     public static void init() {
@@ -104,8 +106,12 @@ public class ModBlocks {
         LOX_COLLECTOR.addLore("Condenses and purifies air into pure liquid oxygen.");
         LOX_COLLECTOR.setHarvestLevel("pickaxe", 2);
 
-        LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON).setHardness(5.0F).setResistance(10.0F);
-        LAUNCHPAD.setHarvestLevel("pickaxe", 2);
+        LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
+        LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);
+        LAUNCH_CONTROLLER.addLore("Used to load fuel into rockets and initiate launch sequences.");
+        LAUNCH_CONTROLLER.setCreativeTab(ModCreativeTabs.SPACEX);
+        LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON);
+        LAUNCHPAD.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
         LAUNCHPAD.setCreativeTab(ModCreativeTabs.SPACEX);
     }
 

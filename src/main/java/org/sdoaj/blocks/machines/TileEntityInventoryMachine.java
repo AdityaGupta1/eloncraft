@@ -10,14 +10,15 @@ import org.sdoaj.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.blocks.tileentities.TileEntityInventoryBase;
 
 public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase {
-    protected final int maxProcessTime;
-    protected final int energyPerOperation;
-    protected int processTime;
-    protected int lastProcess;
-    protected boolean lastProcessed;
+    private final int maxProcessTime;
+    private final int energyPerOperation;
+    private int processTime;
+    private int lastProcess;
+    private boolean lastProcessed;
 
-    protected final CustomEnergyStorage energyStorage;
-    protected int lastEnergy;
+    private final boolean hasEnergyStorage;
+    private final CustomEnergyStorage energyStorage;
+    private int lastEnergy;
 
     protected final PropertyBool IS_ON;
 
@@ -27,6 +28,7 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         this.maxProcessTime = maxProcessTime;
         this.energyPerOperation = energyPerOperation;
 
+        this.hasEnergyStorage = energyStorage != null;
         this.energyStorage = energyStorage;
 
         this.IS_ON = on;
@@ -38,7 +40,9 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
             compound.setInteger("ProcessTime", this.processTime);
         }
 
-        this.energyStorage.writeToNBT(compound);
+        if (hasEnergyStorage) {
+            this.energyStorage.writeToNBT(compound);
+        }
         super.writeSyncableNBT(compound, type);
     }
 
@@ -48,17 +52,21 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
             this.processTime = compound.getInteger("ProcessTime");
         }
 
-        this.energyStorage.readFromNBT(compound);
+        if (hasEnergyStorage) {
+            this.energyStorage.readFromNBT(compound);
+        }
         super.readSyncableNBT(compound, type);
     }
 
     protected boolean hasChanged() {
-        return this.lastProcess != this.processTime || this.lastEnergy != this.energyStorage.getEnergyStored();
+        return this.lastProcess != this.processTime || (hasEnergyStorage && (this.lastEnergy != this.energyStorage.getEnergyStored()));
     }
 
     protected void updatePreviousValues() {
         this.lastProcess = this.processTime;
-        this.lastEnergy = this.energyStorage.getEnergyStored();
+        if (hasEnergyStorage) {
+            this.lastEnergy = this.energyStorage.getEnergyStored();
+        }
     }
 
     @Override
@@ -73,35 +81,41 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         boolean canProcess = this.canProcess();
 
         if (canProcess) {
-            if (this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
+            if (!hasEnergyStorage || this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
                 this.processTime++;
                 if (this.processTime >= this.getMaxProcessTime()) {
                     this.finishProcessing();
                     this.processTime = 0;
                 }
-                this.energyStorage.extractEnergyInternal(getEnergyPerTick(), false);
+                if (hasEnergyStorage) {
+                    this.energyStorage.extractEnergyInternal(getEnergyPerTick(), false);
+                }
             }
 
-            processed = this.energyStorage.getEnergyStored() >= getEnergyPerTick();
+            if (hasEnergyStorage) {
+                processed = this.energyStorage.getEnergyStored() >= getEnergyPerTick();
+            }
         } else {
             this.processTime = 0;
         }
 
-        IBlockState currentState = this.world.getBlockState(this.pos);
-        boolean current = currentState.getValue(BlockAlloyFurnace.IS_ON);
-        boolean changeTo = current;
-        if (lastProcessed != processed) {
-            changeTo = processed;
-        }
-        if (this.isRedstonePowered) {
-            changeTo = true;
-        }
-        if (!processed && !this.isRedstonePowered) {
-            changeTo = false;
-        }
+        if (IS_ON != null) {
+            IBlockState currentState = this.world.getBlockState(this.pos);
+            boolean current = currentState.getValue(IS_ON);
+            boolean changeTo = current;
+            if (lastProcessed != processed) {
+                changeTo = processed;
+            }
+            if (this.isRedstonePowered) {
+                changeTo = true;
+            }
+            if (!processed && !this.isRedstonePowered) {
+                changeTo = false;
+            }
 
-        if (changeTo != current) {
-            world.setBlockState(this.pos, currentState.withProperty(IS_ON, changeTo));
+            if (changeTo != current) {
+                world.setBlockState(this.pos, currentState.withProperty(IS_ON, changeTo));
+            }
         }
 
         this.lastProcessed = processed;

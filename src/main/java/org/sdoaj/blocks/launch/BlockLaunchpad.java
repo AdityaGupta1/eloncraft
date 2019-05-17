@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 public class BlockLaunchpad extends BlockNotFull {
     private static final int r = 3;
 
-    private static final Block controllerBlock = Blocks.DIAMOND_BLOCK;
+    private static final Block controllerBlock = ModBlocks.LAUNCH_CONTROLLER;
 
     public BlockLaunchpad(String name, Material material) {
         super(name, material, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.25, 1.0));
@@ -170,7 +170,7 @@ public class BlockLaunchpad extends BlockNotFull {
         return new Error(validCenters.get(0));
     }
 
-    private List<BlockPos> getBlockPosBetween(World world, BlockPos a, BlockPos b) {
+    private List<BlockPos> getBlockPosBetween(BlockPos a, BlockPos b) {
         List<BlockPos> blocks = new ArrayList<>();
 
         for (int x = a.getX(); x <= b.getX(); x++) {
@@ -185,12 +185,12 @@ public class BlockLaunchpad extends BlockNotFull {
     }
 
     private List<Block> getBlocksBetween(World world, BlockPos a, BlockPos b) {
-        return getBlockPosBetween(world, a, b).stream().map(pos -> world.getBlockState(pos).getBlock())
+        return getBlockPosBetween(a, b).stream().map(pos -> world.getBlockState(pos).getBlock())
                 .collect(Collectors.toList());
     }
 
     private List<BlockPos> getBlockPosAround(World world, BlockPos center) {
-        return getBlockPosBetween(world, center.add(-r, 0, -r), center.add(r, 0, r));
+        return getBlockPosBetween(center.add(-r, 0, -r), center.add(r, 0, r));
     }
 
     private List<Block> getBlocksAround(World world, BlockPos center) {

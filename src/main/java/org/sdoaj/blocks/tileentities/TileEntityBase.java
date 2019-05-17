@@ -31,6 +31,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import org.sdoaj.blocks.launch.controller.TileEntityLaunchController;
 import org.sdoaj.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.blocks.machines.crusher.TileEntityCrusher;
 import org.sdoaj.blocks.machines.loxcollector.TileEntityLOXCollector;
@@ -60,6 +61,8 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         register(TileEntityAlloyFurnace.class);
         register(TileEntityRefinery.class);
         register(TileEntityLOXCollector.class);
+
+        register(TileEntityLaunchController.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {

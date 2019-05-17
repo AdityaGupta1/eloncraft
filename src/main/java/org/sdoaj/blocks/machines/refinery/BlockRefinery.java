@@ -32,10 +32,6 @@ public class BlockRefinery extends BlockMachine {
         return new TileEntityRefinery();
     }
 
-    private double randomCoordinateAdd(Random random) {
-        return (random.nextDouble() - 0.5) * 0.75;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {

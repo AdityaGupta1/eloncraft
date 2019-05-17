@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import org.sdoaj.blocks.tileentities.BlockContainerBase;
 
+import java.util.Random;
+
 public abstract class BlockMachine extends BlockContainerBase {
     public static final PropertyBool IS_ON = PropertyBool.create("on");
 
@@ -40,5 +42,9 @@ public abstract class BlockMachine extends BlockContainerBase {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, IS_ON);
+    }
+
+    protected double randomCoordinateAdd(Random random) {
+        return (random.nextDouble() - 0.5) * 0.75;
     }
 }

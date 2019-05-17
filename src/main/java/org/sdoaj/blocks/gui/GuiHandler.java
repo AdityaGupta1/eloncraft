@@ -15,6 +15,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import org.sdoaj.blocks.launch.controller.ContainerLaunchController;
+import org.sdoaj.blocks.launch.controller.GuiLaunchController;
 import org.sdoaj.blocks.machines.loxcollector.ContainerLOXCollector;
 import org.sdoaj.blocks.machines.loxcollector.GuiLOXCollector;
 import org.sdoaj.blocks.machines.refinery.ContainerRefinery;
@@ -52,6 +54,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerRefinery(player.inventory, tileEntity);
             case GuiReference.LOX_COLLECTOR:
                 return new ContainerLOXCollector(player.inventory, tileEntity);
+            case GuiReference.LAUNCH_CONTROLLER:
+                return new ContainerLaunchController(player.inventory, tileEntity);
             default:
                 return null;
         }
@@ -74,6 +78,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiRefinery(player.inventory, tileEntity);
             case GuiReference.LOX_COLLECTOR:
                 return new GuiLOXCollector(player.inventory, tileEntity);
+            case GuiReference.LAUNCH_CONTROLLER:
+                return new GuiLaunchController(player.inventory, tileEntity);
             default:
                 return null;
         }

@@ -1,6 +1,6 @@
 // based on GuiGrinder from Actually Additions
 
-package org.sdoaj.blocks.machines.loxcollector;
+package org.sdoaj.blocks.launch.controller;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,17 +14,16 @@ import org.sdoaj.blocks.tileentities.TileEntityBase;
 import org.sdoaj.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
-public class GuiLOXCollector extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_lox_collector");
-    private final TileEntityLOXCollector tileEntity;
+public class GuiLaunchController extends GuiBase {
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_launch_controller");
+    private final TileEntityLaunchController tileEntity;
 
-    private EnergyDisplay energy;
+    private FluidDisplay fuelDisplay;
+    private FluidDisplay oxygenDisplay;
 
-    private FluidDisplay fluidDisplay;
-
-    public GuiLOXCollector(InventoryPlayer inventory, TileEntityBase tile) {
-        super(new ContainerLOXCollector(inventory, tile));
-        this.tileEntity = (TileEntityLOXCollector) tile;
+    public GuiLaunchController(InventoryPlayer inventory, TileEntityBase tile) {
+        super(new ContainerLaunchController(inventory, tile));
+        this.tileEntity = (TileEntityLaunchController) tile;
         this.xSize = 176;
         this.ySize = tileEntity.guiTopHeight + 86;
     }
@@ -33,19 +32,16 @@ public class GuiLOXCollector extends GuiBase {
     public void initGui() {
         super.initGui();
 
-        this.energy = new EnergyDisplay(this.guiLeft - EnergyDisplay.WIDTH_OUTLINE, this.guiTop,
-                this.tileEntity.getCustomEnergyStorage(), true, false);
-
-        this.fluidDisplay = new FluidDisplay(this.guiLeft + 71, this.guiTop + 8, tileEntity.tank);
+        this.fuelDisplay = new FluidDisplay(this.guiLeft + 8, this.guiTop + 8, tileEntity.fuelTank);
+        this.oxygenDisplay = new FluidDisplay(this.guiLeft + 31, this.guiTop + 8, tileEntity.oxygenTank);
     }
 
     @Override
     public void drawScreen(int x, int y, float f) {
         super.drawScreen(x, y, f);
 
-        this.energy.drawOverlay(x, y);
-
-        this.fluidDisplay.drawOverlay(x, y);
+        this.fuelDisplay.drawOverlay(x, y);
+        this.oxygenDisplay.drawOverlay(x, y);
     }
 
     @Override
@@ -67,8 +63,7 @@ public class GuiLOXCollector extends GuiBase {
             this.drawTexturedModalRect(this.guiLeft + 93, this.guiTop + 43, 176, 0, 13, 14);
         }
 
-        this.energy.draw();
-
-        this.fluidDisplay.draw();
+        this.fuelDisplay.draw();
+        this.oxygenDisplay.draw();
     }
 }
