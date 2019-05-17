@@ -356,5 +356,21 @@ public final class WorkbenchRecipes {
                 "ccccccc"
         }, new ItemStack(ModBlocks.LAUNCHPAD, 7),
                 new RecipeKey('c', new ItemStack(Blocks.CONCRETE, 1, 8))));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttttttt",
+                "taaaaablt",
+                "ta a allt",
+                "ta a albt",
+                "ta a ablt",
+                "ta a albt",
+                "ta a abbt",
+                "taaaaallt",
+                "ttttttttt"
+        }, new ItemStack(ModBlocks.LAUNCH_CONTROLLER, 1),
+                new RecipeKey('t', ModItems.TITANIUM_PLATE),
+                new RecipeKey('a', ModItems.ALUMINUM_PLATE),
+                new RecipeKey('l', Blocks.LEVER),
+                new RecipeKey('b', Blocks.STONE_BUTTON)));
     }
 }

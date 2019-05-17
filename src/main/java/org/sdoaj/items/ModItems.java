@@ -150,7 +150,7 @@ public class ModItems {
         ALUMINUM_2198_INGOT.addLore("An aluminum-lithium alloy found in rocket fuel and oxidizer tanks.");
         ALUMINUM_2198_INGOT.setGlows();
         ALUMINUM_7XXX_INGOT = new ItemBasic("aluminum_7xxx_ingot");
-        ALUMINUM_7XXX_INGOT.addLore("7000 series aluminum alloys are made from ~90% aluminum, ~7% zinc, ~2% magnesium, and ~1% other elements. 7000 series alloys are commonly used in aerospace plates.");
+        ALUMINUM_7XXX_INGOT.addLore("7000 series aluminum alloys are made from ~90% aluminum, ~7% zinc, ~2% magnesium, and ~1% other elements; they are commonly used in aerospace applications.");
         ALUMINUM_7XXX_INGOT.setGlows();
         NIOBIUM_C103_INGOT = new ItemBasic("niobium_c103_ingot");
         NIOBIUM_C103_INGOT.addLore("A high-performance, heat-resistant niobium-hafnium-titanium alloy used in rocket engine nozzles.");
