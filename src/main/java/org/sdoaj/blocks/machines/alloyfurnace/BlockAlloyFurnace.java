@@ -36,14 +36,14 @@ public class BlockAlloyFurnace extends BlockMachine {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         if (state.getValue(IS_ON)) {
-            double d0 = (double)pos.getX() + 0.5D;
-            double d1 = (double)pos.getY() + random.nextDouble() * 6.0D / 16.0D;
-            double d2 = (double)pos.getZ() + 0.5D;
+            double d0 = (double) pos.getX() + 0.5D;
+            double d1 = (double) pos.getY() + random.nextDouble() * 6.0D / 16.0D;
+            double d2 = (double) pos.getZ() + 0.5D;
             double d3 = 0.52D;
             double d4 = random.nextDouble() * 0.6D - 0.3D;
 
             if (random.nextDouble() < 0.1D) {
-                world.playSound((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                world.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
 
             Stream.of(EnumParticleTypes.SMOKE_NORMAL, EnumParticleTypes.FLAME).forEach(particle -> {

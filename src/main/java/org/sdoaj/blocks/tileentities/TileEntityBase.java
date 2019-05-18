@@ -266,4 +266,6 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         this.world.scheduleBlockUpdate(pos,this.getBlockType(),0,0);
         markDirty();
     }
+
+    protected void onButtonPressed(int id) {}
 }

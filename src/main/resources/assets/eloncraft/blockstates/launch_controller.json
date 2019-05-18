@@ -1,7 +1,6 @@
 {
   "variants": {
-    "normal": {
-      "model": "eloncraft:launch_controller"
-    }
+    "on=false": { "model": "eloncraft:launch_controller" },
+    "on=true": { "model": "eloncraft:launch_controller" }
   }
 }

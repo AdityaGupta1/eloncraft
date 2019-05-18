@@ -2,10 +2,10 @@ package org.sdoaj.blocks.machines.loxcollector;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import org.sdoaj.blocks.machines.ContainerMachine;
+import org.sdoaj.blocks.machines.ContainerBase;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
 
-public class ContainerLOXCollector extends ContainerMachine {
+public class ContainerLOXCollector extends ContainerBase {
     public final TileEntityLOXCollector tileEntity;
 
     public ContainerLOXCollector(InventoryPlayer inventory, TileEntityBase tileEntity) {

@@ -83,7 +83,7 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         if (canProcess) {
             if (!hasEnergyStorage || this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
                 this.processTime++;
-                if (this.processTime >= this.getMaxProcessTime()) {
+                if (this.processTime >= this.maxProcessTime) {
                     this.finishProcessing();
                     this.processTime = 0;
                 }
@@ -139,16 +139,12 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         return processTime > 0;
     }
 
-    protected int getMaxProcessTime() {
-        return maxProcessTime;
+    private int getEnergyPerTick() {
+        return energyPerOperation / maxProcessTime;
     }
 
-    protected int getEnergyPerOperation() {
-        return energyPerOperation;
-    }
-
-    protected int getEnergyPerTick() {
-        return getEnergyPerOperation() / getMaxProcessTime();
+    public boolean hasEnergyForTick() {
+        return energyStorage.getEnergyStored() > getEnergyPerTick();
     }
 
     @Override
@@ -161,6 +157,6 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
     }
 
     public int getTimeScaled(int i) {
-        return this.processTime * i / this.getMaxProcessTime();
+        return this.processTime * i / this.maxProcessTime;
     }
 }

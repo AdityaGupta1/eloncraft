@@ -36,4 +36,16 @@ public class ModFluidTank extends FluidTank {
 
         return this;
     }
+
+    public boolean isEmpty() {
+        return this.getFluidAmount() == 0;
+    }
+
+    public boolean isFull() {
+        return this.getFluidAmount() == this.capacity;
+    }
+
+    public int getRemainingSpace() {
+        return this.getCapacity() - this.getFluidAmount();
+    }
 }

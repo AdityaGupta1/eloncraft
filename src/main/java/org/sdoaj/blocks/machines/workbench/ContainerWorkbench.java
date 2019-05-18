@@ -8,11 +8,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.blocks.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.blocks.gui.slot.SlotOutput;
-import org.sdoaj.blocks.machines.ContainerMachine;
+import org.sdoaj.blocks.machines.ContainerBase;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
 import org.sdoaj.util.StackUtil;
 
-public class ContainerWorkbench extends ContainerMachine {
+public class ContainerWorkbench extends ContainerBase {
     public final TileEntityWorkbench tileEntity;
 
     public ContainerWorkbench(InventoryPlayer inventory, TileEntityBase tileEntity) {

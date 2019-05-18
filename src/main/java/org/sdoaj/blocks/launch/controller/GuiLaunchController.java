@@ -8,16 +8,22 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.sdoaj.blocks.gui.EnergyDisplay;
 import org.sdoaj.blocks.gui.FluidDisplay;
 import org.sdoaj.blocks.gui.GuiBase;
 import org.sdoaj.blocks.gui.GuiCustomButton;
+import org.sdoaj.blocks.tileentities.MessageButtonPressed;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
+import org.sdoaj.entity.falcon9.EntityFalcon9Base;
 import org.sdoaj.util.AssetUtil;
+import org.sdoaj.util.PacketHandler;
 
 @SideOnly(Side.CLIENT)
 public class GuiLaunchController extends GuiBase {
     private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_launch_controller");
     private final TileEntityLaunchController tileEntity;
+
+    private EnergyDisplay energy;
 
     private FluidDisplay fuelDisplay;
     private FluidDisplay oxygenDisplay;
@@ -38,6 +44,9 @@ public class GuiLaunchController extends GuiBase {
     public void initGui() {
         super.initGui();
 
+        this.energy = new EnergyDisplay(this.guiLeft - EnergyDisplay.WIDTH_OUTLINE, this.guiTop,
+                this.tileEntity.getCustomEnergyStorage(), true, false);
+
         this.fuelDisplay = new FluidDisplay(this.guiLeft + 8, this.guiTop + 8, tileEntity.fuelTank);
         this.oxygenDisplay = new FluidDisplay(this.guiLeft + 31, this.guiTop + 8, tileEntity.oxygenTank);
 
@@ -53,6 +62,8 @@ public class GuiLaunchController extends GuiBase {
     public void drawScreen(int x, int y, float f) {
         super.drawScreen(x, y, f);
 
+        this.energy.drawOverlay(x, y);
+
         this.fuelDisplay.drawOverlay(x, y);
         this.oxygenDisplay.drawOverlay(x, y);
 
@@ -64,7 +75,16 @@ public class GuiLaunchController extends GuiBase {
     public void updateScreen() {
         super.updateScreen();
 
-        this.loadButton.enabled = !(tileEntity.fuelTank.getFluidAmount() == 0 && tileEntity.oxygenTank.getFluidAmount() == 0);
+        this.loadButton.enabled = tileEntity.canProcessWithoutLoading() && tileEntity.hasEnergyForTick();
+
+        EntityFalcon9Base rocket = tileEntity.rocket;
+        if (rocket != null) {
+            rocketFuelDisplay.setTank(rocket.fuelTank);
+            rocketOxygenDisplay.setTank(rocket.oxygenTank);
+        } else {
+            rocketFuelDisplay.setTank(null);
+            rocketOxygenDisplay.setTank(null);
+        }
     }
 
     @Override
@@ -82,9 +102,7 @@ public class GuiLaunchController extends GuiBase {
         this.mc.getTextureManager().bindTexture(resourceLocation);
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
-        if (this.tileEntity.guiShowProgress()) {
-            this.drawTexturedModalRect(this.guiLeft + 93, this.guiTop + 43, 176, 0, 13, 14);
-        }
+        this.energy.draw();
 
         this.fuelDisplay.draw();
         this.oxygenDisplay.draw();
@@ -95,8 +113,6 @@ public class GuiLaunchController extends GuiBase {
 
     @Override
     protected void actionPerformed(GuiButton button) {
-        if (button.id == 0) {
-            System.out.println("load button pressed");
-        }
+        PacketHandler.sendToServer(new MessageButtonPressed(button.id));
     }
 }

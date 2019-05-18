@@ -9,21 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.blocks.gui.GuiReference;
 import org.sdoaj.blocks.machines.BlockMachine;
-import org.sdoaj.blocks.tileentities.BlockContainerBase;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.util.StackUtil;
 
-import java.util.Random;
-
-public class BlockLaunchController extends BlockContainerBase {
+public class BlockLaunchController extends BlockMachine {
     public BlockLaunchController(String name, Material material) {
         super(name, material);
     }
@@ -54,5 +49,10 @@ public class BlockLaunchController extends BlockContainerBase {
         }
 
         return true;
+    }
+
+    @Override
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return 0;
     }
 }

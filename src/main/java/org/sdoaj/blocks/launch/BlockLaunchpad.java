@@ -39,7 +39,7 @@ public class BlockLaunchpad extends BlockNotFull {
 
     private static HashMap<BlockPos, EntityFalcon9Base> rockets = new HashMap<>();
 
-    private static Optional<BlockPos> getCenterLaunchpad(BlockPos pos) {
+    public static Optional<BlockPos> getNearbyRocketPos(BlockPos pos) {
         for (BlockPos otherPos : rockets.keySet()) {
             if (Math.abs(pos.getX() - otherPos.getX()) <= 3 && pos.getY() == otherPos.getY() && Math.abs(pos.getZ() - otherPos.getZ()) <= 3) {
                 return Optional.of(otherPos);
@@ -47,6 +47,12 @@ public class BlockLaunchpad extends BlockNotFull {
         }
 
         return Optional.empty();
+    }
+
+    public static Optional<EntityFalcon9Base> getNearbyRocket(BlockPos pos) {
+        Optional<BlockPos> maybePos = getNearbyRocketPos(pos);
+
+        return maybePos.map(blockPos -> rockets.get(blockPos));
     }
 
     private enum ErrorCode {
@@ -124,7 +130,7 @@ public class BlockLaunchpad extends BlockNotFull {
         }
 
         validCenters.removeIf(center -> getBlockPosAround(world, center).stream().anyMatch(block ->
-                getCenterLaunchpad(block).isPresent()));
+                getNearbyRocketPos(block).isPresent()));
 
         if (validCenters.isEmpty()) {
             return new Error(ErrorCode.IN_USE);
@@ -207,7 +213,7 @@ public class BlockLaunchpad extends BlockNotFull {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        Optional<BlockPos> center = getCenterLaunchpad(pos);
+        Optional<BlockPos> center = getNearbyRocketPos(pos);
         // if this launchpad is already part of another launchpad's r*r square, activate that launchpad instead
         if (center.isPresent() && !center.get().equals(pos)) {
             return onBlockActivated(world, center.get(), state, player, hand, facing, hitX, hitY, hitZ);
@@ -264,7 +270,7 @@ public class BlockLaunchpad extends BlockNotFull {
     public static void onBroken(BlockEvent.BreakEvent event) {
         Block block = event.getState().getBlock();
         if (block == ModBlocks.LAUNCHPAD || block == controllerBlock) {
-            getCenterLaunchpad(event.getPos()).ifPresent(centerPos -> rockets.remove(centerPos).setDead());
+            getNearbyRocketPos(event.getPos()).ifPresent(centerPos -> rockets.remove(centerPos).setDead());
         }
     }
 

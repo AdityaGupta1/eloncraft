@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.sdoaj.blocks.gui.GuiReference;
-import org.sdoaj.blocks.tileentities.BlockContainerBase;
+import org.sdoaj.blocks.BlockContainerBase;
 import org.sdoaj.eloncraft.Main;
 
 public class BlockWorkbench extends BlockContainerBase {

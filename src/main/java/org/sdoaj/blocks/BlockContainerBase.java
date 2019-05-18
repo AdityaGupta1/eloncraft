@@ -8,7 +8,7 @@
  * © 2015-2017 Ellpeck
  */
 
-package org.sdoaj.blocks.tileentities;
+package org.sdoaj.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -29,6 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.sdoaj.blocks.ModBlocks;
+import org.sdoaj.blocks.tileentities.TileEntityBase;
+import org.sdoaj.blocks.tileentities.TileEntityInventoryBase;
 import org.sdoaj.items.ModCreativeTabs;
 import org.sdoaj.util.StackUtil;
 import org.sdoaj.util.WorldUtil;

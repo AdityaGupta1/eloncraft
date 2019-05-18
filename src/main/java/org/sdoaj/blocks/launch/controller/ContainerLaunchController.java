@@ -2,10 +2,10 @@ package org.sdoaj.blocks.launch.controller;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import org.sdoaj.blocks.machines.ContainerMachine;
+import org.sdoaj.blocks.machines.ContainerBase;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
 
-public class ContainerLaunchController extends ContainerMachine {
+public class ContainerLaunchController extends ContainerBase {
     public final TileEntityLaunchController tileEntity;
 
     public ContainerLaunchController(InventoryPlayer inventory, TileEntityBase tileEntity) {

@@ -8,7 +8,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
+import org.sdoaj.blocks.machines.ModFluidTank;
+import org.sdoaj.fluids.ModFluids;
 import org.sdoaj.items.ModItems;
 
 import javax.annotation.Nullable;
@@ -19,6 +22,30 @@ public class EntityFalcon9Base extends EntityLiving {
         super(world);
         this.setSize(0.5F * ModelFalcon9Base.modelScale, 127.0F / 16.0F * ModelFalcon9Base.modelScale);
     }
+
+    private final int capacity = 16000;
+    public final ModFluidTank fuelTank = new ModFluidTank("FuelTank", capacity) {
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            return fluid.getFluid() == ModFluids.RP1;
+        }
+
+        @Override
+        public boolean canDrain() {
+            return false;
+        }
+    };
+    public final ModFluidTank oxygenTank = new ModFluidTank("OxygenTank", capacity) {
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            return fluid.getFluid() == ModFluids.LOX;
+        }
+
+        @Override
+        public boolean canDrain() {
+            return false;
+        }
+    };
 
     private BlockPos launchpad = null;
     private Vec3d launchpadTopPos = null;
@@ -48,6 +75,9 @@ public class EntityFalcon9Base extends EntityLiving {
         super.writeEntityToNBT(compound);
 
         compound.setString("Launchpad", launchpad == null ? "null" : launchpad.getX() + "," + launchpad.getY() + "," + launchpad.getZ());
+
+        fuelTank.writeToNBT(compound);
+        oxygenTank.writeToNBT(compound);
     }
 
     @Override
@@ -65,6 +95,9 @@ public class EntityFalcon9Base extends EntityLiving {
                 BlockLaunchpad.addRocket(this, launchpad);
             }
         }
+
+        fuelTank.readFromNBT(compound);
+        oxygenTank.readFromNBT(compound);
     }
 
     @Override

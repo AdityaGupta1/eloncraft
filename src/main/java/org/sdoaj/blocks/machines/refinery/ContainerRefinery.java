@@ -2,10 +2,10 @@ package org.sdoaj.blocks.machines.refinery;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import org.sdoaj.blocks.machines.ContainerMachine;
+import org.sdoaj.blocks.machines.ContainerBase;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
 
-public class ContainerRefinery extends ContainerMachine {
+public class ContainerRefinery extends ContainerBase {
     public final TileEntityRefinery tileEntity;
 
     public ContainerRefinery(InventoryPlayer inventory, TileEntityBase tileEntity) {
