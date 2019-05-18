@@ -2,14 +2,15 @@
 
 package org.sdoaj.blocks.launch.controller;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.sdoaj.blocks.gui.EnergyDisplay;
 import org.sdoaj.blocks.gui.FluidDisplay;
 import org.sdoaj.blocks.gui.GuiBase;
+import org.sdoaj.blocks.gui.GuiCustomButton;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
 import org.sdoaj.util.AssetUtil;
 
@@ -20,6 +21,11 @@ public class GuiLaunchController extends GuiBase {
 
     private FluidDisplay fuelDisplay;
     private FluidDisplay oxygenDisplay;
+
+    private GuiCustomButton loadButton;
+
+    private FluidDisplay rocketFuelDisplay;
+    private FluidDisplay rocketOxygenDisplay;
 
     public GuiLaunchController(InventoryPlayer inventory, TileEntityBase tile) {
         super(new ContainerLaunchController(inventory, tile));
@@ -34,6 +40,13 @@ public class GuiLaunchController extends GuiBase {
 
         this.fuelDisplay = new FluidDisplay(this.guiLeft + 8, this.guiTop + 8, tileEntity.fuelTank);
         this.oxygenDisplay = new FluidDisplay(this.guiLeft + 31, this.guiTop + 8, tileEntity.oxygenTank);
+
+        this.loadButton = new GuiCustomButton(0, this.guiLeft + 54, this.guiTop + 44, 13, 13, "", resourceLocation, 0, 99);
+        this.buttonList.add(loadButton);
+        loadButton.enabled = false;
+
+        this.rocketFuelDisplay = new FluidDisplay(this.guiLeft + 72, this.guiTop + 8, null);
+        this.rocketOxygenDisplay = new FluidDisplay(this.guiLeft + 95, this.guiTop + 8, null);
     }
 
     @Override
@@ -42,6 +55,16 @@ public class GuiLaunchController extends GuiBase {
 
         this.fuelDisplay.drawOverlay(x, y);
         this.oxygenDisplay.drawOverlay(x, y);
+
+        this.rocketFuelDisplay.drawOverlay(x, y);
+        this.rocketOxygenDisplay.drawOverlay(x, y);
+    }
+
+    @Override
+    public void updateScreen() {
+        super.updateScreen();
+
+        this.loadButton.enabled = !(tileEntity.fuelTank.getFluidAmount() == 0 && tileEntity.oxygenTank.getFluidAmount() == 0);
     }
 
     @Override
@@ -65,5 +88,15 @@ public class GuiLaunchController extends GuiBase {
 
         this.fuelDisplay.draw();
         this.oxygenDisplay.draw();
+
+        this.rocketFuelDisplay.draw();
+        this.rocketOxygenDisplay.draw();
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == 0) {
+            System.out.println("load button pressed");
+        }
     }
 }

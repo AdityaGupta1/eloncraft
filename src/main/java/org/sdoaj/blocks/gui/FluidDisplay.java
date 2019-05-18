@@ -70,30 +70,32 @@ public class FluidDisplay extends Gui {
         }
         this.drawTexturedModalRect(barX, barY, 0, 171, 18, 85);
 
-        FluidStack stack = this.tank.getFluid();
-        Fluid fluid = stack == null ? null : stack.getFluid();
+        if (this.tank != null) {
+            FluidStack stack = this.tank.getFluid();
+            Fluid fluid = stack == null ? null : stack.getFluid();
 
-        if (this.location == null || this.oldFluid != fluid) {
-            this.oldFluid = fluid;
+            if (this.location == null || this.oldFluid != fluid) {
+                this.oldFluid = fluid;
 
-            if (fluid != null && fluid.getStill() != null) {
-                ResourceLocation still = fluid.getStill();
-                this.location = new ResourceLocation(still.getResourceDomain(), "textures/" + still.getResourcePath() + ".png");
+                if (fluid != null && fluid.getStill() != null) {
+                    ResourceLocation still = fluid.getStill();
+                    this.location = new ResourceLocation(still.getResourceDomain(), "textures/" + still.getResourcePath() + ".png");
+                }
             }
-        }
 
-        if (stack != null && fluid != null && this.location != null) {
-            mc.getTextureManager().bindTexture(this.location);
+            if (stack != null && fluid != null && this.location != null) {
+                mc.getTextureManager().bindTexture(this.location);
 
-            GlStateManager.pushMatrix();
-            GlStateManager.enableBlend();
-            GlStateManager.disableAlpha();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-            int i = this.tank.getFluidAmount() * 83 / this.tank.getCapacity();
-            Gui.drawModalRectWithCustomSizedTexture(barX + 1, barY + 84 - i, 36, 172, 16, i, 16, 512);
-            GlStateManager.disableBlend();
-            GlStateManager.enableAlpha();
-            GlStateManager.popMatrix();
+                GlStateManager.pushMatrix();
+                GlStateManager.enableBlend();
+                GlStateManager.disableAlpha();
+                GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                int i = this.tank.getFluidAmount() * 83 / this.tank.getCapacity();
+                Gui.drawModalRectWithCustomSizedTexture(barX + 1, barY + 84 - i, 36, 172, 16, i, 16, 512);
+                GlStateManager.disableBlend();
+                GlStateManager.enableAlpha();
+                GlStateManager.popMatrix();
+            }
         }
 
         mc.getTextureManager().bindTexture(AssetUtil.GUI_INVENTORY_LOCATION);
@@ -112,9 +114,17 @@ public class FluidDisplay extends Gui {
     }
 
     private String getOverlayText() {
+        if (tank == null) {
+            return "0 mB";
+        }
+
         NumberFormat format = NumberFormat.getInstance();
         FluidStack stack = this.tank.getFluid();
         String cap = format.format(this.tank.getCapacity());
         return stack == null || stack.getFluid() == null ? "0/" + cap + " mB" : format.format(this.tank.getFluidAmount()) + "/" + cap + " mB " + stack.getLocalizedName();
+    }
+
+    public void setTank(FluidTank tank) {
+        this.tank = tank;
     }
 }

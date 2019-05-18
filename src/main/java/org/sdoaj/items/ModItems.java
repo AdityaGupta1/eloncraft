@@ -174,7 +174,7 @@ public class ModItems {
         CRUSHED_COAL.setBurnTime(800);
         UNTREATED_CARBON_FIBERS = new ItemBasic("untreated_carbon_fibers");
         CARBON_FIBERS = new ItemBasic("carbon_fibers");
-        CARBON_FIBERS.addLore("Disclaimer: most carbon fibers aren't actually made of coal.");
+        CARBON_FIBERS.addLore("Disclaimer: most real carbon fibers aren't gmade of coal.");
         CARBON_FIBERS.setGlows();
         CARBON_FIBER_PLATE = new ItemBasic("carbon_fiber_plate");
         CARBON_FIBER_PLATE.setGlows();
