@@ -20,6 +20,7 @@ import org.sdoaj.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.util.AssetUtil;
 import org.sdoaj.util.StringUtil;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +93,7 @@ public class EnergyDisplay extends Gui {
     }
 
     private String getOverlayText() {
-        return String.format("%s/%s Pirate-Ninjas", this.storage.getEnergyStored(), this.storage.getMaxEnergyStored());
+        NumberFormat format = NumberFormat.getInstance();
+        return String.format("%s/%s Pirate-Ninjas", format.format(this.storage.getEnergyStored()), format.format(this.storage.getMaxEnergyStored()));
     }
 }
