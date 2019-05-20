@@ -45,10 +45,6 @@ public class EnergyDisplay extends Gui {
         this.drawTextNextTo = drawTextNextTo;
     }
 
-    public EnergyDisplay(int x, int y, CustomEnergyStorage storage) {
-        this(x, y, storage, false, false);
-    }
-
     public void draw() {
         Minecraft mc = Minecraft.getMinecraft();
         mc.getTextureManager().bindTexture(AssetUtil.GUI_INVENTORY_LOCATION);

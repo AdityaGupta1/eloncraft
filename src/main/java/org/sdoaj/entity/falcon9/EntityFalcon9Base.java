@@ -52,7 +52,8 @@ public class EntityFalcon9Base extends EntityLiving {
 
     public void setLaunchpad(BlockPos pos) {
         launchpad = pos;
-        launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
+        // launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
+        launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 5 - 2.125, 0.5);
         setPosition(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z);
     }
 
