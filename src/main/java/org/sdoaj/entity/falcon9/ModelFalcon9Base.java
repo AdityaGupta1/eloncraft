@@ -6,6 +6,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
+import org.sdoaj.util.MathUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,33 +38,25 @@ public class ModelFalcon9Base extends ModelBase {
         legs.add(createBox(0.0F, 24.0F - 1.0F, 5.0F, renderer -> new ModelBox(renderer, 72, 61, -1.5F, -19.0F + 1.0F, 4.5F - 5.0F, 3, 18, 1, 0.0F, false)));
         legs.add(createBox(5.0F, 24.0F - 1.0F, 0.0F, renderer -> new ModelBox(renderer, 72, 21, 4.5F - 5.0F, -19.0F + 1.0F, -1.5F, 1, 18, 3, 0.0F, false)));
         legs.add(createBox(-5.0F, 24.0F - 1.0F, 0.0F, renderer -> new ModelBox(renderer, 72, 0, -5.5F + 5.0F, -19.0F + 1.0F, -1.5F, 1, 18, 3, 0.0F, false)));
-        // non-telescoping arm part
-        legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, -5.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, -5.5F + 5.0F, 1, 9, 1, 0.0F, false)));
-        legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, 5.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, 4.5F - 5.0F, 1, 9, 1, 0.0F, false)));
-        legs.add(createBox(5.0F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, 4.5F - 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-        legs.add(createBox(-5.0F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -5.5F + 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-        // // telescoping arm part 1
-        // legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, -5.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, -5.5F + 5.0F, 1, 9, 1, 0.0F, false)));
-        // legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, 5.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, 4.5F - 5.0F, 1, 9, 1, 0.0F, false)));
-        // legs.add(createBox(5.0F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, 4.5F - 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-        // legs.add(createBox(-5.0F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -5.5F + 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-        // // telescoping arm part 2
-        // legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, -5.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, -5.5F + 5.0F, 1, 9, 1, 0.0F, false)));
-        // legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, 5.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, 4.5F - 5.0F, 1, 9, 1, 0.0F, false)));
-        // legs.add(createBox(5.0F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, 4.5F - 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-        // legs.add(createBox(-5.0F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -5.5F + 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-        setLegs(0.4);
+        // arm parts (3 each side)
+        for (int i = 0; i < 3; i++) {
+            legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, -4.99F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, -5.5F + 5.0F, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, 4.99F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, 4.5F - 5.0F, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(4.99F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, 4.5F - 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(-4.99F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -5.5F + 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
+        }
+        setLegs(1.0);
 
         grid_fins.add(createBox(6.5F, -62.5F, 0.0F, renderer -> new ModelBox(renderer, 79, 38, -1.5F, 0.5F, -2.0F, 5, 1, 4, 0.0F, false)));
         grid_fins.add(createBox(-6.5F, -62.5F, 0.0F, renderer -> new ModelBox(renderer, 79, 57, -3.5F, 0.5F, -2.0F, 5, 1, 4, 0.0F, false)));
         grid_fins.add(createBox(0.0F, -62.5F, 6.5F, renderer -> new ModelBox(renderer, 75, 76, -2.0F, 0.5F, -1.5F, 4, 1, 5, 0.0F, false)));
         grid_fins.add(createBox(0.0F, -62.5F, -6.5F, renderer -> new ModelBox(renderer, 77, 16, -2.0F, 0.5F, -3.5F, 4, 1, 5, 0.0F, false)));
-        setGridFins(0.0);
+        setGridFins(1.0);
 
         thrusters = new ModelRenderer(this);
         thrusters.setRotationPoint(0.0F, 24.0F, 0.0F);
-        thrusters.cubeList.add(new ModelBox(thrusters, 0, 5, 3.0F, -88.0F, 3.0F, 2, 2, 2, 0.0F, false));
-        thrusters.cubeList.add(new ModelBox(thrusters, 0, 1, -5.0F, -88.0F, -5.0F, 2, 2, 2, 0.0F, false));
+        thrusters.cubeList.add(new ModelBox(thrusters, 0, 5, 3.0F, -85.0F, 3.0F, 2, 2, 2, 0.0F, false));
+        thrusters.cubeList.add(new ModelBox(thrusters, 0, 1, -5.0F, -85.0F, -5.0F, 2, 2, 2, 0.0F, false));
 
         engines = new ModelRenderer(this);
         engines.setRotationPoint(0.0F, 24.0F, 0.0F);
@@ -113,37 +106,36 @@ public class ModelFalcon9Base extends ModelBase {
         if (legAngle > Math.PI / 2) {
             armAngle = (float) (Math.PI - armAngle);
         }
-        legs.get(4).rotateAngleX = armAngle;
-        legs.get(5).rotateAngleX = -armAngle;
-        legs.get(6).rotateAngleZ = armAngle;
-        legs.get(7).rotateAngleZ = -armAngle;
-        // for (int i = 0; i < 3; i ++) {
-        //     legs.get(4 + (4 * i)).rotateAngleX = armAngle;
-        //     legs.get(5 + (4 * i)).rotateAngleX = -armAngle;
-        //     legs.get(6 + (4 * i)).rotateAngleZ = armAngle;
-        //     legs.get(7 + (4 * i)).rotateAngleZ = -armAngle;
-        // }
-        //
-        // double armAngleFromHorizontal = armAngle - Math.PI / 2;
-        //
-        // double maxExtend = Math.max(0, Math.min(9, c - 9));
-        // float dx = (float) (maxExtend * Math.cos(armAngleFromHorizontal) / modelScale);
-        // float dy = (float) (maxExtend * Math.sin(armAngleFromHorizontal) / modelScale);
-        // legs.get(8).offsetZ = -dx;
-        // legs.get(8).offsetY = dy;
-        // legs.get(9).offsetZ = dx;
-        // legs.get(9).offsetY = dy;
-        // legs.get(10).offsetX = dx;
-        // legs.get(10).offsetY = dy;
-        // legs.get(11).offsetX = -dx;
-        // legs.get(11).offsetY = dy;
-        //
-        // maxExtend = Math.max(0, Math.min(9, c - 18));
-        // dx = (float) (maxExtend * Math.sin(armAngleFromHorizontal) * 18);
-        // dy = (float) (maxExtend * Math.cos(armAngleFromHorizontal) * 18);
-        // for (int i = 12; i <= 15; i++) {
-        //     // legs.get(i).offsetY = -maxExtend;
-        // }
+        for (int i = 0; i < 3; i ++) {
+            legs.get(4 + (4 * i)).rotateAngleX = armAngle;
+            legs.get(5 + (4 * i)).rotateAngleX = -armAngle;
+            legs.get(6 + (4 * i)).rotateAngleZ = armAngle;
+            legs.get(7 + (4 * i)).rotateAngleZ = -armAngle;
+        }
+
+        double armAngleFromHorizontal = armAngle - Math.PI / 2;
+
+        double extend = MathUtil.limit(c - 9, 0, 9);
+        float dx = (float) (extend * Math.cos(armAngleFromHorizontal));
+        float dy = (float) (extend * Math.sin(armAngleFromHorizontal));
+        legs.get(8).rotationPointZ = -4.99F - dx;
+        legs.get(9).rotationPointZ = 4.99F + dx;
+        legs.get(10).rotationPointX = 4.99F + dx;
+        legs.get(11).rotationPointX = -4.99F - dx;
+        for (int i = 8; i <= 11; i++) {
+            legs.get(i).rotationPointY = 24.0F - 1.0F - 9.0F + dy;
+        }
+
+        extend = 9 + MathUtil.limit(c - 18, -9, 9);
+        dx = (float) (extend * Math.cos(armAngleFromHorizontal));
+        dy = (float) (extend * Math.sin(armAngleFromHorizontal));
+        legs.get(12).rotationPointZ = -4.99F - dx;
+        legs.get(13).rotationPointZ = 4.99F + dx;
+        legs.get(14).rotationPointX = 4.99F + dx;
+        legs.get(15).rotationPointX = -4.99F - dx;
+        for (int i = 12; i <= 15; i++) {
+            legs.get(i).rotationPointY = 24.0F - 1.0F - 9.0F + dy;
+        }
     }
 
     public void setGridFins(double x) {
