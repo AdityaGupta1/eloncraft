@@ -109,8 +109,6 @@ public class EntityFalcon9Stage1 extends EntityLiving {
 
     @Override
     public void onDeath(DamageSource source) {
-        System.out.println(source);
-
         setDead(); // skip death animation - immediately disappear and drop item
     }
 
@@ -133,5 +131,10 @@ public class EntityFalcon9Stage1 extends EntityLiving {
     @Override
     protected SoundEvent getDeathSound() {
         return getHurtSound(null);
+    }
+
+    @Override
+    protected boolean canDespawn() {
+        return false;
     }
 }

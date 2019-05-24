@@ -21,7 +21,6 @@ public class EntityFalcon9Stage2 extends EntityLiving {
 
     EntityFalcon9Stage2(World world) {
         super(world);
-        System.out.println("yeET");
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 32.0F / 16.0F * ModelFalcon9Stage1.modelScale);
         this.setNoGravity(true);
     }
@@ -57,5 +56,10 @@ public class EntityFalcon9Stage2 extends EntityLiving {
     @Override
     protected SoundEvent getDeathSound() {
         return getHurtSound(null);
+    }
+
+    @Override
+    protected boolean canDespawn() {
+        return false;
     }
 }
