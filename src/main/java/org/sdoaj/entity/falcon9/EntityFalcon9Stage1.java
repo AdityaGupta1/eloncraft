@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class EntityFalcon9Stage1 extends EntityLiving {
     public EntityFalcon9Stage1(World world) {
         super(world);
-        this.setSize(0.5F * ModelFalcon9Stage1.modelScale, (98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
+        this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
         this.setNoGravity(true);
     }
 
