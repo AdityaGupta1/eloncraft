@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.sdoaj.blocks.BlockNotFull;
 import org.sdoaj.blocks.ModBlocks;
 import org.sdoaj.eloncraft.Main;
-import org.sdoaj.entity.falcon9.EntityFalcon9Base;
+import org.sdoaj.entity.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.items.ModItems;
 
 import java.util.*;
@@ -37,7 +37,7 @@ public class BlockLaunchpad extends BlockNotFull {
         super(name, material, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.25, 1.0));
     }
 
-    private static HashMap<BlockPos, EntityFalcon9Base> rockets = new HashMap<>();
+    private static HashMap<BlockPos, EntityFalcon9Stage1> rockets = new HashMap<>();
 
     public static Optional<BlockPos> getNearbyRocketPos(BlockPos pos) {
         for (BlockPos otherPos : rockets.keySet()) {
@@ -49,7 +49,7 @@ public class BlockLaunchpad extends BlockNotFull {
         return Optional.empty();
     }
 
-    public static Optional<EntityFalcon9Base> getNearbyRocket(BlockPos pos) {
+    public static Optional<EntityFalcon9Stage1> getNearbyRocket(BlockPos pos) {
         Optional<BlockPos> maybePos = getNearbyRocketPos(pos);
 
         return maybePos.map(blockPos -> rockets.get(blockPos));
@@ -235,7 +235,7 @@ public class BlockLaunchpad extends BlockNotFull {
         }
 
         BlockPos centerPos = error.getPos();
-        EntityFalcon9Base rocket = new EntityFalcon9Base(world);
+        EntityFalcon9Stage1 rocket = new EntityFalcon9Stage1(world);
         rocket.setLaunchpad(centerPos);
         rockets.put(centerPos, rocket);
         world.spawnEntity(rocket);
@@ -243,7 +243,7 @@ public class BlockLaunchpad extends BlockNotFull {
         return true;
     }
 
-    public static void addRocket(EntityFalcon9Base rocket, BlockPos pos) {
+    public static void addRocket(EntityFalcon9Stage1 rocket, BlockPos pos) {
         rockets.put(pos, rocket);
     }
 

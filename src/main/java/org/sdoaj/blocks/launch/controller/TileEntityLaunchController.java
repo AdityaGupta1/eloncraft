@@ -11,14 +11,12 @@ import org.sdoaj.blocks.machines.BlockMachine;
 import org.sdoaj.blocks.machines.ModFluidTank;
 import org.sdoaj.blocks.machines.TileEntityFluidMachine;
 import org.sdoaj.blocks.tileentities.CustomEnergyStorage;
-import org.sdoaj.entity.falcon9.EntityFalcon9Base;
+import org.sdoaj.entity.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.fluids.ModFluids;
 import org.sdoaj.util.ItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class TileEntityLaunchController extends TileEntityFluidMachine {
     final int guiTopHeight = 99;
@@ -58,7 +56,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         oxygenTank.setTileEntity(this);
     }
 
-    EntityFalcon9Base rocket = null;
+    EntityFalcon9Stage1 rocket = null;
 
     private boolean isLoading = false;
 

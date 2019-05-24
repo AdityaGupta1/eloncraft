@@ -14,7 +14,7 @@ import org.sdoaj.blocks.gui.GuiBase;
 import org.sdoaj.blocks.gui.GuiCustomButton;
 import org.sdoaj.blocks.tileentities.MessageButtonPressed;
 import org.sdoaj.blocks.tileentities.TileEntityBase;
-import org.sdoaj.entity.falcon9.EntityFalcon9Base;
+import org.sdoaj.entity.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.util.AssetUtil;
 import org.sdoaj.util.PacketHandler;
 
@@ -77,7 +77,7 @@ public class GuiLaunchController extends GuiBase {
 
         this.loadButton.enabled = tileEntity.canProcessWithoutLoading() && tileEntity.hasEnergyForTick();
 
-        EntityFalcon9Base rocket = tileEntity.rocket;
+        EntityFalcon9Stage1 rocket = tileEntity.rocket;
         if (rocket != null) {
             rocketFuelDisplay.setTank(rocket.fuelTank);
             rocketOxygenDisplay.setTank(rocket.oxygenTank);

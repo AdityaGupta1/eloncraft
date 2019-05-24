@@ -10,8 +10,8 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
-import org.sdoaj.entity.falcon9.EntityFalcon9Base;
-import org.sdoaj.entity.falcon9.RenderFalcon9Base;
+import org.sdoaj.entity.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.entity.falcon9.RenderFalcon9Stage1;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ModEntities {
@@ -20,7 +20,7 @@ public class ModEntities {
         int id = 1;
 
         event.getRegistry().register(EntityEntryBuilder.create()
-                .entity(EntityFalcon9Base.class)
+                .entity(EntityFalcon9Stage1.class)
                 .id(new ResourceLocation(Main.MODID,"falcon9_base"), id++)
                 .name("eloncraft:falcon9_base")
                 .tracker(64, 1, false)
@@ -29,6 +29,6 @@ public class ModEntities {
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Base.class, RenderFalcon9Base::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage1.class, RenderFalcon9Stage1::new);
     }
 }

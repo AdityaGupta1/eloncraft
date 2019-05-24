@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class ModelFalcon9Base extends ModelBase {
+public class ModelFalcon9Stage1 extends ModelBase {
     private final ModelRenderer body;
     private final List<ModelRenderer> legs = new ArrayList<>();
     private final List<ModelRenderer> grid_fins = new ArrayList<>();
@@ -21,17 +21,28 @@ public class ModelFalcon9Base extends ModelBase {
 
     static float modelScale = 56.9f / (127.0f / 16.0f); // 56.9 meters (blocks) tall
 
-    public ModelFalcon9Base() {
+    public ModelFalcon9Stage1() {
         textureWidth = 144;
         textureHeight = 144;
 
         body = new ModelRenderer(this);
         body.setRotationPoint(0.0F, 24.0F, 0.0F);
-        body.cubeList.add(new ModelBox(body, 0, 1, -4.0F, -126.0F, -4.0F, 8, 125, 8, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 52, 0, -2.0F, -126.0F, -5.0F, 4, 125, 1, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 32, 0, -5.0F, -126.0F, -2.0F, 1, 125, 4, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 62, 0, -2.0F, -126.0F, 4.0F, 4, 125, 1, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 42, 0, 4.0F, -126.0F, -2.0F, 1, 125, 4, 0.0F, false));
+        // middle
+        body.cubeList.add(new ModelBox(body, 0, 1, -4.0F, -126.0F + 28 + 16, -4.0F, 8, 125 - 28 - 16, 8, 0.0F, false));
+        // sides
+        body.cubeList.add(new ModelBox(body, 52, 0, -2.0F, -126.0F + 28, -5.0F, 4, 125 - 28, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 32, 0, -5.0F, -126.0F + 28, -2.0F, 1, 125 - 28, 4, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 62, 0, -2.0F, -126.0F + 28, 4.0F, 4, 125 - 28, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 42, 0, 4.0F, -126.0F + 28, -2.0F, 1, 125 - 28, 4, 0.0F, false));
+        // walls
+        body.cubeList.add(new ModelBox(body, 0, 101, 1.0F, -98.0F, -4.0F, 3, 16, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, 1.0F, -98.0F, 3.0F, 3, 16, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, 3.0F, -98.0F, -4.0F, 1, 16, 3, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, -4.0F, -98.0F, -4.0F, 1, 16, 3, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, -4.0F, -98.0F, 1.0F, 1, 16, 3, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, 3.0F, -98.0F, 1.0F, 1, 16, 3, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, -4.0F, -98.0F, 3.0F, 3, 16, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 101, -4.0F, -98.0F, -4.0F, 3, 16, 1, 0.0F, false));
 
         // legs
         legs.add(createBox(0.0F, 24.0F - 1.0F, -5.0F, renderer -> new ModelBox(renderer, 72, 42, -1.5F, -19.0F + 1.0F, -5.5F + 5.0F, 3, 18, 1, 0.0F, false)));
