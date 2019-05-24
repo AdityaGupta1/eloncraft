@@ -13,6 +13,7 @@ public class RocketController {
     public RocketController(EntityFalcon9Stage1 stage1, EntityFalcon9Stage2 stage2) {
         this.stage1 = stage1;
         this.stage2 = stage2;
+        stage2.setController(this);
     }
 
     private void setLocationAndAngles(Entity entity, Position pos) {
@@ -29,6 +30,10 @@ public class RocketController {
 
     public void setPosition(Vec3d pos, float yaw, float pitch) {
         setPosition(pos.x, pos.y, pos.z, yaw, pitch);
+    }
+
+    public void setPosition(Position pos) {
+        setPosition(pos.x, pos.y, pos.z, pos.yaw, pos.pitch);
     }
 
     Position getStage1Pos() {

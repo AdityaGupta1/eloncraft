@@ -1,32 +1,32 @@
 package org.sdoaj.entity.falcon9;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
 import org.sdoaj.blocks.machines.ModFluidTank;
 import org.sdoaj.fluids.ModFluids;
 import org.sdoaj.items.ModItems;
+import org.sdoaj.util.PacketHandler;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 
 public class EntityFalcon9Stage1 extends EntityLiving {
-    private final RocketController controller;
+    private RocketController controller;
+    private Position queuedPos;
 
     public EntityFalcon9Stage1(World world) {
         super(world);
-
-        EntityFalcon9Stage2 stage2 = new EntityFalcon9Stage2(world);
-        this.controller = new RocketController(this, stage2);
-        stage2.setController(this.controller);
-        world.spawnEntity(stage2);
-
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
         this.setNoGravity(true);
     }
@@ -59,22 +59,50 @@ public class EntityFalcon9Stage1 extends EntityLiving {
 
     public void setLaunchpad(BlockPos pos) {
         launchpad = pos;
-        controller.setPosition(new Vec3d(launchpad).addVector(0.5, 0.25, 0.5), 0f, 0f);
-        controller.setPosition(new Vec3d(launchpad).addVector(0.5, 5 - 2.125, 0.5), 0f, 0f);
+        // controller.setPosition(new Vec3d(launchpad).addVector(0.5, 0.25, 0.5), 0f, 0f);
+        queuedPos = new Position(new Vec3d(launchpad).addVector(0.5, 5 - 2.125, 0.5), 0f, 0f);
+        this.setLocationAndAngles(queuedPos.x, queuedPos.y, queuedPos.z, queuedPos.yaw, queuedPos.pitch);
     }
 
     public void removeLaunchpad() {
         launchpad = null;
     }
 
+    private void useQueuedPos() {
+        if (queuedPos != null) {
+            controller.setPosition(queuedPos);
+            queuedPos = null;
+        }
+    }
+
     @Override
     public void onUpdate() {
         super.onUpdate();
+
+        if (controller == null) {
+            if (this.getRidingEntity() != null) {
+                controller = new RocketController(this, (EntityFalcon9Stage2) this.getRidingEntity());
+            } else {
+                EntityFalcon9Stage2 stage2 = new EntityFalcon9Stage2(this.world);
+                controller = new RocketController(this, stage2);
+                useQueuedPos();
+                world.spawnEntity(stage2);
+                stage2.startRiding(this, true);
+                System.out.println(stage2.posX);
+            }
+        }
+
+        useQueuedPos(); // only does stuff if queuedPos != null (i.e. there actually is a queued position)
 
         Position pos = controller.getStage1Pos();
         if (pos != null) {
             setLocationAndAngles(pos.x, pos.y, pos.z, pos.yaw, pos.pitch);
         }
+    }
+
+    @Override
+    public void updatePassenger(Entity passenger) {
+        // do nothing - RocketController takes care of this
     }
 
     @Override
