@@ -19,7 +19,7 @@ public class ModelFalcon9Stage1 extends ModelBase {
     private final ModelRenderer thrusters;
     private final ModelRenderer engines;
 
-    static float modelScale = 56.9f / (127.0f / 16.0f); // 56.9 meters (blocks) tall
+    static final float modelScale = 56.9f / (127.0f / 16.0f); // first + second stages are 56.9 meters (blocks) tall in total
 
     public ModelFalcon9Stage1() {
         textureWidth = 144;
@@ -90,10 +90,12 @@ public class ModelFalcon9Stage1 extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
         GL11.glPushMatrix();
         GL11.glTranslatef(0F, 1.5F - 1.5F * modelScale, 0F);
         GL11.glScalef(modelScale, modelScale, modelScale);
+        GL11.glRotatef(yaw, 0, 1, 0);
+        GL11.glRotatef(pitch, 1, 0, 0);
 
         body.render(scale);
         legs.forEach(renderer -> renderer.render(scale));

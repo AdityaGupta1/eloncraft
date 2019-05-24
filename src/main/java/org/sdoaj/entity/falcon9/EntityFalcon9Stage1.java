@@ -17,8 +17,16 @@ import org.sdoaj.items.ModItems;
 import java.util.Arrays;
 
 public class EntityFalcon9Stage1 extends EntityLiving {
+    private final RocketController controller;
+
     public EntityFalcon9Stage1(World world) {
         super(world);
+
+        EntityFalcon9Stage2 stage2 = new EntityFalcon9Stage2(world);
+        this.controller = new RocketController(this, stage2);
+        stage2.setController(this.controller);
+        world.spawnEntity(stage2);
+
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
         this.setNoGravity(true);
     }
@@ -48,26 +56,24 @@ public class EntityFalcon9Stage1 extends EntityLiving {
     };
 
     private BlockPos launchpad = null;
-    private Vec3d launchpadTopPos = null;
 
     public void setLaunchpad(BlockPos pos) {
         launchpad = pos;
-        // launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
-        launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 5 - 2.125, 0.5);
-        setPosition(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z);
+        controller.setPosition(new Vec3d(launchpad).addVector(0.5, 0.25, 0.5), 0f, 0f);
+        controller.setPosition(new Vec3d(launchpad).addVector(0.5, 5 - 2.125, 0.5), 0f, 0f);
     }
 
     public void removeLaunchpad() {
         launchpad = null;
-        launchpadTopPos = null;
     }
 
     @Override
     public void onUpdate() {
         super.onUpdate();
 
-        if (launchpadTopPos != null) {
-            setLocationAndAngles(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z, 0f, 0f);
+        Position pos = controller.getStage1Pos();
+        if (pos != null) {
+            setLocationAndAngles(pos.x, pos.y, pos.z, pos.yaw, pos.pitch);
         }
     }
 
@@ -103,6 +109,8 @@ public class EntityFalcon9Stage1 extends EntityLiving {
 
     @Override
     public void onDeath(DamageSource source) {
+        System.out.println(source);
+
         setDead(); // skip death animation - immediately disappear and drop item
     }
 

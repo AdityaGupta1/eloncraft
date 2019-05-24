@@ -11,18 +11,26 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
 import org.sdoaj.entity.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.entity.falcon9.EntityFalcon9Stage2;
 import org.sdoaj.entity.falcon9.RenderFalcon9Stage1;
+import org.sdoaj.entity.falcon9.RenderFalcon9Stage2;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ModEntities {
     @SubscribeEvent
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
-        int id = 1;
+        int id = 0;
 
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9Stage1.class)
-                .id(new ResourceLocation(Main.MODID,"falcon9_base"), id++)
-                .name("eloncraft:falcon9_base")
+                .id(new ResourceLocation(Main.MODID,"falcon9_stage1"), ++id)
+                .name("eloncraft:falcon9_stage1")
+                .tracker(64, 1, false)
+                .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityFalcon9Stage2.class)
+                .id(new ResourceLocation(Main.MODID,"falcon9_stage2"), ++id)
+                .name("eloncraft:falcon9_stage2")
                 .tracker(64, 1, false)
                 .build());
     }
@@ -30,5 +38,6 @@ public class ModEntities {
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage1.class, RenderFalcon9Stage1::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage2.class, RenderFalcon9Stage2::new);
     }
 }
