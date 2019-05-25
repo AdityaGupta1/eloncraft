@@ -56,13 +56,13 @@ public class ModelFalcon9Stage1 extends ModelBase {
             legs.add(createBox(4.99F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, 4.5F - 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
             legs.add(createBox(-4.99F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -5.5F + 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
         }
-        setLegs(1.0);
+        setLegs(0.0);
 
         grid_fins.add(createBox(6.5F, -62.5F, 0.0F, renderer -> new ModelBox(renderer, 79, 38, -1.5F, 0.5F, -2.0F, 5, 1, 4, 0.0F, false)));
         grid_fins.add(createBox(-6.5F, -62.5F, 0.0F, renderer -> new ModelBox(renderer, 79, 57, -3.5F, 0.5F, -2.0F, 5, 1, 4, 0.0F, false)));
         grid_fins.add(createBox(0.0F, -62.5F, 6.5F, renderer -> new ModelBox(renderer, 75, 76, -2.0F, 0.5F, -1.5F, 4, 1, 5, 0.0F, false)));
         grid_fins.add(createBox(0.0F, -62.5F, -6.5F, renderer -> new ModelBox(renderer, 77, 16, -2.0F, 0.5F, -3.5F, 4, 1, 5, 0.0F, false)));
-        setGridFins(1.0);
+        setGridFins(0.0);
 
         thrusters = new ModelRenderer(this);
         thrusters.setRotationPoint(0.0F, 24.0F, 0.0F);

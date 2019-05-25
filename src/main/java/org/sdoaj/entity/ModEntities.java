@@ -10,10 +10,7 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Main;
-import org.sdoaj.entity.falcon9.EntityFalcon9Stage1;
-import org.sdoaj.entity.falcon9.EntityFalcon9Stage2;
-import org.sdoaj.entity.falcon9.RenderFalcon9Stage1;
-import org.sdoaj.entity.falcon9.RenderFalcon9Stage2;
+import org.sdoaj.entity.falcon9.*;
 
 @Mod.EventBusSubscriber(modid = Main.MODID)
 public class ModEntities {
@@ -33,11 +30,18 @@ public class ModEntities {
                 .name("eloncraft:falcon9_stage2")
                 .tracker(64, 1, false)
                 .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityFalcon9Dragon.class)
+                .id(new ResourceLocation(Main.MODID,"falcon9_dragon"), ++id)
+                .name("eloncraft:falcon9_dragon")
+                .tracker(64, 1, false)
+                .build());
     }
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage1.class, RenderFalcon9Stage1::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage2.class, RenderFalcon9Stage2::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Dragon.class, RenderFalcon9Dragon::new);
     }
 }

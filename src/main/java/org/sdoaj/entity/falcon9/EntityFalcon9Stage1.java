@@ -24,6 +24,8 @@ public class EntityFalcon9Stage1 extends EntityLiving {
         this.setNoGravity(true);
     }
 
+    private boolean hasCreatedOtherParts = false;
+
     private final int capacity = 16000;
     public final ModFluidTank fuelTank = new ModFluidTank("FuelTank", capacity) {
         @Override
@@ -53,8 +55,7 @@ public class EntityFalcon9Stage1 extends EntityLiving {
 
     public void setLaunchpad(BlockPos pos) {
         launchpad = pos;
-        // controller.setPosition(new Vec3d(launchpad).addVector(0.5, 0.25, 0.5), 0f, 0f);
-        launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 5 - 2.125, 0.5);
+        launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
         useLaunchpadTopPos();
     }
 
@@ -75,11 +76,18 @@ public class EntityFalcon9Stage1 extends EntityLiving {
 
         useLaunchpadTopPos();
 
-        if (this.getPassengers().isEmpty() && !world.isRemote) {
+        if (!hasCreatedOtherParts && !world.isRemote) {
             EntityFalcon9Stage2 stage2 = new EntityFalcon9Stage2(this.world);
             updatePassenger(stage2);
             world.spawnEntity(stage2);
             stage2.startRiding(this, true);
+
+            EntityFalcon9Dragon dragon = new EntityFalcon9Dragon(this.world);
+            stage2.updatePassenger(dragon);
+            world.spawnEntity(dragon);
+            dragon.startRiding(stage2, true);
+
+            hasCreatedOtherParts = true;
         }
     }
 
@@ -90,7 +98,6 @@ public class EntityFalcon9Stage1 extends EntityLiving {
         double dh = d * Math.sin(Math.toRadians(this.rotationPitch));
         double dx = dh * -Math.sin(Math.toRadians(this.rotationYaw));
         double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
-        System.out.println(dx + ", " + dy + ", " + dz);
         passenger.setLocationAndAngles(this.posX + dx, this.posY + dy, this.posZ + dz, this.rotationYaw, this.rotationPitch);
     }
 
@@ -99,6 +106,8 @@ public class EntityFalcon9Stage1 extends EntityLiving {
         super.writeEntityToNBT(compound);
 
         compound.setString("Launchpad", launchpad == null ? "null" : launchpad.getX() + "," + launchpad.getY() + "," + launchpad.getZ());
+
+        compound.setBoolean("HasCreatedOtherParts", hasCreatedOtherParts);
 
         fuelTank.writeToNBT(compound);
         oxygenTank.writeToNBT(compound);
@@ -120,6 +129,12 @@ public class EntityFalcon9Stage1 extends EntityLiving {
             }
         }
 
+        if (compound.hasKey("HasCreatedOtherParts")) {
+            hasCreatedOtherParts = compound.getBoolean("HasCreatedOtherParts");
+        } else {
+            hasCreatedOtherParts = false;
+        }
+
         fuelTank.readFromNBT(compound);
         oxygenTank.readFromNBT(compound);
     }
@@ -136,6 +151,8 @@ public class EntityFalcon9Stage1 extends EntityLiving {
         }
 
         BlockLaunchpad.removeRocket(launchpad);
+
+        getPassengers().forEach(Entity::setDead);
 
         super.setDead();
     }

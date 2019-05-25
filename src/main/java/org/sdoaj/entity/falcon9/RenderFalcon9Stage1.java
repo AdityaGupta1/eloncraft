@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import org.sdoaj.eloncraft.Main;
 
 public class RenderFalcon9Stage1 extends RenderLiving<EntityFalcon9Stage1> {
-    private ResourceLocation texture = new ResourceLocation(Main.MODID, "textures/entities/falcon9/falcon9_stage1.png");
+    private ResourceLocation texture = new ResourceLocation(Main.MODID, "textures/entities/falcon9/stage1.png");
 
     public RenderFalcon9Stage1(RenderManager manager) {
         super(manager, new ModelFalcon9Stage1(), 0.4F * ModelFalcon9Stage1.modelScale);
