@@ -106,6 +106,18 @@ public class ModelFalcon9Stage1 extends ModelBase {
         GL11.glPopMatrix();
     }
 
+    private void setLegSegments(double extend, double armAngleFromHorizontal, int i) {
+        float dx = (float) (extend * Math.cos(armAngleFromHorizontal));
+        float dy = (float) (extend * Math.sin(armAngleFromHorizontal));
+        legs.get(i).rotationPointZ = -4.99F - dx;
+        legs.get(i + 1).rotationPointZ = 4.99F + dx;
+        legs.get(i + 2).rotationPointX = 4.99F + dx;
+        legs.get(i + 3).rotationPointX = -4.99F - dx;
+        for (int j = i; j < i + 4; j++) {
+            legs.get(j).rotationPointY = 24.0F - 1.0F - 9.0F + dy;
+        }
+    }
+
     public void setLegs(double x) {
         x = MathHelper.clamp(x, 0.0, 1.0);
         float legAngle = (float) (Math.toRadians(113) * x);
@@ -128,27 +140,8 @@ public class ModelFalcon9Stage1 extends ModelBase {
 
         double armAngleFromHorizontal = armAngle - Math.PI / 2;
 
-        double extend = MathUtil.limit(c - 9, 0, 9);
-        float dx = (float) (extend * Math.cos(armAngleFromHorizontal));
-        float dy = (float) (extend * Math.sin(armAngleFromHorizontal));
-        legs.get(8).rotationPointZ = -4.99F - dx;
-        legs.get(9).rotationPointZ = 4.99F + dx;
-        legs.get(10).rotationPointX = 4.99F + dx;
-        legs.get(11).rotationPointX = -4.99F - dx;
-        for (int i = 8; i <= 11; i++) {
-            legs.get(i).rotationPointY = 24.0F - 1.0F - 9.0F + dy;
-        }
-
-        extend = 9 + MathUtil.limit(c - 18, -9, 9);
-        dx = (float) (extend * Math.cos(armAngleFromHorizontal));
-        dy = (float) (extend * Math.sin(armAngleFromHorizontal));
-        legs.get(12).rotationPointZ = -4.99F - dx;
-        legs.get(13).rotationPointZ = 4.99F + dx;
-        legs.get(14).rotationPointX = 4.99F + dx;
-        legs.get(15).rotationPointX = -4.99F - dx;
-        for (int i = 12; i <= 15; i++) {
-            legs.get(i).rotationPointY = 24.0F - 1.0F - 9.0F + dy;
-        }
+        setLegSegments(MathUtil.limit(c - 9, 0, 9), armAngleFromHorizontal, 8);
+        setLegSegments(9 + MathUtil.limit(c - 18, -9, 9), armAngleFromHorizontal, 12);
     }
 
     public void setGridFins(double x) {
