@@ -36,8 +36,8 @@ public class ModelFalcon9Stage2 extends ModelBase {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0F, 1.5F - 1.5F * modelScale, 0F);
 		GL11.glScalef(modelScale, modelScale, modelScale);
-		GL11.glRotatef(yaw, 0, 1, 0);
-		GL11.glRotatef(pitch, 1, 0, 0);
+		GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
+		GL11.glRotatef(entity.rotationPitch, 1, 0, 0);
 
 		engine.render(scale);
 		body.render(scale);

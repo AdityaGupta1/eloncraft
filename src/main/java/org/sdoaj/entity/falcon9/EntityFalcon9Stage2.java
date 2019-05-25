@@ -17,30 +17,10 @@ import org.sdoaj.items.ModItems;
 import java.util.Arrays;
 
 public class EntityFalcon9Stage2 extends EntityLiving {
-    private RocketController controller;
-
     EntityFalcon9Stage2(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 32.0F / 16.0F * ModelFalcon9Stage1.modelScale);
         this.setNoGravity(true);
-    }
-
-    void setController(RocketController controller) {
-        this.controller = controller;
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-
-        if (controller == null) {
-            return;
-        }
-
-        Position pos = controller.getStage2Pos();
-        if (pos != null) {
-            setLocationAndAngles(pos.x, pos.y, pos.z, pos.yaw, pos.pitch);
-        }
     }
 
     @Override
