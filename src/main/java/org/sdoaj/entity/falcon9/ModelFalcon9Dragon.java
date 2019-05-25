@@ -18,7 +18,6 @@ public class ModelFalcon9Dragon extends ModelBase {
 
 		trunk = new ModelRenderer(this);
 		trunk.setRotationPoint(0.0F, 24.0F, 0.0F);
-		// trunk.rotateAngleY = (float) Math.PI;
 		trunk.cubeList.add(new ModelBox(trunk, 0, 0, -4.0F, -9.0F, -4.0F, 8, 9, 8, 0.0F, false));
 		trunk.cubeList.add(new ModelBox(trunk, 28, 17, 4.0F, -9.0F, -2.0F, 1, 9, 4, 0.0F, false));
 		trunk.cubeList.add(new ModelBox(trunk, 0, 30, -2.0F, -9.0F, 4.0F, 4, 9, 1, 0.0F, false));
@@ -31,7 +30,6 @@ public class ModelFalcon9Dragon extends ModelBase {
 
 		top = new ModelRenderer(this);
 		top.setRotationPoint(0.0F, 24.0F, 0.0F);
-		// top.rotateAngleY = (float) Math.PI;
 		top.cubeList.add(new ModelBox(top, 0, 17, 3.0F, -12.0F, -4.0F, 1, 3, 8, 0.0F, false));
 		top.cubeList.add(new ModelBox(top, 20, 34, -3.0F, -12.0F, 3.0F, 6, 3, 1, 0.0F, false));
 		top.cubeList.add(new ModelBox(top, 32, 0, -4.0F, -12.0F, -4.0F, 1, 3, 8, 0.0F, false));
@@ -68,13 +66,11 @@ public class ModelFalcon9Dragon extends ModelBase {
 
 		hatch = new ModelRenderer(this);
 		hatch.setRotationPoint(0.0F, 24.0F, 0.0F);
-		// hatch.rotateAngleY = (float) Math.PI;
 		hatch.cubeList.add(new ModelBox(hatch, 26, 58, -1.0F, -14.0F, -4.0F, 2, 2, 1, 0.0F, false));
 		hatch.cubeList.add(new ModelBox(hatch, 18, 67, -1.0F, -15.0F, -3.0F, 2, 1, 1, 0.0F, false));
 
 		chair = new ModelRenderer(this);
 		chair.setRotationPoint(0.0F, 24.0F, 0.0F);
-		// chair.rotateAngleY = (float) Math.PI;
 		chair.cubeList.add(new ModelBox(chair, 8, 69, -0.5F, -11.0F, 1.0F, 1, 1, 2, 0.0F, false));
 		chair.cubeList.add(new ModelBox(chair, 20, 58, -1.0F, -12.5F, 0.75F, 2, 3, 1, 0.0F, false));
 		chair.cubeList.add(new ModelBox(chair, 20, 51, -1.0F, -10.5F, -1.25F, 2, 1, 2, 0.0F, false));

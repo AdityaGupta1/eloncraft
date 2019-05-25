@@ -28,12 +28,12 @@ public class ModelFalcon9Stage1 extends ModelBase {
         body = new ModelRenderer(this);
         body.setRotationPoint(0.0F, 24.0F, 0.0F);
         // middle
-        body.cubeList.add(new ModelBox(body, 0, 1, -4.0F, -126.0F + 28 + 16, -4.0F, 8, 125 - 28 - 16, 8, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 0, 1, -4.0F, -82.0f, -4.0F, 8, 81, 8, 0.0F, false));
         // sides
-        body.cubeList.add(new ModelBox(body, 52, 0, -2.0F, -126.0F + 28, -5.0F, 4, 125 - 28, 1, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 32, 0, -5.0F, -126.0F + 28, -2.0F, 1, 125 - 28, 4, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 62, 0, -2.0F, -126.0F + 28, 4.0F, 4, 125 - 28, 1, 0.0F, false));
-        body.cubeList.add(new ModelBox(body, 42, 0, 4.0F, -126.0F + 28, -2.0F, 1, 125 - 28, 4, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 52, 0, -2.0F, -98.0F, -5.0F, 4, 97, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 32, 0, -5.0F, -98.0F, -2.0F, 1, 97, 4, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 62, 0, -2.0F, -98.0F, 4.0F, 4, 97, 1, 0.0F, false));
+        body.cubeList.add(new ModelBox(body, 42, 0, 4.0F, -98.0F, -2.0F, 1, 97, 4, 0.0F, false));
         // walls
         body.cubeList.add(new ModelBox(body, 0, 101, 1.0F, -98.0F, -4.0F, 3, 16, 1, 0.0F, false));
         body.cubeList.add(new ModelBox(body, 0, 101, 1.0F, -98.0F, 3.0F, 3, 16, 1, 0.0F, false));
@@ -45,16 +45,16 @@ public class ModelFalcon9Stage1 extends ModelBase {
         body.cubeList.add(new ModelBox(body, 0, 101, -4.0F, -98.0F, -4.0F, 3, 16, 1, 0.0F, false));
 
         // legs
-        legs.add(createBox(0.0F, 24.0F - 1.0F, -5.0F, renderer -> new ModelBox(renderer, 72, 42, -1.5F, -19.0F + 1.0F, -5.5F + 5.0F, 3, 18, 1, 0.0F, false)));
-        legs.add(createBox(0.0F, 24.0F - 1.0F, 5.0F, renderer -> new ModelBox(renderer, 72, 61, -1.5F, -19.0F + 1.0F, 4.5F - 5.0F, 3, 18, 1, 0.0F, false)));
-        legs.add(createBox(5.0F, 24.0F - 1.0F, 0.0F, renderer -> new ModelBox(renderer, 72, 21, 4.5F - 5.0F, -19.0F + 1.0F, -1.5F, 1, 18, 3, 0.0F, false)));
-        legs.add(createBox(-5.0F, 24.0F - 1.0F, 0.0F, renderer -> new ModelBox(renderer, 72, 0, -5.5F + 5.0F, -19.0F + 1.0F, -1.5F, 1, 18, 3, 0.0F, false)));
+        legs.add(createBox(0.0F, 23.0f, -5.0F, renderer -> new ModelBox(renderer, 72, 42, -1.5F, -18.0f, -0.5f, 3, 18, 1, 0.0F, false)));
+        legs.add(createBox(0.0F, 23.0f, 5.0F, renderer -> new ModelBox(renderer, 72, 61, -1.5F, -18.0f, -0.5f, 3, 18, 1, 0.0F, false)));
+        legs.add(createBox(5.0F, 23.0f, 0.0F, renderer -> new ModelBox(renderer, 72, 21, -0.5F, -18.0f, -1.5F, 1, 18, 3, 0.0F, false)));
+        legs.add(createBox(-5.0F, 23.0f, 0.0F, renderer -> new ModelBox(renderer, 72, 0, -0.5F, -18.0f, -1.5F, 1, 18, 3, 0.0F, false)));
         // arm parts (3 each side)
         for (int i = 0; i < 3; i++) {
-            legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, -4.99F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, -5.5F + 5.0F, 1, 9, 1, 0.0F, false)));
-            legs.add(createBox(0.0F, 24.0F - 1.0F - 9.0F, 4.99F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -19.0F + 1.0F + 9.0F, 4.5F - 5.0F, 1, 9, 1, 0.0F, false)));
-            legs.add(createBox(4.99F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, 4.5F - 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
-            legs.add(createBox(-4.99F, 24.0F - 1.0F - 9.0F, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -5.5F + 5.0F, -19.0F + 1.0F + 9.0F, -0.5F, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(0.0F, 14.0f, -4.99F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -9.0f, -0.5f, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(0.0F, 14.0f, 4.99F, renderer -> new ModelBox(renderer, 123, 0, -0.5F, -9.0f, -0.5f, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(4.99F, 14.0f, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5f, -9.0f, -0.5F, 1, 9, 1, 0.0F, false)));
+            legs.add(createBox(-4.99F, 14.0f, 0.0F, renderer -> new ModelBox(renderer, 123, 0, -0.5f, -9.0f, -0.5F, 1, 9, 1, 0.0F, false)));
         }
         setLegs(0.0);
 
@@ -114,7 +114,7 @@ public class ModelFalcon9Stage1 extends ModelBase {
         legs.get(i + 2).rotationPointX = 4.99F + dx;
         legs.get(i + 3).rotationPointX = -4.99F - dx;
         for (int j = i; j < i + 4; j++) {
-            legs.get(j).rotationPointY = 24.0F - 1.0F - 9.0F + dy;
+            legs.get(j).rotationPointY = 14.0f + dy;
         }
     }
 
@@ -131,7 +131,7 @@ public class ModelFalcon9Stage1 extends ModelBase {
         if (legAngle > Math.PI / 2) {
             armAngle = (float) (Math.PI - armAngle);
         }
-        for (int i = 0; i < 3; i ++) {
+        for (int i = 0; i < 3; i++) {
             legs.get(4 + (4 * i)).rotateAngleX = armAngle;
             legs.get(5 + (4 * i)).rotateAngleX = -armAngle;
             legs.get(6 + (4 * i)).rotateAngleZ = armAngle;
@@ -139,7 +139,6 @@ public class ModelFalcon9Stage1 extends ModelBase {
         }
 
         double armAngleFromHorizontal = armAngle - Math.PI / 2;
-
         setLegSegments(MathUtil.limit(c - 9, 0, 9), armAngleFromHorizontal, 8);
         setLegSegments(9 + MathUtil.limit(c - 18, -9, 9), armAngleFromHorizontal, 12);
     }
