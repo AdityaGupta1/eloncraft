@@ -6,7 +6,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
-import org.sdoaj.util.MathUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,19 +105,7 @@ public class ModelFalcon9Stage1 extends ModelBase {
         GL11.glPopMatrix();
     }
 
-    private void setLegSegments(double extend, double armAngleFromHorizontal, int i) {
-        float dx = (float) (extend * Math.cos(armAngleFromHorizontal));
-        float dy = (float) (extend * Math.sin(armAngleFromHorizontal));
-        legs.get(i).rotationPointZ = -4.99F - dx;
-        legs.get(i + 1).rotationPointZ = 4.99F + dx;
-        legs.get(i + 2).rotationPointX = 4.99F + dx;
-        legs.get(i + 3).rotationPointX = -4.99F - dx;
-        for (int j = i; j < i + 4; j++) {
-            legs.get(j).rotationPointY = 14.0f + dy;
-        }
-    }
-
-    public void setLegs(double x) {
+    private void setLegs(double x) {
         x = MathHelper.clamp(x, 0.0, 1.0);
         float legAngle = (float) (Math.toRadians(113) * x);
         legs.get(0).rotateAngleX = legAngle;
@@ -139,11 +126,23 @@ public class ModelFalcon9Stage1 extends ModelBase {
         }
 
         double armAngleFromHorizontal = armAngle - Math.PI / 2;
-        setLegSegments(MathUtil.limit(c - 9, 0, 9), armAngleFromHorizontal, 8);
-        setLegSegments(9 + MathUtil.limit(c - 18, -9, 9), armAngleFromHorizontal, 12);
+        setLegSegments(MathHelper.clamp(c - 9, 0, 9), armAngleFromHorizontal, 8);
+        setLegSegments(9 + MathHelper.clamp(c - 18, -9, 9), armAngleFromHorizontal, 12);
     }
 
-    public void setGridFins(double x) {
+    private void setLegSegments(double extend, double armAngleFromHorizontal, int i) {
+        float dx = (float) (extend * Math.cos(armAngleFromHorizontal));
+        float dy = (float) (extend * Math.sin(armAngleFromHorizontal));
+        legs.get(i).rotationPointZ = -4.99F - dx;
+        legs.get(i + 1).rotationPointZ = 4.99F + dx;
+        legs.get(i + 2).rotationPointX = 4.99F + dx;
+        legs.get(i + 3).rotationPointX = -4.99F - dx;
+        for (int j = i; j < i + 4; j++) {
+            legs.get(j).rotationPointY = 14.0f + dy;
+        }
+    }
+
+    private void setGridFins(double x) {
         x = MathHelper.clamp(x, 0.0, 1.0);
         float angle = (float) (Math.PI / 2 * (1 - x));
         grid_fins.get(0).rotateAngleZ = angle;

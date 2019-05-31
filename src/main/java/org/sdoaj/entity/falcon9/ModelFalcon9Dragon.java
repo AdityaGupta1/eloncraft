@@ -4,11 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 public class ModelFalcon9Dragon extends ModelBase {
 	private final ModelRenderer trunk;
 	private final ModelRenderer top;
+	private final ModelRenderer pivot;
 	private final ModelRenderer hatch;
 	private final ModelRenderer chair;
 
@@ -64,10 +66,16 @@ public class ModelFalcon9Dragon extends ModelBase {
 		top.cubeList.add(new ModelBox(top, 32, 65, -1.0F, -16.0F, -3.0F, 2, 1, 1, 0.0F, false));
 		top.cubeList.add(new ModelBox(top, 20, 54, -1.0F, -18.0F, -1.0F, 2, 1, 2, 0.0F, false));
 
+		pivot = new ModelRenderer(this);
+		pivot.setRotationPoint(0.0F, 20.75F, -4.75F);
+		pivot.cubeList.add(new ModelBox(pivot, 51, 0, 1.99F, -0.25F - 0.25F, -0.5F, 0, 3, 1, 0.0F, false));
+		pivot.cubeList.add(new ModelBox(pivot, 51, 0, -1.99F, -0.25F - 0.25F, -0.5F, 0, 3, 1, 0.0F, false));
+
 		hatch = new ModelRenderer(this);
 		hatch.setRotationPoint(0.0F, 24.0F, 0.0F);
 		hatch.cubeList.add(new ModelBox(hatch, 26, 58, -1.0F, -14.0F, -4.0F, 2, 2, 1, 0.0F, false));
 		hatch.cubeList.add(new ModelBox(hatch, 18, 67, -1.0F, -15.0F, -3.0F, 2, 1, 1, 0.0F, false));
+		setHatch(0.0);
 
 		chair = new ModelRenderer(this);
 		chair.setRotationPoint(0.0F, 24.0F, 0.0F);
@@ -88,9 +96,38 @@ public class ModelFalcon9Dragon extends ModelBase {
 
 		trunk.render(scale);
 		top.render(scale);
+
+		GL11.glPushMatrix();
+		GL11.glScalef(0.5F, 0.5F, 0.5F);
+
+		pivot.render(scale);
+
+		GL11.glPopMatrix();
+
 		hatch.render(scale);
 		chair.render(scale);
 
 		GL11.glPopMatrix();
+	}
+
+	private final double minPivotAngle = Math.asin(0.625 / 1.25);
+	private final double maxPivotAngle = Math.PI - minPivotAngle;
+
+	private final double y0 = 1.25 * -Math.cos(minPivotAngle);
+	private final double z0 = 1.25 * Math.sin(minPivotAngle);
+
+	private void setHatch(double x) {
+		x = MathHelper.clamp(x, 0.0, 1.0);
+		float angle = (float) (minPivotAngle + ((maxPivotAngle - minPivotAngle) * x));
+		pivot.rotateAngleX = -angle;
+
+		double yf = 1.25 * -Math.cos(angle);
+		double zf = 1.25 * Math.sin(angle);
+		float dy = (float) (yf - y0);
+		float dz = (float) (zf - z0);
+		System.out.println(dy);
+		System.out.println(dz);
+		hatch.rotationPointY = 24.0F - dy;
+		hatch.rotationPointZ = 0.0F - dz;
 	}
 }
