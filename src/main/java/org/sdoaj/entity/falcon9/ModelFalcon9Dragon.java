@@ -125,8 +125,6 @@ public class ModelFalcon9Dragon extends ModelBase {
 		double zf = 1.25 * Math.sin(angle);
 		float dy = (float) (yf - y0);
 		float dz = (float) (zf - z0);
-		System.out.println(dy);
-		System.out.println(dz);
 		hatch.rotationPointY = 24.0F - dy;
 		hatch.rotationPointZ = 0.0F - dz;
 	}
