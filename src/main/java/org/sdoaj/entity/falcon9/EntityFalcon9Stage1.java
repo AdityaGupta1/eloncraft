@@ -12,16 +12,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
 import org.sdoaj.blocks.machines.ModFluidTank;
+import org.sdoaj.entity.EntityRocketPart;
 import org.sdoaj.fluids.ModFluids;
 import org.sdoaj.items.ModItems;
 
 import java.util.Arrays;
 
-public class EntityFalcon9Stage1 extends EntityLiving {
+public class EntityFalcon9Stage1 extends EntityRocketPart {
     public EntityFalcon9Stage1(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
-        this.setNoGravity(true);
     }
 
     private boolean hasCreatedOtherParts = false;
@@ -137,11 +137,6 @@ public class EntityFalcon9Stage1 extends EntityLiving {
 
         fuelTank.readFromNBT(compound);
         oxygenTank.readFromNBT(compound);
-    }
-
-    @Override
-    public void onDeath(DamageSource source) {
-        setDead(); // skip death animation - immediately disappear and drop item
     }
 
     @Override

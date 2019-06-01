@@ -86,6 +86,9 @@ public class ModelFalcon9Dragon extends ModelBase {
 
 	@Override
 	public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
+		EntityFalcon9Dragon dragon = (EntityFalcon9Dragon) entity;
+		setHatch(dragon.getHatchPosition());
+
 		float modelScale = ModelFalcon9Stage1.modelScale;
 
 		GL11.glPushMatrix();
@@ -110,8 +113,8 @@ public class ModelFalcon9Dragon extends ModelBase {
 		GL11.glPopMatrix();
 	}
 
-	private final double minPivotAngle = Math.asin(0.625 / 1.25);
-	private final double maxPivotAngle = Math.PI - minPivotAngle;
+	static final double minPivotAngle = Math.asin(0.625 / 1.25);
+	static final double maxPivotAngle = Math.PI - minPivotAngle;
 
 	private final double y0 = 1.25 * -Math.cos(minPivotAngle);
 	private final double z0 = 1.25 * Math.sin(minPivotAngle);

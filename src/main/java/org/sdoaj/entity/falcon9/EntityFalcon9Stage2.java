@@ -12,16 +12,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.blocks.launch.BlockLaunchpad;
 import org.sdoaj.blocks.machines.ModFluidTank;
+import org.sdoaj.entity.EntityRocketPart;
 import org.sdoaj.fluids.ModFluids;
 import org.sdoaj.items.ModItems;
 
 import java.util.Arrays;
 
-public class EntityFalcon9Stage2 extends EntityLiving {
+public class EntityFalcon9Stage2 extends EntityRocketPart {
     EntityFalcon9Stage2(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 32.0F / 16.0F * ModelFalcon9Stage1.modelScale);
-        this.setNoGravity(true);
     }
 
     @Override
@@ -32,11 +32,6 @@ public class EntityFalcon9Stage2 extends EntityLiving {
         double dx = dh * -Math.sin(Math.toRadians(this.rotationYaw));
         double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
         passenger.setLocationAndAngles(this.posX + dx, this.posY + dy, this.posZ + dz, this.rotationYaw, this.rotationPitch);
-    }
-
-    @Override
-    public void onDeath(DamageSource source) {
-        setDead(); // skip death animation - immediately disappear and drop item
     }
 
     @Override
