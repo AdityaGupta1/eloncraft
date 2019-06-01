@@ -11,12 +11,16 @@ public class TimedTask {
     private double timeLeft;
     private final DoubleConsumer consumer;
 
-    TimedTask(double from, double to, double time, DoubleConsumer consumer) {
+    public TimedTask(double from, double to, double time, DoubleConsumer consumer) {
         this.current = from;
         this.to = to;
         this.timeLeft = time;
         this.speed = (to - from) / time * dt;
         this.consumer = consumer;
+    }
+
+    public TimedTask(double from, double current, double to, double time, DoubleConsumer consumer) {
+        this(current, to, (to - current) / (to - from) * time, consumer);
     }
 
     void update() {
@@ -31,11 +35,20 @@ public class TimedTask {
         consumer.accept(current);
     }
 
+    public double getTarget() {
+        return to;
+    }
+
     public double getTimeLeft() {
         return timeLeft;
     }
 
     public boolean isDone() {
         return timeLeft == 0;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("current: %s, to: %s, speed: %s, time left: %s", current, to, speed, timeLeft);
     }
 }

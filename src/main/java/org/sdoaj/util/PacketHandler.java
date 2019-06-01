@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import org.sdoaj.blocks.tileentities.MessageButtonPressed;
 import org.sdoaj.eloncraft.Main;
+import org.sdoaj.entity.MessageSetValueToServer;
 
 public class PacketHandler {
     private static final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(Main.MODID);
@@ -13,6 +14,7 @@ public class PacketHandler {
 
     static {
         network.registerMessage(MessageButtonPressed.Handler.class, MessageButtonPressed.class, packetId++, Side.SERVER);
+        network.registerMessage(MessageSetValueToServer.Handler.class, MessageSetValueToServer.class, packetId++, Side.SERVER);
     }
 
     public static void sendToServer(IMessage message) {

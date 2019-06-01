@@ -20,4 +20,9 @@ public abstract class EntityRocketPart extends EntityLiving {
     public void onDeath(DamageSource source) {
         setDead(); // skip death animation - immediately disappear and drop item
     }
+
+    @Override
+    protected boolean canDespawn() {
+        return false;
+    }
 }

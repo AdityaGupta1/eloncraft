@@ -1,7 +1,6 @@
 package org.sdoaj.entity.falcon9;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -160,10 +159,5 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
     @Override
     protected SoundEvent getDeathSound() {
         return getHurtSound(null);
-    }
-
-    @Override
-    protected boolean canDespawn() {
-        return false;
     }
 }

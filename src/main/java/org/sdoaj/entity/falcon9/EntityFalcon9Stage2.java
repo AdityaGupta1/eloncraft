@@ -50,9 +50,4 @@ public class EntityFalcon9Stage2 extends EntityRocketPart {
     protected SoundEvent getDeathSound() {
         return getHurtSound(null);
     }
-
-    @Override
-    protected boolean canDespawn() {
-        return false;
-    }
 }
