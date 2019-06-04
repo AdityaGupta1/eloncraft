@@ -43,8 +43,10 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
 
     private void loadTaskFromData(double pos, double target) {
         hatchPosition = pos;
-        hatchTask = new TimedTask(1.0 - target, hatchPosition, target, 2.0, x -> hatchPosition = x);
-        executor.submit(hatchTask);
+        if (!Double.isNaN(target)) {
+            hatchTask = new TimedTask(1.0 - target, hatchPosition, target, 2.0, x -> hatchPosition = x);
+            executor.submit(hatchTask);
+        }
     }
 
     @Override
@@ -52,21 +54,20 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
         super.writeEntityToNBT(compound);
 
         compound.setDouble("HatchPos", hatchPosition);
-        if (hatchTask != null) {
-            compound.setDouble("HatchTarget", hatchTask.getTarget());
-        }
+        compound.setDouble("HatchTarget", hatchTask == null ? Double.NaN : hatchTask.getTarget());
     }
 
-    private double queuedHatchPosition;
-    private double queuedHatchTarget;
+    private double queuedHatchPosition = Double.NaN;
+    private double queuedHatchTarget = Double.NaN;
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
 
         queuedHatchPosition = compound.getDouble("HatchPos");
-        if (compound.hasKey("HatchTarget")) {
-            queuedHatchTarget = compound.getDouble("HatchTarget");
+        double target = compound.getDouble("HatchTarget");
+        if (!Double.isNaN(target)) {
+            queuedHatchTarget = target;
         }
     }
 
@@ -87,6 +88,8 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
 
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+        System.out.println("interacting");
+
         if (player.isSneaking()) {
             return false;
         } else {

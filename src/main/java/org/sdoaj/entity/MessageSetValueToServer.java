@@ -43,7 +43,9 @@ public class MessageSetValueToServer implements IMessage {
         @Override
         public IMessage onMessage(MessageSetValueToServer message, MessageContext context) {
             Entity entity = context.getServerHandler().player.world.getEntityByID(message.entityId);
-            ((ReceivesSetValueMessages) entity).receive(message.name, message.value);
+            if (entity != null) {
+                ((ReceivesSetValueMessages) entity).receive(message.name, message.value);
+            }
             return null;
         }
     }
