@@ -331,7 +331,48 @@ public final class WorkbenchRecipes {
 
 
 
+        addRecipe(new WorkbenchRecipe(new String[] {
+                "iiiii",
+                "i   i",
+                " i i ",
+                "i   i",
+                "i   i",
+                "i   i",
+                " i i ",
+                "i   i",
+                "i   i"
+        }, new ItemStack(ModItems.SUPERDRACO_ENGINE, 2),
+                new RecipeKey('i', ModItems.INCONEL_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[] {
+                " ttt ",
+                "tt tt",
+                "t   t",
+                "tt tt",
+                " ttt "
+        }, new ItemStack(ModItems.FUEL_TANK_3),
+                new RecipeKey('t', ModItems.TITANIUM_PLATE)));
+
+        addRecipe(new WorkbenchRecipe(new String[] {
+                "  ss  ",
+                " gssg ",
+                " gssg ",
+                "eessee",
+                "eessee",
+                "ssssss",
+                "ssssss",
+                "ssssss",
+                "ssssss",
+                "ssssss",
+        }, new ItemStack(ModItems.FALCON9_DRAGON),
+                new RecipeKey('s', ModItems.HEAT_SHIELD),
+                new RecipeKey('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 15)),
+                new RecipeKey('e', ModItems.SUPERDRACO_ENGINE)));
+
+
+
         addRecipe(new WorkbenchRecipe(new String[]{
+                " d ",
                 " s ",
                 " S ",
                 " e ",
@@ -339,7 +380,7 @@ public final class WorkbenchRecipes {
                 " t ",
                 "lTl",
                 "lwl"
-        }, new ItemStack(ModItems.FALCON9_BASE),
+        }, new ItemStack(ModItems.FALCON9),
                 new RecipeKey('w', ModItems.OCTAWEB),
                 new RecipeKey('l', ModItems.LANDING_LEG),
                 new RecipeKey('T', ModItems.FUEL_TANK_RP1_1),
@@ -347,7 +388,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('i', ModItems.INTERSTAGE),
                 new RecipeKey('e', ModItems.MERLIN_ENGINE),
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
-                new RecipeKey('s', ModItems.FUEL_TANK_LOX_2)));
+                new RecipeKey('s', ModItems.FUEL_TANK_LOX_2),
+                new RecipeKey('d', ModItems.FALCON9_DRAGON)));
 
 
 

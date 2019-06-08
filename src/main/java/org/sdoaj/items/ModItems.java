@@ -85,6 +85,7 @@ public class ModItems {
     public static ItemBasic UNTREATED_CARBON_FIBERS;
     public static ItemBasic CARBON_FIBERS;
     public static ItemBasic CARBON_FIBER_PLATE;
+    public static ItemBasic HEAT_SHIELD;
 
     // rocket parts
 
@@ -103,7 +104,11 @@ public class ModItems {
     public static ItemBasic USA_FLAG;
     public static ItemBasic USA_FLAG_EPIC;
 
-    public static ItemBasic FALCON9_BASE;
+    public static ItemBasic SUPERDRACO_ENGINE;
+    public static ItemBasic FUEL_TANK_3;
+    public static ItemBasic FALCON9_DRAGON;
+
+    public static ItemBasic FALCON9;
 
     // tools/weapons
 
@@ -178,6 +183,9 @@ public class ModItems {
         CARBON_FIBERS.setGlows();
         CARBON_FIBER_PLATE = new ItemBasic("carbon_fiber_plate");
         CARBON_FIBER_PLATE.setGlows();
+        HEAT_SHIELD = new ItemBasic("heat_shield");
+        HEAT_SHIELD.addLore("Magical heat shielding made from void-resistant plants and pulverized hellfire. What more could you ask for?");
+        HEAT_SHIELD.setGlows();
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
         MERLIN_ENGINE.addLore("\"Merlin's thrust-to-weight ratio exceeds 150, making the Merlin the most efficient booster engine ever built, while still maintaining the structural and thermal safety margins needed to carry astronauts.\"");
@@ -217,9 +225,19 @@ public class ModItems {
         USA_FLAG_EPIC.setMaxStackSize(1);
         USA_FLAG_EPIC.setGlows();
 
-        FALCON9_BASE = new ItemBasic("falcon9_base");
-        FALCON9_BASE.addLore("One small step for a Steve, one giant leap for mankind.");
-        FALCON9_BASE.setMaxStackSize(1);
+        SUPERDRACO_ENGINE = new ItemBasic("superdraco_engine");
+        SUPERDRACO_ENGINE.addLore("3D printed engines made of Inconel and used to provide propulsion for the Crew Dragon.");
+        SUPERDRACO_ENGINE.setMaxStackSize(8);
+        FUEL_TANK_3 = new ItemBasic("fuel_tank_3");
+        FUEL_TANK_3.addLore("SuperDraco engines don't actually use RP-1 and LOX, but making fuel is boring enough as it is.");
+        FUEL_TANK_3.setMaxStackSize(2);
+        FALCON9_DRAGON = new ItemBasic("falcon9_dragon");
+        FALCON9_DRAGON.addLore("\"Dragon is a free-flying spacecraft designed to deliver both cargo and people to orbiting destinations.\"");
+        FALCON9_DRAGON.setMaxStackSize(1);
+
+        FALCON9 = new ItemBasic("falcon9");
+        FALCON9.addLore("One small step for a Steve, one giant leap for mankind.");
+        FALCON9.setMaxStackSize(1);
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
@@ -230,7 +248,8 @@ public class ModItems {
         ModCreativeTabs.addAll(ModCreativeTabs.SPACEX, INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
-                GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2);
+                GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2, SUPERDRACO_ENGINE,
+                FUEL_TANK_3);
 
         ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
     }

@@ -219,7 +219,7 @@ public class BlockLaunchpad extends BlockNotFull {
             return onBlockActivated(world, center.get(), state, player, hand, facing, hitX, hitY, hitZ);
         }
 
-        if (world.isRemote || player.getHeldItem(hand).getItem() != ModItems.FALCON9_BASE) {
+        if (world.isRemote || player.getHeldItem(hand).getItem() != ModItems.FALCON9) {
             return false;
         }
 

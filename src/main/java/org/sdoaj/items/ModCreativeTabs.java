@@ -23,7 +23,7 @@ public class ModCreativeTabs {
     public static final CreativeTabs ELONCRAFT = createTab("eloncraft",
             () -> new ItemStack(ModBlocks.COMPONENTS));
     public static final CreativeTabs SPACEX = createTab("spacex",
-            () -> new ItemStack(ModItems.FALCON9_BASE));
+            () -> new ItemStack(ModItems.FALCON9));
     public static final CreativeTabs TESLA = createTab("tesla",
             () -> new ItemStack(Items.MINECART));
     public static final CreativeTabs BORING_COMPANY = createTab("boring_company",

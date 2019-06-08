@@ -62,5 +62,14 @@ public final class AlloyFurnaceRecipes {
                 new ItemStack(ModItems.HAFNIUM_INGOT, 1),
                 new ItemStack(ModItems.TITANIUM_NUGGET, 1)
         }, new ItemStack(ModItems.ALUMINUM_7XXX_INGOT, 9)));
+
+
+
+        addRecipe(new AlloyFurnaceRecipe(new ItemStack[]{
+                new ItemStack(Blocks.OBSIDIAN, 3),
+                new ItemStack(Blocks.QUARTZ_BLOCK, 3),
+                new ItemStack(Items.BLAZE_POWDER, 2),
+                new ItemStack(Items.CHORUS_FRUIT_POPPED, 2)
+        }, new ItemStack(ModItems.HEAT_SHIELD, 7)));
     }
 }

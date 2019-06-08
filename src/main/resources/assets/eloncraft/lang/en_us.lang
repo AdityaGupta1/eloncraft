@@ -77,6 +77,7 @@ item.crushed_coal.name=Crushed Coal
 item.untreated_carbon_fibers.name=Untreated Carbon Fibers
 item.carbon_fibers.name=§8Carbon Fibers
 item.carbon_fiber_plate.name=§8Carbon Fiber Plate
+item.heat_shield.name=§dHeat Shield
 
 # ====================
 # rocket parts
@@ -97,7 +98,11 @@ item.fuel_tank_rp1_2.name=§lStage 2 RP-1 Tank
 item.usa_flag.name=§lAmerican Flag
 item.usa_flag_epic.name=§4§lEpic §f§lAmerican §1§lFlag
 
-item.falcon9_base.name=§lFalcon 9
+item.superdraco_engine.name=§lSuperDraco Engine
+item.fuel_tank_3.name=§lDragon Fuel Tank
+item.falcon9_dragon.name=§lDragon
+
+item.falcon9.name=§lFalcon 9
 
 # ====================
 # tools/weapons

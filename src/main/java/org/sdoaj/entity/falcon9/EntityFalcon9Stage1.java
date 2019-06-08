@@ -141,7 +141,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
     @Override
     public void setDead() {
         if (!world.isRemote) {
-            this.dropItem(ModItems.FALCON9_BASE, 1);
+            this.dropItem(ModItems.FALCON9, 1);
         }
 
         BlockLaunchpad.removeRocket(launchpad);
