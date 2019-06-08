@@ -10,7 +10,7 @@ public class ModelFalcon9Stage2 extends ModelBase {
 	private final ModelRenderer engine;
 	private final ModelRenderer body;
 
-	public ModelFalcon9Stage2() {
+	ModelFalcon9Stage2() {
 		textureWidth = 128;
 		textureHeight = 128;
 

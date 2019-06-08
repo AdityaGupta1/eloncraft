@@ -14,7 +14,7 @@ public class ModelFalcon9Dragon extends ModelBase {
 	private final ModelRenderer hatch;
 	private final ModelRenderer chair;
 
-	public ModelFalcon9Dragon() {
+	ModelFalcon9Dragon() {
 		textureWidth = 80;
 		textureHeight = 80;
 
@@ -113,8 +113,8 @@ public class ModelFalcon9Dragon extends ModelBase {
 		GL11.glPopMatrix();
 	}
 
-	static final double minPivotAngle = Math.asin(0.625 / 1.25);
-	static final double maxPivotAngle = Math.PI - minPivotAngle;
+	private static final double minPivotAngle = Math.asin(0.625 / 1.25);
+	private static final double maxPivotAngle = Math.PI - minPivotAngle;
 
 	private final double y0 = 1.25 * -Math.cos(minPivotAngle);
 	private final double z0 = 1.25 * Math.sin(minPivotAngle);

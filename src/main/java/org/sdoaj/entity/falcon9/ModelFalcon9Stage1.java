@@ -20,7 +20,7 @@ public class ModelFalcon9Stage1 extends ModelBase {
 
     static final float modelScale = 56.9f / (127.0f / 16.0f); // first + second stages are 56.9 meters (blocks) tall in total
 
-    public ModelFalcon9Stage1() {
+    ModelFalcon9Stage1() {
         textureWidth = 144;
         textureHeight = 144;
 

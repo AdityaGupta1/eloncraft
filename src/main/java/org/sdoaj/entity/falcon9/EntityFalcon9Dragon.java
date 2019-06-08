@@ -76,7 +76,7 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
     }
 
     private void loadTaskFromData(double pos, double target) {
-        hatchPosition = pos;
+        hatchPosition = Double.isNaN(pos) ? 0.0 : pos;
         if (!Double.isNaN(target)) {
             hatchTask = new TimedTask(1.0 - target, hatchPosition, target, 2.0, x -> hatchPosition = x);
             executor.submit(hatchTask);
