@@ -1,6 +1,7 @@
 package org.sdoaj.entity.falcon9;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -8,10 +9,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityMountEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import org.sdoaj.eloncraft.Main;
 import org.sdoaj.entity.*;
 import org.sdoaj.util.PacketHandler;
 
+@Mod.EventBusSubscriber(modid = Main.MODID)
 public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSetValueMessages, IEntityAdditionalSpawnData {
     private final TimedTaskExecutor executor = new TimedTaskExecutor();
     private TimedTask hatchTask;
@@ -38,6 +44,34 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
 
         if (hatchTask != null && hatchTask.isDone()) {
             hatchTask = null;
+        }
+
+        if (!getPassengers().isEmpty()) {
+            EntityPlayer rider = (EntityPlayer) getPassengers().get(0);
+            if (rider.isSneaking() && hatchPosition == 1.0) {
+                rider.dismountRidingEntity();
+            }
+        }
+    }
+
+    @Override
+    protected void removePassenger(Entity passenger) {
+        super.removePassenger(passenger);
+        passenger.setPosition(this.posX, this.posY + 7, this.posZ - 4);
+    }
+
+    @SubscribeEvent
+    public static void preventDismountWhenHatchClosed(EntityMountEvent event) {
+        if (!event.isDismounting()) {
+            return;
+        }
+
+        if (!(event.getEntityBeingMounted() instanceof EntityFalcon9Dragon)) {
+            return;
+        }
+
+        if (((EntityFalcon9Dragon) event.getEntityBeingMounted()).hatchPosition != 1.0) {
+            event.setCanceled(true);
         }
     }
 
@@ -86,31 +120,37 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
         return true;
     }
 
+    private void moveHatchToggle() {
+        hatchTask = new TimedTask(hatchPosition, 1.0 - hatchPosition, 2.0, x -> hatchPosition = x);
+        executor.submit(hatchTask);
+    }
+
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
-        System.out.println("interacting");
-
-        if (player.isSneaking()) {
-            return false;
-        } else {
-            boolean submit = true;
-
-            if (hatchTask == null) {
-                if (hatchPosition == 0.0 || hatchPosition == 1.0) {
-                    hatchTask = new TimedTask(hatchPosition, 1.0 - hatchPosition, 2.0, x -> hatchPosition = x);
+        if (hatchTask == null) {
+            if (hatchPosition == 0.0) {
+                moveHatchToggle();
+            } else if (hatchPosition == 1.0) {
+                if (player.isSneaking()) {
+                    moveHatchToggle();
                 } else {
-                    submit = false;
+                    if (getPassengers().isEmpty()) {
+                        player.startRiding(this);
+                    } else {
+                        moveHatchToggle();
+                    }
                 }
             } else {
-                submit = false;
+                return false;
             }
-
-            if (submit) {
-                executor.submit(hatchTask);
-            }
-
-            return submit;
         }
+
+        return true;
+    }
+
+    @Override
+    public double getMountedYOffset() {
+        return super.getMountedYOffset() - 1.2;
     }
 
     double getHatchPosition() {
