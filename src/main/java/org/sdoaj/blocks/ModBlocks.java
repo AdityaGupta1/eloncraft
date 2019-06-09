@@ -3,6 +3,7 @@ package org.sdoaj.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -60,7 +61,11 @@ public class ModBlocks {
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
-                new Drop(new ItemStack(ModItems.BROKEN_STEEL_GEAR), new DropRange(2, 3), 1)))
+                new Drop(ModItems.BROKEN_STEEL_GEAR, 2, 3, 1),
+                new Drop(ModItems.DAMAGED_AIRCRAFT_PLATING, 0, 1, 0.5),
+                new Drop(ModItems.COPPER_NUGGET, 3, 5, 2),
+                new Drop(ModItems.LITHIUM_NUGGET, 1, 3, 1.5),
+                new Drop(Items.IRON_NUGGET, 2, 4, 2)))
                 .setHardness(5.0F).setResistance(10.0F);
         COMPONENTS.setHarvestLevel("pickaxe", 2);
 

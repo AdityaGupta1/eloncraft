@@ -75,6 +75,7 @@ public class ModItems {
     // other metal items
 
     public static ItemBasic BROKEN_STEEL_GEAR;
+    public static ItemBasic DAMAGED_AIRCRAFT_PLATING;
 
     public static ItemBasic TITANIUM_FAN;
     public static ItemBasic FUEL_PIPE;
@@ -171,6 +172,7 @@ public class ModItems {
         NIOBIUM_C103_PLATE.setGlows();
 
         BROKEN_STEEL_GEAR = new ItemBasic("broken_steel_gear");
+        DAMAGED_AIRCRAFT_PLATING = new ItemBasic("damaged_aircraft_plating");
 
         TITANIUM_FAN = new ItemBasic("titanium_fan");
         FUEL_PIPE = new ItemBasic("fuel_pipe");
@@ -249,7 +251,7 @@ public class ModItems {
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
                 GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2, SUPERDRACO_ENGINE,
-                FUEL_TANK_3);
+                FUEL_TANK_3, FALCON9_DRAGON);
 
         ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
     }

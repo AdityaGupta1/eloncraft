@@ -65,6 +65,7 @@ item.niobium_c103_plate.name=§dNiobium C-103 Plate
 # ====================
 
 item.broken_steel_gear.name=Broken Steel Gear
+item.damaged_aircraft_plating.name=Damaged Aircraft Plating
 
 item.titanium_fan.name=Titanium Impeller
 item.fuel_pipe.name=Fuel Pipe
@@ -120,7 +121,7 @@ item.flamethrower.name=Not a Flamethrower
 # ores
 # ====================
 
-tile.components.name=Components
+tile.components.name=Buried Components
 
 tile.aluminum_ore.name=Aluminum Ore
 tile.titanium_ore.name=Titanium Ore

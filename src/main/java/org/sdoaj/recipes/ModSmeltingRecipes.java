@@ -21,6 +21,7 @@ public class ModSmeltingRecipes {
         addSmelting(ModBlocks.ZINC_ORE, ModItems.ZINC_INGOT);
 
         addSmelting(ModItems.BROKEN_STEEL_GEAR, ModItems.STEEL_INGOT);
+        addSmelting(ModItems.DAMAGED_AIRCRAFT_PLATING, ModItems.ALUMINUM_INGOT);
 
         addSmelting(ModItems.UNTREATED_CARBON_FIBERS, ModItems.CARBON_FIBERS);
     }

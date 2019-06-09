@@ -12,19 +12,11 @@ public class DropRange {
         this.max = max + 1;
     }
 
-    public double getMin() {
-        return min;
-    }
-
-    public double getMax() {
-        return max;
-    }
-
-    public double getRandom() {
+    public int getRandom() {
         return getRandom(0);
     }
 
-    public double getRandom(double add) {
-        return Random.nextDouble(min, max + add);
+    public int getRandom(double add) {
+        return (int) Random.nextDouble(min, max + add);
     }
 }
