@@ -56,9 +56,22 @@ public abstract class EntityRocketPart extends EntityLiving {
         damageEntity(source, amount, true);
     }
 
+    private void setDead(boolean initialDead) {
+        if (initialDead) {
+            getRocket().forEach(part -> part.setDead(false));
+        } else {
+            super.setDead();
+        }
+    }
+
+    @Override
+    public void setDead() {
+        setDead(true);
+    }
+
     @Override
     public void onDeath(DamageSource source) {
-        getRocket().forEach(Entity::setDead);
+        setDead();
     }
 
     @Override
