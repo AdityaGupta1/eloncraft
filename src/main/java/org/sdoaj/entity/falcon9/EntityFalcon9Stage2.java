@@ -35,13 +35,6 @@ public class EntityFalcon9Stage2 extends EntityRocketPart {
     }
 
     @Override
-    public void setDead() {
-        getPassengers().forEach(Entity::setDead);
-
-        super.setDead();
-    }
-
-    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return new SoundEvent(new ResourceLocation("block.anvil.land"));
     }

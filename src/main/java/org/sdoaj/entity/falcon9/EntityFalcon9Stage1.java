@@ -146,8 +146,6 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
         BlockLaunchpad.removeRocket(launchpad);
 
-        getPassengers().forEach(Entity::setDead);
-
         super.setDead();
     }
 
