@@ -51,22 +51,25 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     private BlockPos launchpad = null;
     private Vec3d launchpadTopPos = null;
+    private float launchpadRotation = Float.NaN;
 
-    public void setLaunchpad(BlockPos pos) {
+    public void setLaunchpad(BlockPos pos, float rotation) {
         launchpad = pos;
         launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
+        launchpadRotation = rotation;
         useLaunchpadTopPos();
     }
 
     private void useLaunchpadTopPos() {
         if (launchpadTopPos != null) {
-            setLocationAndAngles(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z, 0f, 0f);
+            setLocationAndAngles(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z, launchpadRotation, 0f);
         }
     }
 
-    public void removeLaunchpad() {
+    private void removeLaunchpad() {
         launchpad = null;
         launchpadTopPos = null;
+        launchpadRotation = Float.NaN;
     }
 
     @Override
@@ -104,7 +107,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
 
-        compound.setString("Launchpad", launchpad == null ? "null" : launchpad.getX() + "," + launchpad.getY() + "," + launchpad.getZ());
+        compound.setString("Launchpad", launchpad == null ? "null" : launchpad.getX() + "," + launchpad.getY() + "," + launchpad.getZ() + "," + launchpadRotation);
 
         compound.setBoolean("HasCreatedOtherParts", hasCreatedOtherParts);
 
@@ -122,8 +125,9 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             if (pos.equals("null")) {
                 removeLaunchpad();
             } else {
-                int[] posArray = Arrays.stream(pos.split(",")).mapToInt(Integer::parseInt).toArray();
-                setLaunchpad(new BlockPos(posArray[0], posArray[1], posArray[2]));
+                String[] split = pos.split(",");
+                int[] posArray = Arrays.stream(split).limit(3).mapToInt(Integer::parseInt).toArray();
+                setLaunchpad(new BlockPos(posArray[0], posArray[1], posArray[2]), Float.parseFloat(split[3]));
                 BlockLaunchpad.addRocket(this, launchpad);
             }
         }
