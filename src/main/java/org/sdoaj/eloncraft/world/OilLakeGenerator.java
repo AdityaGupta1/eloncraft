@@ -13,11 +13,17 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class OilLakeGenerator {
-    private static final int oilLakeChance = 120;
+    private static final int oilLakeChance = 100; // not a percentage chance
 
     // mostly copied from lava lake generation in ChunkGeneratorOverworld
     @SubscribeEvent
     public static void generateOilLakes(PopulateChunkEvent event) {
+        World world = event.getWorld();
+
+        if (world.provider.getDimension() != 0) {
+            return;
+        }
+
         Random random = event.getRand();
 
         if (random.nextInt(oilLakeChance / 10) != 0) {
@@ -29,8 +35,6 @@ public class OilLakeGenerator {
         int x = random.nextInt(16) + 8;
         int y = random.nextInt(random.nextInt(248) + 8);
         int z = random.nextInt(16) + 8;
-
-        World world = event.getWorld();
 
         if (y < world.getSeaLevel() || random.nextInt(oilLakeChance / 8) == 0) {
             (new WorldGenLakes(ModFluids.getBlockFromFluid(ModFluids.OIL))).generate(world, random, pos.add(x, y, z));
