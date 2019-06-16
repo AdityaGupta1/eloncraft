@@ -7,17 +7,14 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import org.sdoaj.eloncraft.items.util.Drops;
+import org.sdoaj.eloncraft.util.StringUtil;
 
 public class BlockOre extends BlockBasic {
     private final Drops drops;
 
-    public BlockOre(String name, Material material, Drops drops) {
+    BlockOre(String name, Material material, Drops drops) {
         super(name, material);
         this.drops = drops;
-    }
-
-    public BlockOre(String name, Material material) {
-        this(name, material, null);
     }
 
     @Override
@@ -28,5 +25,16 @@ public class BlockOre extends BlockBasic {
         }
 
         drops.addAll(this.drops.getDrops(fortune));
+    }
+
+    static BlockOre newStoneOre(String material, Drops drops, int harvestLevel, float hardness, float resistance) {
+        BlockOre ore = new BlockOre(material + "_ore", Material.ROCK, drops);
+        ore.setHardness(hardness).setResistance(resistance).setHarvestLevel("pickaxe", harvestLevel);
+        ore.setOreDictName("ore" + StringUtil.capitalizeFirstLetter(material));
+        return ore;
+    }
+
+    static BlockOre newStoneOre(String material, int harvestLevel, float hardness, float resistance) {
+        return newStoneOre(material, null, harvestLevel, hardness, resistance);
     }
 }

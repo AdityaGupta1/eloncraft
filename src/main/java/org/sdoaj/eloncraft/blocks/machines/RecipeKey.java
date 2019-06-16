@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.oredict.OreIngredient;
 
 /**
  * maps a one-character key to an ItemStack - good for crafting table recipes
@@ -27,6 +28,10 @@ public class RecipeKey {
 
     public RecipeKey(char key, ItemStack... stacks) {
         this(key, Ingredient.fromStacks(stacks));
+    }
+
+    public RecipeKey(char key, String oreDictEntry) {
+        this(key, new OreIngredient(oreDictEntry));
     }
 
     public boolean matches(char key) {

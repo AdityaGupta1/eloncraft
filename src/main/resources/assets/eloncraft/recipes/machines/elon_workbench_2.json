@@ -10,7 +10,8 @@
       "item": "minecraft:diamond"
     },
     "t": {
-      "item": "eloncraft:titanium_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotTitanium"
     },
     "c": {
       "item": "minecraft:crafting_table"

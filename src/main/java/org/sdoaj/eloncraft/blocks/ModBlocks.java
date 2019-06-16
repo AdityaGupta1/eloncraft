@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.eloncraft.blocks.launch.BlockLaunchpad;
 import org.sdoaj.eloncraft.blocks.launch.controller.BlockLaunchController;
@@ -27,11 +28,13 @@ import org.sdoaj.eloncraft.items.util.Drop;
 import org.sdoaj.eloncraft.items.util.Drops;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModBlocks {
     private static final List<Block> blocks = new ArrayList<>();
+    private static final HashMap<Block, String> oreDictEntries = new HashMap<>();
 
     public static Block COMPONENTS;
 
@@ -67,26 +70,16 @@ public class ModBlocks {
                 .setHardness(5.0F).setResistance(10.0F);
         COMPONENTS.setHarvestLevel("pickaxe", 2);
 
-        ALUMINUM_ORE = new BlockOreStone("aluminum_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
-        TITANIUM_ORE = new BlockOreStone("titanium_ore").setHarvestLevel(3).setHardness(7.0F)
-                .setResistance(20.0F);
-        LITHIUM_ORE = new BlockOreStone("lithium_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
-        NICKEL_ORE = new BlockOreStone("nickel_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
-        CHROMIUM_ORE = new BlockOreStone("chromium_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
-        COPPER_ORE = new BlockOreStone("copper_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
-        NIOBIUM_ORE = new BlockOreStone("niobium_ore").setHarvestLevel(3).setHardness(5.0F)
-                .setResistance(8.0F);
-        HAFNIUM_ORE = new BlockOreStone("hafnium_ore").setHarvestLevel(3).setHardness(5.0F)
-                .setResistance(8.0F);
-        MAGNESIUM_ORE = new BlockOreStone("magnesium_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
-        ZINC_ORE = new BlockOreStone("zinc_ore").setHarvestLevel(2).setHardness(3.0F)
-                .setResistance(5.0F);
+        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3, 5);
+        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 7, 20);
+        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3, 5);
+        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5, 10);
+        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3, 5);
+        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3, 5);
+        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4, 8);
+        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4, 8);
+        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3, 5);
+        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3, 5);
 
         ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON);
         ELON_WORKBENCH.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
@@ -122,6 +115,10 @@ public class ModBlocks {
         blocks.add(block);
     }
 
+    static void setOreDictName(Block block, String name) {
+        oreDictEntries.put(block, name);
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -140,6 +137,8 @@ public class ModBlocks {
 
             registry.register(itemBlock.setRegistryName(block.getRegistryName()));
         });
+
+        oreDictEntries.keySet().forEach(block -> OreDictionary.registerOre(oreDictEntries.get(block), block));
     }
 
     private static void registerRender(Item item) {

@@ -9,15 +9,20 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.eloncraft.Eloncraft;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import static org.sdoaj.eloncraft.items.ItemBasic.*;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModItems {
     private static final List<ItemBasic> items = new ArrayList<>();
+    private static final HashMap<Item, String> oreDictEntries = new HashMap<>();
 
     // metals from ores
 
@@ -116,38 +121,38 @@ public class ModItems {
     public static Item FLAMETHROWER;
 
     public static void init() {
-        ALUMINUM_INGOT = new ItemBasic("aluminum_ingot");
-        TITANIUM_INGOT = new ItemBasic("titanium_ingot");
-        LITHIUM_INGOT = new ItemBasic("lithium_ingot");
-        NICKEL_INGOT = new ItemBasic("nickel_ingot");
-        CHROMIUM_INGOT = new ItemBasic("chromium_ingot");
-        COPPER_INGOT = new ItemBasic("copper_ingot");
-        NIOBIUM_INGOT = new ItemBasic("niobium_ingot");
-        HAFNIUM_INGOT = new ItemBasic("hafnium_ingot");
-        MAGNESIUM_INGOT = new ItemBasic("magnesium_ingot");
-        ZINC_INGOT = new ItemBasic("zinc_ingot");
+        ALUMINUM_INGOT = newIngot("aluminum");
+        TITANIUM_INGOT = newIngot("titanium");
+        LITHIUM_INGOT = newIngot("lithium");
+        NICKEL_INGOT = newIngot("nickel");
+        CHROMIUM_INGOT = newIngot("chromium");
+        COPPER_INGOT = newIngot("copper");
+        NIOBIUM_INGOT = newIngot("niobium");
+        HAFNIUM_INGOT = newIngot("hafnium");
+        MAGNESIUM_INGOT = newIngot("magnesium");
+        ZINC_INGOT = newIngot("zinc");
 
-        TITANIUM_NUGGET = new ItemBasic("titanium_nugget");
-        LITHIUM_NUGGET = new ItemBasic("lithium_nugget");
-        COPPER_NUGGET = new ItemBasic("copper_nugget");
-        MAGNESIUM_NUGGET = new ItemBasic("magnesium_nugget");
+        TITANIUM_NUGGET = newNugget("titanium");
+        LITHIUM_NUGGET = newNugget("lithium");
+        COPPER_NUGGET = newNugget("copper");
+        MAGNESIUM_NUGGET = newNugget("magnesium");
 
-        IRON_PLATE = new ItemBasic("iron_plate");
-        GOLD_PLATE = new ItemBasic("gold_plate");
-        ALUMINUM_PLATE = new ItemBasic("aluminum_plate");
-        TITANIUM_PLATE = new ItemBasic("titanium_plate");
-        LITHIUM_PLATE = new ItemBasic("lithium_plate");
-        NICKEL_PLATE = new ItemBasic("nickel_plate");
-        CHROMIUM_PLATE = new ItemBasic("chromium_plate");
-        COPPER_PLATE = new ItemBasic("copper_plate");
-        NIOBIUM_PLATE = new ItemBasic("niobium_plate");
-        HAFNIUM_PLATE = new ItemBasic("hafnium_plate");
-        MAGNESIUM_PLATE = new ItemBasic("magnesium_plate");
-        ZINC_PLATE = new ItemBasic("zinc_plate");
+        IRON_PLATE = newPlate("iron");
+        GOLD_PLATE = newPlate("gold");
+        ALUMINUM_PLATE = newPlate("aluminum");
+        TITANIUM_PLATE = newPlate("titanium");
+        LITHIUM_PLATE = newPlate("lithium");
+        NICKEL_PLATE = newPlate("nickel");
+        CHROMIUM_PLATE = newPlate("chromium");
+        COPPER_PLATE = newPlate("copper");
+        NIOBIUM_PLATE = newPlate("niobium");
+        HAFNIUM_PLATE = newPlate("hafnium");
+        MAGNESIUM_PLATE = newPlate("magnesium");
+        ZINC_PLATE = newPlate("zinc");
 
-        STEEL_INGOT = new ItemBasic("steel_ingot");
+        STEEL_INGOT = newIngot("steel");
 
-        STEEL_PLATE = new ItemBasic("steel_plate");
+        STEEL_PLATE = newPlate("steel");
 
         INCONEL_BARS = new ItemBasic("inconel_bars");
         INCONEL_BARS.addLore("A heat-resistant nickel-chromium superalloy often used in rocket engines.");
@@ -260,10 +265,15 @@ public class ModItems {
         items.add(item);
     }
 
+    static void setOreDictName(Item item, String name) {
+        oreDictEntries.put(item, name);
+    }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         items.forEach(registry::register);
+        oreDictEntries.keySet().forEach(item -> OreDictionary.registerOre(oreDictEntries.get(item), item));
     }
 
     private static void registerRender(Item item) {

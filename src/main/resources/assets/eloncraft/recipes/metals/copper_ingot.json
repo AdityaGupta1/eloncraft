@@ -7,7 +7,8 @@
   ],
   "key": {
     "n": {
-      "item": "eloncraft:copper_nugget"
+      "type": "forge:ore_dict",
+      "ore": "nuggetCopper"
     }
   },
   "result": {

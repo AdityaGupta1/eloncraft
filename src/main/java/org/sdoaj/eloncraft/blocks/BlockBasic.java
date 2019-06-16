@@ -6,7 +6,9 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.sdoaj.eloncraft.items.ItemBasic;
 import org.sdoaj.eloncraft.items.ModCreativeTabs;
+import org.sdoaj.eloncraft.items.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 public class BlockBasic extends Block {
     private int burnTime = -1;
 
-    public BlockBasic(String name, Material material) {
+    BlockBasic(String name, Material material) {
         super(material);
         setUnlocalizedName(name);
         setRegistryName(name);
@@ -37,7 +39,7 @@ public class BlockBasic extends Block {
         this.burnTime = burnTime;
     }
 
-    public ItemBlockBasic getItemBlock() {
+    ItemBlockBasic getItemBlock() {
         return new ItemBlockBasic(this);
     }
 
@@ -53,5 +55,10 @@ public class BlockBasic extends Block {
         public int getItemBurnTime(ItemStack itemStack) {
             return block.burnTime;
         }
+    }
+
+    BlockBasic setOreDictName(String name) {
+        ModBlocks.setOreDictName(this, name);
+        return this;
     }
 }

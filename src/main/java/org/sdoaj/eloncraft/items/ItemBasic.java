@@ -4,6 +4,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.sdoaj.eloncraft.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class ItemBasic extends Item {
     private int burnTime = -1;
 
-    public ItemBasic(String name) {
+    ItemBasic(String name) {
         setUnlocalizedName(name);
         setRegistryName(name);
         ModItems.addItem(this);
@@ -20,7 +21,7 @@ public class ItemBasic extends Item {
 
     private final List<String> lore = new ArrayList<>();
 
-    public void addLore(String lore) {
+    void addLore(String lore) {
         this.lore.add(lore);
     }
 
@@ -31,7 +32,7 @@ public class ItemBasic extends Item {
 
     private boolean glows = false;
 
-    public void setGlows() {
+    void setGlows() {
         glows = true;
     }
 
@@ -40,12 +41,33 @@ public class ItemBasic extends Item {
         return glows;
     }
 
-    public void setBurnTime(int burnTime) {
+    void setBurnTime(int burnTime) {
         this.burnTime = burnTime;
     }
 
     @Override
     public int getItemBurnTime(ItemStack itemStack) {
         return this.burnTime;
+    }
+
+    ItemBasic setOreDictName(String name) {
+        ModItems.setOreDictName(this, name);
+        return this;
+    }
+
+    private static ItemBasic newOfType(String material, String type) {
+        return new ItemBasic(material + "_" + type).setOreDictName(type + StringUtil.capitalizeFirstLetter(material));
+    }
+
+    static ItemBasic newIngot(String material) {
+        return newOfType(material, "ingot");
+    }
+
+    static ItemBasic newNugget(String material) {
+        return newOfType(material, "nugget");
+    }
+
+    static ItemBasic newPlate(String material) {
+        return newOfType(material, "plate");
     }
 }
