@@ -6,11 +6,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.sdoaj.eloncraft.Eloncraft;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModFluids {
-    private static final List<BlockFluid> blocks = new ArrayList<>();
+    private static final HashMap<ModFluid, BlockFluid> blocks = new HashMap<>();
 
     public static ModFluid OIL;
 
@@ -24,12 +25,16 @@ public class ModFluids {
         LOX = new ModFluid("lox").setMaxFlowDistance(4).setDensity(1140).setViscosity(1500).setTemperature(90).createBlock();
     }
 
-    public static void addBlock(BlockFluid block) {
-        blocks.add(block);
+    static void addBlock(ModFluid fluid, BlockFluid block) {
+        blocks.put(fluid, block);
+    }
+
+    public static BlockFluid getBlockFromFluid(ModFluid fluid) {
+        return blocks.get(fluid);
     }
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event) {
-        blocks.forEach(BlockFluid::render);
+        blocks.values().forEach(BlockFluid::render);
     }
 }

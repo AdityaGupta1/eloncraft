@@ -1,0 +1,39 @@
+package org.sdoaj.eloncraft.world;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.sdoaj.eloncraft.Eloncraft;
+import org.sdoaj.eloncraft.fluids.ModFluids;
+
+import java.util.Random;
+
+@Mod.EventBusSubscriber(modid = Eloncraft.MODID)
+public class OilLakeGenerator {
+    private static final int oilLakeChance = 120;
+
+    // mostly copied from lava lake generation in ChunkGeneratorOverworld
+    @SubscribeEvent
+    public static void generateOilLakes(PopulateChunkEvent event) {
+        Random random = event.getRand();
+
+        if (random.nextInt(oilLakeChance / 10) != 0) {
+            return;
+        }
+
+        BlockPos pos = new BlockPos(event.getChunkX() * 16, 0, event.getChunkZ() * 16);
+
+        int x = random.nextInt(16) + 8;
+        int y = random.nextInt(random.nextInt(248) + 8);
+        int z = random.nextInt(16) + 8;
+
+        World world = event.getWorld();
+
+        if (y < world.getSeaLevel() || random.nextInt(oilLakeChance / 8) == 0) {
+            (new WorldGenLakes(ModFluids.getBlockFromFluid(ModFluids.OIL))).generate(world, random, pos.add(x, y, z));
+        }
+    }
+}

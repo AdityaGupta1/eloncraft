@@ -54,7 +54,7 @@ class ModFluid extends Fluid {
     ModFluid createBlock() {
         block = new BlockFluid(this);
         block.setMaxFlowDistance(maxFlowDistance);
-        ModFluids.addBlock(block);
+        ModFluids.addBlock(this, block);
         return this;
     }
 }

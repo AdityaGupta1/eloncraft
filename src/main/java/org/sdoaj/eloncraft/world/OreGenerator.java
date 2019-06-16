@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.blocks;
+package org.sdoaj.eloncraft.world;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -9,11 +9,13 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.sdoaj.eloncraft.blocks.ModBlocks;
 
 import java.util.Random;
 import java.util.function.Predicate;
 
-public class ModOreGen implements IWorldGenerator {
+public class OreGenerator implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.getDimension()) {
@@ -57,7 +59,7 @@ public class ModOreGen implements IWorldGenerator {
     private void runGenerator(IBlockState blockToGenerate, int veinSize, int spawnChances, int minY, int maxY,
                               Predicate<IBlockState> blockToReplace, World world, Random random, int chunkX, int chunkZ) {
         if (minY < 0 || maxY > 256 || minY > maxY)
-            throw new IllegalArgumentException("illegal height arguments for ModOreGen");
+            throw new IllegalArgumentException("illegal height arguments for OreGenerator");
 
         WorldGenMinable generator = new WorldGenMinable(blockToGenerate, veinSize, (com.google.common.base.Predicate<IBlockState>) blockToReplace);
         int dy = maxY - minY + 1;

@@ -13,7 +13,7 @@ import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipes;
 import org.sdoaj.eloncraft.proxy.IProxy;
 import org.sdoaj.eloncraft.entity.ModEntities;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
-import org.sdoaj.eloncraft.blocks.ModOreGen;
+import org.sdoaj.eloncraft.world.OreGenerator;
 import org.sdoaj.eloncraft.blocks.gui.GuiHandler;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
 import org.sdoaj.eloncraft.blocks.machines.crusher.CrusherRecipes;
@@ -63,7 +63,7 @@ public class Eloncraft {
     public void init(FMLInitializationEvent event) {
         LOGGER.info("init");
 
-        GameRegistry.registerWorldGenerator(new ModOreGen(), 0);
+        GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
 
         GuiHandler.init();
         TileEntityBase.init();

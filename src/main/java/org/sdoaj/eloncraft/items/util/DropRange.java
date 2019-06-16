@@ -1,6 +1,6 @@
 package org.sdoaj.eloncraft.items.util;
 
-import org.sdoaj.eloncraft.util.Random;
+import org.sdoaj.eloncraft.util.RandomUtil;
 
 public class DropRange {
     private final double min;
@@ -17,6 +17,6 @@ public class DropRange {
     }
 
     public int getRandom(double add) {
-        return (int) Random.nextDouble(min, max + add);
+        return (int) RandomUtil.nextDouble(min, max + add);
     }
 }
