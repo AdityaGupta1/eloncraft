@@ -354,20 +354,21 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[] {
-                "  ss  ",
-                " gssg ",
-                " gssg ",
-                "eessee",
-                "eessee",
-                "ssssss",
-                "ssssss",
-                "ssssss",
-                "ssssss",
-                "ssssss",
+                "  sds  ",
+                " gsssg ",
+                " gsssg ",
+                "eesssee",
+                "eesssee",
+                "sssssss",
+                "sssssss",
+                "sssssss",
+                "sssssss",
+                "sssssss",
         }, new ItemStack(ModItems.FALCON9_DRAGON),
                 new RecipeKey('s', ModItems.HEAT_SHIELD),
                 new RecipeKey('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 15)),
-                new RecipeKey('e', ModItems.SUPERDRACO_ENGINE)));
+                new RecipeKey('e', ModItems.SUPERDRACO_ENGINE),
+                new RecipeKey('d', Blocks.DRAGON_EGG)));
 
 
 
