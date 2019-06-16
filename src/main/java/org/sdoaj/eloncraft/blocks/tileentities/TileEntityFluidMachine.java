@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.blocks.machines;
+package org.sdoaj.eloncraft.blocks.tileentities;
 
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +7,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 
 import java.util.Map;
 

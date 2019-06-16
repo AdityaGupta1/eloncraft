@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
-import org.sdoaj.eloncraft.blocks.machines.RecipeKey;
+import org.sdoaj.eloncraft.recipes.RecipeKey;
 import org.sdoaj.eloncraft.items.ModItems;
 
 import java.util.ArrayList;
@@ -30,25 +30,13 @@ public final class WorkbenchRecipes {
 
     public static void init() {
         addRecipe(new WorkbenchRecipe(new String[]{
-                "p p p",
-                " ppp ",
-                "pptpp",
-                " ppp ",
-                "p p p"
-        }, new ItemStack(ModItems.TITANIUM_FAN),
-                new RecipeKey('t', ModItems.TITANIUM_INGOT),
-                new RecipeKey('p', ModItems.TITANIUM_PLATE)));
-
-
-
-        addRecipe(new WorkbenchRecipe(new String[]{
                 "ttttt",
                 "tPPPt",
                 "tbbbt",
                 "t p t",
                 "BBBBB"
         }, new ItemStack(ModBlocks.METAL_ROLLER),
-                new RecipeKey('t', ModItems.TITANIUM_INGOT),
+                new RecipeKey('t', "ingotTitanium"),
                 new RecipeKey('P', Blocks.STICKY_PISTON),
                 new RecipeKey('b', Blocks.IRON_BLOCK),
                 new RecipeKey('B', Blocks.OBSIDIAN),
@@ -61,7 +49,7 @@ public final class WorkbenchRecipes {
                 "tPfPt",
                 "BBBBB"
         }, new ItemStack(ModBlocks.CRUSHER),
-                new RecipeKey('t', ModItems.TITANIUM_INGOT),
+                new RecipeKey('t', "ingotTitanium"),
                 new RecipeKey('f', Items.FLINT),
                 new RecipeKey('P', Blocks.PISTON),
                 new RecipeKey('B', Blocks.OBSIDIAN)));
@@ -77,9 +65,9 @@ public final class WorkbenchRecipes {
                 "TTTTTTTTT"
         }, new ItemStack(ModBlocks.ALLOY_FURNACE),
                 new RecipeKey('t', Blocks.HARDENED_CLAY),
-                new RecipeKey('s', ModItems.STEEL_PLATE),
-                new RecipeKey('c', ModItems.COPPER_INGOT),
-                new RecipeKey('T', ModItems.TITANIUM_PLATE)));
+                new RecipeKey('s', "plateSteel"),
+                new RecipeKey('c', "plateCopper"),
+                new RecipeKey('T', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "ttttttt",
@@ -94,8 +82,8 @@ public final class WorkbenchRecipes {
                 "ttsssff",
                 "tttttff"
         }, new ItemStack(ModBlocks.REFINERY),
-                new RecipeKey('s', ModItems.STEEL_PLATE),
-                new RecipeKey('t', ModItems.TITANIUM_PLATE),
+                new RecipeKey('s', "plateSteel"),
+                new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('f', Blocks.FURNACE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -109,8 +97,8 @@ public final class WorkbenchRecipes {
                 "tiiiiit",
                 "ttttttt"
         }, new ItemStack(ModBlocks.LOX_COLLECTOR),
-                new RecipeKey('t', ModItems.TITANIUM_PLATE),
-                new RecipeKey('c', ModItems.COPPER_NUGGET),
+                new RecipeKey('t', "plateTitanium"),
+                new RecipeKey('c', "nuggetCopper"),
                 new RecipeKey('i', Blocks.PACKED_ICE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -124,9 +112,21 @@ public final class WorkbenchRecipes {
                 "tiiiiit",
                 "ttttttt"
         }, new ItemStack(ModBlocks.LOX_COLLECTOR),
-                new RecipeKey('t', ModItems.TITANIUM_PLATE),
-                new RecipeKey('c', ModItems.COPPER_NUGGET),
+                new RecipeKey('t', "plateTitanium"),
+                new RecipeKey('c', "nuggetCopper"),
                 new RecipeKey('i', Blocks.PACKED_ICE)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "p p p",
+                " ppp ",
+                "pptpp",
+                " ppp ",
+                "p p p"
+        }, new ItemStack(ModItems.TITANIUM_FAN),
+                new RecipeKey('t', "ingotTitanium"),
+                new RecipeKey('p', "plateTitanium")));
 
 
 
@@ -182,7 +182,7 @@ public final class WorkbenchRecipes {
                 "ccc     ccc"
         }, new ItemStack(ModItems.LANDING_LEG),
                 new RecipeKey('c', ModItems.CARBON_FIBER_PLATE),
-                new RecipeKey('a', ModItems.ALUMINUM_PLATE),
+                new RecipeKey('a', "plateAluminum"),
                 new RecipeKey('P', Blocks.PISTON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -227,17 +227,8 @@ public final class WorkbenchRecipes {
                 "i p p i",
                 "iiiiiii",
         }, new ItemStack(ModItems.GRID_FIN, 2),
-                new RecipeKey('i', ModItems.TITANIUM_INGOT),
-                new RecipeKey('p', ModItems.TITANIUM_PLATE)));
-
-        addRecipe(new WorkbenchRecipe(new String[]{
-                " ppp ",
-                "ppppp",
-                "PpPpP",
-                "ppppp",
-        }, new ItemStack(ModItems.COLD_GAS_THRUSTER, 1),
-                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
-                new RecipeKey('P', Blocks.PISTON)));
+                new RecipeKey('i', "ingotTitanium"),
+                new RecipeKey('p', "ingotTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  ipi ",
@@ -248,8 +239,17 @@ public final class WorkbenchRecipes {
                 "ip p pi",
                 "iiiiiii",
         }, new ItemStack(ModItems.GRID_FIN, 2),
-                new RecipeKey('i', ModItems.TITANIUM_INGOT),
-                new RecipeKey('p', ModItems.TITANIUM_PLATE)));
+                new RecipeKey('i', "ingotTitanium"),
+                new RecipeKey('p', "ingotTitanium")));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " ppp ",
+                "ppppp",
+                "PpPpP",
+                "ppppp",
+        }, new ItemStack(ModItems.COLD_GAS_THRUSTER, 1),
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('P', Blocks.PISTON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 " cp     pc ",
@@ -351,7 +351,7 @@ public final class WorkbenchRecipes {
                 "tt tt",
                 " ttt "
         }, new ItemStack(ModItems.FUEL_TANK_3),
-                new RecipeKey('t', ModItems.TITANIUM_PLATE)));
+                new RecipeKey('t', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[] {
                 "  ss  ",
@@ -410,8 +410,8 @@ public final class WorkbenchRecipes {
                 "taaaaallt",
                 "ttttttttt"
         }, new ItemStack(ModBlocks.LAUNCH_CONTROLLER, 1),
-                new RecipeKey('t', ModItems.TITANIUM_PLATE),
-                new RecipeKey('a', ModItems.ALUMINUM_PLATE),
+                new RecipeKey('t', "plateTitanium"),
+                new RecipeKey('a', "plateAluminum"),
                 new RecipeKey('l', Blocks.LEVER),
                 new RecipeKey('b', Blocks.STONE_BUTTON)));
     }

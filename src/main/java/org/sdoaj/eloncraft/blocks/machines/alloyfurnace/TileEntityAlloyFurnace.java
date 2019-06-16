@@ -4,7 +4,7 @@ package org.sdoaj.eloncraft.blocks.machines.alloyfurnace;
 
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
-import org.sdoaj.eloncraft.blocks.machines.TileEntityInventoryMachine;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 import org.sdoaj.eloncraft.util.StackUtil;

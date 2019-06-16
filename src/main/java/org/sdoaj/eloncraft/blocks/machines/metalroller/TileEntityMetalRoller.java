@@ -4,8 +4,9 @@ package org.sdoaj.eloncraft.blocks.machines.metalroller;
 
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
-import org.sdoaj.eloncraft.blocks.machines.TileEntityInventoryMachine;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
+import org.sdoaj.eloncraft.recipes.LinearRecipe;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 import org.sdoaj.eloncraft.util.StackUtil;
 import org.sdoaj.eloncraft.util.Util;
@@ -34,7 +35,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
     @Override
     public boolean canProcess() {
         if (StackUtil.isValid(this.inventory.getStackInSlot(SLOT_INPUT))) {
-            MetalRollerRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
+            LinearRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
             if (recipe == null) {
                 return false;
             }
@@ -55,7 +56,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
 
     @Override
     public void finishProcessing() {
-        MetalRollerRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
+        LinearRecipe recipe = MetalRollerRecipes.getRecipeFromInput(this.inventory.getStackInSlot(SLOT_INPUT));
         if (recipe == null) {
             return;
         }
@@ -73,6 +74,6 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
             }
         }
 
-        this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInput().getCount());
+        this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInputCount());
     }
 }

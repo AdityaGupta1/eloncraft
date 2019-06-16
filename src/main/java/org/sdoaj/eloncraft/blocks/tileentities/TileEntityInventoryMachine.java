@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.blocks.machines;
+package org.sdoaj.eloncraft.blocks.tileentities;
 
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;

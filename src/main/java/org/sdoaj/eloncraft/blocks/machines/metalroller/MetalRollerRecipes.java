@@ -1,21 +1,21 @@
 package org.sdoaj.eloncraft.blocks.machines.metalroller;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.items.ModItems;
+import org.sdoaj.eloncraft.recipes.LinearRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class MetalRollerRecipes {
-    private static final List<MetalRollerRecipe> recipes = new ArrayList<>();
+    private static final List<LinearRecipe> recipes = new ArrayList<>();
 
-    public static void addRecipe(MetalRollerRecipe recipe) {
+    public static void addRecipe(LinearRecipe recipe) {
         recipes.add(recipe);
     }
 
-    public static MetalRollerRecipe getRecipeFromInput(ItemStack input) {
-        for (MetalRollerRecipe recipe : recipes) {
+    public static LinearRecipe getRecipeFromInput(ItemStack input) {
+        for (LinearRecipe recipe : recipes) {
             if (recipe.matches(input)) {
                 return recipe;
             }
@@ -25,26 +25,26 @@ public final class MetalRollerRecipes {
     }
 
     public static void init() {
-        addRecipe(new MetalRollerRecipe(Items.IRON_INGOT, ModItems.IRON_PLATE));
-        addRecipe(new MetalRollerRecipe(Items.GOLD_INGOT, ModItems.GOLD_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_INGOT, ModItems.ALUMINUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.TITANIUM_INGOT, ModItems.TITANIUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.LITHIUM_INGOT, ModItems.LITHIUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.NICKEL_INGOT, ModItems.NICKEL_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.CHROMIUM_INGOT, ModItems.CHROMIUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.COPPER_INGOT, ModItems.COPPER_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.NIOBIUM_INGOT, ModItems.NIOBIUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.HAFNIUM_INGOT, ModItems.HAFNIUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.MAGNESIUM_INGOT, ModItems.MAGNESIUM_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.ZINC_INGOT, ModItems.ZINC_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotIron", 1).setOutput(ModItems.IRON_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotGold", 1).setOutput(ModItems.GOLD_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotAluminum", 1).setOutput(ModItems.ALUMINUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotTitanium", 1).setOutput(ModItems.TITANIUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotLithium", 1).setOutput(ModItems.LITHIUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotNickel", 1).setOutput(ModItems.NICKEL_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotChromium", 1).setOutput(ModItems.CHROMIUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotCopper", 1).setOutput(ModItems.COPPER_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotNiobium", 1).setOutput(ModItems.NIOBIUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotHafnium", 1).setOutput(ModItems.HAFNIUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotMagnesium", 1).setOutput(ModItems.MAGNESIUM_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotZinc", 1).setOutput(ModItems.ZINC_INGOT));
 
-        addRecipe(new MetalRollerRecipe(ModItems.STEEL_INGOT, ModItems.STEEL_PLATE));
+        addRecipe(new LinearRecipe().setInput("ingotSteel", 1).setOutput(ModItems.STEEL_INGOT));
 
-        addRecipe(new MetalRollerRecipe(ModItems.INCONEL_BARS, ModItems.INCONEL_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_2198_INGOT, ModItems.ALUMINUM_2198_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.ALUMINUM_7XXX_INGOT, ModItems.ALUMINUM_7XXX_PLATE));
-        addRecipe(new MetalRollerRecipe(ModItems.NIOBIUM_C103_INGOT, ModItems.NIOBIUM_C103_PLATE));
+        addRecipe(new LinearRecipe().setInput(ModItems.INCONEL_BARS).setOutput(ModItems.INCONEL_PLATE));
+        addRecipe(new LinearRecipe().setInput(ModItems.ALUMINUM_2198_INGOT).setOutput(ModItems.ALUMINUM_2198_PLATE));
+        addRecipe(new LinearRecipe().setInput(ModItems.ALUMINUM_7XXX_INGOT).setOutput(ModItems.ALUMINUM_7XXX_PLATE));
+        addRecipe(new LinearRecipe().setInput(ModItems.NIOBIUM_C103_INGOT).setOutput(ModItems.NIOBIUM_C103_PLATE));
 
-        addRecipe(new MetalRollerRecipe(ModItems.CARBON_FIBERS, ModItems.CARBON_FIBER_PLATE));
+        addRecipe(new LinearRecipe().setInput(ModItems.CARBON_FIBERS).setOutput(ModItems.CARBON_FIBER_PLATE));
     }
 }

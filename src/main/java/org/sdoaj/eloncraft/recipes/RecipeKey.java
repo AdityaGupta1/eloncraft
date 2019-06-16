@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.blocks.machines;
+package org.sdoaj.eloncraft.recipes;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -30,8 +30,8 @@ public class RecipeKey {
         this(key, Ingredient.fromStacks(stacks));
     }
 
-    public RecipeKey(char key, String oreDictEntry) {
-        this(key, new OreIngredient(oreDictEntry));
+    public RecipeKey(char key, String oreDictName) {
+        this(key, new OreIngredient(oreDictName));
     }
 
     public boolean matches(char key) {

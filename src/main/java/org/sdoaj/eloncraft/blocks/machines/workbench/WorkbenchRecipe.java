@@ -2,7 +2,7 @@ package org.sdoaj.eloncraft.blocks.machines.workbench;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import org.sdoaj.eloncraft.blocks.machines.RecipeKey;
+import org.sdoaj.eloncraft.recipes.RecipeKey;
 import org.sdoaj.eloncraft.util.StackUtil;
 
 import java.util.Arrays;

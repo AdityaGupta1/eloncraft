@@ -20,7 +20,7 @@ public class ModCreativeTabs {
         };
     }
 
-    public static final CreativeTabs ELONCRAFT = createTab("proxy",
+    public static final CreativeTabs ELONCRAFT = createTab("eloncraft",
             () -> new ItemStack(ModBlocks.COMPONENTS));
     public static final CreativeTabs SPACEX = createTab("spacex",
             () -> new ItemStack(ModItems.FALCON9));
