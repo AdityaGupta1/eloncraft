@@ -74,6 +74,6 @@ public class TileEntityCrusher extends TileEntityInventoryMachine {
             }
         }
 
-        this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInputCount());
+        this.inventory.getStackInSlot(SLOT_INPUT).shrink(recipe.getInput().getCount());
     }
 }

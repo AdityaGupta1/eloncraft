@@ -1,26 +1,29 @@
 package org.sdoaj.eloncraft.blocks.machines.alloyfurnace;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import org.sdoaj.eloncraft.recipes.IngredientStack;
 import org.sdoaj.eloncraft.util.StackUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AlloyFurnaceRecipe {
-    private List<ItemStack> inputs;
+    private List<IngredientStack> inputs;
     private ItemStack output;
 
-    public AlloyFurnaceRecipe(List<ItemStack> inputs, ItemStack output) {
+    public AlloyFurnaceRecipe(List<IngredientStack> inputs, ItemStack output) {
         this.inputs = inputs;
         this.output = output;
 
-        if (inputs.stream().mapToInt(ItemStack::getCount).sum() != TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1) {
+        if (inputs.stream().mapToInt(IngredientStack::getCount).sum() != TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1) {
             throw new IllegalArgumentException("wrong amount of inputs in AlloyFurnaceRecipe");
         }
     }
 
-    public AlloyFurnaceRecipe(ItemStack[] inputs, ItemStack output) {
+    public AlloyFurnaceRecipe(IngredientStack[] inputs, ItemStack output) {
         this(Arrays.asList(inputs), output);
     }
 
@@ -44,17 +47,18 @@ public class AlloyFurnaceRecipe {
 
     public boolean matches(List<ItemStack> stacks) {
         stacks = mergeStacks(stacks);
+        List<IngredientStack> ingredients = inputs.stream().map(IngredientStack::new).collect(Collectors.toList());
 
-        for (ItemStack ingredient : inputs) {
-            boolean matches = false;
-
+        for (IngredientStack ingredient : ingredients) {
             for (ItemStack actual : stacks) {
-                if (StackUtil.itemStackApplies(ingredient, actual)) {
-                    matches = true;
+                if (ingredient.applyIgnoreCount(actual)) {
+                    ingredient.shrink(actual.getCount());
                 }
             }
+        }
 
-            if (!matches) {
+        for (IngredientStack ingredient : ingredients) {
+            if (ingredient.getCount() != 0) {
                 return false;
             }
         }
@@ -62,7 +66,7 @@ public class AlloyFurnaceRecipe {
         return true;
     }
 
-    public List<ItemStack> getInputs() {
+    public List<IngredientStack> getInputs() {
         return this.inputs;
     }
 

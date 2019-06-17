@@ -8,35 +8,32 @@ import net.minecraftforge.oredict.OreIngredient;
 
 // generic recipe class for any recipe with one input and one output
 public class LinearRecipe {
-    private Ingredient input;
-    private int inputCount;
+    private IngredientStack input;
     private ItemStack output;
 
-    public LinearRecipe setInput(Ingredient input, int count) {
-        this.input = input;
-        this.inputCount = count;
+    public LinearRecipe setInput(IngredientStack stack) {
+        this.input = stack;
         return this;
+    }
+
+    public LinearRecipe setInput(Ingredient input, int count) {
+        return setInput(new IngredientStack(input, count));
     }
 
     public LinearRecipe setInput(ItemStack stack) {
-        this.input = Ingredient.fromStacks(stack);
-        this.inputCount = stack.getCount();
-        return this;
+        return setInput(new IngredientStack(stack));
     }
 
     public LinearRecipe setInput(Item item) {
-        setInput(new ItemStack(item));
-        return this;
+        return setInput(new ItemStack(item));
     }
 
     public LinearRecipe setInput(Block block) {
-        setInput(new ItemStack(block));
-        return this;
+        return setInput(new ItemStack(block));
     }
 
     public LinearRecipe setInput(String oreDictName, int count) {
-        setInput(new OreIngredient(oreDictName), count);
-        return this;
+        return setInput(new OreIngredient(oreDictName), count);
     }
 
     public LinearRecipe setOutput(ItemStack stack) {
@@ -45,25 +42,19 @@ public class LinearRecipe {
     }
 
     public LinearRecipe setOutput(Item item) {
-        this.output = new ItemStack(item);
-        return this;
+        return setOutput(new ItemStack(item));
     }
 
     public LinearRecipe setOutput(Block block) {
-        this.output = new ItemStack(block);
-        return this;
+        return setOutput(new ItemStack(block));
     }
 
     public boolean matches(ItemStack stack) {
         return input.apply(stack);
     }
 
-    public Ingredient getInput() {
+    public IngredientStack getInput() {
         return this.input;
-    }
-
-    public int getInputCount() {
-        return inputCount;
     }
 
     public ItemStack getOutput() {
