@@ -24,28 +24,28 @@ public class OreGenerator implements IWorldGenerator {
                 break;
             // overworld
             case 0:
-                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 10, 8, 63,
+                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 15, 8, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
-                runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 12, 70, 0, 63,
+                runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 10, 60, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 6, 25, 0, 15,
+                runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 8, 40, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 8, 30, 0, 47,
+                runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 5, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 25, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.CHROMIUM_ORE.getDefaultState(), 8, 15, 0, 31,
+                runGenerator(ModBlocks.CHROMIUM_ORE.getDefaultState(), 5, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.COPPER_ORE.getDefaultState(), 12, 50, 0, 63,
+                runGenerator(ModBlocks.COPPER_ORE.getDefaultState(), 10, 50, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.NIOBIUM_ORE.getDefaultState(), 8, 25, 0, 31,
+                runGenerator(ModBlocks.NIOBIUM_ORE.getDefaultState(), 8, 30, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.HAFNIUM_ORE.getDefaultState(), 8, 15, 0, 31,
+                runGenerator(ModBlocks.HAFNIUM_ORE.getDefaultState(), 4, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.MAGNESIUM_ORE.getDefaultState(), 8, 30, 0, 47,
+                runGenerator(ModBlocks.MAGNESIUM_ORE.getDefaultState(), 6, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.ZINC_ORE.getDefaultState(), 8, 30, 0, 47,
+                runGenerator(ModBlocks.ZINC_ORE.getDefaultState(), 5, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 break;
             // end
