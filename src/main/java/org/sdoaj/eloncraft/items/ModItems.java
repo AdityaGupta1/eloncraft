@@ -40,10 +40,10 @@ public class ModItems {
     public static ItemBasic ALUMINUM_NUGGET;
     public static ItemBasic TITANIUM_NUGGET;
     public static ItemBasic LITHIUM_NUGGET;
-    public static ItemBasic NICKEL_NUGET;
+    public static ItemBasic NICKEL_NUGGET;
     public static ItemBasic CHROMIUM_NUGGET;
     public static ItemBasic COPPER_NUGGET;
-    public static ItemBasic NIBOIUM_NUGGET;
+    public static ItemBasic NIOBIUM_NUGGET;
     public static ItemBasic HAFNIUM_NUGGET;
     public static ItemBasic MAGNESIUM_NUGGET;
     public static ItemBasic ZINC_NUGGET;
@@ -132,10 +132,16 @@ public class ModItems {
         MAGNESIUM_INGOT = newIngot("magnesium");
         ZINC_INGOT = newIngot("zinc");
 
+        ALUMINUM_NUGGET = newNugget("aluminum");
         TITANIUM_NUGGET = newNugget("titanium");
         LITHIUM_NUGGET = newNugget("lithium");
+        NICKEL_NUGGET = newNugget("nickel");
+        CHROMIUM_NUGGET = newNugget("chromium");
         COPPER_NUGGET = newNugget("copper");
+        NIOBIUM_NUGGET = newNugget("niobium");
+        HAFNIUM_NUGGET = newNugget("hafnium");
         MAGNESIUM_NUGGET = newNugget("magnesium");
+        ZINC_NUGGET = newNugget("zinc");
 
         IRON_PLATE = newPlate("iron");
         GOLD_PLATE = newPlate("gold");
