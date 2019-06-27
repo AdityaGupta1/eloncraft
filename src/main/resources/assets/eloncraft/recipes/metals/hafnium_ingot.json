@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "nnn",
+    "nnn",
+    "nnn"
+  ],
+  "key": {
+    "n": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetHafnium"
+    }
+  },
+  "result": {
+    "item": "eloncraft:hafnium_ingot",
+    "count": 1
+  }
+}

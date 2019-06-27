@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotAluminum"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:aluminum_nugget",
+    "count": 9
+  }
+}

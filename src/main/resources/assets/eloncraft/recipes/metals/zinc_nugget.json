@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotZinc"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:zinc_nugget",
+    "count": 9
+  }
+}

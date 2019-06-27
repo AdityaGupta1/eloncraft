@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotHafnium"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:hafnium_nugget",
+    "count": 9
+  }
+}
