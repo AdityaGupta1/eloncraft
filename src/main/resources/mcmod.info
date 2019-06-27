@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "eloncraft",
+  "name": "Eloncraft",
+  "description": "electric man",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/AdityaGupta1/eloncraft",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["AdityaGupta1", "qiandasen"],
+  "credits": "Ellpeck for making Actually Additions open source",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
