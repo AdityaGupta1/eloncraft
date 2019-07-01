@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "blockCopper"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:copper_ingot",
+    "count": 9
+  }
+}

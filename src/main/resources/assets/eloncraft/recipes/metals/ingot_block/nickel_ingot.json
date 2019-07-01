@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "blockNickel"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:nickel_ingot",
+    "count": 9
+  }
+}

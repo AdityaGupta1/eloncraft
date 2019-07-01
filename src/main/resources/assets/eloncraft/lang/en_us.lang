@@ -48,6 +48,8 @@ item.zinc_plate.name=Zinc Plate
 
 item.steel_ingot.name=Steel Ingot
 
+item.steel_nugget.name=Steel Nugget
+
 item.steel_plate.name=Steel Plate
 
 item.inconel_bars.name=§6Inconel Bars
@@ -133,6 +135,23 @@ tile.niobium_ore.name=Niobium Ore
 tile.hafnium_ore.name=Hafnium Ore
 tile.magnesium_ore.name=Magnesium Ore
 tile.zinc_ore.name=Zinc Ore
+
+tile.aluminum_block.name=Block of Aluminum
+tile.titanium_block.name=Block of Titanium
+tile.lithium_block.name=Block of Lithium
+tile.nickel_block.name=Block of Nickel
+tile.chromium_block.name=Block of Chromium
+tile.copper_block.name=Block of Copper
+tile.niobium_block.name=Block of Niobium
+tile.hafnium_block.name=Block of Hafnium
+tile.magnesium_block.name=Block of Magnesium
+tile.zinc_block.name=Block of Zinc
+
+# ====================
+# alloys
+# ====================
+
+tile.steel_block.name=Block of Steel
 
 # ====================
 # machines

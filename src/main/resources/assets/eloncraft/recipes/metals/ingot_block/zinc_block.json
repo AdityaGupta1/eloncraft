@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "key": {
+    "n": {
+      "type": "forge:ore_dict",
+      "ore": "ingotZinc"
+    }
+  },
+  "result": {
+    "item": "eloncraft:zinc_block",
+    "count": 1
+  }
+}

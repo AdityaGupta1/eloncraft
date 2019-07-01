@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "ingotTitanium"
+    }
+  ],
+  "result": {
+    "item": "eloncraft:titanium_block",
+    "count": 9
+  }
+}
