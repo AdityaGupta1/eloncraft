@@ -36,6 +36,8 @@ public class ModBlocks {
     private static final List<Block> blocks = new ArrayList<>();
     private static final HashMap<Block, String> oreDictEntries = new HashMap<>();
 
+    // ores
+
     public static Block COMPONENTS;
 
     public static Block ALUMINUM_ORE;
@@ -49,6 +51,23 @@ public class ModBlocks {
     public static Block MAGNESIUM_ORE;
     public static Block ZINC_ORE;
 
+    public static Block ALUMINUM_BLOCK;
+    public static Block TITANIUM_BLOCK;
+    public static Block LITHIUM_BLOCK;
+    public static Block NICKEL_BLOCK;
+    public static Block CHROMIUM_BLOCK;
+    public static Block COPPER_BLOCK;
+    public static Block NIOBIUM_BLOCK;
+    public static Block HAFNIUM_BLOCK;
+    public static Block MAGNESIUM_BLOCK;
+    public static Block ZINC_BLOCK;
+
+    // alloys
+
+    public static Block STEEL_BLOCK;
+
+    // machines
+
     public static BlockWorkbench ELON_WORKBENCH;
 
     public static BlockMetalRoller METAL_ROLLER;
@@ -56,6 +75,8 @@ public class ModBlocks {
     public static BlockAlloyFurnace ALLOY_FURNACE;
     public static BlockRefinery REFINERY;
     public static BlockLOXCollector LOX_COLLECTOR;
+
+    // launch
 
     public static BlockLaunchController LAUNCH_CONTROLLER;
     public static Block LAUNCHPAD;
@@ -70,16 +91,29 @@ public class ModBlocks {
                 .setHardness(5.0F).setResistance(10.0F);
         COMPONENTS.setHarvestLevel("pickaxe", 2);
 
-        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3, 5);
-        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 7, 20);
-        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3, 5);
-        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5, 10);
-        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3, 5);
-        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3, 5);
-        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4, 8);
-        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4, 8);
-        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3, 5);
-        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3, 5);
+        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3, 8);
+        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 5, 15);
+        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3, 8);
+        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5, 12);
+        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3, 8);
+        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3, 8);
+        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4, 10);
+        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4, 12);
+        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3, 8);
+        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3, 8);
+
+        ALUMINUM_BLOCK = BlockBasic.newMetalBlock("aluminum", 2, 5, 16);
+        TITANIUM_BLOCK = BlockBasic.newMetalBlock("titanium", 3, 8, 30);
+        LITHIUM_BLOCK = BlockBasic.newMetalBlock("lithium", 2, 5, 16);
+        NICKEL_BLOCK = BlockBasic.newMetalBlock("nickel", 2, 8, 24);
+        CHROMIUM_BLOCK = BlockBasic.newMetalBlock("chromium", 2, 5, 16);
+        COPPER_BLOCK = BlockBasic.newMetalBlock("copper", 2, 5, 16);
+        NIOBIUM_BLOCK = BlockBasic.newMetalBlock("niobium", 3, 6, 20);
+        HAFNIUM_BLOCK = BlockBasic.newMetalBlock("hafnium", 3, 6, 24);
+        MAGNESIUM_BLOCK = BlockBasic.newMetalBlock("magnesium", 2, 5, 16);
+        ZINC_BLOCK = BlockBasic.newMetalBlock("zinc", 2, 5, 16);
+
+        STEEL_BLOCK = BlockBasic.newMetalBlock("steel", 2, 8, 35);
 
         ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON);
         ELON_WORKBENCH.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
@@ -105,10 +139,10 @@ public class ModBlocks {
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
         LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);
         LAUNCH_CONTROLLER.addLore("Used to load fuel into rockets and initiate launch sequences.");
-        LAUNCH_CONTROLLER.setCreativeTab(ModCreativeTabs.SPACEX);
         LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON);
         LAUNCHPAD.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
-        LAUNCHPAD.setCreativeTab(ModCreativeTabs.SPACEX);
+
+        ModCreativeTabs.SPACEX.addAll(LAUNCH_CONTROLLER, LAUNCHPAD);
     }
 
     public static void addBlock(Block block) {

@@ -6,13 +6,13 @@
     "iii"
   ],
   "key": {
-    "n": {
+    "i": {
       "type": "forge:ore_dict",
-      "ore": "nuggetTitanium"
+      "ore": "ingotTitanium"
     }
   },
   "result": {
-    "item": "eloncraft:titanium_ingot",
+    "item": "eloncraft:titanium_block",
     "count": 1
   }
 }

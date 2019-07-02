@@ -157,6 +157,9 @@ tile.steel_block.name=Block of Steel
 # machines
 # ====================
 
+tile.elon_workbench.name=§3Elon Musk's Magical Workbench
+container.elon_workbench.name=Elon Musk's Magical Workbench
+
 tile.metal_roller.name=Metal Roller
 container.metal_roller.name=Metal Roller
 tile.crusher.name=Crusher
@@ -168,16 +171,12 @@ container.refinery.name=Fuel Refinery
 tile.lox_collector.name=LOX Condenser
 container.lox_collector.name=LOX Condenser
 
-tile.launch_controller.name=Launch Controller
-container.launch_controller.name=Launch Controller
-
-tile.elon_workbench.name=§3Elon Musk's Magical Workbench
-container.elon_workbench.name=Elon Musk's Magical Workbench
-
 # ====================
 # rocket stuff
 # ====================
 
+tile.launch_controller.name=Launch Controller
+container.launch_controller.name=Launch Controller
 tile.launchpad.name=Launchpad
 
 # ====================

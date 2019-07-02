@@ -65,6 +65,8 @@ public class ModItems {
 
     public static ItemBasic STEEL_INGOT;
 
+    public static ItemBasic STEEL_NUGGET;
+
     public static ItemBasic STEEL_PLATE;
 
     public static ItemBasic INCONEL_BARS;
@@ -157,6 +159,8 @@ public class ModItems {
         ZINC_PLATE = newPlate("zinc");
 
         STEEL_INGOT = newIngot("steel");
+
+        STEEL_NUGGET = newNugget("steel");
 
         STEEL_PLATE = newPlate("steel");
 
@@ -258,13 +262,13 @@ public class ModItems {
             return fire;
         }, 5, 5.0, 1.0, null);
 
-        ModCreativeTabs.addAll(ModCreativeTabs.SPACEX, INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
+        ModCreativeTabs.SPACEX.addAll(INCONEL_BARS, ALUMINUM_2198_INGOT, ALUMINUM_7XXX_INGOT,
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
                 GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2, SUPERDRACO_ENGINE,
                 FUEL_TANK_3, FALCON9_DRAGON, FALCON9);
 
-        ModCreativeTabs.addAll(ModCreativeTabs.BORING_COMPANY, FLAMETHROWER);
+        ModCreativeTabs.BORING_COMPANY.addAll(FLAMETHROWER);
     }
 
     static void addItem(ItemBasic item) {

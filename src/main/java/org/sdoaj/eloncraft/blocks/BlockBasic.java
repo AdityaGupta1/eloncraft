@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import org.sdoaj.eloncraft.items.ItemBasic;
 import org.sdoaj.eloncraft.items.ModCreativeTabs;
 import org.sdoaj.eloncraft.items.ModItems;
+import org.sdoaj.eloncraft.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,5 +61,12 @@ public class BlockBasic extends Block {
     BlockBasic setOreDictName(String name) {
         ModBlocks.setOreDictName(this, name);
         return this;
+    }
+
+    static BlockBasic newMetalBlock(String material, int harvestLevel, float hardness, float resistance) {
+        BlockBasic block = new BlockBasic(material + "_block", Material.IRON);
+        block.setHardness(hardness).setResistance(resistance).setHarvestLevel("pickaxe", harvestLevel);
+        block.setOreDictName("block" + StringUtil.capitalizeFirstLetter(material));
+        return block;
     }
 }

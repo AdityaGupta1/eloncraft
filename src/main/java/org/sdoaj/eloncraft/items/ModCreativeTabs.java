@@ -7,12 +7,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 
+import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class ModCreativeTabs {
     // uses a Supplier<ItemStack> because otherwise the items is not initalized when the CreativeTabs is created
-    private static CreativeTabs createTab(String name, Supplier<ItemStack> tabItem) {
-        return new CreativeTabs(name) {
+    private static ModCreativeTab createTab(String name, Supplier<ItemStack> tabItem) {
+        return new ModCreativeTab(name) {
             @Override
             public ItemStack getTabIconItem() {
                 return tabItem.get();
@@ -20,24 +21,26 @@ public class ModCreativeTabs {
         };
     }
 
-    public static final CreativeTabs ELONCRAFT = createTab("eloncraft",
+    public static final ModCreativeTab ELONCRAFT = createTab("eloncraft",
             () -> new ItemStack(ModBlocks.COMPONENTS));
-    public static final CreativeTabs SPACEX = createTab("spacex",
+    public static final ModCreativeTab SPACEX = createTab("spacex",
             () -> new ItemStack(ModItems.FALCON9));
-    public static final CreativeTabs TESLA = createTab("tesla",
+    public static final ModCreativeTab TESLA = createTab("tesla",
             () -> new ItemStack(Items.MINECART));
-    public static final CreativeTabs BORING_COMPANY = createTab("boring_company",
+    public static final ModCreativeTab BORING_COMPANY = createTab("boring_company",
             () -> new ItemStack(ModItems.FLAMETHROWER));
 
-    public static void addAll(CreativeTabs tab, Item... items) {
-        for (Item item : items) {
-            item.setCreativeTab(tab);
+    public static abstract class ModCreativeTab extends CreativeTabs {
+        private ModCreativeTab(String name) {
+            super(name);
         }
-    }
 
-    public static void addAll(CreativeTabs tab, Block... blocks) {
-        for (Block block : blocks) {
-            block.setCreativeTab(tab);
+        public void addAll(Item... items) {
+            Arrays.stream(items).forEach(item -> item.setCreativeTab(this));
+        }
+
+        public void addAll(Block... blocks) {
+            Arrays.stream(blocks).forEach(item -> item.setCreativeTab(this));
         }
     }
 }

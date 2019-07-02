@@ -3,11 +3,11 @@
   "ingredients": [
     {
       "type": "forge:ore_dict",
-      "ore": "ingotTitanium"
+      "ore": "blockSteel"
     }
   ],
   "result": {
-    "item": "eloncraft:titanium_block",
+    "item": "eloncraft:steel_ingot",
     "count": 9
   }
 }

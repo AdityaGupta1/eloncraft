@@ -6,9 +6,9 @@
     "iii"
   ],
   "key": {
-    "n": {
+    "i": {
       "type": "forge:ore_dict",
-      "ore": "blockHafnium"
+      "ore": "ingotHafnium"
     }
   },
   "result": {

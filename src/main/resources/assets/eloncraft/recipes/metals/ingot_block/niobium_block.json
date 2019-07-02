@@ -6,7 +6,7 @@
     "iii"
   ],
   "key": {
-    "n": {
+    "i": {
       "type": "forge:ore_dict",
       "ore": "ingotNiobium"
     }
