@@ -246,7 +246,7 @@ public class ModItems {
         SUPERDRACO_ENGINE.addLore("3D printed engines made of Inconel and used to provide propulsion for the Crew Dragon.");
         SUPERDRACO_ENGINE.setMaxStackSize(8);
         FUEL_TANK_3 = new ItemBasic("fuel_tank_3");
-        FUEL_TANK_3.addLore("SuperDraco engines don't actually use RP-1 and LOX, but making fuel is boring enough as it is.");
+        FUEL_TANK_3.addLore("SuperDraco engines don't actually use RP-1 and LOX, but making fuel is annoying enough already.");
         FUEL_TANK_3.setMaxStackSize(2);
         FALCON9_DRAGON = new ItemBasic("falcon9_dragon");
         FALCON9_DRAGON.addLore("\"Dragon is a free-flying spacecraft designed to deliver both cargo and people to orbiting destinations.\"");

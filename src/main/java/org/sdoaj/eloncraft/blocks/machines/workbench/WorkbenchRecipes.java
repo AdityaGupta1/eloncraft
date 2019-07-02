@@ -90,21 +90,6 @@ public final class WorkbenchRecipes {
                 "ttttttt",
                 "tiiiiit",
                 "ticccit",
-                "ticiiit",
-                "ticccit",
-                "tiiicit",
-                "ticccit",
-                "tiiiiit",
-                "ttttttt"
-        }, new ItemStack(ModBlocks.LOX_COLLECTOR),
-                new RecipeKey('t', "plateTitanium"),
-                new RecipeKey('c', "nuggetCopper"),
-                new RecipeKey('i', Blocks.PACKED_ICE)));
-
-        addRecipe(new WorkbenchRecipe(new String[]{
-                "ttttttt",
-                "tiiiiit",
-                "ticccit",
                 "tiiicit",
                 "ticccit",
                 "ticiiit",
@@ -124,7 +109,7 @@ public final class WorkbenchRecipes {
                 "pptpp",
                 " ppp ",
                 "p p p"
-        }, new ItemStack(ModItems.TITANIUM_FAN),
+        }, new ItemStack(ModItems.TITANIUM_FAN, 3),
                 new RecipeKey('t', "ingotTitanium"),
                 new RecipeKey('p', "plateTitanium")));
 
@@ -350,7 +335,7 @@ public final class WorkbenchRecipes {
                 "t   t",
                 "tt tt",
                 " ttt "
-        }, new ItemStack(ModItems.FUEL_TANK_3),
+        }, new ItemStack(ModItems.FUEL_TANK_3, 2),
                 new RecipeKey('t', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[] {
@@ -359,7 +344,7 @@ public final class WorkbenchRecipes {
                 " gsssg ",
                 "eesssee",
                 "eesssee",
-                "sssssss",
+                "ttssstt",
                 "sssssss",
                 "sssssss",
                 "sssssss",
@@ -368,7 +353,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('s', ModItems.HEAT_SHIELD),
                 new RecipeKey('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 15)),
                 new RecipeKey('e', ModItems.SUPERDRACO_ENGINE),
-                new RecipeKey('d', Blocks.DRAGON_EGG)));
+                new RecipeKey('d', Blocks.DRAGON_EGG),
+                new RecipeKey('t', ModItems.FUEL_TANK_3)));
 
 
 
@@ -401,20 +387,23 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', new ItemStack(Blocks.CONCRETE, 1, 8))));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "ttttttttt",
-                "taaaaablt",
-                "ta a allt",
-                "ta a albt",
-                "ta a ablt",
-                "ta a albt",
-                "ta a abbt",
-                "taaaaallt",
-                "ttttttttt"
+                "ttptpttttt",
+                "taaaaalbrt",
+                "ta a ablrt",
+                "ta a albrt",
+                "ta a ablrt",
+                "ta a albrt",
+                "ta a ablrt",
+                "taaaaalbrt",
+                "ttPtPttttt"
         }, new ItemStack(ModBlocks.LAUNCH_CONTROLLER, 1),
                 new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('a', "plateAluminum"),
+                new RecipeKey('p', ModItems.FUEL_PIPE),
+                new RecipeKey('P', Blocks.PISTON),
                 new RecipeKey('l', Blocks.LEVER),
-                new RecipeKey('b', Blocks.STONE_BUTTON)));
+                new RecipeKey('b', Blocks.STONE_BUTTON),
+                new RecipeKey('r', Items.REDSTONE)));
     }
 
     public static List<WorkbenchRecipe> getRecipes() {
