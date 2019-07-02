@@ -165,6 +165,7 @@ container.metal_roller.name=Metal Roller
 container.jei.eloncraft.metal_roller.name=Metal Roller
 tile.crusher.name=Crusher
 container.crusher.name=Crusher
+container.jei.eloncraft.crusher.name=Crusher
 tile.alloy_furnace.name=Alloy Furnace
 container.alloy_furnace.name=Alloy Furnace
 tile.refinery.name=Fuel Refinery

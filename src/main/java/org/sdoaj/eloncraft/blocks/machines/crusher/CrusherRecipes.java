@@ -30,4 +30,8 @@ public final class CrusherRecipes {
         addRecipe(new LinearRecipe().setInput(Blocks.COAL_ORE).setOutput(new ItemStack(Items.COAL, 2)));
         addRecipe(new LinearRecipe().setInput(Items.COAL).setOutput(new ItemStack(ModItems.CRUSHED_COAL, 2)));
     }
+
+    public static List<LinearRecipe> getRecipes() {
+        return recipes;
+    }
 }
