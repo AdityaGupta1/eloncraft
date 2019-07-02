@@ -159,17 +159,23 @@ tile.steel_block.name=Block of Steel
 
 tile.elon_workbench.name=§3Elon Musk's Magical Workbench
 container.elon_workbench.name=Elon Musk's Magical Workbench
+container.jei.eloncraft.elon_workbench.name=Elon Musk's Magical Workbench
 
 tile.metal_roller.name=Metal Roller
 container.metal_roller.name=Metal Roller
 container.jei.eloncraft.metal_roller.name=Metal Roller
+
 tile.crusher.name=Crusher
 container.crusher.name=Crusher
 container.jei.eloncraft.crusher.name=Crusher
+
 tile.alloy_furnace.name=Alloy Furnace
 container.alloy_furnace.name=Alloy Furnace
+container.jei.eloncraft.alloy_furnace.name=Alloy Furnace
+
 tile.refinery.name=Fuel Refinery
 container.refinery.name=Fuel Refinery
+
 tile.lox_collector.name=LOX Condenser
 container.lox_collector.name=LOX Condenser
 

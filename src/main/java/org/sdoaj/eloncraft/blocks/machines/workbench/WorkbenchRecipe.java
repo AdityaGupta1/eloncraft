@@ -8,19 +8,8 @@ import org.sdoaj.eloncraft.util.StackUtil;
 import java.util.Arrays;
 
 public class WorkbenchRecipe {
-    private Ingredient[][] inputs;
+    private Ingredient[][] inputs; // [y][x]
     private ItemStack output;
-
-    // rotates grid clockwise and makes a copy of each input stack
-    private ItemStack[][] rotate(ItemStack[][] stacks) {
-        ItemStack[][] output = new ItemStack[stacks[0].length][stacks.length];
-        for (int i = 0; i < stacks[0].length; i++) {
-            for (int j = stacks.length - 1; j >= 0; j--) {
-                output[i][j] = stacks[j][i].copy();
-            }
-        }
-        return output;
-    }
 
     public WorkbenchRecipe(String[] grid, ItemStack output, RecipeKey... keys) {
         int maxLength = Arrays.stream(grid).mapToInt(String::length).max().getAsInt();
@@ -54,6 +43,7 @@ public class WorkbenchRecipe {
         }
 
         this.inputs = ingredients;
+        System.out.println(Arrays.deepToString(inputs).replace("],", "]\n"));
         this.output = output.copy();
     }
 
@@ -108,6 +98,14 @@ public class WorkbenchRecipe {
 
     public Ingredient[][] getInputs() {
         return Arrays.stream(this.inputs).map(Ingredient[]::clone).toArray(Ingredient[][]::new);
+    }
+
+    public int getHeight() {
+        return getInputs()[0].length;
+    }
+
+    public int getWidth() {
+        return getInputs().length;
     }
 
     public ItemStack getOutput() {

@@ -2,10 +2,12 @@ package org.sdoaj.eloncraft.jei.alloyfurnace;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.ContainerAlloyFurnace;
+import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.eloncraft.jei.LinearRecipeWrapper;
 import org.sdoaj.eloncraft.jei.RecipeCategory;
 import org.sdoaj.eloncraft.recipes.IngredientStack;
@@ -35,12 +37,14 @@ public class AlloyFurnaceRecipeCategory extends RecipeCategory<AlloyFurnaceRecip
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, AlloyFurnaceRecipeWrapper wrapper, IIngredients ingredients) {
+        IGuiItemStackGroup guiStacks = recipeLayout.getItemStacks();
+
         int[][] inputSlots = ContainerAlloyFurnace.getInputSlots();
         List<IngredientStack> inputs = wrapper.recipe.getInputs();
 
         int i = 0;
         for (int[] slot : inputSlots) {
-            recipeLayout.getItemStacks().init(i, true, slot[0] - 5, slot[1] - 5);
+            guiStacks.init(i, true, slot[0] - 5, slot[1] - 5);
 
             IngredientStack inputStack = inputs.get(0);
             inputStack.shrink(1);
@@ -49,12 +53,12 @@ public class AlloyFurnaceRecipeCategory extends RecipeCategory<AlloyFurnaceRecip
             }
 
             Ingredient input = inputStack.getIngredient();
-            recipeLayout.getItemStacks().set(i, Arrays.asList(input.getMatchingStacks()));
+            guiStacks.set(i, Arrays.asList(input.getMatchingStacks()));
 
             i++;
         }
 
-        recipeLayout.getItemStacks().init(10, false, 75, 13);
-        recipeLayout.getItemStacks().set(10, wrapper.recipe.getOutput());
+        guiStacks.init(TileEntityAlloyFurnace.SLOT_OUTPUT, false, 75, 13);
+        guiStacks.set(TileEntityAlloyFurnace.SLOT_OUTPUT, wrapper.recipe.getOutput());
     }
 }

@@ -2,6 +2,7 @@ package org.sdoaj.eloncraft.jei.crusher;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import org.sdoaj.eloncraft.jei.LinearRecipeWrapper;
@@ -29,10 +30,12 @@ public class CrusherRecipeCategory extends RecipeCategory<LinearRecipeWrapper> {
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, LinearRecipeWrapper wrapper, IIngredients ingredients) {
-        recipeLayout.getItemStacks().init(0, true, 5, 9);
-        recipeLayout.getItemStacks().set(0, wrapper.recipe.getInput().getMatchingStacks());
+        IGuiItemStackGroup guiStacks = recipeLayout.getItemStacks();
 
-        recipeLayout.getItemStacks().init(1, false, 65, 9);
-        recipeLayout.getItemStacks().set(1, wrapper.recipe.getOutput());
+        guiStacks.init(0, true, 5, 9);
+        guiStacks.set(0, wrapper.recipe.getInput().getMatchingStacks());
+
+        guiStacks.init(1, false, 65, 9);
+        guiStacks.set(1, wrapper.recipe.getOutput());
     }
 }
