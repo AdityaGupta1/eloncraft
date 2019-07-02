@@ -2,7 +2,7 @@ package org.sdoaj.eloncraft.blocks.machines.refinery;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import org.sdoaj.eloncraft.blocks.machines.ContainerBase;
+import org.sdoaj.eloncraft.blocks.tileentities.ContainerBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 
 public class ContainerRefinery extends ContainerBase {

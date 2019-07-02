@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.blocks.machines;
+package org.sdoaj.eloncraft.blocks.tileentities;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;

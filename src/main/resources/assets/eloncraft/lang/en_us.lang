@@ -162,6 +162,7 @@ container.elon_workbench.name=Elon Musk's Magical Workbench
 
 tile.metal_roller.name=Metal Roller
 container.metal_roller.name=Metal Roller
+container.jei.eloncraft.metal_roller.name=Metal Roller
 tile.crusher.name=Crusher
 container.crusher.name=Crusher
 tile.alloy_furnace.name=Alloy Furnace

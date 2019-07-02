@@ -36,9 +36,9 @@ public final class MetalRollerRecipes {
         addRecipe(new LinearRecipe().setInput("ingotNiobium", 1).setOutput(ModItems.NIOBIUM_PLATE));
         addRecipe(new LinearRecipe().setInput("ingotHafnium", 1).setOutput(ModItems.HAFNIUM_PLATE));
         addRecipe(new LinearRecipe().setInput("ingotMagnesium", 1).setOutput(ModItems.MAGNESIUM_PLATE));
-        addRecipe(new LinearRecipe().setInput("ingotZinc", 1).setOutput(ModItems.ZINC_INGOT));
+        addRecipe(new LinearRecipe().setInput("ingotZinc", 1).setOutput(ModItems.ZINC_PLATE));
 
-        addRecipe(new LinearRecipe().setInput("ingotSteel", 1).setOutput(ModItems.STEEL_INGOT));
+        addRecipe(new LinearRecipe().setInput("ingotSteel", 1).setOutput(ModItems.STEEL_PLATE));
 
         addRecipe(new LinearRecipe().setInput(ModItems.INCONEL_BARS).setOutput(ModItems.INCONEL_PLATE));
         addRecipe(new LinearRecipe().setInput(ModItems.ALUMINUM_2198_INGOT).setOutput(ModItems.ALUMINUM_2198_PLATE));
@@ -46,5 +46,9 @@ public final class MetalRollerRecipes {
         addRecipe(new LinearRecipe().setInput(ModItems.NIOBIUM_C103_INGOT).setOutput(ModItems.NIOBIUM_C103_PLATE));
 
         addRecipe(new LinearRecipe().setInput(ModItems.CARBON_FIBERS).setOutput(ModItems.CARBON_FIBER_PLATE));
+    }
+
+    public static List<LinearRecipe> getRecipes() {
+        return new ArrayList<>(recipes);
     }
 }

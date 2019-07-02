@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.eloncraft.blocks.gui.slot.SlotOutput;
-import org.sdoaj.eloncraft.blocks.machines.ContainerBase;
+import org.sdoaj.eloncraft.blocks.tileentities.ContainerBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.util.StackUtil;
 

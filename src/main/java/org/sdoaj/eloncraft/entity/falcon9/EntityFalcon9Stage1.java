@@ -10,7 +10,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.eloncraft.blocks.launch.BlockLaunchpad;
-import org.sdoaj.eloncraft.blocks.machines.ModFluidTank;
+import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
 import org.sdoaj.eloncraft.entity.EntityRocketPart;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;

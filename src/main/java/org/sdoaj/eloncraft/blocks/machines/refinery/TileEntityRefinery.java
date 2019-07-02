@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
-import org.sdoaj.eloncraft.blocks.machines.ModFluidTank;
+import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityFluidMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.eloncraft.util.ItemStackHandler;

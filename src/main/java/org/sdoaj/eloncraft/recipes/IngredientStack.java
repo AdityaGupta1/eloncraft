@@ -8,6 +8,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class IngredientStack {
     private final Ingredient ingredient;
@@ -75,6 +77,11 @@ public class IngredientStack {
     public int shrink(int amount) {
         this.count -= amount;
         return this.count;
+    }
+
+    public List<ItemStack> getMatchingStacks() {
+        return Arrays.stream(this.ingredient.getMatchingStacks()).map(stack ->
+                new ItemStack(stack.getItem(), this.count)).collect(Collectors.toList());
     }
 
     @Override

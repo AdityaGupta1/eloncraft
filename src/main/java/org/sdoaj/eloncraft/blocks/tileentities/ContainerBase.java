@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.blocks.machines;
+package org.sdoaj.eloncraft.blocks.tileentities;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

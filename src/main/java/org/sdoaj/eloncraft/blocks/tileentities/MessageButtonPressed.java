@@ -5,7 +5,6 @@ import net.minecraft.inventory.Container;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.sdoaj.eloncraft.blocks.machines.ContainerBase;
 
 public class MessageButtonPressed implements IMessage {
     private byte id;
