@@ -416,4 +416,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('l', Blocks.LEVER),
                 new RecipeKey('b', Blocks.STONE_BUTTON)));
     }
+
+    public static List<WorkbenchRecipe> getRecipes() {
+        return new ArrayList<>(recipes);
+    }
 }

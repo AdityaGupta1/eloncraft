@@ -107,10 +107,10 @@ public class WorkbenchRecipe {
     }
 
     public Ingredient[][] getInputs() {
-        return this.inputs;
+        return Arrays.stream(this.inputs).map(Ingredient[]::clone).toArray(Ingredient[][]::new);
     }
 
     public ItemStack getOutput() {
-        return this.output;
+        return this.output.copy();
     }
 }

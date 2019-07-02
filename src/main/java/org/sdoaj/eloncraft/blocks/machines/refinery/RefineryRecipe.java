@@ -17,10 +17,10 @@ public class RefineryRecipe {
     }
 
     public FluidStack getInput() {
-        return this.input;
+        return this.input.copy();
     }
 
     public FluidStack getOutput() {
-        return this.output;
+        return this.output.copy();
     }
 }

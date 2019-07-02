@@ -18,7 +18,7 @@ public class AlloyFurnaceRecipe {
         this.inputs = inputs;
         this.output = output;
 
-        if (inputs.stream().mapToInt(IngredientStack::getCount).sum() != TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1) {
+        if (inputs.stream().mapToInt(IngredientStack::getCount).sum() != TileEntityAlloyFurnace.INPUT_SLOTS) {
             throw new IllegalArgumentException("wrong amount of inputs in AlloyFurnaceRecipe");
         }
     }
@@ -47,7 +47,7 @@ public class AlloyFurnaceRecipe {
 
     public boolean matches(List<ItemStack> stacks) {
         stacks = mergeStacks(stacks);
-        List<IngredientStack> ingredients = inputs.stream().map(IngredientStack::new).collect(Collectors.toList());
+        List<IngredientStack> ingredients = inputs.stream().map(IngredientStack::copy).collect(Collectors.toList());
 
         for (IngredientStack ingredient : ingredients) {
             for (ItemStack actual : stacks) {
@@ -67,10 +67,10 @@ public class AlloyFurnaceRecipe {
     }
 
     public List<IngredientStack> getInputs() {
-        return this.inputs;
+        return this.inputs.stream().map(IngredientStack::copy).collect(Collectors.toList());
     }
 
     public ItemStack getOutput() {
-        return this.output;
+        return this.output.copy();
     }
 }

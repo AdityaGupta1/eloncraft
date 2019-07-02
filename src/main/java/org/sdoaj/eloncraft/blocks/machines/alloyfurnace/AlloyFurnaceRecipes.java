@@ -67,10 +67,14 @@ public final class AlloyFurnaceRecipes {
 
 
         addRecipe(new AlloyFurnaceRecipe(new IngredientStack[]{
-                new IngredientStack(Blocks.OBSIDIAN, 3),
                 new IngredientStack(Blocks.QUARTZ_BLOCK, 3),
                 new IngredientStack(Items.BLAZE_POWDER, 2),
-                new IngredientStack(Items.CHORUS_FRUIT_POPPED, 2)
+                new IngredientStack(Items.CHORUS_FRUIT_POPPED, 2),
+                new IngredientStack(Blocks.OBSIDIAN, 3)
         }, new ItemStack(ModItems.HEAT_SHIELD, 7)));
+    }
+
+    public static List<AlloyFurnaceRecipe> getRecipes() {
+        return new ArrayList<>(recipes);
     }
 }

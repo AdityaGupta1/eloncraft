@@ -12,19 +12,25 @@ import org.sdoaj.eloncraft.blocks.tileentities.ContainerBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.util.StackUtil;
 
+import java.util.Arrays;
+
 public class ContainerAlloyFurnace extends ContainerBase {
     public final TileEntityAlloyFurnace tileEntity;
+
+    private static int[][] inputSlots = {
+            {10, 10}, {10, 33}, {10, 56}, {34, 22}, {34, 45}, {126, 22}, {126, 45}, {150, 10}, {150, 33}, {150, 56}
+    };
+
+    public static int[][] getInputSlots() {
+        return Arrays.stream(inputSlots).map(int[]::clone).toArray(int[][]::new);
+    }
 
     public ContainerAlloyFurnace(InventoryPlayer inventory, TileEntityBase tileEntity) {
         super(tileEntity);
         this.tileEntity = (TileEntityAlloyFurnace) tileEntity;
 
-        int[][] slots = {
-                {10, 10}, {10, 33}, {10, 56}, {34, 22}, {34, 45}, {126, 22}, {126, 45}, {150, 10}, {150, 33}, {150, 56}
-        };
-
-        for (int i = 0; i < TileEntityAlloyFurnace.INPUT_SLOTS - TileEntityAlloyFurnace.SLOT_INPUT_1; i++) {
-            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, slots[i][0], slots[i][1], 1)
+        for (int i = 0; i < TileEntityAlloyFurnace.INPUT_SLOTS; i++) {
+            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, inputSlots[i][0], inputSlots[i][1], 1)
                     .setOnSlotChanged(this.tileEntity::reset));
         }
         this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityAlloyFurnace.SLOT_OUTPUT, 80, 18));

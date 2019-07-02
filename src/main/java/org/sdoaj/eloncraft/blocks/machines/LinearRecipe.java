@@ -1,10 +1,11 @@
-package org.sdoaj.eloncraft.recipes;
+package org.sdoaj.eloncraft.blocks.machines;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreIngredient;
+import org.sdoaj.eloncraft.recipes.IngredientStack;
 
 // generic recipe class for any recipe with one input and one output
 public class LinearRecipe {
@@ -54,10 +55,10 @@ public class LinearRecipe {
     }
 
     public IngredientStack getInput() {
-        return this.input;
+        return this.input.copy();
     }
 
     public ItemStack getOutput() {
-        return this.output;
+        return this.output.copy();
     }
 }

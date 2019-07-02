@@ -32,7 +32,7 @@ public class CrusherRecipeCategory extends RecipeCategory<LinearRecipeWrapper> {
         recipeLayout.getItemStacks().init(0, true, 5, 9);
         recipeLayout.getItemStacks().set(0, wrapper.recipe.getInput().getMatchingStacks());
 
-        recipeLayout.getItemStacks().init(1, true, 65, 9);
+        recipeLayout.getItemStacks().init(1, false, 65, 9);
         recipeLayout.getItemStacks().set(1, wrapper.recipe.getOutput());
     }
 }

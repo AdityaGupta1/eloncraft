@@ -18,6 +18,12 @@ public class StackUtil {
         return stack;
     }
 
+    public static ItemStack copyCount(ItemStack stack, int newCount) {
+        ItemStack newStack = stack.copy();
+        newStack.setCount(newCount);
+        return newStack;
+    }
+
     public static boolean itemStackApplies(ItemStack ingredient, ItemStack actual) {
         if (ingredient == null || actual == null) {
             return false;

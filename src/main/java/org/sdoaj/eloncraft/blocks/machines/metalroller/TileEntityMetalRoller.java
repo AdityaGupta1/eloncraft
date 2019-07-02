@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
-import org.sdoaj.eloncraft.recipes.LinearRecipe;
+import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 import org.sdoaj.eloncraft.util.StackUtil;
 import org.sdoaj.eloncraft.util.Util;

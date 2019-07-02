@@ -4,7 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.items.ModItems;
-import org.sdoaj.eloncraft.recipes.LinearRecipe;
+import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,6 @@ public final class CrusherRecipes {
     }
 
     public static List<LinearRecipe> getRecipes() {
-        return recipes;
+        return new ArrayList<>(recipes);
     }
 }

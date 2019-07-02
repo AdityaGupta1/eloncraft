@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
+import org.sdoaj.eloncraft.util.StackUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,23 +26,15 @@ public class IngredientStack {
     }
 
     public IngredientStack(ItemStack stack) {
-        this(Ingredient.fromStacks(stack), stack.getCount());
+        this(Ingredient.fromStacks(StackUtil.copyCount(stack, 1)), stack.getCount());
     }
 
     public IngredientStack(Item item, int count) {
         this(new ItemStack(item, count));
     }
 
-    public IngredientStack(Item item) {
-        this(item, 1);
-    }
-
     public IngredientStack(Block block, int count) {
         this(new ItemStack(block, count));
-    }
-
-    public IngredientStack(Block block) {
-        this(block, 1);
     }
 
     public IngredientStack(int count, String... oreDictNames) {
@@ -80,15 +73,16 @@ public class IngredientStack {
     }
 
     public List<ItemStack> getMatchingStacks() {
-        return Arrays.stream(this.ingredient.getMatchingStacks()).map(stack -> {
-            ItemStack newStack = stack.copy();
-            newStack.setCount(stack.getCount());
-            return newStack;
-        }).collect(Collectors.toList());
+        return Arrays.stream(this.ingredient.getMatchingStacks())
+                .map(stack -> StackUtil.copyCount(stack, getCount())).collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
         return count + "x " + ingredient.toString();
+    }
+
+    public IngredientStack copy() {
+        return new IngredientStack(this);
     }
 }
