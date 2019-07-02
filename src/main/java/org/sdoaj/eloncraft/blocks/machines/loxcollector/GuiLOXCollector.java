@@ -15,7 +15,7 @@ import org.sdoaj.eloncraft.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiLOXCollector extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_lox_collector");
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("lox_collector");
     private final TileEntityLOXCollector tileEntity;
 
     private EnergyDisplay energy;

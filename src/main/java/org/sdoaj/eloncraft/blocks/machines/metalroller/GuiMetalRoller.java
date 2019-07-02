@@ -14,7 +14,7 @@ import org.sdoaj.eloncraft.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiMetalRoller extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_metal_roller");
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("metal_roller");
     private final TileEntityMetalRoller tileEntity;
 
     private EnergyDisplay energy;

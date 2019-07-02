@@ -20,7 +20,7 @@ import org.sdoaj.eloncraft.util.PacketHandler;
 
 @SideOnly(Side.CLIENT)
 public class GuiLaunchController extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_launch_controller");
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("launch_controller");
     private final TileEntityLaunchController tileEntity;
 
     private EnergyDisplay energy;

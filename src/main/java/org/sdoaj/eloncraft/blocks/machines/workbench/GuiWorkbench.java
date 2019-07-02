@@ -13,8 +13,8 @@ import org.sdoaj.eloncraft.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiWorkbench extends GuiBase {
-    private static final ResourceLocation resourceLocationTop = AssetUtil.getGuiLocation("gui_workbench_top");
-    private static final ResourceLocation resourceLocationBottom = AssetUtil.getGuiLocation("gui_workbench_bottom");
+    private static final ResourceLocation resourceLocationTop = AssetUtil.getGuiLocation("workbench_top");
+    private static final ResourceLocation resourceLocationBottom = AssetUtil.getGuiLocation("workbench_bottom");
     private final TileEntityWorkbench tileEntity;
 
     public GuiWorkbench(InventoryPlayer inventory, TileEntityBase tile) {

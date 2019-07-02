@@ -14,7 +14,7 @@ public class MetalRollerRecipeCategory extends RecipeCategory<LinearRecipeWrappe
     private final IDrawable background;
 
     public MetalRollerRecipeCategory(IGuiHelper guiHelper) {
-        this.background = guiHelper.createDrawable(AssetUtil.getGuiLocation("gui_metal_roller"), 42, 25, 92, 36);
+        this.background = guiHelper.createDrawable(AssetUtil.getGuiLocation("metal_roller"), 42, 25, 92, 36);
     }
 
     @Override

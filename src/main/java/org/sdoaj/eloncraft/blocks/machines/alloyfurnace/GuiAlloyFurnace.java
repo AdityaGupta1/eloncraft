@@ -14,7 +14,7 @@ import org.sdoaj.eloncraft.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiAlloyFurnace extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_alloy_furnace");
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("alloy_furnace");
     private final TileEntityAlloyFurnace tileEntity;
 
     private EnergyDisplay energy;

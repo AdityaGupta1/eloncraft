@@ -10,7 +10,7 @@ import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 
 public final class AssetUtil {
-    public static final ResourceLocation GUI_INVENTORY_LOCATION = getGuiLocation("gui_inventory");
+    public static final ResourceLocation GUI_INVENTORY_LOCATION = getGuiLocation("inventory");
 
     public static ResourceLocation getGuiLocation(String file) {
         return new ResourceLocation(Eloncraft.MODID, "textures/gui/" + file + ".png");

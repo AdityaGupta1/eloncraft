@@ -14,7 +14,7 @@ import org.sdoaj.eloncraft.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiCrusher extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_crusher");
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("crusher");
     private final TileEntityCrusher tileEntity;
 
     private EnergyDisplay energy;

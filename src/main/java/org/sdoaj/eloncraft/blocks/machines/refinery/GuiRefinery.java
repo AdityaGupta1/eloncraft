@@ -15,7 +15,7 @@ import org.sdoaj.eloncraft.util.AssetUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiRefinery extends GuiBase {
-    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("gui_refinery");
+    private static final ResourceLocation resourceLocation = AssetUtil.getGuiLocation("refinery");
     private final TileEntityRefinery tileEntity;
 
     private EnergyDisplay energy;
