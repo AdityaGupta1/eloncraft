@@ -42,7 +42,6 @@ public class RefineryRecipeCategory extends RecipeCategory<RefineryRecipeWrapper
     public void setRecipe(IRecipeLayout recipeLayout, RefineryRecipeWrapper wrapper, IIngredients ingredients) {
         IGuiFluidStackGroup guiStacks = recipeLayout.getFluidStacks();
 
-        // set capacity to 25 mB so that fluid shows as more than just a small line at the bottom
         guiStacks.init(0, true, 6, 6, 16, 83, Fluid.BUCKET_VOLUME / 40, false, Drawables.getInstance().FLUID_LINES);
         guiStacks.set(0, wrapper.recipe.getInput());
 

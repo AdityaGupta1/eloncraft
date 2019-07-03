@@ -138,7 +138,7 @@ public class ModBlocks {
 
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
         LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);
-        LAUNCH_CONTROLLER.addLore("Used to load fuel into rockets and initiate launch sequences.");
+        LAUNCH_CONTROLLER.addLore("Used to load fuel into rockets and to initiate launch sequences.");
         LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON);
         LAUNCHPAD.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 

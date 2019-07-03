@@ -61,7 +61,7 @@ public class BlockLaunchpad extends BlockNotFull {
         NO_SQUARES("No valid 7x7 squares found!"),
         IN_USE("No nearby 7x7 squares not already in use!"),
         CONTROLLER_NUMBER("Either not enough or too many launch controllers (should have only one)!"),
-        CONTROLLER_PLACEMENT("Controller not placed correctly! Make sure it is at the middle of an edge."),
+        CONTROLLER_PLACEMENT("Controller not placed correctly! Make sure it is at the center of an edge."),
         OBSTRUCTED_SKY("Sky is obstructed!");
 
         private final String message;

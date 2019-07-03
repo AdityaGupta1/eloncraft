@@ -10,7 +10,7 @@ public final class StringUtil {
     public static final int DECIMAL_COLOR_WHITE = 16777215;
 
     /**
-     * Localizes a given String
+     * localizes a given String
      */
     @SideOnly(Side.CLIENT)
     public static String localize(String text) {

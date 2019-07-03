@@ -4,8 +4,11 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipe;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
@@ -15,6 +18,8 @@ import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipe;
 import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipes;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipe;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipes;
+import org.sdoaj.eloncraft.fluids.ModFluids;
+import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeCategory;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeWrapper;
 import org.sdoaj.eloncraft.jei.crusher.CrusherRecipeCategory;
@@ -28,7 +33,11 @@ import org.sdoaj.eloncraft.jei.refinery.RefineryRecipeWrapper;
 import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeCategory;
 import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeWrapper;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @mezz.jei.api.JEIPlugin
 public class JEIPlugin implements IModPlugin {
@@ -69,5 +78,17 @@ public class JEIPlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.ALLOY_FURNACE), AlloyFurnaceRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.REFINERY), RefineryRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.LOX_COLLECTOR), LoxCollectorRecipeCategory.uid);
+
+        List<ItemStack> launchBlocks = new ArrayList<>();
+        launchBlocks.add(new ItemStack(ModBlocks.LAUNCHPAD));
+        launchBlocks.add(new ItemStack(ModBlocks.LAUNCH_CONTROLLER));
+        registry.addIngredientInfo(launchBlocks, VanillaTypes.ITEM,
+                "A full launchpad requires a 7x7 square of launchpad blocks with a launch controller in the center of any of the edges.",
+                "", "Launchpads must be placed on solid blocks.");
+        List<FluidStack> fuelFluids = new ArrayList<>();
+        fuelFluids.add(new FluidStack(ModFluids.OIL, Fluid.BUCKET_VOLUME));
+        fuelFluids.add(new FluidStack(ModFluids.RP1, Fluid.BUCKET_VOLUME));
+        registry.addIngredientInfo(fuelFluids, VanillaTypes.FLUID,
+                "Oil can be found in lakes across the Overworld. Its main purpose is to be refined into RP-1 for fueling rockets.");
     }
 }
