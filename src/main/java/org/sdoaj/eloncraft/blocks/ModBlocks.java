@@ -133,7 +133,7 @@ public class ModBlocks {
         REFINERY.addLore("Used to refine petroleum oil into rocket fuel (which can't melt steel beams).");
         REFINERY.setHarvestLevel("pickaxe", 2);
         LOX_COLLECTOR = new BlockLOXCollector("lox_collector", Material.IRON);
-        LOX_COLLECTOR.addLore("Condenses and purifies air into pure liquid oxygen.");
+        LOX_COLLECTOR.addLore("Condenses and purifies air into liquid oxygen.");
         LOX_COLLECTOR.setHarvestLevel("pickaxe", 2);
 
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);

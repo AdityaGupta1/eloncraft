@@ -177,8 +177,9 @@ tile.refinery.name=Fuel Refinery
 container.refinery.name=Fuel Refinery
 container.jei.eloncraft.refinery.name=Fuel Refinery
 
-tile.lox_collector.name=LOX Condenser
-container.lox_collector.name=LOX Condenser
+tile.lox_collector.name=LOX Collector
+container.lox_collector.name=LOX Collector
+container.jei.eloncraft.lox_collector.name=LOX Collector
 
 # ====================
 # rocket stuff

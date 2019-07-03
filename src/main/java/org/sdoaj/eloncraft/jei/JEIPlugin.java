@@ -18,12 +18,17 @@ import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipes;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeCategory;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeWrapper;
 import org.sdoaj.eloncraft.jei.crusher.CrusherRecipeCategory;
+import org.sdoaj.eloncraft.jei.lox_collector.LoxCollectorRecipe;
+import org.sdoaj.eloncraft.jei.lox_collector.LoxCollectorRecipeCategory;
+import org.sdoaj.eloncraft.jei.lox_collector.LoxCollectorRecipeWrapper;
 import org.sdoaj.eloncraft.jei.metalroller.MetalRollerRecipeCategory;
 import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 import org.sdoaj.eloncraft.jei.refinery.RefineryRecipeCategory;
 import org.sdoaj.eloncraft.jei.refinery.RefineryRecipeWrapper;
 import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeCategory;
 import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeWrapper;
+
+import java.util.Collections;
 
 @mezz.jei.api.JEIPlugin
 public class JEIPlugin implements IModPlugin {
@@ -39,6 +44,7 @@ public class JEIPlugin implements IModPlugin {
         registry.addRecipeCategories(new CrusherRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AlloyFurnaceRecipeCategory(guiHelper));
         registry.addRecipeCategories(new RefineryRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new LoxCollectorRecipeCategory(guiHelper));
     }
 
     @Override
@@ -48,17 +54,20 @@ public class JEIPlugin implements IModPlugin {
         registry.handleRecipes(LinearRecipe.class, LinearRecipeWrapper::new, CrusherRecipeCategory.uid);
         registry.handleRecipes(AlloyFurnaceRecipe.class, AlloyFurnaceRecipeWrapper::new, AlloyFurnaceRecipeCategory.uid);
         registry.handleRecipes(RefineryRecipe.class, RefineryRecipeWrapper::new, RefineryRecipeCategory.uid);
+        registry.handleRecipes(LoxCollectorRecipe.class, LoxCollectorRecipeWrapper::new, LoxCollectorRecipeCategory.uid);
 
         registry.addRecipes(WorkbenchRecipes.getRecipes(), WorkbenchRecipeCategory.uid);
         registry.addRecipes(MetalRollerRecipes.getRecipes(), MetalRollerRecipeCategory.uid);
         registry.addRecipes(CrusherRecipes.getRecipes(), CrusherRecipeCategory.uid);
         registry.addRecipes(AlloyFurnaceRecipes.getRecipes(), AlloyFurnaceRecipeCategory.uid);
         registry.addRecipes(RefineryRecipes.getRecipes(), RefineryRecipeCategory.uid);
+        registry.addRecipes(Collections.singleton(new LoxCollectorRecipe()), LoxCollectorRecipeCategory.uid);
 
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.ELON_WORKBENCH), WorkbenchRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.METAL_ROLLER), MetalRollerRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.CRUSHER), CrusherRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.ALLOY_FURNACE), AlloyFurnaceRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.REFINERY), RefineryRecipeCategory.uid);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.LOX_COLLECTOR), LoxCollectorRecipeCategory.uid);
     }
 }
