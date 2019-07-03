@@ -172,7 +172,7 @@ public final class WorkbenchRecipes {
                 "p ppppp p",
                 "ppp   ppp",
                 "pp     pp",
-                "pp     pp",
+                "pp  f  pp",
                 "pp     pp",
                 "pp     pp",
                 "pp     pp",
@@ -182,7 +182,8 @@ public final class WorkbenchRecipes {
                 "ppp   ppp",
                 "p ppppp p"
         }, new ItemStack(ModItems.FUEL_TANK_LOX_1),
-                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE)));
+                new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
+                new RecipeKey('f', ModItems.USA_FLAG)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "p pppPp p",
