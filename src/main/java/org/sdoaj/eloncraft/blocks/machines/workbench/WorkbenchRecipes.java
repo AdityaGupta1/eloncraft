@@ -102,7 +102,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('i', Blocks.PACKED_ICE)));
 
 
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "p p p",
                 " ppp ",
@@ -112,7 +111,6 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.TITANIUM_FAN, 3),
                 new RecipeKey('t', "ingotTitanium"),
                 new RecipeKey('p', "plateTitanium")));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -272,7 +270,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
 
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "bbbbbbbrrrrrr",
                 "bsbsbsbwwwwww",
@@ -315,8 +312,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('F', ModItems.USA_FLAG)));
 
 
-
-        addRecipe(new WorkbenchRecipe(new String[] {
+        addRecipe(new WorkbenchRecipe(new String[]{
                 "iiiii",
                 "i   i",
                 " i i ",
@@ -329,7 +325,7 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.SUPERDRACO_ENGINE, 2),
                 new RecipeKey('i', ModItems.INCONEL_PLATE)));
 
-        addRecipe(new WorkbenchRecipe(new String[] {
+        addRecipe(new WorkbenchRecipe(new String[]{
                 " ttt ",
                 "tt tt",
                 "t   t",
@@ -338,7 +334,7 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.FUEL_TANK_3, 2),
                 new RecipeKey('t', "plateTitanium")));
 
-        addRecipe(new WorkbenchRecipe(new String[] {
+        addRecipe(new WorkbenchRecipe(new String[]{
                 "  sds  ",
                 " gsssg ",
                 " gsssg ",
@@ -355,7 +351,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('e', ModItems.SUPERDRACO_ENGINE),
                 new RecipeKey('d', Blocks.DRAGON_EGG),
                 new RecipeKey('t', ModItems.FUEL_TANK_3)));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -377,7 +372,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('s', ModItems.FUEL_TANK_LOX_2),
                 new RecipeKey('d', ModItems.FALCON9_DRAGON)));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{

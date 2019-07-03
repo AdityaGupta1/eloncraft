@@ -3,6 +3,7 @@ package org.sdoaj.eloncraft.blocks.machines.loxcollector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class TileEntityLOXCollector extends TileEntityFluidMachine {
     final int guiTopHeight = 99;
 
-    private final int capacity = 8000;
+    private final int capacity = 8 * Fluid.BUCKET_VOLUME;
     final ModFluidTank tank = new ModFluidTank("Tank", capacity) {
         @Override
         public boolean canFill() {

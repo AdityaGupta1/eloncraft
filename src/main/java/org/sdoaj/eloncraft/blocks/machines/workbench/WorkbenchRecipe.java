@@ -43,7 +43,6 @@ public class WorkbenchRecipe {
         }
 
         this.inputs = ingredients;
-        System.out.println(Arrays.deepToString(inputs).replace("],", "]\n"));
         this.output = output.copy();
     }
 

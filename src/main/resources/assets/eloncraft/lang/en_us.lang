@@ -175,6 +175,7 @@ container.jei.eloncraft.alloy_furnace.name=Alloy Furnace
 
 tile.refinery.name=Fuel Refinery
 container.refinery.name=Fuel Refinery
+container.jei.eloncraft.refinery.name=Fuel Refinery
 
 tile.lox_collector.name=LOX Condenser
 container.lox_collector.name=LOX Condenser
