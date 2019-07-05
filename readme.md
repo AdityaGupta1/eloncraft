@@ -7,3 +7,8 @@ Who says you can't build a colony on Mars, or dig a tunnel across a city, or dri
 Planned features include items from three of Elon Musk's companies: SpaceX, Tesla, and The Boring Company. Currently, development is focused on SpaceX.
 
 If you want to contribute, check out the [contributing guidelines](contributing.md).
+
+## Credits
+
+[@AdityaGupta1](https://github.com/AdityaGupta1) - main developer  
+[@qiandasen](http://github.com/qiandasen) - art and textures
