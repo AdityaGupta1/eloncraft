@@ -1,22 +1,16 @@
 package org.sdoaj.eloncraft.jei.workbench;
 
 import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.gui.*;
+import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IGuiItemStackGroup;
+import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.ingredients.VanillaTypes;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.ContainerAlloyFurnace;
 import org.sdoaj.eloncraft.blocks.machines.workbench.TileEntityWorkbench;
 import org.sdoaj.eloncraft.jei.RecipeCategory;
-import org.sdoaj.eloncraft.recipes.IngredientStack;
 import org.sdoaj.eloncraft.util.AssetUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class WorkbenchRecipeCategory extends RecipeCategory<WorkbenchRecipeWrapper> {
     public static String uid = "eloncraft.elon_workbench";

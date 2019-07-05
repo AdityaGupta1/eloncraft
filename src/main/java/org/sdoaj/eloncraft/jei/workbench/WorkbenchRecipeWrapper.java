@@ -3,15 +3,9 @@ package org.sdoaj.eloncraft.jei.workbench;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import net.minecraft.item.ItemSaddle;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipe;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipe;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 

@@ -8,7 +8,6 @@ import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.ContainerAlloyFurnace;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
-import org.sdoaj.eloncraft.jei.LinearRecipeWrapper;
 import org.sdoaj.eloncraft.jei.RecipeCategory;
 import org.sdoaj.eloncraft.recipes.IngredientStack;
 import org.sdoaj.eloncraft.util.AssetUtil;

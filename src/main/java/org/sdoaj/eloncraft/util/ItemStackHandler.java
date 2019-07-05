@@ -86,11 +86,11 @@ public class ItemStackHandler extends net.minecraftforge.items.ItemStackHandler 
         return this.remover;
     }
 
-    public static interface IAcceptor {
+    public interface IAcceptor {
         boolean canAccept(int slot, ItemStack stack, boolean automation);
     }
 
-    public static interface IRemover {
+    public interface IRemover {
         boolean canRemove(int slot, boolean automation);
     }
 }

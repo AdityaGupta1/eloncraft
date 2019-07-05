@@ -1,9 +1,7 @@
 package org.sdoaj.eloncraft.blocks.machines.alloyfurnace;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.eloncraft.recipes.IngredientStack;
-import org.sdoaj.eloncraft.util.StackUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;

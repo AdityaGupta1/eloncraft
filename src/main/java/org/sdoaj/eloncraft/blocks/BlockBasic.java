@@ -6,9 +6,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.sdoaj.eloncraft.items.ItemBasic;
 import org.sdoaj.eloncraft.items.ModCreativeTabs;
-import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.util.StringUtil;
 
 import java.util.ArrayList;

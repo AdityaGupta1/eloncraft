@@ -5,9 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.sdoaj.eloncraft.Eloncraft;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModFluids {

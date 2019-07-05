@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
+import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipe;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
 import org.sdoaj.eloncraft.blocks.machines.crusher.CrusherRecipes;
@@ -19,7 +20,6 @@ import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipes;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipe;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipes;
 import org.sdoaj.eloncraft.fluids.ModFluids;
-import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeCategory;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeWrapper;
 import org.sdoaj.eloncraft.jei.crusher.CrusherRecipeCategory;
@@ -27,7 +27,6 @@ import org.sdoaj.eloncraft.jei.lox_collector.LoxCollectorRecipe;
 import org.sdoaj.eloncraft.jei.lox_collector.LoxCollectorRecipeCategory;
 import org.sdoaj.eloncraft.jei.lox_collector.LoxCollectorRecipeWrapper;
 import org.sdoaj.eloncraft.jei.metalroller.MetalRollerRecipeCategory;
-import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 import org.sdoaj.eloncraft.jei.refinery.RefineryRecipeCategory;
 import org.sdoaj.eloncraft.jei.refinery.RefineryRecipeWrapper;
 import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeCategory;
@@ -36,8 +35,6 @@ import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeWrapper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @mezz.jei.api.JEIPlugin
 public class JEIPlugin implements IModPlugin {
