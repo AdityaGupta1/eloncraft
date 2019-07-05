@@ -2,6 +2,7 @@
 
 package org.sdoaj.eloncraft.blocks.launch.controller;
 
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -17,6 +18,7 @@ import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.entity.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.eloncraft.util.AssetUtil;
 import org.sdoaj.eloncraft.util.PacketHandler;
+import scala.actors.threadpool.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiLaunchController extends GuiBase {
@@ -29,6 +31,9 @@ public class GuiLaunchController extends GuiBase {
     private FluidDisplay oxygenDisplay;
 
     private GuiCustomButton loadButton;
+    private GuiCustomButton destinationPrevButton;
+    private GuiCustomButton destinationNextButton;
+    private GuiCustomButton launchButton;
 
     private FluidDisplay rocketFuelDisplay;
     private FluidDisplay rocketOxygenDisplay;
@@ -51,8 +56,14 @@ public class GuiLaunchController extends GuiBase {
         this.oxygenDisplay = new FluidDisplay(this.guiLeft + 31, this.guiTop + 8, tileEntity.oxygenTank);
 
         this.loadButton = new GuiCustomButton(0, this.guiLeft + 54, this.guiTop + 44, 13, 13, "", resourceLocation, 0, 99);
-        this.buttonList.add(loadButton);
         loadButton.enabled = false;
+
+        this.destinationPrevButton = new GuiCustomButton(1, this.guiLeft + 116, this.guiTop + 43, 10, 15, "", resourceLocation, 13, 99);
+        this.destinationNextButton = new GuiCustomButton(2, this.guiLeft + 160, this.guiTop + 43, 10, 15, "", resourceLocation, 23, 99);
+
+        this.launchButton = new GuiCustomButton(3, this.guiLeft + 127, this.guiTop + 78, 43, 15, "", resourceLocation, 33, 99);
+
+        addButtons(loadButton, destinationPrevButton, destinationNextButton, launchButton);
 
         this.rocketFuelDisplay = new FluidDisplay(this.guiLeft + 72, this.guiTop + 8, null);
         this.rocketOxygenDisplay = new FluidDisplay(this.guiLeft + 95, this.guiTop + 8, null);
@@ -75,7 +86,10 @@ public class GuiLaunchController extends GuiBase {
     public void updateScreen() {
         super.updateScreen();
 
-        this.loadButton.enabled = tileEntity.canProcessWithoutLoading() && tileEntity.hasEnergyForTick();
+        loadButton.enabled = tileEntity.canProcessWithoutLoading() && tileEntity.hasEnergyForTick();
+
+        destinationPrevButton.enabled = tileEntity.getDestination().ordinal() != 0;
+        destinationNextButton.enabled = tileEntity.getDestination().ordinal() != Destination.values().length - 1;
 
         EntityFalcon9Stage1 rocket = tileEntity.rocket;
         if (rocket != null) {
@@ -101,6 +115,8 @@ public class GuiLaunchController extends GuiBase {
 
         this.mc.getTextureManager().bindTexture(resourceLocation);
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
+
+        this.drawTexturedModalRect(this.guiLeft + 116, this.guiTop + 8, 202, tileEntity.getDestination().ordinal() * 32, 54, 32);
 
         this.energy.draw();
 

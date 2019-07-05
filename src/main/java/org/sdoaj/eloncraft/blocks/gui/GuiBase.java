@@ -2,8 +2,11 @@
 
 package org.sdoaj.eloncraft.blocks.gui;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+
+import java.util.Arrays;
 
 public abstract class GuiBase extends GuiContainer {
     public GuiBase(Container inventorySlots) {
@@ -15,5 +18,9 @@ public abstract class GuiBase extends GuiContainer {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    protected void addButtons(GuiButton... buttons) {
+        this.buttonList.addAll(Arrays.asList(buttons));
     }
 }

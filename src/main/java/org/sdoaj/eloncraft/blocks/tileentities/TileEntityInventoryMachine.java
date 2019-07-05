@@ -57,8 +57,19 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         super.readSyncableNBT(compound, type);
     }
 
+    private boolean hasChanged = false;
+
     protected boolean hasChanged() {
+        if (hasChanged) {
+           hasChanged = false;
+           return true;
+        }
+
         return this.lastProcess != this.processTime || (hasEnergyStorage && (this.lastEnergy != this.energyStorage.getEnergyStored()));
+    }
+
+    protected void setChanged() {
+        hasChanged = true;
     }
 
     protected void updatePreviousValues() {

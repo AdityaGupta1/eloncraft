@@ -1,6 +1,7 @@
 package org.sdoaj.eloncraft.blocks.launch.controller;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fluids.FluidStack;
@@ -60,6 +61,8 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
 
     private boolean isLoading = false;
 
+    private Destination destination = Destination.ISS;
+
     public static final int mbPerOperation = 20;
 
     public TileEntityLaunchController() {
@@ -70,6 +73,22 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         fluidTanks.put(fuelTank, new EnumFacing[]{EnumFacing.UP, EnumFacing.DOWN});
         fluidTanks.put(oxygenTank, new EnumFacing[]{EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST});
         setFluidTanks(fluidTanks);
+    }
+
+    @Override
+    public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
+        super.writeSyncableNBT(compound, type);
+        compound.setString("Destination", destination.toString());
+    }
+
+    @Override
+    public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
+        super.readSyncableNBT(compound, type);
+        if (compound.hasKey("Destination")) {
+            this.destination = Destination.valueOf(compound.getString("Destination"));
+        } else {
+            this.destination = Destination.ISS;
+        }
     }
 
     @Override
@@ -171,14 +190,28 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
 
     @Override
     protected void onButtonPressed(int id) {
-        if (id == 0) {
-            if (!isLoading) {
-                if (canProcessWithoutLoading() && hasEnergyForTick()) {
-                    isLoading = true;
+        switch(id) {
+            case 0:
+                if (!isLoading) {
+                    if (canProcessWithoutLoading() && hasEnergyForTick()) {
+                        isLoading = true;
+                    }
+                } else {
+                    isLoading = false;
                 }
-            } else {
-                isLoading = false;
-            }
+                break;
+            case 1:
+                this.destination = Destination.fromOrdinal(this.destination.ordinal() - 1);
+                setChanged();
+                break;
+            case 2:
+                this.destination = Destination.fromOrdinal(this.destination.ordinal() + 1);
+                setChanged();
+                break;
         }
+    }
+
+    public Destination getDestination() {
+        return destination;
     }
 }
