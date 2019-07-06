@@ -116,7 +116,7 @@ public class GuiLaunchController extends GuiBase {
         this.mc.getTextureManager().bindTexture(resourceLocation);
         this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, 176, tileEntity.guiTopHeight);
 
-        this.drawTexturedModalRect(this.guiLeft + 116, this.guiTop + 8, 202, tileEntity.getDestination().ordinal() * 32, 54, 32);
+        this.drawTexturedModalRect(this.guiLeft + 116, this.guiTop + 8, 202, tileEntity.getDestination().ordinal() * 33, 54, 32);
 
         this.energy.draw();
 
