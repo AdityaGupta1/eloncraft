@@ -99,6 +99,8 @@ public class GuiLaunchController extends GuiBase {
             rocketFuelDisplay.setTank(null);
             rocketOxygenDisplay.setTank(null);
         }
+
+        launchButton.enabled = rocket != null && rocket.fuelTank.isFull() && rocket.oxygenTank.isFull();
     }
 
     @Override

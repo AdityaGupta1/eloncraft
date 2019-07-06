@@ -236,7 +236,7 @@ public class BlockLaunchpad extends BlockNotFull {
 
         BlockPos centerPos = error.getPos();
         EntityFalcon9Stage1 rocket = new EntityFalcon9Stage1(world);
-        rocket.setLaunchpad(centerPos, player.getHorizontalFacing().getHorizontalAngle() - 270f);
+        rocket.setLaunchpad(centerPos, player.getHorizontalFacing().getHorizontalAngle());
         rockets.put(centerPos, rocket);
         world.spawnEntity(rocket);
 

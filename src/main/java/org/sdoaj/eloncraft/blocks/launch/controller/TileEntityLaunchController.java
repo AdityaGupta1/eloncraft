@@ -145,7 +145,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         return isLoading && canProcessWithoutLoading();
     }
 
-    public boolean canProcessWithoutLoading() {
+    boolean canProcessWithoutLoading() {
         if (rocket == null) {
             return false;
         }
