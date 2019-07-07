@@ -8,6 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -57,7 +59,9 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
     @Override
     protected void removePassenger(Entity passenger) {
         super.removePassenger(passenger);
-        passenger.setPosition(this.posX, this.posY + 7, this.posZ - 4);
+        Vec3d dz = new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-this.rotationYaw));
+        Vec3d dismountPos = new Vec3d(this.posX, this.posY + 7, this.posZ).add(dz);
+        passenger.setPosition(dismountPos.x, dismountPos.y, dismountPos.z);
     }
 
     @SubscribeEvent
