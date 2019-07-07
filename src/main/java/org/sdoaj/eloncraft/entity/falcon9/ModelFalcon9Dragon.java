@@ -1,13 +1,12 @@
 package org.sdoaj.eloncraft.entity.falcon9;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
-public class ModelFalcon9Dragon extends ModelBase {
+public class ModelFalcon9Dragon extends ModelFalcon9Part {
 	private final ModelRenderer trunk;
 	private final ModelRenderer top;
 	private final ModelRenderer pivot;
@@ -15,6 +14,8 @@ public class ModelFalcon9Dragon extends ModelBase {
 	private final ModelRenderer chair;
 
 	ModelFalcon9Dragon() {
+		super(yaw -> 180 + yaw, pitch -> -pitch);
+
 		textureWidth = 80;
 		textureHeight = 80;
 
@@ -85,17 +86,9 @@ public class ModelFalcon9Dragon extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
+	public void renderActual(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
 		EntityFalcon9Dragon dragon = (EntityFalcon9Dragon) entity;
 		setHatch(dragon.getHatchPosition());
-
-		float modelScale = ModelFalcon9Stage1.modelScale;
-
-		GL11.glPushMatrix();
-		GL11.glTranslatef(0F, 1.5F - 1.5F * modelScale, 0F);
-		GL11.glScalef(modelScale, modelScale, modelScale);
-		GL11.glRotatef(180 + entity.rotationYaw, 0, 1, 0);
-		GL11.glRotatef(-entity.rotationPitch, 1, 0, 0);
 
 		trunk.render(scale);
 		top.render(scale);
@@ -109,8 +102,6 @@ public class ModelFalcon9Dragon extends ModelBase {
 
 		hatch.render(scale);
 		chair.render(scale);
-
-		GL11.glPopMatrix();
 	}
 
 	private static final double minPivotAngle = Math.asin(0.625 / 1.25);

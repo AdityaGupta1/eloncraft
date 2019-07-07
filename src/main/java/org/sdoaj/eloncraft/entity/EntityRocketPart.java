@@ -41,6 +41,15 @@ public abstract class EntityRocketPart extends EntityLiving {
         return parts;
     }
 
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        this.renderYawOffset = 0;
+        this.rotationYawHead = 0;
+        this.cameraPitch = 0;
+    }
+
     private void damageEntity(DamageSource source, float amount, boolean initialDamage) {
         if (initialDamage) {
             getRocket().forEach(part -> part.damageEntity(source, amount, false));

@@ -11,14 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class ModelFalcon9Stage1 extends ModelBase {
+public class ModelFalcon9Stage1 extends ModelFalcon9Part {
     private final ModelRenderer body;
     private final List<ModelRenderer> legs = new ArrayList<>();
     private final List<ModelRenderer> grid_fins = new ArrayList<>();
     private final ModelRenderer thrusters;
     private final ModelRenderer engines;
-
-    static final float modelScale = 56.9f / (127.0f / 16.0f); // first + second stages are 56.9 meters (blocks) tall in total
 
     ModelFalcon9Stage1() {
         textureWidth = 144;
@@ -89,20 +87,12 @@ public class ModelFalcon9Stage1 extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F - 1.5F * modelScale, 0F);
-        GL11.glScalef(modelScale, modelScale, modelScale);
-        GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
-        GL11.glRotatef(entity.rotationPitch, 1, 0, 0);
-
+    public void renderActual(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
         body.render(scale);
         legs.forEach(renderer -> renderer.render(scale));
         grid_fins.forEach(renderer -> renderer.render(scale));
         thrusters.render(scale);
         engines.render(scale);
-
-        GL11.glPopMatrix();
     }
 
     private void setLegs(double x) {
