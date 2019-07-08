@@ -2,7 +2,6 @@
 
 package org.sdoaj.eloncraft.blocks.launch.controller;
 
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -18,7 +17,6 @@ import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.entity.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.eloncraft.util.AssetUtil;
 import org.sdoaj.eloncraft.util.PacketHandler;
-import scala.actors.threadpool.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiLaunchController extends GuiBase {
@@ -80,6 +78,11 @@ public class GuiLaunchController extends GuiBase {
 
         this.rocketFuelDisplay.drawOverlay(x, y);
         this.rocketOxygenDisplay.drawOverlay(x, y);
+
+        LaunchStatus status = tileEntity.getLaunchStatus();
+        if (status != LaunchStatus.OK) {
+            this.launchButton.drawOverlay(x, y, status.message);
+        }
     }
 
     @Override
@@ -100,7 +103,7 @@ public class GuiLaunchController extends GuiBase {
             rocketOxygenDisplay.setTank(null);
         }
 
-        launchButton.enabled = rocket != null && rocket.fuelTank.isFull() && rocket.oxygenTank.isFull();
+        launchButton.enabled = tileEntity.getLaunchStatus() == LaunchStatus.OK;
     }
 
     @Override

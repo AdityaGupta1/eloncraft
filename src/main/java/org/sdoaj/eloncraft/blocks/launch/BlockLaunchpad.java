@@ -37,9 +37,10 @@ public class BlockLaunchpad extends BlockNotFull {
         super(name, material, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.25, 1.0));
     }
 
+    // <launchpad pos, rocket>
     private static HashMap<BlockPos, EntityFalcon9Stage1> rockets = new HashMap<>();
 
-    public static Optional<BlockPos> getNearbyRocketPos(BlockPos pos) {
+    public static Optional<BlockPos> getNearbyRocketLaunchpadPos(BlockPos pos) {
         for (BlockPos otherPos : rockets.keySet()) {
             if (Math.abs(pos.getX() - otherPos.getX()) <= 3 && pos.getY() == otherPos.getY() && Math.abs(pos.getZ() - otherPos.getZ()) <= 3) {
                 return Optional.of(otherPos);
@@ -50,9 +51,7 @@ public class BlockLaunchpad extends BlockNotFull {
     }
 
     public static Optional<EntityFalcon9Stage1> getNearbyRocket(BlockPos pos) {
-        Optional<BlockPos> maybePos = getNearbyRocketPos(pos);
-
-        return maybePos.map(blockPos -> rockets.get(blockPos));
+        return getNearbyRocketLaunchpadPos(pos).map(rockets::get);
     }
 
     private enum ErrorCode {
@@ -62,7 +61,7 @@ public class BlockLaunchpad extends BlockNotFull {
         IN_USE("No nearby 7x7 squares not already in use!"),
         CONTROLLER_NUMBER("Either not enough or too many launch controllers (should have only one)!"),
         CONTROLLER_PLACEMENT("Controller not placed correctly! Make sure it is at the center of an edge."),
-        OBSTRUCTED_SKY("Sky is obstructed!");
+        SKY_OBSTRUCTED("Sky is obstructed!");
 
         private final String message;
 
@@ -130,7 +129,7 @@ public class BlockLaunchpad extends BlockNotFull {
         }
 
         validCenters.removeIf(center -> getBlockPosAround(world, center).stream().anyMatch(block ->
-                getNearbyRocketPos(block).isPresent()));
+                getNearbyRocketLaunchpadPos(block).isPresent()));
 
         if (validCenters.isEmpty()) {
             return new Error(ErrorCode.IN_USE);
@@ -165,18 +164,22 @@ public class BlockLaunchpad extends BlockNotFull {
             return new Error(ErrorCode.CONTROLLER_PLACEMENT);
         }
 
-        validCenters.removeIf(center -> !getBlocksBetween(world, center.add(-r, 1, -r),
-                new BlockPos(center.getX() + r, 256, center.getZ() + r)).stream()
-                .allMatch(block -> block == Blocks.AIR));
+        validCenters.removeIf(center -> !isSkyClear(world, center));
 
         if (validCenters.isEmpty()) {
-            return new Error(ErrorCode.OBSTRUCTED_SKY);
+            return new Error(ErrorCode.SKY_OBSTRUCTED);
         }
 
         return new Error(validCenters.get(0));
     }
 
-    private List<BlockPos> getBlockPosBetween(BlockPos a, BlockPos b) {
+    public static boolean isSkyClear(World world, BlockPos pos) {
+        return getBlocksBetween(world, pos.add(-r, 1, -r),
+                new BlockPos(pos.getX() + r, 256, pos.getZ() + r)).stream()
+                .allMatch(block -> block == Blocks.AIR);
+    }
+
+    private static List<BlockPos> getBlockPosBetween(BlockPos a, BlockPos b) {
         List<BlockPos> blocks = new ArrayList<>();
 
         for (int x = a.getX(); x <= b.getX(); x++) {
@@ -190,30 +193,30 @@ public class BlockLaunchpad extends BlockNotFull {
         return blocks;
     }
 
-    private List<Block> getBlocksBetween(World world, BlockPos a, BlockPos b) {
+    private static List<Block> getBlocksBetween(World world, BlockPos a, BlockPos b) {
         return getBlockPosBetween(a, b).stream().map(pos -> world.getBlockState(pos).getBlock())
                 .collect(Collectors.toList());
     }
 
-    private List<BlockPos> getBlockPosAround(World world, BlockPos center) {
+    private static List<BlockPos> getBlockPosAround(World world, BlockPos center) {
         return getBlockPosBetween(center.add(-r, 0, -r), center.add(r, 0, r));
     }
 
-    private List<Block> getBlocksAround(World world, BlockPos center) {
+    private static List<Block> getBlocksAround(World world, BlockPos center) {
         return getBlocksBetween(world, center.add(-r, 0, -r), center.add(r, 0, r));
     }
 
-    private boolean checkBlocks(World world, BlockPos a, BlockPos b, Block... validBlocks) {
+    private static boolean checkBlocks(World world, BlockPos a, BlockPos b, Block... validBlocks) {
         return Arrays.asList(validBlocks).containsAll(getBlocksBetween(world, a, b));
     }
 
-    private boolean checkBlocks(World world, BlockPos center, Block... validBlocks) {
+    private static boolean checkBlocks(World world, BlockPos center, Block... validBlocks) {
         return Arrays.asList(validBlocks).containsAll(getBlocksAround(world, center));
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        Optional<BlockPos> center = getNearbyRocketPos(pos);
+        Optional<BlockPos> center = getNearbyRocketLaunchpadPos(pos);
         // if this launchpad is already part of another launchpad's r*r square, activate that launchpad instead
         if (center.isPresent() && !center.get().equals(pos)) {
             return onBlockActivated(world, center.get(), state, player, hand, facing, hitX, hitY, hitZ);
@@ -270,7 +273,7 @@ public class BlockLaunchpad extends BlockNotFull {
     public static void onBroken(BlockEvent.BreakEvent event) {
         Block block = event.getState().getBlock();
         if (block == ModBlocks.LAUNCHPAD || block == controllerBlock) {
-            getNearbyRocketPos(event.getPos()).ifPresent(centerPos -> rockets.remove(centerPos).setDead());
+            getNearbyRocketLaunchpadPos(event.getPos()).ifPresent(centerPos -> rockets.remove(centerPos).setDead());
         }
     }
 

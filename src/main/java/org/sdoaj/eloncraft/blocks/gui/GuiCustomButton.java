@@ -5,6 +5,9 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.config.GuiUtils;
+
+import java.util.Collections;
 
 public class GuiCustomButton extends GuiButton {
     private final ResourceLocation texture; // from top to bottom: disabled, enabled, hover
@@ -44,6 +47,13 @@ public class GuiCustomButton extends GuiButton {
             }
 
             this.drawCenteredString(fontrenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, j);
+        }
+    }
+
+    public void drawOverlay(int mouseX, int mouseY, String text) {
+        if (this.hovered && !this.enabled) {
+            Minecraft mc = Minecraft.getMinecraft();
+            GuiUtils.drawHoveringText(Collections.singletonList(text), mouseX, mouseY, mc.displayWidth, mc.displayHeight, -1, mc.fontRenderer);
         }
     }
 }

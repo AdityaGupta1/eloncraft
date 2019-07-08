@@ -9,7 +9,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.fml.common.Mod;

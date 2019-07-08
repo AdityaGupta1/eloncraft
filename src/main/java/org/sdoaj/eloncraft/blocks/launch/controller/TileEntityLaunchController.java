@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
@@ -18,6 +19,7 @@ import org.sdoaj.eloncraft.util.ItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class TileEntityLaunchController extends TileEntityFluidMachine {
     final int guiTopHeight = 99;
@@ -140,6 +142,22 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         rocket = BlockLaunchpad.getNearbyRocket(this.pos).orElse(null);
     }
 
+    LaunchStatus getLaunchStatus() {
+        if (rocket == null) {
+            return LaunchStatus.ROCKET_MISSING;
+        }
+
+        if (!(rocket.fuelTank.isFull() && rocket.oxygenTank.isFull())) {
+            return LaunchStatus.FUEL_MISSING;
+        }
+
+        if (!BlockLaunchpad.isSkyClear(this.world, rocket.getLaunchpad())) {
+            return LaunchStatus.SKY_OBSTRUCTED;
+        }
+
+        return LaunchStatus.OK;
+    }
+
     @Override
     public boolean canProcess() {
         return isLoading && canProcessWithoutLoading();
@@ -213,5 +231,22 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
 
     public Destination getDestination() {
         return destination;
+    }
+}
+
+enum LaunchStatus {
+    OK(),
+    ROCKET_MISSING("No rocket found!"),
+    FUEL_MISSING("Fuel and LOX need to be completely filled up!"),
+    SKY_OBSTRUCTED("Sky above launchpad is obstructed!");
+
+    final String message;
+
+    LaunchStatus(String message) {
+        this.message = message;
+    }
+
+    LaunchStatus() {
+        this(null);
     }
 }

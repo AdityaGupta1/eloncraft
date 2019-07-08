@@ -60,6 +60,10 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         useLaunchpadTopPos();
     }
 
+    public BlockPos getLaunchpad() {
+        return launchpad;
+    }
+
     private void useLaunchpadTopPos() {
         if (launchpadTopPos != null) {
             setLocationAndAngles(launchpadTopPos.x, launchpadTopPos.y, launchpadTopPos.z, launchpadRotation, 0f);
