@@ -35,16 +35,17 @@ import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.blocks.launch.controller.TileEntityLaunchController;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
 import org.sdoaj.eloncraft.blocks.machines.crusher.TileEntityCrusher;
+import org.sdoaj.eloncraft.blocks.machines.generator.TileEntityGenerator;
 import org.sdoaj.eloncraft.blocks.machines.loxcollector.TileEntityLOXCollector;
 import org.sdoaj.eloncraft.blocks.machines.metalroller.TileEntityMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.refinery.TileEntityRefinery;
 import org.sdoaj.eloncraft.blocks.machines.workbench.TileEntityWorkbench;
+import org.sdoaj.eloncraft.util.WorldUtil;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;
     public boolean isRedstonePowered;
     protected int ticksElapsed;
-    protected TileEntity[] tilesAround = new TileEntity[6];
     protected boolean hasSavedDataOnChangeOrWorldStart;
 
     private static final int ticksPerUpdate = 1; // 5 = tile entity update interval
@@ -63,6 +64,8 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         register(TileEntityLOXCollector.class);
 
         register(TileEntityLaunchController.class);
+
+        register(TileEntityGenerator.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {
@@ -163,20 +166,27 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
     public void updateEntity() {
         this.ticksElapsed++;
 
-        if (!this.hasSavedDataOnChangeOrWorldStart) {
-            if (this.shouldSaveDataOnChangeOrWorldStart()) {
-                this.saveDataOnChangeOrWorldStart();
-            }
+        if (!this.world.isRemote) {
+            if (this instanceof ISharingEnergyProvider) {
+                ISharingEnergyProvider provider = (ISharingEnergyProvider) this;
+                if (provider.doesShareEnergy()) {
+                    int total = provider.getEnergyToSplitShare();
+                    if (total > 0) {
+                        EnumFacing[] sides = provider.getEnergyShareSides();
 
-            this.hasSavedDataOnChangeOrWorldStart = true;
-        }
-    }
+                        int amount = total / sides.length;
+                        if (amount <= 0) {
+                            amount = total;
+                        }
 
-    public void saveDataOnChangeOrWorldStart() {
-        for (EnumFacing side : EnumFacing.values()) {
-            BlockPos pos = this.pos.offset(side);
-            if (this.world.isBlockLoaded(pos)) {
-                this.tilesAround[side.ordinal()] = this.world.getTileEntity(pos);
+                        for (EnumFacing side : sides) {
+                            TileEntity tile = world.getTileEntity(this.pos.offset(side));
+                            if (tile != null && provider.canShareTo(tile)) {
+                                WorldUtil.doEnergyInteraction(this, tile, side, amount);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

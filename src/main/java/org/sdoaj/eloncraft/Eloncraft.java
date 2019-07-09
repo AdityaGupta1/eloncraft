@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.sdoaj.eloncraft.blocks.machines.generator.GeneratorRecipe;
+import org.sdoaj.eloncraft.blocks.machines.generator.GeneratorRecipes;
 import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipes;
 import org.sdoaj.eloncraft.proxy.IProxy;
 import org.sdoaj.eloncraft.entity.ModEntities;
@@ -89,5 +91,7 @@ public class Eloncraft {
         CrusherRecipes.init();
         AlloyFurnaceRecipes.init();
         RefineryRecipes.init();
+
+        GeneratorRecipes.init();
     }
 }

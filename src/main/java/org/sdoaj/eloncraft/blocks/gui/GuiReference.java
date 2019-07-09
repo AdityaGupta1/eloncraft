@@ -8,4 +8,5 @@ public class GuiReference {
     public static final int REFINERY = 4;
     public static final int LOX_COLLECTOR = 5;
     public static final int LAUNCH_CONTROLLER = 6;
+    public static final int GENERATOR = 7;
 }

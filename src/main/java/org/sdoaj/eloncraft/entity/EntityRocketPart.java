@@ -13,6 +13,7 @@ public abstract class EntityRocketPart extends EntityLiving {
     public EntityRocketPart(World world) {
         super(world);
         this.setNoGravity(true);
+        this.ignoreFrustumCheck = true;
     }
 
     @Override

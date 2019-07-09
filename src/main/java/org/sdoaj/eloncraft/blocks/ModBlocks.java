@@ -17,6 +17,7 @@ import org.sdoaj.eloncraft.blocks.launch.BlockLaunchpad;
 import org.sdoaj.eloncraft.blocks.launch.controller.BlockLaunchController;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.BlockAlloyFurnace;
 import org.sdoaj.eloncraft.blocks.machines.crusher.BlockCrusher;
+import org.sdoaj.eloncraft.blocks.machines.generator.BlockGenerator;
 import org.sdoaj.eloncraft.blocks.machines.loxcollector.BlockLOXCollector;
 import org.sdoaj.eloncraft.blocks.machines.metalroller.BlockMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.refinery.BlockRefinery;
@@ -75,6 +76,8 @@ public class ModBlocks {
     public static BlockAlloyFurnace ALLOY_FURNACE;
     public static BlockRefinery REFINERY;
     public static BlockLOXCollector LOX_COLLECTOR;
+
+    public static BlockGenerator GENERATOR;
 
     // launch
 
@@ -135,6 +138,10 @@ public class ModBlocks {
         LOX_COLLECTOR = new BlockLOXCollector("lox_collector", Material.IRON);
         LOX_COLLECTOR.addLore("Condenses and purifies air into liquid oxygen.");
         LOX_COLLECTOR.setHarvestLevel("pickaxe", 2);
+
+        GENERATOR = new BlockGenerator("generator", Material.IRON);
+        GENERATOR.addLore("Generates energy from coal and charcoal.");
+        GENERATOR.setHarvestLevel("pickaxe", 2);
 
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
         LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);

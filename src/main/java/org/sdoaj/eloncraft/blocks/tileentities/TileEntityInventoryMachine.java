@@ -16,7 +16,7 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
     private boolean lastProcessed;
 
     private final boolean hasEnergyStorage;
-    private final CustomEnergyStorage energyStorage;
+    protected final CustomEnergyStorage energyStorage;
     private int lastEnergy;
 
     protected final PropertyBool IS_ON;
@@ -113,14 +113,17 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
             IBlockState currentState = this.world.getBlockState(this.pos);
             boolean current = currentState.getValue(IS_ON);
             boolean changeTo = current;
+
             if (lastProcessed != processed) {
                 changeTo = processed;
             }
-            if (this.isRedstonePowered) {
-                changeTo = true;
-            }
-            if (!processed && !this.isRedstonePowered) {
+
+            if (!processed) {
                 changeTo = false;
+            }
+
+            if (overrideOn()) {
+                changeTo = true;
             }
 
             if (changeTo != current) {
@@ -134,6 +137,10 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
             this.updatePreviousValues();
             this.markChanged();
         }
+    }
+
+    protected boolean overrideOn() {
+        return false;
     }
 
     public abstract boolean canProcess();

@@ -102,15 +102,37 @@ public final class WorkbenchRecipes {
                 new RecipeKey('i', Blocks.PACKED_ICE)));
 
 
+
         addRecipe(new WorkbenchRecipe(new String[]{
-                "p p p",
-                " ppp ",
-                "pptpp",
-                " ppp ",
-                "p p p"
+                "ttttt",
+                "tbfbt",
+                "twwwt",
+                "tFFFt",
+                "ttttt"
+        }, new ItemStack(ModBlocks.GENERATOR),
+                new RecipeKey('t', "plateTitanium"),
+                new RecipeKey('F', Blocks.FURNACE),
+                new RecipeKey('w', Items.WATER_BUCKET),
+                new RecipeKey('f', ModItems.TITANIUM_FAN),
+                new RecipeKey('b', Blocks.IRON_BARS)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " t ",
+                "ttt",
+                " t ",
+        }, new ItemStack(ModItems.TITANIUM_FAN, 1),
+                new RecipeKey('t', "ingotTitanium")));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                " p ",
+                "ptp",
+                " p ",
         }, new ItemStack(ModItems.TITANIUM_FAN, 3),
                 new RecipeKey('t', "ingotTitanium"),
                 new RecipeKey('p', "plateTitanium")));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -271,6 +293,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
 
+
         addRecipe(new WorkbenchRecipe(new String[]{
                 "bbbbbbbrrrrrr",
                 "bsbsbsbwwwwww",
@@ -311,6 +334,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.DIAMOND_BLOCK),
                 new RecipeKey('s', Items.NETHER_STAR),
                 new RecipeKey('F', ModItems.USA_FLAG)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -354,6 +378,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', ModItems.FUEL_TANK_3)));
 
 
+
         addRecipe(new WorkbenchRecipe(new String[]{
                 " d ",
                 " s ",
@@ -373,6 +398,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('s', ModItems.FUEL_TANK_LOX_2),
                 new RecipeKey('d', ModItems.FALCON9_DRAGON)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{

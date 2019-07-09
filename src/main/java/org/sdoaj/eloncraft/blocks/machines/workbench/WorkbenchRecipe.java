@@ -29,6 +29,7 @@ public class WorkbenchRecipe {
                         for (RecipeKey key : keys) {
                             if (key.matches(c)) {
                                 ingredient = key.get();
+                                break;
                             }
                         }
 

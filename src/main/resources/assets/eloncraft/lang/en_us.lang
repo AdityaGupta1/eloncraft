@@ -181,6 +181,9 @@ tile.lox_collector.name=LOX Collector
 container.lox_collector.name=LOX Collector
 container.jei.eloncraft.lox_collector.name=LOX Collector
 
+tile.generator.name=Coal Generator
+container.generator.name=Coal Generator
+
 # ====================
 # rocket stuff
 # ====================

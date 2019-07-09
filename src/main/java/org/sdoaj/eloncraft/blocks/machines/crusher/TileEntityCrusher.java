@@ -19,7 +19,7 @@ public class TileEntityCrusher extends TileEntityInventoryMachine {
 
     public TileEntityCrusher() {
         super("crusher", 2, 120, 5000,
-                new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
     }
 
     @Override

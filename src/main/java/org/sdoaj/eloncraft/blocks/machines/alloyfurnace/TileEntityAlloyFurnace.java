@@ -23,7 +23,7 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
 
     public TileEntityAlloyFurnace() {
         super("alloy_furnace", 11, 600, 10000,
-                new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
     }
 
     @Override

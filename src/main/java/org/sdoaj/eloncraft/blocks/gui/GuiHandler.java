@@ -18,6 +18,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.blocks.launch.controller.ContainerLaunchController;
 import org.sdoaj.eloncraft.blocks.launch.controller.GuiLaunchController;
+import org.sdoaj.eloncraft.blocks.machines.generator.ContainerGenerator;
+import org.sdoaj.eloncraft.blocks.machines.generator.GuiGenerator;
 import org.sdoaj.eloncraft.blocks.machines.loxcollector.ContainerLOXCollector;
 import org.sdoaj.eloncraft.blocks.machines.loxcollector.GuiLOXCollector;
 import org.sdoaj.eloncraft.blocks.machines.refinery.ContainerRefinery;
@@ -56,6 +58,8 @@ public class GuiHandler implements IGuiHandler {
                 return new ContainerLOXCollector(player.inventory, tileEntity);
             case GuiReference.LAUNCH_CONTROLLER:
                 return new ContainerLaunchController(player.inventory, tileEntity);
+            case GuiReference.GENERATOR:
+                return new ContainerGenerator(player.inventory, tileEntity);
             default:
                 return null;
         }
@@ -80,6 +84,8 @@ public class GuiHandler implements IGuiHandler {
                 return new GuiLOXCollector(player.inventory, tileEntity);
             case GuiReference.LAUNCH_CONTROLLER:
                 return new GuiLaunchController(player.inventory, tileEntity);
+            case GuiReference.GENERATOR:
+                return new GuiGenerator(player.inventory, tileEntity);
             default:
                 return null;
         }

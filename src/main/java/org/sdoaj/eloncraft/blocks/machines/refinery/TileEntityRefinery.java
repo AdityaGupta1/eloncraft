@@ -52,7 +52,7 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
 
     public TileEntityRefinery() {
         super("refinery", 0, 1, 50,
-                new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
 
         Map<FluidTank, EnumFacing[]> fluidTanks = new HashMap<>();
         fluidTanks.put(inputTank, new EnumFacing[]{EnumFacing.UP, EnumFacing.DOWN});

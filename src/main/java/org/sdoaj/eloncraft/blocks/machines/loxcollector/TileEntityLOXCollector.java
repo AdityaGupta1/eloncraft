@@ -42,7 +42,7 @@ public class TileEntityLOXCollector extends TileEntityFluidMachine {
 
     public TileEntityLOXCollector() {
         super("lox_collector", 0, 1, 50,
-                new CustomEnergyStorage(100000, 100000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
 
         Map<FluidTank, EnumFacing[]> fluidTanks = new HashMap<>();
         fluidTanks.put(tank, null);

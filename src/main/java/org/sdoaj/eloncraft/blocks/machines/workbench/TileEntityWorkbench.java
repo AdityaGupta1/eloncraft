@@ -71,6 +71,9 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
         IntStream.range(SLOT_INPUT_1, INPUT_SLOTS).forEach(i -> {
             ItemStack stack = this.inventory.getStackInSlot(i);
             if (StackUtil.isValid(stack)) {
+                if (stack.getItem().getContainerItem() != null) {
+
+                }
                 stack.shrink(1);
             }
         });

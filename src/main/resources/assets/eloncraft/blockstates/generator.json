@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "on=false": { "model": "eloncraft:generator_off" },
+    "on=true": { "model": "eloncraft:generator_on" }
+  }
+}
