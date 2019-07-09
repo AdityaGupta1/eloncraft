@@ -1,7 +1,14 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "eloncraft:blocks/lithium_ore"
+    },
+    "model": "cube_all",
+    "uvlock": true
+  },
   "variants": {
-    "normal": {
-      "model": "eloncraft:lithium_ore"
-    }
+    "normal": [{}],
+    "inventory": [{}]
   }
 }
