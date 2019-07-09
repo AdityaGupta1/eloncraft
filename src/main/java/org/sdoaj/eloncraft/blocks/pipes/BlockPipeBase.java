@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
@@ -13,13 +14,16 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.sdoaj.eloncraft.blocks.BlockBasic;
+import org.sdoaj.eloncraft.blocks.BlockNotFull;
+import org.sdoaj.eloncraft.fluids.BlockFluid;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class BlockPipeBase extends BlockBasic {
+public abstract class BlockPipeBase extends BlockNotFull {
     public static final float PIPE_MIN_POS = 0.25f;
     public static final float PIPE_MAX_POS = 0.75f;
 
@@ -51,16 +55,6 @@ public abstract class BlockPipeBase extends BlockBasic {
         super(name, material);
     }
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
     protected boolean isValidConnection(IBlockState ownState, IBlockState neighborState, IBlockAccess world, BlockPos ownPos, EnumFacing neighborDirection) {
         return neighborState.getBlock() instanceof BlockPipeBase;
     }
@@ -89,20 +83,44 @@ public abstract class BlockPipeBase extends BlockBasic {
         return state.getValue(CONNECTED_PROPERTIES.get(facing.getIndex()));
     }
 
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState) {
-        AxisAlignedBB bb = new AxisAlignedBB(PIPE_MIN_POS, PIPE_MIN_POS, PIPE_MIN_POS, PIPE_MAX_POS, PIPE_MAX_POS, PIPE_MAX_POS);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, bb);
+    private List<AxisAlignedBB> getBoundingBoxes(IBlockState state) {
+        List<AxisAlignedBB> boxes = new ArrayList<>();
 
-        if (!isActualState) {
-            state = state.getActualState(worldIn, pos);
-        }
+        boxes.add(new AxisAlignedBB(PIPE_MIN_POS, PIPE_MIN_POS, PIPE_MIN_POS, PIPE_MAX_POS, PIPE_MAX_POS, PIPE_MAX_POS));
 
         for (EnumFacing facing : EnumFacing.VALUES) {
             if (isConnected(state, facing)) {
-                AxisAlignedBB axisAlignedBB = CONNECTED_BOUNDING_BOXES.get(facing.getIndex());
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, axisAlignedBB);
+                boxes.add(CONNECTED_BOUNDING_BOXES.get(facing.getIndex()));
             }
         }
+
+        return boxes;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState) {
+        if (!isActualState) {
+            state = state.getActualState(world, pos);
+        }
+
+        getBoundingBoxes(state).forEach(box -> addCollisionBoxToList(pos, entityBox, collidingBoxes, box));
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        state = state.getActualState(world, pos);
+        List<AxisAlignedBB> boxes = getBoundingBoxes(state);
+        AxisAlignedBB box = boxes.get(0);
+
+        for (AxisAlignedBB addBox : boxes) {
+            box = box.union(addBox);
+        }
+
+        return box;
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
     }
 }

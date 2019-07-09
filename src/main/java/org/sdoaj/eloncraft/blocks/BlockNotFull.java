@@ -7,6 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -18,15 +19,24 @@ public abstract class BlockNotFull extends BlockBasic {
         this.boundingBox = boundingBox;
     }
 
+    // if this constructor is used, getBoundingBox() should be overriden
+    public BlockNotFull(String name, Material material) {
+        this(name, material, null);
+    }
+
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return boundingBox;
     }
 
-    @Nullable
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
-        return this.getBoundingBox(state, access, pos);
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return this.getBoundingBox(state, world, pos);
+    }
+
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
+        return this.getBoundingBox(state, world, pos).offset(pos);
     }
 
     @Override
