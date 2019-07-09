@@ -12,3 +12,7 @@ If you want to contribute, check out the [contributing guidelines](contributing.
 
 [@AdityaGupta1](https://github.com/AdityaGupta1) - main developer  
 [@qiandasen](http://github.com/qiandasen) - art and textures
+
+## Special Thanks
+
+[@Ellpeck](http://github.com/Ellpeck) - for making [Actually Additions](https://github.com/Ellpeck/ActuallyAdditions) open-source
