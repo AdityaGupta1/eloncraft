@@ -1,6 +1,21 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "side": "eloncraft:blocks/launch_controller_side"
+    },
+    "model": "eloncraft:machine",
+    "uvlock": true
+  },
   "variants": {
-    "on=false": { "model": "eloncraft:launch_controller" },
-    "on=true": { "model": "eloncraft:launch_controller" }
+    "on=false": [
+      {}
+    ],
+    "on=true": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

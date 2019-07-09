@@ -207,8 +207,8 @@ tile.oil.name=Petroleum Oil
 
 fluid.rp1=RP-1
 tile.rp1.name=RP-1
-fluid.lox=Liquid Oxygen
-tile.lox.name=Liquid Oxygen
+fluid.lox=LOX
+tile.lox.name=LOX
 
 
 # ========================================

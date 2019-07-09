@@ -1,6 +1,25 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "side": "eloncraft:blocks/metal_roller_side_off"
+    },
+    "model": "eloncraft:machine",
+    "uvlock": true
+  },
   "variants": {
-    "on=false": { "model": "eloncraft:metal_roller_off" },
-    "on=true": { "model": "eloncraft:metal_roller_on" }
+    "on=false": [
+      {}
+    ],
+    "on=true": [
+      {
+        "textures": {
+          "side": "eloncraft:blocks/metal_roller_side_on"
+        }
+      }
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

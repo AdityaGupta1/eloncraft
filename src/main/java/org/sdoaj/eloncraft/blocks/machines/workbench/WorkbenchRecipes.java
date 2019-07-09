@@ -110,7 +110,7 @@ public final class WorkbenchRecipes {
                 "tFFFt",
                 "ttttt"
         }, new ItemStack(ModBlocks.GENERATOR),
-                new RecipeKey('t', "plateTitanium"),
+                new RecipeKey('t', "ingotTitanium"),
                 new RecipeKey('F', Blocks.FURNACE),
                 new RecipeKey('w', Items.WATER_BUCKET),
                 new RecipeKey('f', ModItems.TITANIUM_FAN),

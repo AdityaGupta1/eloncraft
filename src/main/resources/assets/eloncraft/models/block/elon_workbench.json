@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
     "particle": "eloncraft:blocks/elon_workbench_side_north",
     "up": "eloncraft:blocks/elon_workbench_top",

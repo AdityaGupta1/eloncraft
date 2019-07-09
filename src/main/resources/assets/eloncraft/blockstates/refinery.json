@@ -1,6 +1,25 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "side": "eloncraft:blocks/refinery_side_off"
+    },
+    "model": "eloncraft:machine",
+    "uvlock": true
+  },
   "variants": {
-    "on=false": { "model": "eloncraft:refinery_off" },
-    "on=true": { "model": "eloncraft:refinery_on" }
+    "on=false": [
+      {}
+    ],
+    "on=true": [
+      {
+        "textures": {
+          "side": "eloncraft:blocks/refinery_side_on"
+        }
+      }
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }
