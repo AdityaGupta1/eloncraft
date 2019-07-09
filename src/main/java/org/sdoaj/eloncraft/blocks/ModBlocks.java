@@ -23,6 +23,7 @@ import org.sdoaj.eloncraft.blocks.machines.metalroller.BlockMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.refinery.BlockRefinery;
 import org.sdoaj.eloncraft.blocks.machines.workbench.BlockWorkbench;
 import org.sdoaj.eloncraft.Eloncraft;
+import org.sdoaj.eloncraft.blocks.pipes.BlockPipeEnergy;
 import org.sdoaj.eloncraft.items.ModCreativeTabs;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.items.util.Drop;
@@ -78,6 +79,10 @@ public class ModBlocks {
     public static BlockLOXCollector LOX_COLLECTOR;
 
     public static BlockGenerator GENERATOR;
+
+    // pipes
+
+    public static BlockPipeEnergy CABLE;
 
     // launch
 
@@ -143,13 +148,15 @@ public class ModBlocks {
         GENERATOR.addLore("Generates energy from coal and charcoal.");
         GENERATOR.setHarvestLevel("pickaxe", 2);
 
+        CABLE = new BlockPipeEnergy("cable", Material.IRON);
+
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
         LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);
         LAUNCH_CONTROLLER.addLore("Used to load fuel into rockets and to initiate launch sequences.");
         LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON);
         LAUNCHPAD.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 
-        ModCreativeTabs.SPACEX.addAll(LAUNCH_CONTROLLER, LAUNCHPAD);
+        ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD);
     }
 
     public static void addBlock(Block block) {

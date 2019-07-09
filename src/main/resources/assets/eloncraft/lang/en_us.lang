@@ -185,6 +185,12 @@ tile.generator.name=Coal Generator
 container.generator.name=Coal Generator
 
 # ====================
+# pipes
+# ====================
+
+tile.cable.name=Cable
+
+# ====================
 # rocket stuff
 # ====================
 

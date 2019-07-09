@@ -15,7 +15,7 @@ import java.util.List;
 public class BlockBasic extends Block {
     private int burnTime = -1;
 
-    BlockBasic(String name, Material material) {
+    public BlockBasic(String name, Material material) {
         super(material);
         setUnlocalizedName(name);
         setRegistryName(name);

@@ -1,0 +1,99 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "center": "eloncraft:blocks/steel_block",
+      "side": "eloncraft:blocks/steel_block"
+    },
+    "model": "eloncraft:pipe/pipe_center",
+    "uvlock": true
+  },
+  "variants": {
+    "down": {
+      "true": {
+        "submodel": {
+          "pipe_down": {
+            "model": "eloncraft:pipe/pipe_side",
+            "x": 90,
+            "uvlock": true
+          }
+        }
+      },
+      "false": {}
+    },
+    "up": {
+      "true": {
+        "submodel": {
+          "pipe_up": {
+            "model": "eloncraft:pipe/pipe_side",
+            "x": -90,
+            "uvlock": true
+          }
+        }
+      },
+      "false": {}
+    },
+    "north": {
+      "true": {
+        "submodel": {
+          "pipe_north": {
+            "model": "eloncraft:pipe/pipe_side",
+            "uvlock": true
+          }
+        }
+      },
+      "false": {}
+    },
+    "south": {
+      "true": {
+        "submodel": {
+          "pipe_south": {
+            "model": "eloncraft:pipe/pipe_side",
+            "y": 180,
+            "uvlock": true
+          }
+        }
+      },
+      "false": {}
+    },
+    "east": {
+      "true": {
+        "submodel": {
+          "pipe_east": {
+            "model": "eloncraft:pipe/pipe_side",
+            "y": 90,
+            "uvlock": true
+          }
+        }
+      },
+      "false": {}
+    },
+    "west": {
+      "true": {
+        "submodel": {
+          "pipe_west": {
+            "model": "eloncraft:pipe/pipe_side",
+            "y": -90,
+            "uvlock": true
+          }
+        }
+      },
+      "false": {}
+    },
+    "inventory": [
+      {
+        "submodel": {
+          "pipe_north": {
+            "model": "eloncraft:pipe/pipe_side",
+            "uvlock": true
+          },
+          "pipe_south": {
+            "model": "eloncraft:pipe/pipe_side",
+            "y": 180,
+            "uvlock": true
+          }
+        }
+      }
+    ]
+  }
+}
