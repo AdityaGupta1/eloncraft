@@ -1,7 +1,24 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "eloncraft:blocks/elon_workbench_side_north",
+      "up": "eloncraft:blocks/elon_workbench_top",
+      "down": "eloncraft:blocks/machine_base",
+      "north": "eloncraft:blocks/elon_workbench_side_north",
+      "east": "eloncraft:blocks/elon_workbench_side_east",
+      "south": "eloncraft:blocks/elon_workbench_side_south",
+      "west": "eloncraft:blocks/elon_workbench_side_west"
+    },
+    "model": "cube",
+    "uvlock": true
+  },
   "variants": {
-    "normal": {
-      "model": "eloncraft:elon_workbench"
-    }
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

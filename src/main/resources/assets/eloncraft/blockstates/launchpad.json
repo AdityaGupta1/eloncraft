@@ -1,7 +1,18 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "eloncraft:blocks/launchpad"
+    },
+    "model": "eloncraft:launchpad",
+    "uvlock": true
+  },
   "variants": {
-    "normal": {
-      "model": "eloncraft:launchpad"
-    }
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }
