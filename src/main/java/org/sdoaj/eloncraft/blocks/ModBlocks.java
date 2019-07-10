@@ -23,7 +23,7 @@ import org.sdoaj.eloncraft.blocks.machines.metalroller.BlockMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.refinery.BlockRefinery;
 import org.sdoaj.eloncraft.blocks.machines.workbench.BlockWorkbench;
 import org.sdoaj.eloncraft.Eloncraft;
-import org.sdoaj.eloncraft.blocks.pipes.BlockPipeEnergy;
+import org.sdoaj.eloncraft.blocks.pipes.BlockCable;
 import org.sdoaj.eloncraft.items.ModCreativeTabs;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.items.util.Drop;
@@ -82,7 +82,7 @@ public class ModBlocks {
 
     // pipes
 
-    public static BlockPipeEnergy CABLE;
+    public static BlockCable CABLE;
 
     // launch
 
@@ -152,7 +152,7 @@ public class ModBlocks {
         GENERATOR.addLore("Generates energy from coal and charcoal.");
         GENERATOR.setHarvestLevel("pickaxe", 3);
 
-        CABLE = new BlockPipeEnergy("cable", Material.CLOTH);
+        CABLE = new BlockCable("cable", Material.CLOTH);
         CABLE.setHardness(0.5F).setResistance(4.0F);
         CABLE.setHarvestLevel("", 0);
 

@@ -40,13 +40,13 @@ import org.sdoaj.eloncraft.blocks.machines.loxcollector.TileEntityLOXCollector;
 import org.sdoaj.eloncraft.blocks.machines.metalroller.TileEntityMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.refinery.TileEntityRefinery;
 import org.sdoaj.eloncraft.blocks.machines.workbench.TileEntityWorkbench;
+import org.sdoaj.eloncraft.blocks.pipes.TileEntityCable;
 import org.sdoaj.eloncraft.util.WorldUtil;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
     public final String name;
     public boolean isRedstonePowered;
     protected int ticksElapsed;
-    protected boolean hasSavedDataOnChangeOrWorldStart;
 
     private static final int ticksPerUpdate = 1; // 5 = tile entity update interval
 
@@ -66,6 +66,8 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         register(TileEntityLaunchController.class);
 
         register(TileEntityGenerator.class);
+
+        register(TileEntityCable.class);
     }
 
     private static void register(Class<? extends TileEntityBase> tileEntityClass) {
