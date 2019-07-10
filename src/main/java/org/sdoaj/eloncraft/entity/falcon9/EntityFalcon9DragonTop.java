@@ -57,9 +57,9 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
 
     @Override
     public void updatePassenger(Entity passenger) {
-        double d = 1.0 / 16.0 * ModelFalcon9Stage1.modelScale;
-        double dy = d * Math.sin(Math.toRadians(this.rotationPitch));
-        double dh = d * Math.cos(Math.toRadians(this.rotationPitch));
+        double d = 0.8 / 16.0 * ModelFalcon9Stage1.modelScale;
+        double dy = d * Math.cos(Math.toRadians(this.rotationPitch));
+        double dh = d * Math.sin(Math.toRadians(this.rotationPitch));
         double dx = dh * -Math.sin(Math.toRadians(this.rotationYaw));
         double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
         passenger.setPosition(this.posX + dx, this.posY + dy, this.posZ + dz);
