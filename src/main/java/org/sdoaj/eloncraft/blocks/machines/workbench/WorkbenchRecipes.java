@@ -7,6 +7,7 @@ import net.minecraft.item.crafting.Ingredient;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.recipes.RecipeKey;
 import org.sdoaj.eloncraft.items.ModItems;
+import org.sdoaj.eloncraft.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +116,18 @@ public final class WorkbenchRecipes {
                 new RecipeKey('w', Items.WATER_BUCKET),
                 new RecipeKey('f', ModItems.TITANIUM_FAN),
                 new RecipeKey('b', Blocks.IRON_BARS)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "wgwgw",
+                "crcrc",
+                "wgwgw"
+        }, new ItemStack(ModBlocks.CABLE, 16),
+                new RecipeKey('w', new ItemStack(Blocks.CARPET, 1, Util.WILDCARD)),
+                new RecipeKey('c', "ingotCopper"),
+                new RecipeKey('r', Items.REDSTONE),
+                new RecipeKey('g', "paneGlass")));
 
 
 

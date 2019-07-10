@@ -188,7 +188,7 @@ container.generator.name=Coal Generator
 # pipes
 # ====================
 
-tile.cable.name=Cable
+tile.cable.name=Power Cable
 
 # ====================
 # rocket stuff

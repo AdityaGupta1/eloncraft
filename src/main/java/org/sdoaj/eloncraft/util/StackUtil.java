@@ -33,7 +33,7 @@ public class StackUtil {
             return false;
         }
 
-        return ingredient.getMetadata() == Util.wildcard || ingredient.getMetadata() == actual.getMetadata();
+        return ingredient.getMetadata() == Util.WILDCARD || ingredient.getMetadata() == actual.getMetadata();
     }
 
     public static boolean fluidStackApplies(FluidStack ingredient, FluidStack actual) {

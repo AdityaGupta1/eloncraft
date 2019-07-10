@@ -42,7 +42,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
 
             ItemStack outputStack = recipe.getOutput();
             if (StackUtil.isValid(outputStack)) {
-                if (outputStack.getItemDamage() == Util.wildcard) {
+                if (outputStack.getItemDamage() == Util.WILDCARD) {
                     outputStack.setItemDamage(0);
                 }
                 return (!StackUtil.isValid(this.inventory.getStackInSlot(SLOT_OUTPUT))
@@ -63,7 +63,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
 
         ItemStack outputStack = recipe.getOutput();
         if (StackUtil.isValid(outputStack)) {
-            if (outputStack.getItemDamage() == Util.wildcard) {
+            if (outputStack.getItemDamage() == Util.WILDCARD) {
                 outputStack.setItemDamage(0);
             }
 

@@ -128,6 +128,7 @@ public class ModBlocks {
 
         METAL_ROLLER = new BlockMetalRoller("metal_roller", Material.IRON);
         METAL_ROLLER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
+        METAL_ROLLER.addLore("Turns metal ingots into metal plates.");
         METAL_ROLLER.setHarvestLevel("pickaxe", 2);
         CRUSHER = new BlockCrusher("crusher", Material.IRON);
         CRUSHER.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
@@ -138,17 +139,22 @@ public class ModBlocks {
         ALLOY_FURNACE.addLore("A somewhat unrealistic alloy furnace that can also serve as a blast furnace.");
         ALLOY_FURNACE.setHarvestLevel("pickaxe", 2);
         REFINERY = new BlockRefinery("refinery", Material.IRON);
+        REFINERY.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
         REFINERY.addLore("Used to refine petroleum oil into rocket fuel (which can't melt steel beams).");
         REFINERY.setHarvestLevel("pickaxe", 2);
         LOX_COLLECTOR = new BlockLOXCollector("lox_collector", Material.IRON);
+        LOX_COLLECTOR.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
         LOX_COLLECTOR.addLore("Condenses and purifies air into liquid oxygen.");
         LOX_COLLECTOR.setHarvestLevel("pickaxe", 2);
 
         GENERATOR = new BlockGenerator("generator", Material.IRON);
+        GENERATOR.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);
         GENERATOR.addLore("Generates energy from coal and charcoal.");
-        GENERATOR.setHarvestLevel("pickaxe", 2);
+        GENERATOR.setHarvestLevel("pickaxe", 3);
 
-        CABLE = new BlockPipeEnergy("cable", Material.IRON);
+        CABLE = new BlockPipeEnergy("cable", Material.CLOTH);
+        CABLE.setHardness(0.5F).setResistance(4.0F);
+        CABLE.setHarvestLevel("", 0);
 
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
         LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);

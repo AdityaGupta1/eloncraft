@@ -27,7 +27,7 @@ public final class GeneratorRecipes {
     }
 
     public static void init() {
-        addRecipe(new GeneratorRecipe(Ingredient.fromStacks(new ItemStack(Items.COAL, 1, Util.wildcard)), 200, 10000));
+        addRecipe(new GeneratorRecipe(Ingredient.fromStacks(new ItemStack(Items.COAL, 1, Util.WILDCARD)), 200, 10000));
         addRecipe(new GeneratorRecipe(Ingredient.fromStacks(new ItemStack(Blocks.COAL_BLOCK)), 9 * 200, 9 * 10000));
     }
 
