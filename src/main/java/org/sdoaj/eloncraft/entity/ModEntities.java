@@ -21,20 +21,26 @@ public class ModEntities {
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9Stage1.class)
                 .id(new ResourceLocation(Eloncraft.MODID,"falcon9_stage1"), ++id)
-                .name("proxy:falcon9_stage1")
-                .tracker(64, 1, false)
+                .name("eloncraft:falcon9_stage1")
+                .tracker(1024, 1, false)
                 .build());
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9Stage2.class)
                 .id(new ResourceLocation(Eloncraft.MODID,"falcon9_stage2"), ++id)
-                .name("proxy:falcon9_stage2")
-                .tracker(64, 1, false)
+                .name("eloncraft:falcon9_stage2")
+                .tracker(1024, 1, false)
                 .build());
         event.getRegistry().register(EntityEntryBuilder.create()
-                .entity(EntityFalcon9Dragon.class)
-                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_dragon"), ++id)
-                .name("proxy:falcon9_dragon")
-                .tracker(64, 1, false)
+                .entity(EntityFalcon9DragonTrunk.class)
+                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_dragon_trunk"), ++id)
+                .name("eloncraft:falcon9_dragon_trunk")
+                .tracker(1024, 1, false)
+                .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityFalcon9DragonTop.class)
+                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_dragon_top"), ++id)
+                .name("eloncraft:falcon9_dragon_top")
+                .tracker(1024, 1, false)
                 .build());
     }
 
@@ -42,6 +48,7 @@ public class ModEntities {
     public static void initModels() {
         RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage1.class, RenderFalcon9Stage1::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Stage2.class, RenderFalcon9Stage2::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9Dragon.class, RenderFalcon9Dragon::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9DragonTrunk.class, RenderFalcon9DragonTrunk::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFalcon9DragonTop.class, RenderFalcon9DragonTop::new);
     }
 }

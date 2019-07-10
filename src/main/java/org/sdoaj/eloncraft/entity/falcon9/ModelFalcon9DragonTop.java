@@ -6,33 +6,20 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
-public class ModelFalcon9Dragon extends ModelFalcon9Part {
-	private final ModelRenderer trunk;
+public class ModelFalcon9DragonTop extends ModelFalcon9Part {
 	private final ModelRenderer top;
 	private final ModelRenderer pivot;
 	private final ModelRenderer hatch;
 	private final ModelRenderer chair;
 
-	ModelFalcon9Dragon() {
+	ModelFalcon9DragonTop() {
 		super(yaw -> 180 + yaw, pitch -> -pitch);
 
 		textureWidth = 80;
 		textureHeight = 80;
 
-		trunk = new ModelRenderer(this);
-		trunk.setRotationPoint(0.0F, 24.0F, 0.0F);
-		trunk.cubeList.add(new ModelBox(trunk, 0, 0, -4.0F, -9.0F, -4.0F, 8, 9, 8, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 28, 17, 4.0F, -9.0F, -2.0F, 1, 9, 4, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 0, 30, -2.0F, -9.0F, 4.0F, 4, 9, 1, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 18, 17, -5.0F, -9.0F, -2.0F, 1, 9, 4, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 10, 30, -2.0F, -9.0F, -5.0F, 4, 9, 1, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 4, 51, 5.0F, -6.0F, -0.5F, 1, 6, 1, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 6, 58, -0.5F, -6.0F, 5.0F, 1, 6, 1, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 10, 58, -6.0F, -6.0F, -0.5F, 1, 6, 1, 0.0F, false));
-		trunk.cubeList.add(new ModelBox(trunk, 0, 51, -0.5F, -6.0F, -6.0F, 1, 6, 1, 0.0F, false));
-
 		top = new ModelRenderer(this);
-		top.setRotationPoint(0.0F, 24.0F, 0.0F);
+		top.setRotationPoint(0.0F, 24.0F + 9.0F, 0.0F);
 		top.cubeList.add(new ModelBox(top, 0, 17, 3.0F, -12.0F, -4.0F, 1, 3, 8, 0.0F, false));
 		top.cubeList.add(new ModelBox(top, 20, 34, -3.0F, -12.0F, 3.0F, 6, 3, 1, 0.0F, false));
 		top.cubeList.add(new ModelBox(top, 32, 0, -4.0F, -12.0F, -4.0F, 1, 3, 8, 0.0F, false));
@@ -68,18 +55,18 @@ public class ModelFalcon9Dragon extends ModelFalcon9Part {
 		top.cubeList.add(new ModelBox(top, 20, 54, -1.0F, -18.0F, -1.0F, 2, 1, 2, 0.0F, false));
 
 		pivot = new ModelRenderer(this);
-		pivot.setRotationPoint(0.0F, 20.75F, -4.75F);
+		pivot.setRotationPoint(0.0F, 20.75F + 18.0F, -4.75F);
 		pivot.cubeList.add(new ModelBox(pivot, 51, 0, 1.99F, -0.25F - 0.25F, -0.5F, 0, 3, 1, 0.0F, false));
 		pivot.cubeList.add(new ModelBox(pivot, 51, 0, -1.99F, -0.25F - 0.25F, -0.5F, 0, 3, 1, 0.0F, false));
 
 		hatch = new ModelRenderer(this);
-		hatch.setRotationPoint(0.0F, 24.0F, 0.0F);
+		hatch.setRotationPoint(0.0F, 24.0F + 9.0F, 0.0F);
 		hatch.cubeList.add(new ModelBox(hatch, 26, 58, -1.0F, -14.0F, -4.0F, 2, 2, 1, 0.0F, false));
 		hatch.cubeList.add(new ModelBox(hatch, 18, 67, -1.0F, -15.0F, -3.0F, 2, 1, 1, 0.0F, false));
 		setHatch(0.0);
 
 		chair = new ModelRenderer(this);
-		chair.setRotationPoint(0.0F, 24.0F, 0.0F);
+		chair.setRotationPoint(0.0F, 24.0F + 9.0F, 0.0F);
 		chair.cubeList.add(new ModelBox(chair, 8, 69, -0.5F, -11.0F, 1.0F, 1, 1, 2, 0.0F, false));
 		chair.cubeList.add(new ModelBox(chair, 20, 58, -1.0F, -12.5F, 0.75F, 2, 3, 1, 0.0F, false));
 		chair.cubeList.add(new ModelBox(chair, 20, 51, -1.0F, -10.5F, -1.25F, 2, 1, 2, 0.0F, false));
@@ -87,10 +74,9 @@ public class ModelFalcon9Dragon extends ModelFalcon9Part {
 
 	@Override
 	public void renderActual(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float yaw, float pitch, float scale) {
-		EntityFalcon9Dragon dragon = (EntityFalcon9Dragon) entity;
-		setHatch(dragon.getHatchPosition());
+		EntityFalcon9DragonTop dragonTop = (EntityFalcon9DragonTop) entity;
+		setHatch(dragonTop.getHatchPosition());
 
-		trunk.render(scale);
 		top.render(scale);
 
 		GL11.glPushMatrix();
@@ -119,7 +105,7 @@ public class ModelFalcon9Dragon extends ModelFalcon9Part {
 		double zf = 1.25 * Math.sin(angle);
 		float dy = (float) (yf - y0);
 		float dz = (float) (zf - z0);
-		hatch.rotationPointY = 24.0F - dy;
+		hatch.rotationPointY = (24.0F + 9.0F) - dy;
 		hatch.rotationPointZ = 0.0F - dz;
 	}
 }

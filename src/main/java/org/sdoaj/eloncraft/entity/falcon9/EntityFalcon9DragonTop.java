@@ -19,15 +19,15 @@ import org.sdoaj.eloncraft.entity.*;
 import org.sdoaj.eloncraft.util.PacketHandler;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
-public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSetValueMessages, IEntityAdditionalSpawnData {
+public class EntityFalcon9DragonTop extends EntityRocketPart implements ReceivesSetValueMessages, IEntityAdditionalSpawnData {
     private final TimedTaskExecutor executor = new TimedTaskExecutor();
     private TimedTask hatchTask;
 
     private double hatchPosition = 0.0;
 
-    EntityFalcon9Dragon(World world) {
+    EntityFalcon9DragonTop(World world) {
         super(world);
-        this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 18.0F / 16.0F * ModelFalcon9Stage1.modelScale);
+        this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 9.0F / 16.0F * ModelFalcon9Stage1.modelScale);
     }
 
     @Override
@@ -56,6 +56,21 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
     }
 
     @Override
+    public void updatePassenger(Entity passenger) {
+        double d = 1.0 / 16.0 * ModelFalcon9Stage1.modelScale;
+        double dy = d * Math.sin(Math.toRadians(this.rotationPitch));
+        double dh = d * Math.cos(Math.toRadians(this.rotationPitch));
+        double dx = dh * -Math.sin(Math.toRadians(this.rotationYaw));
+        double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
+        passenger.setPosition(this.posX + dx, this.posY + dy, this.posZ + dz);
+    }
+
+    @Override
+    public double getMountedYOffset() {
+        return super.getMountedYOffset();
+    }
+
+    @Override
     protected void removePassenger(Entity passenger) {
         super.removePassenger(passenger);
         Vec3d dz = new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-this.rotationYaw));
@@ -69,11 +84,11 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
             return;
         }
 
-        if (!(event.getEntityBeingMounted() instanceof EntityFalcon9Dragon)) {
+        if (!(event.getEntityBeingMounted() instanceof EntityFalcon9DragonTop)) {
             return;
         }
 
-        if (((EntityFalcon9Dragon) event.getEntityBeingMounted()).hatchPosition != 1.0) {
+        if (((EntityFalcon9DragonTop) event.getEntityBeingMounted()).hatchPosition != 1.0) {
             event.setCanceled(true);
         }
     }
@@ -109,16 +124,6 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return new SoundEvent(new ResourceLocation("block.anvil.land"));
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return getHurtSound(null);
-    }
-
-    @Override
     public boolean shouldRiderSit() {
         return true;
     }
@@ -149,11 +154,6 @@ public class EntityFalcon9Dragon extends EntityRocketPart implements ReceivesSet
         }
 
         return true;
-    }
-
-    @Override
-    public double getMountedYOffset() {
-        return super.getMountedYOffset() - 1.2;
     }
 
     double getHatchPosition() {

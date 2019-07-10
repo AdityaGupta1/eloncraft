@@ -88,10 +88,15 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             world.spawnEntity(stage2);
             stage2.startRiding(this, true);
 
-            EntityFalcon9Dragon dragon = new EntityFalcon9Dragon(this.world);
-            stage2.updatePassenger(dragon);
-            world.spawnEntity(dragon);
-            dragon.startRiding(stage2, true);
+            EntityFalcon9DragonTrunk dragonTrunk = new EntityFalcon9DragonTrunk(this.world);
+            stage2.updatePassenger(dragonTrunk);
+            world.spawnEntity(dragonTrunk);
+            dragonTrunk.startRiding(stage2, true);
+
+            EntityFalcon9DragonTop dragonTop = new EntityFalcon9DragonTop(this.world);
+            stage2.updatePassenger(dragonTop);
+            world.spawnEntity(dragonTop);
+            dragonTop.startRiding(dragonTrunk, true);
 
             hasCreatedOtherParts = true;
         }
@@ -155,15 +160,5 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         BlockLaunchpad.removeRocket(launchpad);
 
         super.setDead();
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return new SoundEvent(new ResourceLocation("block.anvil.land"));
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return getHurtSound(null);
     }
 }

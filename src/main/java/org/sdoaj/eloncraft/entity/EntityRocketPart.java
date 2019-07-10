@@ -4,6 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -80,5 +82,15 @@ public abstract class EntityRocketPart extends EntityLiving {
     @Override
     protected boolean canDespawn() {
         return false;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return new SoundEvent(new ResourceLocation("block.anvil.land"));
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return getHurtSound(null);
     }
 }
