@@ -95,6 +95,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
     }
 
     private void removeLaunchpad() {
+        BlockLaunchpad.removeRocket(launchpad);
         launchpad = null;
         launchpadTopPos = null;
         launchpadRotation = Float.NaN;
@@ -133,7 +134,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         if (desiredState == LaunchState.LIFTOFF) {
             this.setAcceleration(0, 7.5, 0);
             this.removeLaunchpad();
-            sendMessageToPlayer(TextFormatting.GREEN + "And we have liftoff.");
+            sendMessageToPlayer(TextFormatting.GREEN + "Liftoff.");
         }
     }
 
@@ -163,7 +164,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             if (countdown % 20 == 0) {
                 int seconds = countdown / 20;
                 if (seconds <= 5 && seconds > 0) {
-                    player.sendMessage(new TextComponentString(TextFormatting.GOLD + "" + seconds + "."));
+                    sendMessageToPlayer(TextFormatting.GOLD + "" + seconds + ".");
                 }
 
                 if (seconds == 3) {

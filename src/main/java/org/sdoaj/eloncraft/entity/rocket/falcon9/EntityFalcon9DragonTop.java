@@ -5,10 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityMountEvent;
@@ -21,6 +21,7 @@ import org.sdoaj.eloncraft.entity.ReceivesSetValueMessages;
 import org.sdoaj.eloncraft.entity.TimedTask;
 import org.sdoaj.eloncraft.entity.TimedTaskExecutor;
 import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
+import org.sdoaj.eloncraft.util.MathUtil;
 import org.sdoaj.eloncraft.util.PacketHandler;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
@@ -44,6 +45,8 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         dataManager.register(isHatchLocked, false);
     }
 
+    private Vec3d previousPosition = Vec3d.ZERO;
+
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -66,6 +69,19 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
             if (rider.isSneaking() && hatchPosition == 1.0) {
                 rider.dismountRidingEntity();
             }
+
+            if (previousPosition.equals(Vec3d.ZERO)) {
+                previousPosition = new Vec3d(this.posX, this.posY, this.posZ);
+            }
+
+            Vec3d currentPosition = new Vec3d(this.posX, this.posY, this.posZ);
+            final double velocity = currentPosition.subtract(previousPosition).lengthVector() * 20;
+            previousPosition = currentPosition;
+
+            final double shake = MathHelper.clamp(velocity / 100.0, 0, 0.10);
+
+            rider.setLocationAndAngles(rider.posX + MathUtil.random(shake), rider.posY + MathUtil.random(shake), rider.posZ + MathUtil.random(shake),
+                    rider.rotationYaw + (float) MathUtil.random(shake * 20), rider.rotationPitch + (float) MathUtil.random(shake * 20));
         }
     }
 
@@ -77,11 +93,6 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         double dx = dh * -Math.sin(Math.toRadians(this.rotationYaw));
         double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
         passenger.setPosition(this.posX + dx, this.posY + dy, this.posZ + dz);
-    }
-
-    @Override
-    public double getMountedYOffset() {
-        return super.getMountedYOffset();
     }
 
     @Override
