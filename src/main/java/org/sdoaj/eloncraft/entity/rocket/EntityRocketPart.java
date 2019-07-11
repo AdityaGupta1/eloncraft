@@ -57,7 +57,7 @@ public abstract class EntityRocketPart extends EntityLiving {
         return parts;
     }
 
-    protected <T> T getPartOfType(Class<T> type) {
+    protected <T extends EntityRocketPart> T getPartOfType(Class<T> type) {
         for (EntityRocketPart part : getRocket()) {
             if (part.getClass().equals(type)) {
                 return (T) part;

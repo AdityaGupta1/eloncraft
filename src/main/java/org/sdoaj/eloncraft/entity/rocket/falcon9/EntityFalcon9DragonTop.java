@@ -4,6 +4,10 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializer;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -12,7 +16,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.sdoaj.eloncraft.Eloncraft;
-import org.sdoaj.eloncraft.entity.*;
+import org.sdoaj.eloncraft.entity.MessageSetValueToServer;
+import org.sdoaj.eloncraft.entity.ReceivesSetValueMessages;
+import org.sdoaj.eloncraft.entity.TimedTask;
+import org.sdoaj.eloncraft.entity.TimedTaskExecutor;
 import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
 import org.sdoaj.eloncraft.util.PacketHandler;
 
@@ -26,6 +33,15 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     EntityFalcon9DragonTop(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 9.0F / 16.0F * ModelFalcon9Stage1.modelScale);
+    }
+
+    private static final DataParameter<Boolean> isHatchLocked = EntityDataManager.createKey(EntityFalcon9DragonTop.class, DataSerializers.BOOLEAN);
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+
+        dataManager.register(isHatchLocked, false);
     }
 
     @Override
@@ -86,6 +102,10 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
             return;
         }
 
+        if (event.getEntityBeingMounted().isDead) {
+            return;
+        }
+
         if (((EntityFalcon9DragonTop) event.getEntityBeingMounted()).hatchPosition != 1.0) {
             event.setCanceled(true);
         }
@@ -105,6 +125,8 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
 
         compound.setDouble("HatchPos", hatchPosition);
         compound.setDouble("HatchTarget", hatchTask == null ? Double.NaN : hatchTask.getTarget());
+
+        compound.setBoolean("HatchLocked", dataManager.get(isHatchLocked));
     }
 
     private double queuedHatchPosition = Double.NaN;
@@ -119,6 +141,8 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         if (!Double.isNaN(target)) {
             queuedHatchTarget = target;
         }
+
+        dataManager.set(isHatchLocked, compound.getBoolean("HatchLocked"));
     }
 
     @Override
@@ -131,8 +155,16 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         executor.submit(hatchTask);
     }
 
+    void lockHatch() {
+        dataManager.set(isHatchLocked, true);
+    }
+
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+        if (dataManager.get(isHatchLocked)) {
+            return false;
+        }
+
         if (hatchTask == null) {
             if (hatchPosition == 0.0) {
                 moveHatchToggle();

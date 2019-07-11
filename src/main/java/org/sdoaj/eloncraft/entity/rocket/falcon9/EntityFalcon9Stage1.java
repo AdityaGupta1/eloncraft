@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -94,6 +95,12 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         launchpadRotation = Float.NaN;
     }
 
+    private void sendMessageToPlayer(String message) {
+        if (player != null) {
+           player.sendMessage(new TextComponentString(message));
+        }
+    }
+
     private static final int countdownSeconds = 10;
     private int countdown;
 
@@ -103,22 +110,23 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         }
 
         if (desiredState == LaunchState.AWAITING_PLAYER) {
-            player.sendMessage(new TextComponentString(TextFormatting.GOLD + "Enter the Dragon capsule and close the hatch to start the countdown."));
+            sendMessageToPlayer(TextFormatting.GOLD + "Enter the Dragon capsule and close the hatch to start the countdown.");
         }
 
         if (desiredState == LaunchState.AWAITING_HATCH) {
-            player.sendMessage(new TextComponentString(TextFormatting.GOLD + "Close the hatch to start the countdown. Once you close the hatch, there's no turning back."));
+            sendMessageToPlayer(TextFormatting.GOLD + "Close the hatch to start the countdown. Once you close the hatch, there's no turning back.");
         }
 
         if (desiredState == LaunchState.COUNTDOWN) {
             this.countdown = countdownSeconds * 20;
-            player.sendMessage(new TextComponentString(TextFormatting.GOLD + "T minus " + countdownSeconds + " seconds."));
+            getPartOfType(EntityFalcon9DragonTop.class).lockHatch();
+            sendMessageToPlayer(TextFormatting.GOLD + "T minus " + countdownSeconds + " seconds until launch.");
         }
 
         if (desiredState == LaunchState.LIFTOFF) {
-            this.setAcceleration(0, 10, 0);
+            this.setAcceleration(0, 7.5, 0);
             this.removeLaunchpad();
-            player.sendMessage(new TextComponentString(TextFormatting.GREEN + "And we have liftoff."));
+            sendMessageToPlayer(TextFormatting.GREEN + "And we have liftoff.");
         }
     }
 
@@ -212,6 +220,8 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
         compound.setBoolean("HasCreatedOtherParts", hasCreatedOtherParts);
 
+        compound.setString("CurrentState", currentState == null ? "null" : currentState.name());
+
         fuelTank.writeToNBT(compound);
         oxygenTank.writeToNBT(compound);
     }
@@ -237,6 +247,17 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             hasCreatedOtherParts = compound.getBoolean("HasCreatedOtherParts");
         } else {
             hasCreatedOtherParts = false;
+        }
+
+        if (compound.hasKey("CurrentState")) {
+            String state = compound.getString("CurrentState");
+            if (state.equals("null")) {
+                setState(LaunchState.LAUNCHPAD);
+            } else {
+                setState(LaunchState.valueOf(compound.getString("CurrentState")));
+            }
+        } else {
+            setState(LaunchState.LAUNCHPAD);
         }
 
         fuelTank.readFromNBT(compound);

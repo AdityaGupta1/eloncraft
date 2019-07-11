@@ -40,7 +40,6 @@ public class ItemRangedWeapon extends ItemBasic {
         ItemStack self = player.getHeldItem(hand);
 
         for (int bullets = 0; bullets < this.projectiles; bullets++) {
-            // TODO make ammuniton work, maybe see ItemBow for examples
             /*if (!player.capabilities.isCreativeMode) {
                 if (ammunition != null) {
                     if (!player.inventory.hasItemStack(ammunition)) {
