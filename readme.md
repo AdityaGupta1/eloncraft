@@ -16,3 +16,4 @@ If you want to contribute, check out the [contributing guidelines](contributing.
 ## Special Thanks
 
 [@Ellpeck](http://github.com/Ellpeck) - for making [Actually Additions](https://github.com/Ellpeck/ActuallyAdditions) open-source
+[@Choonster](https://github.com/Choonster) - for making [Test Mod 3](https://github.com/Choonster-Minecraft-Mods/TestMod3) open-source
