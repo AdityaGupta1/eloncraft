@@ -14,7 +14,7 @@ import org.sdoaj.eloncraft.blocks.gui.GuiBase;
 import org.sdoaj.eloncraft.blocks.gui.GuiCustomButton;
 import org.sdoaj.eloncraft.blocks.tileentities.MessageButtonPressed;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
-import org.sdoaj.eloncraft.entity.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.eloncraft.entity.rocket.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.eloncraft.util.AssetUtil;
 import org.sdoaj.eloncraft.util.PacketHandler;
 
@@ -79,8 +79,8 @@ public class GuiLaunchController extends GuiBase {
         this.rocketFuelDisplay.drawOverlay(x, y);
         this.rocketOxygenDisplay.drawOverlay(x, y);
 
-        LaunchStatus status = tileEntity.getLaunchStatus();
-        if (status != LaunchStatus.OK) {
+        ErrorCode status = tileEntity.getLaunchStatus();
+        if (status != ErrorCode.OK) {
             this.launchButton.drawOverlay(x, y, status.message);
         }
     }
@@ -103,7 +103,7 @@ public class GuiLaunchController extends GuiBase {
             rocketOxygenDisplay.setTank(null);
         }
 
-        launchButton.enabled = tileEntity.getLaunchStatus() == LaunchStatus.OK;
+        launchButton.enabled = tileEntity.getLaunchStatus() == ErrorCode.OK;
     }
 
     @Override

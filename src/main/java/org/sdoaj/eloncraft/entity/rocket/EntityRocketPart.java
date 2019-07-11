@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.entity;
+package org.sdoaj.eloncraft.entity.rocket;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -6,16 +6,29 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class EntityRocketPart extends EntityLiving {
+    private Vec3d acceleration = new Vec3d(0, 0, 0); // m/s^2
+    private Vec3d velocity = new Vec3d(0, 0, 0); // m/s
+
     public EntityRocketPart(World world) {
         super(world);
         this.setNoGravity(true);
         this.ignoreFrustumCheck = true;
+    }
+
+    protected void setAcceleration(Vec3d acceleration) {
+        this.acceleration = acceleration;
+    }
+
+    protected void setAcceleration(double x, double y, double z) {
+        setAcceleration(new Vec3d(x, y, z));
     }
 
     @Override
@@ -23,7 +36,7 @@ public abstract class EntityRocketPart extends EntityLiving {
         return false;
     }
 
-    private List<EntityRocketPart> getRocket() {
+    protected List<EntityRocketPart> getRocket() {
         List<EntityRocketPart> parts = new ArrayList<>();
 
         Entity entity = getLowestRidingEntity();
@@ -44,6 +57,16 @@ public abstract class EntityRocketPart extends EntityLiving {
         return parts;
     }
 
+    protected <T> T getPartOfType(Class<T> type) {
+        for (EntityRocketPart part : getRocket()) {
+            if (part.getClass().equals(type)) {
+                return (T) part;
+            }
+        }
+
+        return null;
+    }
+
     @Override
     public void onUpdate() {
         super.onUpdate();
@@ -51,6 +74,16 @@ public abstract class EntityRocketPart extends EntityLiving {
         this.renderYawOffset = 0;
         this.rotationYawHead = 0;
         this.cameraPitch = 0;
+
+        this.velocity = this.velocity.add(this.acceleration.scale(0.05));
+        Vec3d dx = this.velocity.scale(0.05);
+        this.setPosition(this.posX + dx.x, this.posY + dx.y, this.posZ + dx.z);
+        getRocket().forEach(part -> {
+            List<Entity> passengers = part.getPassengers();
+            if (!passengers.isEmpty()) {
+                part.updatePassenger(passengers.get(0));
+            }
+        });
     }
 
     private void damageEntity(DamageSource source, float amount, boolean initialDamage) {

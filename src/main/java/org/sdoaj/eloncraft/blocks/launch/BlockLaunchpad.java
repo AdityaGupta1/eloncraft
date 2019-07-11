@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.sdoaj.eloncraft.blocks.BlockNotFull;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.Eloncraft;
-import org.sdoaj.eloncraft.entity.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.eloncraft.entity.rocket.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.eloncraft.items.ModItems;
 
 import java.util.*;

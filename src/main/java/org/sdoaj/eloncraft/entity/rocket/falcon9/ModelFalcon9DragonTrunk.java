@@ -1,10 +1,8 @@
-package org.sdoaj.eloncraft.entity.falcon9;
+package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
 
 public class ModelFalcon9DragonTrunk extends ModelFalcon9Part {
 	private final ModelRenderer trunk;

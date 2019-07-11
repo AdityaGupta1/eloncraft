@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
@@ -13,13 +12,12 @@ import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityFluidMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
-import org.sdoaj.eloncraft.entity.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.eloncraft.entity.rocket.falcon9.EntityFalcon9Stage1;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class TileEntityLaunchController extends TileEntityFluidMachine {
     final int guiTopHeight = 99;
@@ -142,20 +140,20 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         rocket = BlockLaunchpad.getNearbyRocket(this.pos).orElse(null);
     }
 
-    LaunchStatus getLaunchStatus() {
+    ErrorCode getLaunchStatus() {
         if (rocket == null) {
-            return LaunchStatus.ROCKET_MISSING;
+            return ErrorCode.ROCKET_MISSING;
         }
 
         if (!(rocket.fuelTank.isFull() && rocket.oxygenTank.isFull())) {
-            return LaunchStatus.FUEL_MISSING;
+            return ErrorCode.FUEL_MISSING;
         }
 
         if (!BlockLaunchpad.isSkyClear(this.world, rocket.getLaunchpad())) {
-            return LaunchStatus.SKY_OBSTRUCTED;
+            return ErrorCode.SKY_OBSTRUCTED;
         }
 
-        return LaunchStatus.OK;
+        return ErrorCode.OK;
     }
 
     @Override
@@ -206,6 +204,12 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         FluidUtil.interactWithFluidHandler(player, hand, oxygenTank);
     }
 
+    private EntityPlayer player;
+
+    void setPlayer(EntityPlayer player) {
+        this.player = player;
+    }
+
     @Override
     protected void onButtonPressed(int id) {
         switch(id) {
@@ -226,6 +230,9 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
                 this.destination = Destination.fromOrdinal(this.destination.ordinal() + 1);
                 setChanged();
                 break;
+            case 3:
+                this.rocket.launch(player);
+                break;
         }
     }
 
@@ -234,7 +241,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
     }
 }
 
-enum LaunchStatus {
+enum ErrorCode {
     OK(),
     ROCKET_MISSING("No rocket found!"),
     FUEL_MISSING("Fuel and LOX need to be completely filled up!"),
@@ -242,11 +249,11 @@ enum LaunchStatus {
 
     final String message;
 
-    LaunchStatus(String message) {
+    ErrorCode(String message) {
         this.message = message;
     }
 
-    LaunchStatus() {
+    ErrorCode() {
         this(null);
     }
 }

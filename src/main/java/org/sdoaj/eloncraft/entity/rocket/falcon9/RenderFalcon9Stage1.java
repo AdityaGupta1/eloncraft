@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.entity.falcon9;
+package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

@@ -1,23 +1,40 @@
-package org.sdoaj.eloncraft.entity.falcon9;
+package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.eloncraft.blocks.launch.BlockLaunchpad;
 import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
-import org.sdoaj.eloncraft.entity.EntityRocketPart;
+import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
 
 import java.util.Arrays;
+import java.util.List;
+
+enum LaunchState {
+    LAUNCHPAD, AWAITING_PLAYER, AWAITING_HATCH, COUNTDOWN, LIFTOFF
+}
 
 public class EntityFalcon9Stage1 extends EntityRocketPart {
+    private LaunchState currentState;
+    private LaunchState desiredState;
+    private EntityPlayer player;
+
+    private void setState(LaunchState state) {
+        this.desiredState = state;
+    }
+
+    LaunchState getState() {
+        return currentState;
+    }
+
     public EntityFalcon9Stage1(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
@@ -58,6 +75,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         launchpadTopPos = new Vec3d(launchpad).addVector(0.5, 0.25, 0.5);
         launchpadRotation = rotation;
         useLaunchpadTopPos();
+        setState(LaunchState.LAUNCHPAD);
     }
 
     public BlockPos getLaunchpad() {
@@ -76,11 +94,73 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         launchpadRotation = Float.NaN;
     }
 
+    private static final int countdownSeconds = 10;
+    private int countdown;
+
+    private void handleStateChange(LaunchState currentState, LaunchState desiredState) {
+        if (desiredState == currentState) {
+            return;
+        }
+
+        if (desiredState == LaunchState.AWAITING_PLAYER) {
+            player.sendMessage(new TextComponentString(TextFormatting.GOLD + "Enter the Dragon capsule and close the hatch to start the countdown."));
+        }
+
+        if (desiredState == LaunchState.AWAITING_HATCH) {
+            player.sendMessage(new TextComponentString(TextFormatting.GOLD + "Close the hatch to start the countdown. Once you close the hatch, there's no turning back."));
+        }
+
+        if (desiredState == LaunchState.COUNTDOWN) {
+            this.countdown = countdownSeconds * 20;
+            player.sendMessage(new TextComponentString(TextFormatting.GOLD + "T minus " + countdownSeconds + " seconds."));
+        }
+
+        if (desiredState == LaunchState.LIFTOFF) {
+            this.setAcceleration(0, 10, 0);
+            this.removeLaunchpad();
+            player.sendMessage(new TextComponentString(TextFormatting.GREEN + "And we have liftoff."));
+        }
+    }
+
+    private void handleCurrentState(LaunchState currentState) {
+        if (currentState != LaunchState.LIFTOFF) {
+            useLaunchpadTopPos();
+        }
+
+        if (currentState == LaunchState.AWAITING_PLAYER) {
+            List<Entity> passengers = getPartOfType(EntityFalcon9DragonTop.class).getPassengers();
+
+            if (!passengers.isEmpty()) {
+                this.player = (EntityPlayer) passengers.get(0);
+                setState(LaunchState.AWAITING_HATCH);
+            }
+        }
+
+        if (currentState == LaunchState.AWAITING_HATCH) {
+            if (getPartOfType(EntityFalcon9DragonTop.class).getHatchPosition() == 0.0) {
+                setState(LaunchState.COUNTDOWN);
+            }
+        }
+
+        if (currentState == LaunchState.COUNTDOWN) {
+            countdown--;
+
+            if (countdown == 0) {
+                setState(LaunchState.LIFTOFF);
+            }
+        }
+    }
+
     @Override
     public void onUpdate() {
         super.onUpdate();
 
-        useLaunchpadTopPos();
+        if (currentState != desiredState) {
+            handleStateChange(currentState, desiredState);
+            currentState = desiredState;
+        }
+
+        handleCurrentState(currentState);
 
         if (!hasCreatedOtherParts && !world.isRemote) {
             EntityFalcon9Stage2 stage2 = new EntityFalcon9Stage2(this.world);
@@ -100,6 +180,11 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
             hasCreatedOtherParts = true;
         }
+    }
+
+    public void launch(EntityPlayer player) {
+        this.player = player;
+        setState(LaunchState.AWAITING_PLAYER);
     }
 
     @Override

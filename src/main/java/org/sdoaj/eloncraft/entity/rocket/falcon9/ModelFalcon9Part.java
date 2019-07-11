@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.entity.falcon9;
+package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
