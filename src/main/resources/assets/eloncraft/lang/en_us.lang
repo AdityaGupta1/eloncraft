@@ -81,6 +81,7 @@ item.untreated_carbon_fibers.name=Untreated Carbon Fibers
 item.carbon_fibers.name=§8Carbon Fibers
 item.carbon_fiber_plate.name=§8Carbon Fiber Plate
 item.heat_shield.name=§dHeat Shield
+item.steel_rod.name=Steel Rod
 
 # ====================
 # rocket parts
@@ -110,6 +111,8 @@ item.falcon9.name=§lFalcon 9
 # ====================
 # tools/weapons
 # ====================
+
+item.titanium_pickaxe.name=Titanium Pickaxe
 
 item.flamethrower.name=Not a Flamethrower
 

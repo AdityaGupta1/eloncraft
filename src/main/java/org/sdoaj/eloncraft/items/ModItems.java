@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -12,6 +13,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.eloncraft.Eloncraft;
+import org.sdoaj.eloncraft.items.tools.ItemCustomPickaxe;
+import org.sdoaj.eloncraft.items.tools.ModToolMaterials;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +24,7 @@ import static org.sdoaj.eloncraft.items.ItemBasic.*;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModItems {
-    private static final List<ItemBasic> items = new ArrayList<>();
+    private static final List<Item> items = new ArrayList<>();
     private static final HashMap<Item, String> oreDictEntries = new HashMap<>();
 
     // metals from ores
@@ -94,6 +97,7 @@ public class ModItems {
     public static ItemBasic CARBON_FIBERS;
     public static ItemBasic CARBON_FIBER_PLATE;
     public static ItemBasic HEAT_SHIELD;
+    public static ItemBasic STEEL_ROD;
 
     // rocket parts
 
@@ -120,7 +124,9 @@ public class ModItems {
 
     // tools/weapons
 
-    public static Item FLAMETHROWER;
+    public static ItemPickaxe TITANIUM_PICKAXE;
+
+    public static ItemRangedWeapon FLAMETHROWER;
 
     public static void init() {
         ALUMINUM_INGOT = newIngot("aluminum");
@@ -203,6 +209,7 @@ public class ModItems {
         HEAT_SHIELD = new ItemBasic("heat_shield");
         HEAT_SHIELD.addLore("Magical heat shielding made from void-resistant plants and pulverized hellfire. What more could you ask for?");
         HEAT_SHIELD.setGlows();
+        STEEL_ROD = new ItemBasic("steel_rod");
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
         MERLIN_ENGINE.addLore("\"Merlin's thrust-to-weight ratio exceeds 150, making the Merlin the most efficient booster engine ever built, while still maintaining the structural and thermal safety margins needed to carry astronauts.\"");
@@ -256,6 +263,8 @@ public class ModItems {
         FALCON9.addLore("One small step for a Steve, one giant leap for mankind.");
         FALCON9.setMaxStackSize(1);
 
+        TITANIUM_PICKAXE = new ItemCustomPickaxe("titanium_pickaxe", ModToolMaterials.TITANIUM);
+
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());
             fire.fallTime = 1;
@@ -271,7 +280,7 @@ public class ModItems {
         ModCreativeTabs.BORING_COMPANY.addAll(FLAMETHROWER);
     }
 
-    static void addItem(ItemBasic item) {
+    static void addItem(Item item) {
         items.add(item);
     }
 

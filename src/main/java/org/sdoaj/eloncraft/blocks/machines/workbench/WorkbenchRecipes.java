@@ -438,6 +438,20 @@ public final class WorkbenchRecipes {
                 new RecipeKey('l', Blocks.LEVER),
                 new RecipeKey('b', Blocks.STONE_BUTTON),
                 new RecipeKey('r', Items.REDSTONE)));
+
+
+
+        addRecipe(new WorkbenchRecipe(new String[] {
+                " tttt  ",
+                "    tt ",
+                "    stt",
+                "   s  t",
+                "  s   t",
+                " s    t",
+                "s      "
+        }, new ItemStack(ModItems.TITANIUM_PICKAXE),
+                new RecipeKey('s', ModItems.STEEL_ROD),
+                new RecipeKey('t', ModItems.TITANIUM_INGOT)));
     }
 
     public static List<WorkbenchRecipe> getRecipes() {

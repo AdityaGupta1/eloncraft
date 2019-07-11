@@ -13,10 +13,14 @@ public class ItemBasic extends Item {
     private int burnTime = -1;
 
     ItemBasic(String name) {
-        setUnlocalizedName(name);
-        setRegistryName(name);
-        ModItems.addItem(this);
-        setCreativeTab(ModCreativeTabs.ELONCRAFT);
+        initItem(this, name);
+    }
+
+    public static void initItem(Item item, String name) {
+        item.setUnlocalizedName(name);
+        item.setRegistryName(name);
+        ModItems.addItem(item);
+        item.setCreativeTab(ModCreativeTabs.ELONCRAFT);
     }
 
     private final List<String> lore = new ArrayList<>();

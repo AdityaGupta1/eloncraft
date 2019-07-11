@@ -46,6 +46,7 @@ public final class MetalRollerRecipes {
         addRecipe(new LinearRecipe().setInput(ModItems.NIOBIUM_C103_INGOT).setOutput(ModItems.NIOBIUM_C103_PLATE));
 
         addRecipe(new LinearRecipe().setInput(ModItems.CARBON_FIBERS).setOutput(ModItems.CARBON_FIBER_PLATE));
+        addRecipe(new LinearRecipe().setInput("plateSteel", 1).setOutput(new ItemStack(ModItems.STEEL_ROD, 2)));
     }
 
     public static List<LinearRecipe> getRecipes() {
