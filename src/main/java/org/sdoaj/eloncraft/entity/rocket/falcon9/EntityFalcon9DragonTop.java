@@ -99,7 +99,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     protected void removePassenger(Entity passenger) {
         super.removePassenger(passenger);
         Vec3d dz = new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-this.rotationYaw));
-        Vec3d dismountPos = new Vec3d(this.posX, this.posY + 7, this.posZ).add(dz);
+        Vec3d dismountPos = new Vec3d(this.posX, this.posY + 3, this.posZ).add(dz);
         passenger.setPosition(dismountPos.x, dismountPos.y, dismountPos.z);
     }
 

@@ -1,13 +1,14 @@
 package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.ParticleCloud;
+import net.minecraft.client.particle.ParticleSmokeNormal;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -122,6 +123,8 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
     private static final int countdownSeconds = 10;
     private int countdown;
 
+    private static final double yAcceleration = 5.0;
+
     private SoundEvent liftoffSound = new SoundEvent(new ResourceLocation(Eloncraft.MODID, "liftoff"));
 
     private void handleStateChange(LaunchState currentState, LaunchState desiredState) {
@@ -144,7 +147,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         }
 
         if (desiredState == LaunchState.LIFTOFF) {
-            this.setAcceleration(0, 7.5, 0);
+            this.setAcceleration(0, yAcceleration, 0);
             this.removeLaunchpad();
             sendMessageToPlayer(TextFormatting.GREEN + "Liftoff.");
         }
@@ -196,17 +199,36 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         }
     }
 
+    // how to cheese the particle system, epic style
+
+    private static class ParticleSmoke extends ParticleCloud {
+        private ParticleSmoke(World world, double x, double y, double z, double motionX, double motionY, double motionZ, double ageMultiplier) {
+            super(world, x, y, z, motionX, motionY, motionZ);
+            this.particleMaxAge *= ageMultiplier;
+        }
+    }
+
+    private static final double smokeAgeScale = 4.0;
+
     private void generateSmoke() {
         if (!world.isRemote) {
             return;
         }
 
         for (int i = 0; i < 250; i++) {
-            double motionX = RandomUtil.nextDouble(1.0);
-            double motionY = rand.nextGaussian() * 0.2;
-            double motionZ = RandomUtil.nextDouble(1.0);
-            world.spawnParticle(EnumParticleTypes.CLOUD, true, this.posX, this.posY , this.posZ,
-                    motionX, motionY, motionZ);
+            double motionX = RandomUtil.nextDouble(1.0) / smokeAgeScale;
+            double motionY = rand.nextGaussian() * 0.2 / smokeAgeScale;
+            double motionZ = RandomUtil.nextDouble(1.0) / smokeAgeScale;
+
+            Minecraft.getMinecraft().effectRenderer.addEffect(
+                    new ParticleSmoke(world, this.posX, this.posY, this.posZ,
+                            motionX, motionY, motionZ, smokeAgeScale));
+        }
+    }
+
+    private static class ParticleFlame extends net.minecraft.client.particle.ParticleFlame {
+        private ParticleFlame(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
+            super(world, x, y, z, motionX, motionY, motionZ);
         }
     }
 
@@ -222,8 +244,10 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             double motionY = -Math.max((2.0 - r) + (rand.nextGaussian() * 0.4), 0);
             motionY *= 0.5;
 
-            world.spawnParticle(EnumParticleTypes.FLAME, this.posX + dx, this.posY, this.posZ + dz,
-                    0, motionY, 0);
+            // using this instead of "world.spawnParticle()" makes sure the particles render even past the normal range of 32 blocks
+            Minecraft.getMinecraft().effectRenderer.addEffect(
+                    new ParticleFlame(world, this.posX + dx, this.posY, this.posZ + dz,
+                            0, motionY, 0));
         }
     }
 

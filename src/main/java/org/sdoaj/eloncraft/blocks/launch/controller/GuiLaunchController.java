@@ -103,9 +103,7 @@ public class GuiLaunchController extends GuiBase {
             rocketOxygenDisplay.setTank(null);
         }
 
-        // TODO for testing purposes only
-        // launchButton.enabled = tileEntity.getLaunchStatus() == ErrorCode.OK;
-        launchButton.enabled = true;
+        launchButton.enabled = tileEntity.getLaunchStatus() == ErrorCode.OK;
     }
 
     @Override
