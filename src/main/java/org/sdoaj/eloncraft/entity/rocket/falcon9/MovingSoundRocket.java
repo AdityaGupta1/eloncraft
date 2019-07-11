@@ -14,10 +14,19 @@ import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
 public class MovingSoundRocket extends MovingSound {
     private final EntityRocketPart part;
 
-    public MovingSoundRocket(EntityRocketPart part, SoundEvent sound) {
+    public MovingSoundRocket(EntityRocketPart part, SoundEvent sound, double volume) {
         super(sound, SoundCategory.NEUTRAL);
         this.part = part;
         this.repeat = false;
+        this.volume = (float) volume;
+    }
+
+    public MovingSoundRocket(EntityRocketPart part, SoundEvent sound) {
+        this(part, sound, 0.5);
+    }
+
+    public void setVolume(double volume) {
+        this.volume = (float) volume;
     }
 
     public void update() {
@@ -27,7 +36,6 @@ public class MovingSoundRocket extends MovingSound {
             this.xPosF = (float) part.posX;
             this.yPosF = (float) part.posY;
             this.zPosF = (float) part.posZ;
-            this.volume = 0.5F;
         }
     }
 }

@@ -21,8 +21,8 @@ import org.sdoaj.eloncraft.entity.ReceivesSetValueMessages;
 import org.sdoaj.eloncraft.entity.TimedTask;
 import org.sdoaj.eloncraft.entity.TimedTaskExecutor;
 import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
-import org.sdoaj.eloncraft.util.MathUtil;
 import org.sdoaj.eloncraft.util.PacketHandler;
+import org.sdoaj.eloncraft.util.RandomUtil;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class EntityFalcon9DragonTop extends EntityRocketPart implements ReceivesSetValueMessages, IEntityAdditionalSpawnData {
@@ -80,8 +80,8 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
 
             final double shake = MathHelper.clamp(velocity / 100.0, 0, 0.10);
 
-            rider.setLocationAndAngles(rider.posX + MathUtil.random(shake), rider.posY + MathUtil.random(shake), rider.posZ + MathUtil.random(shake),
-                    rider.rotationYaw + (float) MathUtil.random(shake * 20), rider.rotationPitch + (float) MathUtil.random(shake * 20));
+            rider.setLocationAndAngles(rider.posX + RandomUtil.nextDouble(shake), rider.posY + RandomUtil.nextDouble(shake), rider.posZ + RandomUtil.nextDouble(shake),
+                    rider.rotationYaw + (float) RandomUtil.nextDouble(shake * 20), rider.rotationPitch + (float) RandomUtil.nextDouble(shake * 20));
         }
     }
 
@@ -113,7 +113,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
             return;
         }
 
-        if (event.getEntityBeingMounted().isDead) {
+        if (event.getEntityMounting().isDead || event.getEntityBeingMounted().isDead) {
             return;
         }
 

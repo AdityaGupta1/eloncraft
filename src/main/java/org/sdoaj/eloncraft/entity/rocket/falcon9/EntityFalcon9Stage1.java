@@ -1,11 +1,13 @@
 package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.MovingSoundMinecart;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +22,7 @@ import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
 import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
+import org.sdoaj.eloncraft.util.RandomUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +47,15 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
     public EntityFalcon9Stage1(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 98.0F / 16.0F * ModelFalcon9Stage1.modelScale);
+    }
+
+    private static final DataParameter<Integer> particleState = EntityDataManager.createKey(EntityFalcon9DragonTop.class, DataSerializers.VARINT);
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+
+        this.dataManager.register(particleState, 0);
     }
 
     private boolean hasCreatedOtherParts = false;
@@ -168,13 +180,50 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
                 }
 
                 if (seconds == 3) {
-                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(getPartOfType(EntityFalcon9DragonTop.class), liftoffSound));
+                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(this, liftoffSound, 1.25));
+                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(getPartOfType(EntityFalcon9DragonTop.class), liftoffSound, 1.0));
+                    this.dataManager.set(particleState, 1);
                 }
             }
 
             if (countdown == 0) {
                 setState(LaunchState.LIFTOFF);
             }
+        }
+
+        if (currentState == LaunchState.LIFTOFF) {
+            this.dataManager.set(particleState, 2);
+        }
+    }
+
+    private void generateSmoke() {
+        if (!world.isRemote) {
+            return;
+        }
+
+        for (int i = 0; i < 250; i++) {
+            double motionX = RandomUtil.nextDouble(1.0);
+            double motionY = rand.nextGaussian() * 0.2;
+            double motionZ = RandomUtil.nextDouble(1.0);
+            world.spawnParticle(EnumParticleTypes.CLOUD, true, this.posX, this.posY , this.posZ,
+                    motionX, motionY, motionZ);
+        }
+    }
+
+    private void generateFire() {
+        for (int i = 0; i < 250; i++) {
+            double theta = Math.random() * 360;
+            double r = Math.random() * 1.5;
+
+            // doesn't really matter which is which, this is more for consistency with other similar operations
+            double dx = r * -Math.sin(theta);
+            double dz = r * Math.cos(theta);
+
+            double motionY = -Math.max((2.0 - r) + (rand.nextGaussian() * 0.4), 0);
+            motionY *= 0.5;
+
+            world.spawnParticle(EnumParticleTypes.FLAME, this.posX + dx, this.posY, this.posZ + dz,
+                    0, motionY, 0);
         }
     }
 
@@ -188,6 +237,16 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         }
 
         handleCurrentState(currentState);
+
+        if (world.isRemote) {
+            switch (this.dataManager.get(particleState)) {
+                case 1:
+                    generateSmoke();
+                case 2:
+                    generateFire();
+                    break;
+            }
+        }
 
         if (!hasCreatedOtherParts && !world.isRemote) {
             EntityFalcon9Stage2 stage2 = new EntityFalcon9Stage2(this.world);
@@ -234,6 +293,8 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
         compound.setString("CurrentState", currentState == null ? "null" : currentState.name());
 
+        compound.setInteger("ParticleState", this.dataManager.get(particleState));
+
         fuelTank.writeToNBT(compound);
         oxygenTank.writeToNBT(compound);
     }
@@ -271,6 +332,8 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         } else {
             setState(LaunchState.LAUNCHPAD);
         }
+
+        this.dataManager.set(particleState, compound.getInteger("ParticleState"));
 
         fuelTank.readFromNBT(compound);
         oxygenTank.readFromNBT(compound);
