@@ -1,15 +1,20 @@
 package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.MovingSoundMinecart;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.blocks.launch.BlockLaunchpad;
 import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
 import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
@@ -19,14 +24,14 @@ import org.sdoaj.eloncraft.items.ModItems;
 import java.util.Arrays;
 import java.util.List;
 
-enum LaunchState {
-    LAUNCHPAD, AWAITING_PLAYER, AWAITING_HATCH, COUNTDOWN, LIFTOFF
-}
-
 public class EntityFalcon9Stage1 extends EntityRocketPart {
     private LaunchState currentState;
     private LaunchState desiredState;
     private EntityPlayer player;
+
+    private enum LaunchState {
+        LAUNCHPAD, AWAITING_PLAYER, AWAITING_HATCH, COUNTDOWN, LIFTOFF
+    }
 
     private void setState(LaunchState state) {
         this.desiredState = state;
@@ -97,12 +102,14 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     private void sendMessageToPlayer(String message) {
         if (player != null) {
-           player.sendMessage(new TextComponentString(message));
+            player.sendMessage(new TextComponentString(message));
         }
     }
 
     private static final int countdownSeconds = 10;
     private int countdown;
+
+    private SoundEvent liftoffSound = new SoundEvent(new ResourceLocation(Eloncraft.MODID, "liftoff"));
 
     private void handleStateChange(LaunchState currentState, LaunchState desiredState) {
         if (desiredState == currentState) {
@@ -157,6 +164,10 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
                 int seconds = countdown / 20;
                 if (seconds <= 5 && seconds > 0) {
                     player.sendMessage(new TextComponentString(TextFormatting.GOLD + "" + seconds + "."));
+                }
+
+                if (seconds == 3) {
+                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(getPartOfType(EntityFalcon9DragonTop.class), liftoffSound));
                 }
             }
 

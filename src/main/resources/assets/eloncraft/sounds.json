@@ -1,0 +1,11 @@
+{
+  "liftoff": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "eloncraft:liftoff",
+        "stream": true
+      }
+    ]
+  }
+}
