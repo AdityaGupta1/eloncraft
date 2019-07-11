@@ -145,6 +145,13 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         if (currentState == LaunchState.COUNTDOWN) {
             countdown--;
 
+            if (countdown % 20 == 0) {
+                int seconds = countdown / 20;
+                if (seconds <= 5 && seconds > 0) {
+                    player.sendMessage(new TextComponentString(TextFormatting.GOLD + "" + seconds + "."));
+                }
+            }
+
             if (countdown == 0) {
                 setState(LaunchState.LIFTOFF);
             }
