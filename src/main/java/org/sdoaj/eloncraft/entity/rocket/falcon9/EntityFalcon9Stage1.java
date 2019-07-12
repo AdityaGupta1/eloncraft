@@ -170,8 +170,14 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         }
 
         if (currentState == LaunchState.AWAITING_HATCH) {
-            if (getPartOfType(EntityFalcon9DragonTop.class).getHatchPosition() == 0.0) {
+            EntityFalcon9DragonTop dragon = getPartOfType(EntityFalcon9DragonTop.class);
+
+            if (dragon.getHatchPosition() == 0.0) {
                 setState(LaunchState.COUNTDOWN);
+            }
+
+            if (dragon.getPassengers().isEmpty()) {
+                setState(LaunchState.AWAITING_PLAYER);
             }
         }
 
