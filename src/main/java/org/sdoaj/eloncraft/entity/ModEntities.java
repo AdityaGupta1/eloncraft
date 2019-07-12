@@ -15,30 +15,31 @@ import org.sdoaj.eloncraft.entity.rocket.falcon9.*;
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModEntities {
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
         int id = 0;
 
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9Stage1.class)
-                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_stage1"), ++id)
+                .id(new ResourceLocation(Eloncraft.MODID, "falcon9_stage1"), ++id)
                 .name("eloncraft:falcon9_stage1")
                 .tracker(1024, 3, true)
                 .build());
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9Stage2.class)
-                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_stage2"), ++id)
+                .id(new ResourceLocation(Eloncraft.MODID, "falcon9_stage2"), ++id)
                 .name("eloncraft:falcon9_stage2")
                 .tracker(1024, 3, true)
                 .build());
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9DragonTrunk.class)
-                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_dragon_trunk"), ++id)
+                .id(new ResourceLocation(Eloncraft.MODID, "falcon9_dragon_trunk"), ++id)
                 .name("eloncraft:falcon9_dragon_trunk")
                 .tracker(1024, 3, true)
                 .build());
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(EntityFalcon9DragonTop.class)
-                .id(new ResourceLocation(Eloncraft.MODID,"falcon9_dragon_top"), ++id)
+                .id(new ResourceLocation(Eloncraft.MODID, "falcon9_dragon_top"), ++id)
                 .name("eloncraft:falcon9_dragon_top")
                 .tracker(1024, 3, true)
                 .build());

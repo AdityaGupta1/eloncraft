@@ -6,6 +6,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.items.ModCreativeTabs;
 import org.sdoaj.eloncraft.util.StringUtil;
 
@@ -29,6 +31,7 @@ public class BlockBasic extends Block {
         this.lore.add(lore);
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag) {
         tooltip.addAll(lore);
