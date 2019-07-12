@@ -17,6 +17,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.blocks.launch.BlockLaunchpad;
 import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
@@ -209,6 +211,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     // how to cheese the particle system, epic style
 
+    @SideOnly(Side.CLIENT)
     private static class ParticleSmoke extends ParticleCloud {
         private ParticleSmoke(World world, double x, double y, double z, double motionX, double motionY, double motionZ, double ageMultiplier) {
             super(world, x, y, z, motionX, motionY, motionZ);
@@ -218,6 +221,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     private static final double smokeAgeScale = 4.0;
 
+    @SideOnly(Side.CLIENT)
     private void generateSmoke() {
         for (int i = 0; i < 50; i++) {
             double theta = Math.random() * 2 * Math.PI;
@@ -233,12 +237,14 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private static class ParticleFlame extends net.minecraft.client.particle.ParticleFlame {
         private ParticleFlame(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
             super(world, x, y, z, motionX, motionY, motionZ);
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void generateFire() {
         for (int i = 0; i < 100; i++) {
             double theta = Math.random() * 2 * Math.PI;
@@ -254,6 +260,19 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             Minecraft.getMinecraft().effectRenderer.addEffect(
                     new ParticleFlame(world, this.posX + dx, this.posY, this.posZ + dz,
                             0, motionY, 0));
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void playSounds(int state) {
+        if (state != 0) {
+            Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundAny(
+                    this, liftoffSound, SoundCategory.PLAYERS, 0.5));
+
+            if (state == 2) {
+                Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundAny(
+                        player, liftoffSound, SoundCategory.PLAYERS, 1.0, entity -> !entity.isRiding()));
+            }
         }
     }
 
@@ -277,17 +296,8 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
                     break;
             }
 
-            if (dataManager.get(playSound) != 0) {
-                Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundAny(
-                        this, liftoffSound, SoundCategory.PLAYERS, 0.5));
-
-                if (dataManager.get(playSound) == 2) {
-                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundAny(
-                            player, liftoffSound, SoundCategory.PLAYERS, 1.0, entity -> !entity.isRiding()));
-                }
-
-                dataManager.set(playSound, 0);
-            }
+            playSounds(dataManager.get(playSound));
+            dataManager.set(playSound, 0);
         }
 
         if (!hasCreatedOtherParts && !world.isRemote) {

@@ -11,6 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.blocks.gui.GuiHandler;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
+import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.proxy.IProxy;
 import org.sdoaj.eloncraft.world.OreGenerator;
@@ -43,6 +45,8 @@ public class Eloncraft {
         ModItems.init();
         ModBlocks.init();
 
+        ModFluids.init();
+
         proxy.preInit(event);
     }
 
@@ -53,6 +57,8 @@ public class Eloncraft {
         GameRegistry.registerWorldGenerator(new OreGenerator(), 0);
 
         GuiHandler.init();
+
+        TileEntityBase.init();
 
         proxy.init(event);
     }

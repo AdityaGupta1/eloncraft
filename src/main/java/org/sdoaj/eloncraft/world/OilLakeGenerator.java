@@ -15,11 +15,10 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class OilLakeGenerator {
-    private static final int rarity = 10; // not a percentage chance
+    private static final int rarity = 100;
 
     // mostly copied from lava lake generation in ChunkGeneratorOverworld
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
     public static void generateOilLakes(PopulateChunkEvent event) {
         World world = event.getWorld();
 

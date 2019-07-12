@@ -15,7 +15,7 @@ import org.sdoaj.eloncraft.entity.rocket.falcon9.*;
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class ModEntities {
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
+    // @SideOnly(Side.CLIENT)
     public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
         int id = 0;
 

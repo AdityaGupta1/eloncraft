@@ -21,16 +21,12 @@ public class ClientProxy implements IProxy {
     public void preInit(FMLPreInitializationEvent event) {
         Eloncraft.LOGGER.info("client preInit");
 
-        ModFluids.init();
-
         ModEntities.initModels();
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
         Eloncraft.LOGGER.info("client init");
-
-        TileEntityBase.init();
     }
 
     @Override
