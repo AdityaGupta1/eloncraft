@@ -88,9 +88,8 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         }
 
         boolean processed = false;
-        boolean canProcess = this.canProcess();
 
-        if (canProcess) {
+        if (this.canProcess()) {
             if (!hasEnergyStorage || this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
                 this.processTime++;
                 if (this.processTime >= this.maxProcessTime) {

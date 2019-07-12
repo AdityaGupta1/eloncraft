@@ -32,25 +32,10 @@ public class ClientProxy implements IProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         Eloncraft.LOGGER.info("client postInit");
-
-        registerRecipes();
     }
 
     @Override
     public void serverStarting(FMLServerStartingEvent event) {
         // doesn't get called on client side
-    }
-
-    private void registerRecipes() {
-        ModSmeltingRecipes.init();
-
-        WorkbenchRecipes.init();
-
-        MetalRollerRecipes.init();
-        CrusherRecipes.init();
-        AlloyFurnaceRecipes.init();
-        RefineryRecipes.init();
-
-        GeneratorRecipes.init();
     }
 }

@@ -11,10 +11,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.blocks.gui.GuiHandler;
+import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
+import org.sdoaj.eloncraft.blocks.machines.crusher.CrusherRecipes;
+import org.sdoaj.eloncraft.blocks.machines.generator.GeneratorRecipes;
+import org.sdoaj.eloncraft.blocks.machines.metalroller.MetalRollerRecipes;
+import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipes;
+import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipes;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.proxy.IProxy;
+import org.sdoaj.eloncraft.recipes.ModSmeltingRecipes;
 import org.sdoaj.eloncraft.world.OreGenerator;
 
 @Mod(modid = Eloncraft.MODID, name = Eloncraft.NAME, version = Eloncraft.VERSION)
@@ -67,6 +74,21 @@ public class Eloncraft {
     public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("postInit");
 
+        registerRecipes();
+
         proxy.postInit(event);
+    }
+
+    private void registerRecipes() {
+        ModSmeltingRecipes.init();
+
+        WorkbenchRecipes.init();
+
+        MetalRollerRecipes.init();
+        CrusherRecipes.init();
+        AlloyFurnaceRecipes.init();
+        RefineryRecipes.init();
+
+        GeneratorRecipes.init();
     }
 }
