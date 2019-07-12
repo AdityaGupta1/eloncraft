@@ -131,9 +131,4 @@ public class GuiLaunchController extends GuiBase {
         this.rocketFuelDisplay.draw();
         this.rocketOxygenDisplay.draw();
     }
-
-    @Override
-    protected void actionPerformed(GuiButton button) {
-        PacketHandler.sendToServer(new MessageButtonPressed(button.id));
-    }
 }

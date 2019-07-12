@@ -12,7 +12,7 @@ public class PacketHandler {
     private static final SimpleNetworkWrapper network = NetworkRegistry.INSTANCE.newSimpleChannel(Eloncraft.MODID);
     private static int packetId = 0;
 
-    static {
+    public static void init() {
         network.registerMessage(MessageButtonPressed.Handler.class, MessageButtonPressed.class, packetId++, Side.SERVER);
         network.registerMessage(MessageSetValueToServer.Handler.class, MessageSetValueToServer.class, packetId++, Side.SERVER);
     }

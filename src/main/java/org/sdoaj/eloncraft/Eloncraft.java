@@ -22,6 +22,7 @@ import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.proxy.IProxy;
 import org.sdoaj.eloncraft.recipes.ModSmeltingRecipes;
+import org.sdoaj.eloncraft.util.PacketHandler;
 import org.sdoaj.eloncraft.world.OreGenerator;
 
 @Mod(modid = Eloncraft.MODID, name = Eloncraft.NAME, version = Eloncraft.VERSION)
@@ -53,6 +54,8 @@ public class Eloncraft {
         ModBlocks.init();
 
         ModFluids.init();
+
+        PacketHandler.init();
 
         proxy.preInit(event);
     }

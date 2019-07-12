@@ -2,6 +2,7 @@ package org.sdoaj.eloncraft.blocks.tileentities;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.inventory.Container;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -32,11 +33,15 @@ public class MessageButtonPressed implements IMessage {
     public static class Handler implements IMessageHandler<MessageButtonPressed, IMessage> {
         @Override
         public IMessage onMessage(MessageButtonPressed message, MessageContext context) {
-            Container container = context.getServerHandler().player.openContainer;
+            System.out.println("message handler");
+            
+            FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> {
+                Container container = context.getServerHandler().player.openContainer;
 
-            if (container instanceof ContainerBase) {
-                ((ContainerBase) container).getTileEntity().onButtonPressed(message.getId());
-            }
+                if (container instanceof ContainerBase) {
+                    ((ContainerBase) container).getTileEntity().onButtonPressed(message.getId());
+                }
+            });
 
             return null;
         }
