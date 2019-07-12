@@ -78,17 +78,19 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
     @Override
     public void writeSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.writeSyncableNBT(compound, type);
-        compound.setString("Destination", destination.toString());
+
+        compound.setString("Destination", destination.name());
+
+        compound.setString("LaunchStatus", launchStatus.name());
     }
 
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.readSyncableNBT(compound, type);
-        if (compound.hasKey("Destination")) {
-            this.destination = Destination.valueOf(compound.getString("Destination"));
-        } else {
-            this.destination = Destination.ISS;
-        }
+
+        destination = Destination.valueOf(compound.getString("Destination"));
+
+        launchStatus = compound.hasKey("LaunchStatus") ? ErrorCode.valueOf(compound.getString("LaunchStatus")) : ErrorCode.ROCKET_MISSING;
     }
 
     @Override
@@ -113,7 +115,8 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
             }
         }
 
-        return super.hasChanged() || fuelTank.getFluidAmount() != lastFuelAmount || oxygenTank.getFluidAmount() != lastOxygenAmount;
+        return super.hasChanged() || fuelTank.getFluidAmount() != lastFuelAmount || oxygenTank.getFluidAmount() != lastOxygenAmount
+                || launchStatus != lastLaunchStatus;
     }
 
     @Override
@@ -131,16 +134,27 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         }
 
         hadRocket = rocket != null;
+
+        lastLaunchStatus = launchStatus;
     }
+
+    private ErrorCode lastLaunchStatus = ErrorCode.ROCKET_MISSING;
+    private ErrorCode launchStatus = ErrorCode.ROCKET_MISSING;
 
     @Override
     public void updateEntity() {
         super.updateEntity();
 
+        if (world.isRemote) {
+            return;
+        }
+
         rocket = BlockLaunchpad.getNearbyRocket(this.pos).orElse(null);
+
+        launchStatus = newLaunchStatus();
     }
 
-    ErrorCode getLaunchStatus() {
+    private ErrorCode newLaunchStatus() {
         if (rocket == null) {
             return ErrorCode.ROCKET_MISSING;
         }
@@ -154,6 +168,10 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         }
 
         return ErrorCode.OK;
+    }
+
+    ErrorCode getLaunchStatus() {
+        return launchStatus;
     }
 
     @Override

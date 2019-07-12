@@ -89,7 +89,7 @@ public class GuiLaunchController extends GuiBase {
     public void updateScreen() {
         super.updateScreen();
 
-        loadButton.enabled = tileEntity.canProcessWithoutLoading() && tileEntity.hasEnergyForTick();
+        loadButton.enabled = tileEntity.canProcessWithoutLoading() && tileEntity.hasEnergyForTick();*
 
         destinationPrevButton.enabled = tileEntity.getDestination().ordinal() != 0;
         destinationNextButton.enabled = tileEntity.getDestination().ordinal() != Destination.values().length - 1;
