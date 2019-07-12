@@ -6,8 +6,6 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 

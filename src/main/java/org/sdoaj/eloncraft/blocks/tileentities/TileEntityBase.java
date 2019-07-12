@@ -193,10 +193,6 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         }
     }
 
-    public boolean shouldSaveDataOnChangeOrWorldStart() {
-        return false;
-    }
-
     public void setRedstonePowered(boolean powered) {
         this.isRedstonePowered = powered;
         this.markDirty();
