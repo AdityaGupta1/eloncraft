@@ -64,6 +64,19 @@ public class ModItems {
     public static ItemBasic MAGNESIUM_PLATE;
     public static ItemBasic ZINC_PLATE;
 
+    public static ItemBasic IRON_DUST;
+    public static ItemBasic GOLD_DUST;
+    public static ItemBasic ALUMINUM_DUST;
+    public static ItemBasic TITANIUM_DUST;
+    public static ItemBasic LITHIUM_DUST;
+    public static ItemBasic NICKEL_DUST;
+    public static ItemBasic CHROMIUM_DUST;
+    public static ItemBasic COPPER_DUST;
+    public static ItemBasic NIOBIUM_DUST;
+    public static ItemBasic HAFNIUM_DUST;
+    public static ItemBasic MAGNESIUM_DUST;
+    public static ItemBasic ZINC_DUST;
+
     // alloys
 
     public static ItemBasic STEEL_INGOT;
@@ -163,6 +176,19 @@ public class ModItems {
         HAFNIUM_PLATE = newPlate("hafnium");
         MAGNESIUM_PLATE = newPlate("magnesium");
         ZINC_PLATE = newPlate("zinc");
+
+        IRON_DUST = newDust("iron");
+        GOLD_DUST = newDust("gold");
+        ALUMINUM_DUST = newDust("aluminum");
+        TITANIUM_DUST = newDust("titanium");
+        LITHIUM_DUST = newDust("lithium");
+        NICKEL_DUST = newDust("nickel");
+        CHROMIUM_DUST = newDust("chromium");
+        COPPER_DUST = newDust("copper");
+        NIOBIUM_DUST = newDust("niobium");
+        HAFNIUM_DUST = newDust("hafnium");
+        MAGNESIUM_DUST = newDust("magnesium");
+        ZINC_DUST = newDust("zinc");
 
         STEEL_INGOT = newIngot("steel");
 

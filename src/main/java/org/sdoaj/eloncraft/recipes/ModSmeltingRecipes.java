@@ -1,6 +1,7 @@
 package org.sdoaj.eloncraft.recipes;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -24,6 +25,19 @@ public class ModSmeltingRecipes {
         addSmelting(ModItems.DAMAGED_AIRCRAFT_PLATING, ModItems.ALUMINUM_INGOT);
 
         addSmelting(ModItems.UNTREATED_CARBON_FIBERS, ModItems.CARBON_FIBERS);
+
+        addSmelting(ModItems.IRON_DUST, Items.IRON_INGOT);
+        addSmelting(ModItems.GOLD_DUST, Items.GOLD_INGOT);
+        addSmelting(ModItems.ALUMINUM_DUST, ModItems.ALUMINUM_INGOT);
+        addSmelting(ModItems.TITANIUM_DUST, ModItems.TITANIUM_INGOT);
+        addSmelting(ModItems.LITHIUM_DUST, ModItems.LITHIUM_INGOT);
+        addSmelting(ModItems.NICKEL_DUST, ModItems.NICKEL_INGOT);
+        addSmelting(ModItems.CHROMIUM_DUST, ModItems.CHROMIUM_INGOT);
+        addSmelting(ModItems.COPPER_DUST, ModItems.COPPER_INGOT);
+        addSmelting(ModItems.NIOBIUM_DUST, ModItems.NIOBIUM_INGOT);
+        addSmelting(ModItems.HAFNIUM_DUST, ModItems.HAFNIUM_INGOT);
+        addSmelting(ModItems.MAGNESIUM_DUST, ModItems.MAGNESIUM_INGOT);
+        addSmelting(ModItems.ZINC_DUST, ModItems.ZINC_INGOT);
     }
 
     private static void addSmelting(Item input, Item output) {

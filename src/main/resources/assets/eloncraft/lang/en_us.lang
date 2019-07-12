@@ -42,6 +42,19 @@ item.hafnium_plate.name=Hafnium Plate
 item.magnesium_plate.name=Magnesium Plate
 item.zinc_plate.name=Zinc Plate
 
+item.iron_dust.name=Crushed Iron
+item.gold_dust.name=Crushed Gold
+item.aluminum_dust.name=Crushed Aluminum
+item.titanium_dust.name=Crushed Titanium
+item.lithium_dust.name=Crushed Lithium
+item.nickel_dust.name=Crushed Nickel
+item.chromium_dust.name=Crushed Chromium
+item.copper_dust.name=Crushed Copper
+item.niobium_dust.name=Crushed Niobium
+item.hafnium_dust.name=Crushed Hafnium
+item.magnesium_dust.name=Crushed Magnesium
+item.zinc_dust.name=Crushed Zinc
+
 # ====================
 # alloys
 # ====================

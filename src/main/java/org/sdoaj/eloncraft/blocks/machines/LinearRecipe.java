@@ -37,6 +37,10 @@ public class LinearRecipe {
         return setInput(new OreIngredient(oreDictName), count);
     }
 
+    public LinearRecipe setInput(String oreDictName) {
+        return setInput(new OreIngredient(oreDictName), 1);
+    }
+
     public LinearRecipe setOutput(ItemStack stack) {
         this.output = stack;
         return this;

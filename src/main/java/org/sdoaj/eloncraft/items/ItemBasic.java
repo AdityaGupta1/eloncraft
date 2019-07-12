@@ -74,4 +74,8 @@ public class ItemBasic extends Item {
     static ItemBasic newPlate(String material) {
         return newOfType(material, "plate");
     }
+
+    static ItemBasic newDust(String material) {
+        return newOfType(material, "dust");
+    }
 }
