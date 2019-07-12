@@ -17,6 +17,7 @@ public class MovingSoundRocket extends MovingSound {
     public MovingSoundRocket(EntityRocketPart part, SoundEvent sound, double volume) {
         super(sound, SoundCategory.NEUTRAL);
         this.part = part;
+        this.attenuationType = AttenuationType.NONE;
         this.repeat = false;
         this.volume = (float) volume;
     }

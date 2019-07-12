@@ -1,15 +1,18 @@
 package org.sdoaj.eloncraft.entity.rocket.falcon9;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.MovingSoundMinecart;
 import net.minecraft.client.particle.ParticleCloud;
 import net.minecraft.client.particle.ParticleSmokeNormal;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -183,8 +186,12 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
                 }
 
                 if (seconds == 3) {
-                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(this, liftoffSound, 1.25));
-                    Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(getPartOfType(EntityFalcon9DragonTop.class), liftoffSound, 1.0));
+                    this.playSound(liftoffSound, 1.0F, 1.0F);
+                    if (world.isRemote) {
+                        Minecraft.getMinecraft().getSoundHandler().playSound(new MovingSoundRocket(
+                                getPartOfType(EntityFalcon9DragonTop.class), liftoffSound, 1.0));
+                    }
+
                     this.dataManager.set(particleState, 1);
                 }
             }

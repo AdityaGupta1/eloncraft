@@ -7,11 +7,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityMountEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -23,6 +28,10 @@ import org.sdoaj.eloncraft.entity.TimedTaskExecutor;
 import org.sdoaj.eloncraft.entity.rocket.EntityRocketPart;
 import org.sdoaj.eloncraft.util.PacketHandler;
 import org.sdoaj.eloncraft.util.RandomUtil;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Eloncraft.MODID)
 public class EntityFalcon9DragonTop extends EntityRocketPart implements ReceivesSetValueMessages, IEntityAdditionalSpawnData {
@@ -83,6 +92,41 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
             rider.setLocationAndAngles(rider.posX + RandomUtil.nextDouble(shake), rider.posY + RandomUtil.nextDouble(shake), rider.posZ + RandomUtil.nextDouble(shake),
                     rider.rotationYaw + (float) RandomUtil.nextDouble(shake * 20), rider.rotationPitch + (float) RandomUtil.nextDouble(shake * 20));
         }
+
+        // TODO release only
+        if (this.posY > 1000) {
+            if (!getPassengers().isEmpty()) {
+                EntityPlayer player = (EntityPlayer) getPassengers().get(0);
+                player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Thanks for playing Eloncraft! To see development updates and to report bugs, go to https://github.com/AdityaGupta1/eloncraft."));
+                player.sendMessage(new TextComponentString(TextFormatting.LIGHT_PURPLE + "(Don't worry, you won't take any fall damage.)"));
+                fallImmune.add(player);
+            }
+
+            this.setDead(true);
+        }
+    }
+
+    // TODO release only
+    private static final List<EntityPlayer> fallImmune = new ArrayList<>();
+
+    @SubscribeEvent
+    public static void preventFallDamage(LivingDamageEvent event) {
+        if (!(event.getEntity() instanceof EntityPlayer)) {
+            return;
+        }
+
+        if (event.getSource() != DamageSource.FALL) {
+            return;
+        }
+
+        EntityPlayer player = (EntityPlayer) event.getEntity();
+
+        if (!fallImmune.contains(player)) {
+            return;
+        }
+
+        fallImmune.remove(player);
+        event.setCanceled(true);
     }
 
     @Override
