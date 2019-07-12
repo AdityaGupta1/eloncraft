@@ -82,15 +82,17 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         compound.setString("Destination", destination.name());
 
         compound.setString("LaunchStatus", launchStatus.name());
+        compound.setBoolean("CanLoad", canLoad);
     }
 
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.readSyncableNBT(compound, type);
 
-        destination = Destination.valueOf(compound.getString("Destination"));
+        destination = compound.hasKey("Destination") ? Destination.valueOf(compound.getString("Destination")) : Destination.ISS;
 
         launchStatus = compound.hasKey("LaunchStatus") ? ErrorCode.valueOf(compound.getString("LaunchStatus")) : ErrorCode.ROCKET_MISSING;
+        canLoad = compound.getBoolean("CanLoad");
     }
 
     @Override
@@ -116,7 +118,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         }
 
         return super.hasChanged() || fuelTank.getFluidAmount() != lastFuelAmount || oxygenTank.getFluidAmount() != lastOxygenAmount
-                || launchStatus != lastLaunchStatus;
+                || launchStatus != lastLaunchStatus || canLoad != lastCanLoad;
     }
 
     @Override
@@ -136,10 +138,14 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         hadRocket = rocket != null;
 
         lastLaunchStatus = launchStatus;
+        lastCanLoad = canLoad;
     }
 
     private ErrorCode lastLaunchStatus = ErrorCode.ROCKET_MISSING;
     private ErrorCode launchStatus = ErrorCode.ROCKET_MISSING;
+
+    private boolean lastCanLoad = false;
+    private boolean canLoad = false;
 
     @Override
     public void updateEntity() {
@@ -152,6 +158,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         rocket = BlockLaunchpad.getNearbyRocket(this.pos).orElse(null);
 
         launchStatus = newLaunchStatus();
+        canLoad = newCanLoad();
     }
 
     private ErrorCode newLaunchStatus() {
@@ -174,12 +181,20 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         return launchStatus;
     }
 
+    private boolean newCanLoad() {
+        return this.canProcessWithoutLoading() && this.hasEnergyForTick();
+    }
+
+    boolean getCanLoad() {
+        return canLoad;
+    }
+
     @Override
     public boolean canProcess() {
         return isLoading && canProcessWithoutLoading();
     }
 
-    boolean canProcessWithoutLoading() {
+    private boolean canProcessWithoutLoading() {
         if (rocket == null) {
             return false;
         }
@@ -242,11 +257,11 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
                 break;
             case 1:
                 this.destination = Destination.fromOrdinal(this.destination.ordinal() - 1);
-                setChanged();
+                markChanged();
                 break;
             case 2:
                 this.destination = Destination.fromOrdinal(this.destination.ordinal() + 1);
-                setChanged();
+                markChanged();
                 break;
             case 3:
                 this.rocket.launch(player);
@@ -254,7 +269,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
         }
     }
 
-    public Destination getDestination() {
+    Destination getDestination() {
         return destination;
     }
 }
