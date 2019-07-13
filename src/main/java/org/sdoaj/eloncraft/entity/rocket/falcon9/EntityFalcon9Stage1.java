@@ -65,8 +65,8 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     private boolean hasCreatedOtherParts = false;
 
-    private final int capacity = 16000;
-    public final ModFluidTank fuelTank = new ModFluidTank("FuelTank", capacity) {
+    public static final int tankCapacity = 16000;
+    public final ModFluidTank fuelTank = new ModFluidTank("FuelTank", tankCapacity) {
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
             return fluid.getFluid() == ModFluids.RP1;
@@ -77,7 +77,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
             return false;
         }
     };
-    public final ModFluidTank oxygenTank = new ModFluidTank("OxygenTank", capacity) {
+    public final ModFluidTank oxygenTank = new ModFluidTank("OxygenTank", tankCapacity) {
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
             return fluid.getFluid() == ModFluids.LOX;

@@ -2,21 +2,21 @@
 
 package org.sdoaj.eloncraft.blocks.launch.controller;
 
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.sdoaj.eloncraft.blocks.gui.EnergyDisplay;
 import org.sdoaj.eloncraft.blocks.gui.FluidDisplay;
 import org.sdoaj.eloncraft.blocks.gui.GuiBase;
 import org.sdoaj.eloncraft.blocks.gui.GuiCustomButton;
-import org.sdoaj.eloncraft.blocks.tileentities.MessageButtonPressed;
+import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.entity.rocket.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.util.AssetUtil;
-import org.sdoaj.eloncraft.util.PacketHandler;
 
 @SideOnly(Side.CLIENT)
 public class GuiLaunchController extends GuiBase {
@@ -94,13 +94,19 @@ public class GuiLaunchController extends GuiBase {
         destinationPrevButton.enabled = tileEntity.getDestination().ordinal() != 0;
         destinationNextButton.enabled = tileEntity.getDestination().ordinal() != Destination.values().length - 1;
 
-        EntityFalcon9Stage1 rocket = tileEntity.rocket;
-        if (rocket != null) {
-            rocketFuelDisplay.setTank(rocket.fuelTank);
-            rocketOxygenDisplay.setTank(rocket.oxygenTank);
-        } else {
+        int rocketFuel = tileEntity.getGuiRocketFuel();
+        int rocketOxygen = tileEntity.getGuiRocketOxygen();
+        if (rocketFuel < 0) {
             rocketFuelDisplay.setTank(null);
             rocketOxygenDisplay.setTank(null);
+        } else {
+            // kind of cheese
+            ModFluidTank fuelTank = new ModFluidTank("GuiRocketFuel", EntityFalcon9Stage1.tankCapacity);
+            fuelTank.fill(new FluidStack(ModFluids.RP1, rocketFuel), true);
+            rocketFuelDisplay.setTank(fuelTank);
+            ModFluidTank oxygenTank = new ModFluidTank("GuiRocketOxygen", EntityFalcon9Stage1.tankCapacity);
+            oxygenTank.fill(new FluidStack(ModFluids.LOX, rocketOxygen), true);
+            rocketOxygenDisplay.setTank(oxygenTank);
         }
 
         launchButton.enabled = tileEntity.getLaunchStatus() == ErrorCode.OK;

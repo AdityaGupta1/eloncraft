@@ -83,7 +83,18 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
 
         compound.setString("LaunchStatus", launchStatus.name());
         compound.setBoolean("CanLoad", canLoad);
+
+        if (rocket != null) {
+            compound.setInteger("RocketFuelTank", rocket.fuelTank.getFluidAmount());
+            compound.setInteger("RocketOxygenTank", rocket.oxygenTank.getFluidAmount());
+        } else {
+            compound.setInteger("RocketFuelTank", -1);
+            compound.setInteger("RocketOxygenTank", -1);
+        }
     }
+
+    private int guiRocketFuel;
+    private int guiRocketOxygen;
 
     @Override
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
@@ -93,6 +104,17 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
 
         launchStatus = compound.hasKey("LaunchStatus") ? ErrorCode.valueOf(compound.getString("LaunchStatus")) : ErrorCode.ROCKET_MISSING;
         canLoad = compound.getBoolean("CanLoad");
+
+        guiRocketFuel = compound.getInteger("RocketFuelTank");
+        guiRocketOxygen = compound.getInteger("RocketOxygenTank");
+    }
+
+    int getGuiRocketFuel() {
+        return guiRocketFuel;
+    }
+
+    int getGuiRocketOxygen() {
+        return guiRocketOxygen;
     }
 
     @Override
