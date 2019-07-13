@@ -18,7 +18,7 @@ public class TileEntityCrusher extends TileEntityInventoryMachine {
     final int guiTopHeight = 79;
 
     public TileEntityCrusher() {
-        super("crusher", 2, 120, 5000,
+        super("crusher", 2, 120, 4000,
                 new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
     }
 
