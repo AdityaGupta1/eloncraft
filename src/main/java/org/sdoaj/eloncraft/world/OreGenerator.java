@@ -32,7 +32,7 @@ public class OreGenerator implements IWorldGenerator {
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 5, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 25, 0, 47,
+                runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 35, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 runGenerator(ModBlocks.CHROMIUM_ORE.getDefaultState(), 5, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
