@@ -91,11 +91,11 @@ public class ModBlocks {
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
-                new Drop(ModItems.BROKEN_STEEL_GEAR, 2, 3, 1),
+                new Drop(ModItems.BROKEN_STEEL_GEAR, 1, 2, 1),
                 new Drop(ModItems.DAMAGED_AIRCRAFT_PLATING, 0, 1, 0.5),
-                new Drop(ModItems.COPPER_NUGGET, 3, 5, 2),
-                new Drop(ModItems.LITHIUM_NUGGET, 1, 3, 1.5),
-                new Drop(Items.IRON_NUGGET, 2, 4, 2)))
+                new Drop(ModItems.COPPER_NUGGET, 1, 3, 1),
+                new Drop(ModItems.LITHIUM_NUGGET, 1, 2, 1),
+                new Drop(Items.IRON_NUGGET, 1, 3, 1.5)))
                 .setHardness(5.0F).setResistance(10.0F);
         COMPONENTS.setHarvestLevel("pickaxe", 2);
 
