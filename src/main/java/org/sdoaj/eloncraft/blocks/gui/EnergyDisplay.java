@@ -90,6 +90,6 @@ public class EnergyDisplay extends Gui {
 
     private String getOverlayText() {
         NumberFormat format = NumberFormat.getInstance();
-        return String.format("%s/%s Pirate-Ninjas", format.format(this.storage.getEnergyStored()), format.format(this.storage.getMaxEnergyStored()));
+        return String.format("%s/%s RF", format.format(this.storage.getEnergyStored()), format.format(this.storage.getMaxEnergyStored()));
     }
 }
