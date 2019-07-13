@@ -91,7 +91,7 @@ public class ModBlocks {
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
-                new Drop(ModItems.BROKEN_STEEL_GEAR, 0, 1, 0.5),
+                new Drop(ModItems.BROKEN_STEEL_GEAR, 1, 3, 1),
                 new Drop(ModItems.DAMAGED_AIRCRAFT_PLATING, 0, 1, 0.5),
                 new Drop(ModItems.NICKEL_NUGGET, 1, 3, 1),
                 new Drop(ModItems.LITHIUM_NUGGET, 1, 2, 1),

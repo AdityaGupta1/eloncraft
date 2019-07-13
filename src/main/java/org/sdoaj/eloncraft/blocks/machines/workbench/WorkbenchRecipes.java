@@ -57,12 +57,12 @@ public final class WorkbenchRecipes {
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "cst   tsc",
+                "cTt   tTc",
                 "cst   tsc",
+                "cTt   tTc",
                 "cst   tsc",
-                "cst   tsc",
-                "cst   tsc",
-                "TstttttsT",
-                "TsssssssT",
+                "TTtttttTT",
+                "TsTsTsTsT",
                 "TTTTTTTTT"
         }, new ItemStack(ModBlocks.ALLOY_FURNACE),
                 new RecipeKey('t', Blocks.HARDENED_CLAY),
