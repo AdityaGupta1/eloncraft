@@ -50,6 +50,7 @@ public final class CrusherRecipes {
         String capitalized = StringUtil.capitalizeFirstLetter(material);
         addRecipe(new LinearRecipe().setInput("ore" + capitalized).setOutput(new ItemStack(dust, 2)));
         addRecipe(new LinearRecipe().setInput("ingot" + capitalized).setOutput(dust));
+        addRecipe(new LinearRecipe().setInput("plate" + capitalized).setOutput(dust));
     }
 
     public static List<LinearRecipe> getRecipes() {

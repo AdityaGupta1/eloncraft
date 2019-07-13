@@ -23,7 +23,7 @@ public class OreGenerator implements IWorldGenerator {
                 break;
             // overworld
             case 0:
-                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 10, 15, 8, 63,
+                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 6, 15, 8, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
                 runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 10, 60, 0, 63,

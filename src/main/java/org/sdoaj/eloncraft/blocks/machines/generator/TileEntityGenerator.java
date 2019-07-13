@@ -14,6 +14,7 @@ import org.sdoaj.eloncraft.util.StackUtil;
 public class TileEntityGenerator extends TileEntityInventoryMachine implements ISharingEnergyProvider {
     public static final int SLOT_INPUT = 0;
 
+    private int lastFuelLeft = 0;
     private int fuelLeft = 0;
     private int initialFuel = 0;
     private int energyPerFuel = 0;
@@ -71,6 +72,18 @@ public class TileEntityGenerator extends TileEntityInventoryMachine implements I
             initialFuel = 0;
             energyPerFuel = 0;
         }
+    }
+
+    @Override
+    protected boolean hasChanged() {
+        return super.hasChanged() || fuelLeft != lastFuelLeft;
+    }
+
+    @Override
+    protected void updatePreviousValues() {
+        super.updatePreviousValues();
+
+        lastFuelLeft = fuelLeft;
     }
 
     boolean addFuelIfHasRecipe() {
