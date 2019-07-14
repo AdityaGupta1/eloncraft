@@ -249,7 +249,7 @@ public final class WorkbenchRecipes {
                 "iiiiiii",
         }, new ItemStack(ModItems.GRID_FIN, 2),
                 new RecipeKey('i', "ingotTitanium"),
-                new RecipeKey('p', "ingotTitanium")));
+                new RecipeKey('p', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  ipi ",
@@ -261,7 +261,7 @@ public final class WorkbenchRecipes {
                 "iiiiiii",
         }, new ItemStack(ModItems.GRID_FIN, 2),
                 new RecipeKey('i', "ingotTitanium"),
-                new RecipeKey('p', "ingotTitanium")));
+                new RecipeKey('p', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 " ppp ",
@@ -324,10 +324,10 @@ public final class WorkbenchRecipes {
                 "wwwwwwwwwwwww",
                 "rrrrrrrrrrrrr"
         }, new ItemStack(ModItems.USA_FLAG),
-                new RecipeKey('r', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 14))),
-                new RecipeKey('w', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 0))),
-                new RecipeKey('b', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 11))),
-                new RecipeKey('s', Ingredient.fromStacks(new ItemStack(Blocks.WOOL, 1, 0)))));
+                new RecipeKey('r', Ingredient.fromStacks(new ItemStack(Blocks.CARPET, 1, 14))),
+                new RecipeKey('w', Ingredient.fromStacks(new ItemStack(Blocks.CARPET, 1, 0))),
+                new RecipeKey('b', Ingredient.fromStacks(new ItemStack(Blocks.CARPET, 1, 11))),
+                new RecipeKey('s', Ingredient.fromStacks(new ItemStack(Blocks.CARPET, 1, 0)))));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "bbbbbbbrrrrrr",
