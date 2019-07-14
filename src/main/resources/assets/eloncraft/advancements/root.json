@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:titanium_ore"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.root"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.root.desc"
+    },
+    "background": "eloncraft:textures/misc/space_background.png"
+  },
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:titanium_ore"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:launch_controller"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.launch_controller"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.launch_controller.desc"
+    }
+  },
+  "parent": "eloncraft:oil",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:launch_controller"
+          }
+        ]
+      }
+    }
+  }
+}

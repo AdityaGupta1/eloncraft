@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:crusher"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.crusher"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.crusher.desc"
+    }
+  },
+  "parent": "eloncraft:cable",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:crusher"
+          }
+        ]
+      }
+    }
+  }
+}

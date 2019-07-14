@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:falcon9"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.falcon9"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.falcon9.desc"
+    },
+    "frame": "challenge"
+  },
+  "parent": "eloncraft:launchpad",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:falcon9"
+          }
+        ]
+      }
+    }
+  }
+}

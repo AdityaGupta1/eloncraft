@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:alloy_furnace"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.alloy_furnace"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.alloy_furnace.desc"
+    }
+  },
+  "parent": "eloncraft:metal_roller",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:alloy_furnace"
+          }
+        ]
+      }
+    }
+  }
+}

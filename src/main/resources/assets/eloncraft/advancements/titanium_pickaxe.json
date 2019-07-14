@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:titanium_pickaxe"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.titanium_pickaxe"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.titanium_pickaxe.desc"
+    }
+  },
+  "parent": "eloncraft:alloy_furnace",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:titanium_pickaxe"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "forge:bucketfilled",
+      "nbt": "{FluidName:\"oil\",Amount:1000}"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.oil"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.oil.desc"
+    }
+  },
+  "parent": "eloncraft:cable",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "forge:bucketfilled",
+            "nbt": "{FluidName:\"oil\",Amount:1000}"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:cable"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.cable"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.cable.desc"
+    }
+  },
+  "parent": "eloncraft:generator",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:cable"
+          }
+        ]
+      }
+    }
+  }
+}

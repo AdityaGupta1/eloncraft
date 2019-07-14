@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:refinery"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.refinery"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.refinery.desc"
+    }
+  },
+  "parent": "eloncraft:oil",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:refinery"
+          }
+        ]
+      }
+    }
+  }
+}

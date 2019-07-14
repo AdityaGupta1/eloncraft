@@ -240,3 +240,42 @@ itemGroup.eloncraft=Eloncraft
 itemGroup.spacex=Eloncraft: SpaceX
 itemGroup.tesla=Eloncraft: Tesla
 itemGroup.boring_company=Eloncraft: The Boring Company
+
+# ====================
+# advancements
+# ====================
+
+advancement.eloncraft.root=Eloncraft
+advancement.eloncraft.root.desc=Mine some titanium ore
+advancement.eloncraft.titanium_ingot=Acquire Harderware
+advancement.eloncraft.titanium_ingot.desc=Smelt a titanium ingot
+advancement.eloncraft.elon_workbench=Size Does Matter
+advancement.eloncraft.elon_workbench.desc=Construct Elon Musk's Magical Workbench and enjoy the wonders of 160 extra slots
+
+advancement.eloncraft.generator=No one man should have all that power
+advancement.eloncraft.generator.desc=Construct a generator
+advancement.eloncraft.cable=What comes around goes around
+advancement.eloncraft.cable.desc=Craft some power cables
+
+advancement.eloncraft.metal_roller=They see me rollin'
+advancement.eloncraft.metal_roller.desc=Construct a metal roller
+advancement.eloncraft.crusher=Yet Another Ore Doubling System
+advancement.eloncraft.crusher.desc=Construct a crusher
+advancement.eloncraft.alloy_furnace=Induction Smelter Gang
+advancement.eloncraft.alloy_furnace.desc=Construct an alloy furnace
+
+advancement.eloncraft.titanium_pickaxe=More Ore
+advancement.eloncraft.titanium_pickaxe.desc=Construct a titanium pickaxe using state-of-the-art steel rods
+
+advancement.eloncraft.oil=OPEC
+advancement.eloncraft.oil.desc=Fill a bucket with oil
+advancement.eloncraft.refinery=Environmentally Unfriendly
+advancement.eloncraft.refinery.desc=Construct a refinery
+advancement.eloncraft.lox_collector=Out of Thin Air
+advancement.eloncraft.lox_collector.desc=Construct a liquid oxygen collector
+advancement.eloncraft.launch_controller=Control Freak
+advancement.eloncraft.launch_controller.desc=Construct a launch controller
+advancement.eloncraft.launchpad=A Strong Foundation
+advancement.eloncraft.launchpad.desc=Craft some launchpads
+advancement.eloncraft.falcon9=s p a c e
+advancement.eloncraft.falcon9.desc=Construct a Falcon 9 rocket

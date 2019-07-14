@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:lox_collector"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.lox_collector"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.lox_collector.desc"
+    }
+  },
+  "parent": "eloncraft:oil",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:lox_collector"
+          }
+        ]
+      }
+    }
+  }
+}

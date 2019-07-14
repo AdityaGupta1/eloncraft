@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:metal_roller"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.metal_roller"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.metal_roller.desc"
+    }
+  },
+  "parent": "eloncraft:cable",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:metal_roller"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:generator"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.generator"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.generator.desc"
+    }
+  },
+  "parent": "eloncraft:titanium_ingot",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:generator"
+          }
+        ]
+      }
+    }
+  }
+}

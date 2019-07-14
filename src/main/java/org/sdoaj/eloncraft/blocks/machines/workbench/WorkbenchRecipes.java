@@ -130,7 +130,8 @@ public final class WorkbenchRecipes {
                 }}, new ItemStack(ModBlocks.LOX_COLLECTOR),
                 new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('c', "nuggetCopper"),
-                new RecipeKey('i', Blocks.PACKED_ICE)));
+                new RecipeKey('i', Blocks.ICE)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -147,6 +148,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.IRON_BARS)));
 
 
+
         addRecipe(new WorkbenchRecipe(new String[]{
                 "wgwgw",
                 "crcrc",
@@ -156,6 +158,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', "ingotCopper"),
                 new RecipeKey('r', Items.REDSTONE),
                 new RecipeKey('g', "paneGlass")));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -312,6 +315,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
 
+
         addRecipe(new WorkbenchRecipe(new String[]{
                 "bbbbbbbrrrrrr",
                 "bsbsbsbwwwwww",
@@ -352,6 +356,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.DIAMOND_BLOCK),
                 new RecipeKey('s', Items.NETHER_STAR),
                 new RecipeKey('F', ModItems.USA_FLAG)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -395,6 +400,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', ModItems.FUEL_TANK_3)));
 
 
+
         addRecipe(new WorkbenchRecipe(new String[]{
                 " d ",
                 " s ",
@@ -414,6 +420,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('s', ModItems.FUEL_TANK_LOX_2),
                 new RecipeKey('d', ModItems.FALCON9_DRAGON)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -440,6 +447,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('l', Blocks.LEVER),
                 new RecipeKey('b', Blocks.STONE_BUTTON),
                 new RecipeKey('r', Items.REDSTONE)));
+
 
 
         addRecipe(new WorkbenchRecipe(new String[]{

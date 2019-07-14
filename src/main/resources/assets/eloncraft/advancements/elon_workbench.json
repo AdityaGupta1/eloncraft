@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:elon_workbench"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.elon_workbench"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.elon_workbench.desc"
+    }
+  },
+  "parent": "eloncraft:titanium_ingot",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:elon_workbench"
+          }
+        ]
+      }
+    }
+  }
+}

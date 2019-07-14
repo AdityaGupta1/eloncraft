@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "eloncraft:launchpad"
+    },
+    "title": {
+      "translate": "advancement.eloncraft.launchpad"
+    },
+    "description": {
+      "translate": "advancement.eloncraft.launchpad.desc"
+    }
+  },
+  "parent": "eloncraft:launch_controller",
+  "criteria": {
+    "item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "eloncraft:launchpad"
+          }
+        ]
+      }
+    }
+  }
+}
