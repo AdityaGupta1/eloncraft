@@ -14,6 +14,7 @@ import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.util.Util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,8 +22,8 @@ import java.util.stream.Collectors;
 public final class WorkbenchRecipes {
     private static final List<WorkbenchRecipe> recipes = new ArrayList<>();
 
-    public static void addRecipe(WorkbenchRecipe recipe) {
-        recipes.add(recipe);
+    public static void addRecipe(WorkbenchRecipe... newRecipes) {
+        recipes.addAll(Arrays.asList(newRecipes));
     }
 
     public static WorkbenchRecipe getRecipeFromInput(ItemStack[][] input, World world) {
@@ -106,21 +107,30 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('f', Blocks.FURNACE)));
 
-        addRecipe(new WorkbenchRecipe(new String[]{
-                "ttttttt",
-                "tiiiiit",
-                "ticccit",
-                "tiiicit",
-                "ticccit",
-                "ticiiit",
-                "ticccit",
-                "tiiiiit",
-                "ttttttt"
-        }, new ItemStack(ModBlocks.LOX_COLLECTOR),
+        addRecipe(WorkbenchRecipe.createMultiple(new String[][]{{
+                        "ttttttt",
+                        "tiiiiit",
+                        "ticccit",
+                        "tiiicit",
+                        "ticccit",
+                        "ticiiit",
+                        "ticccit",
+                        "tiiiiit",
+                        "ttttttt"
+                }, {
+                        "ttttttt",
+                        "tiiiiit",
+                        "ticccit",
+                        "ticiiit",
+                        "ticccit",
+                        "tiiicit",
+                        "ticccit",
+                        "tiiiiit",
+                        "ttttttt"
+                }}, new ItemStack(ModBlocks.LOX_COLLECTOR),
                 new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('c', "nuggetCopper"),
                 new RecipeKey('i', Blocks.PACKED_ICE)));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -137,7 +147,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.IRON_BARS)));
 
 
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "wgwgw",
                 "crcrc",
@@ -147,7 +156,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', "ingotCopper"),
                 new RecipeKey('r', Items.REDSTONE),
                 new RecipeKey('g', "paneGlass")));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -239,27 +247,23 @@ public final class WorkbenchRecipes {
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
-        addRecipe(new WorkbenchRecipe(new String[]{
-                "  ipi  ",
-                " iiiii ",
-                "ip p pi",
-                "i p p i",
-                "ip p pi",
-                "i p p i",
-                "iiiiiii",
-        }, new ItemStack(ModItems.GRID_FIN, 2),
-                new RecipeKey('i', "ingotTitanium"),
-                new RecipeKey('p', "plateTitanium")));
-
-        addRecipe(new WorkbenchRecipe(new String[]{
-                "  ipi ",
-                " iiiii",
-                "i p p i",
-                "ip p pi",
-                "i p p i",
-                "ip p pi",
-                "iiiiiii",
-        }, new ItemStack(ModItems.GRID_FIN, 2),
+        addRecipe(WorkbenchRecipe.createMultiple(new String[][]{{
+                        "  ipi  ",
+                        " iiiii ",
+                        "ip p pi",
+                        "i p p i",
+                        "ip p pi",
+                        "i p p i",
+                        "iiiiiii"
+                }, {
+                        "  ipi  ",
+                        " iiiii ",
+                        "i p p i",
+                        "ip p pi",
+                        "i p p i",
+                        "ip p pi",
+                        "iiiiiii"
+                }}, new ItemStack(ModItems.GRID_FIN, 2),
                 new RecipeKey('i', "ingotTitanium"),
                 new RecipeKey('p', "plateTitanium")));
 
@@ -267,7 +271,7 @@ public final class WorkbenchRecipes {
                 " ppp ",
                 "ppppp",
                 "PpPpP",
-                "ppppp",
+                "ppppp"
         }, new ItemStack(ModItems.COLD_GAS_THRUSTER, 1),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', Blocks.PISTON)));
@@ -306,7 +310,6 @@ public final class WorkbenchRecipes {
         }, new ItemStack(ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -351,7 +354,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('F', ModItems.USA_FLAG)));
 
 
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "iiiii",
                 "i   i",
@@ -384,14 +386,13 @@ public final class WorkbenchRecipes {
                 "sssssss",
                 "sssssss",
                 "sssssss",
-                "sssssss",
+                "sssssss"
         }, new ItemStack(ModItems.FALCON9_DRAGON),
                 new RecipeKey('s', ModItems.HEAT_SHIELD),
                 new RecipeKey('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 15)),
                 new RecipeKey('e', ModItems.SUPERDRACO_ENGINE),
                 new RecipeKey('d', Blocks.DRAGON_EGG),
                 new RecipeKey('t', ModItems.FUEL_TANK_3)));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -413,7 +414,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('s', ModItems.FUEL_TANK_LOX_2),
                 new RecipeKey('d', ModItems.FALCON9_DRAGON)));
-
 
 
         addRecipe(new WorkbenchRecipe(new String[]{
@@ -442,8 +442,7 @@ public final class WorkbenchRecipes {
                 new RecipeKey('r', Items.REDSTONE)));
 
 
-
-        addRecipe(new WorkbenchRecipe(new String[] {
+        addRecipe(new WorkbenchRecipe(new String[]{
                 " tttt  ",
                 "    tt ",
                 "    stt",

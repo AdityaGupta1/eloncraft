@@ -53,6 +53,10 @@ public class WorkbenchRecipe {
         this.output = output;
     }
 
+    public static WorkbenchRecipe[] createMultiple(String[][] grids, ItemStack output, RecipeKey... keys) {
+        return Arrays.stream(grids).map(grid -> new WorkbenchRecipe(grid, output, keys)).toArray(WorkbenchRecipe[]::new);
+    }
+
     public boolean matches(ItemStack[][] stacks) {
         if (inputs == null) {
             return false;
