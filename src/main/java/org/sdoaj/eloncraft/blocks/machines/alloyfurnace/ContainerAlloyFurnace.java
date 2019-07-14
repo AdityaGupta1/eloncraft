@@ -30,7 +30,7 @@ public class ContainerAlloyFurnace extends ContainerBase {
         this.tileEntity = (TileEntityAlloyFurnace) tileEntity;
 
         for (int i = 0; i < TileEntityAlloyFurnace.INPUT_SLOTS; i++) {
-            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, inputSlots[i][0], inputSlots[i][1], 1)
+            this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, i, inputSlots[i][0], inputSlots[i][1], 64)
                     .setOnSlotChanged(this.tileEntity::reset));
         }
         this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityAlloyFurnace.SLOT_OUTPUT, 80, 18));
@@ -58,18 +58,13 @@ public class ContainerAlloyFurnace extends ContainerBase {
             ItemStack newStack = slot.getStack();
             ItemStack currentStack = newStack.copy();
 
-            // purposely leaving out shift-clicking into input slots (similar to crafting table)
-            if (slotId < inventoryStart) {
+            if (slotId <= TileEntityAlloyFurnace.SLOT_OUTPUT) {
                 if (!this.mergeItemStack(newStack, inventoryStart, hotbarEnd + 1, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(newStack, currentStack);
             } else {
-                if (slotId <= inventoryEnd) {
-                    if (!this.mergeItemStack(newStack, hotbarStart, hotbarEnd + 1, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (slotId < hotbarEnd + 1 && !this.mergeItemStack(newStack, inventoryStart, inventoryEnd + 1, false)) {
+                if (!this.mergeItemStack(newStack, TileEntityAlloyFurnace.SLOT_INPUT_1, TileEntityAlloyFurnace.SLOT_OUTPUT + 1, false)) {
                     return ItemStack.EMPTY;
                 }
             }

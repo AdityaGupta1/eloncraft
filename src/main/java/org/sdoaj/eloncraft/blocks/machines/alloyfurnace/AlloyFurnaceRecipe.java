@@ -44,7 +44,7 @@ public class AlloyFurnaceRecipe {
     }
 
     public boolean matches(List<ItemStack> stacks) {
-        stacks = mergeStacks(stacks);
+        stacks = mergeStacks(stacks.stream().map(ItemStack::copy).peek(stack -> stack.setCount(1)).collect(Collectors.toList()));
         List<IngredientStack> ingredients = inputs.stream().map(IngredientStack::copy).collect(Collectors.toList());
 
         for (IngredientStack ingredient : ingredients) {
