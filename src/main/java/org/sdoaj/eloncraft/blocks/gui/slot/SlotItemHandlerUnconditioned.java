@@ -49,9 +49,6 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
         return remainder.isEmpty() || remainder.getCount() < stack.getCount();
     }
 
-    /**
-     * Helper fnct to get the stack in the slot.
-     */
     @Override
     @Nonnull
     public ItemStack getStack() {
@@ -88,27 +85,5 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
     @Override
     public ItemStack decrStackSize(int amount) {
         return this.inventory.extractItem(this.getSlotIndex(), amount, false, false);
-    }
-
-    private ItemStack lastStack;
-
-    // only does stuff when item in slot becomes different (may change if necessary)
-    @Override
-    public void onSlotChanged() {
-        if (lastStack == null) {
-            lastStack = this.getStack();
-        } else {
-            if (this.getStack().isItemEqual(lastStack)) {
-                return;
-            }
-
-            lastStack = this.getStack();
-        }
-
-        if (onSlotChanged != null) {
-            onSlotChanged.run();
-        }
-
-        super.onSlotChanged();
     }
 }
