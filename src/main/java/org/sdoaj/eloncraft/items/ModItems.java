@@ -280,7 +280,7 @@ public class ModItems {
         SUPERDRACO_ENGINE.setMaxStackSize(8);
         FUEL_TANK_3 = new ItemBasic("fuel_tank_3");
         FUEL_TANK_3.addLore("SuperDraco engines don't actually use RP-1 and LOX, but making fuel is annoying enough already.");
-        FUEL_TANK_3.setMaxStackSize(2);
+        FUEL_TANK_3.setMaxStackSize(4);
         FALCON9_DRAGON = new ItemBasic("falcon9_dragon");
         FALCON9_DRAGON.addLore("\"Dragon is a free-flying spacecraft designed to deliver both cargo and people to orbiting destinations.\"");
         FALCON9_DRAGON.setMaxStackSize(1);
