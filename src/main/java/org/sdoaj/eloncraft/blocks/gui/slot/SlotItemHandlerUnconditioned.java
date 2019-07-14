@@ -16,12 +16,14 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class SlotItemHandlerUnconditioned extends SlotItemHandler {
     private final ItemStackHandler inventory;
     private final int stackSizeLimit;
 
-    private Runnable onSlotChanged;
+    private BiConsumer<Integer, ItemStack> onSlotChanged;
 
     public SlotItemHandlerUnconditioned(ItemStackHandler inventory, int index, int xPosition, int yPosition, int stackSizeLimit) {
         super(inventory, index, xPosition, yPosition);
@@ -33,7 +35,7 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
         this(inventory, index, xPosition, yPosition, 64);
     }
 
-    public SlotItemHandlerUnconditioned setOnSlotChanged(Runnable onSlotChanged) {
+    public SlotItemHandlerUnconditioned setOnSlotChanged(BiConsumer<Integer, ItemStack> onSlotChanged) {
         this.onSlotChanged = onSlotChanged;
         return this;
     }
@@ -85,5 +87,14 @@ public class SlotItemHandlerUnconditioned extends SlotItemHandler {
     @Override
     public ItemStack decrStackSize(int amount) {
         return this.inventory.extractItem(this.getSlotIndex(), amount, false, false);
+    }
+
+    @Override
+    public void onSlotChanged() {
+        if (onSlotChanged != null) {
+            onSlotChanged.accept(this.getSlotIndex(), this.getStack());
+        }
+
+        super.onSlotChanged();
     }
 }

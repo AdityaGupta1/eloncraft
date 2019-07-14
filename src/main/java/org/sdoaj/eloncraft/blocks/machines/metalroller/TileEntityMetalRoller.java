@@ -32,6 +32,21 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
         return (slot, automation) -> !automation || slot == SLOT_OUTPUT;
     }
 
+    private ItemStack currentInput;
+
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+
+        this.currentInput = this.inventory.getStackInSlot(SLOT_INPUT);
+    }
+
+    public void reset(int slot, ItemStack newStack) {
+        if (!newStack.isItemEqual(currentInput)) {
+            this.reset();
+        }
+    }
+
     @Override
     public boolean canProcess() {
         if (StackUtil.isValid(this.inventory.getStackInSlot(SLOT_INPUT))) {

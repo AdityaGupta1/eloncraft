@@ -20,7 +20,7 @@ public class ContainerGenerator extends ContainerBase {
         this.tileEntity = (TileEntityGenerator) tileEntity;
 
         this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory, TileEntityGenerator.SLOT_INPUT, 68, 50)
-                .setOnSlotChanged(this.tileEntity::addFuelIfHasRecipe));
+                .setOnSlotChanged((slot, stack) -> this.tileEntity.addFuelIfHasRecipe()));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {

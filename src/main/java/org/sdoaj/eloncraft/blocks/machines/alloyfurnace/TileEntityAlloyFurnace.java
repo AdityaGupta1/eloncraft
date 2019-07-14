@@ -40,6 +40,31 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
         return IntStream.range(SLOT_INPUT_1, SLOT_INPUT_1 + INPUT_SLOTS).mapToObj(this.inventory::getStackInSlot).collect(Collectors.toList());
     }
 
+    private List<ItemStack> currentInputs;
+
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+
+        this.currentInputs = this.getInputStacks();
+    }
+
+    public void reset(int slot, ItemStack newStack) {
+        ItemStack currentStack = currentInputs.get(slot);
+
+        if (currentStack == null && newStack == null) {
+            return;
+        }
+
+        if (currentStack == null || newStack == null) {
+            this.reset();
+        } else {
+            if (!newStack.isItemEqual(currentStack)) {
+                this.reset();
+            }
+        }
+    }
+
     @Override
     public boolean canProcess() {
         boolean valid = true;
