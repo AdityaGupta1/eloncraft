@@ -6,6 +6,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -68,6 +69,8 @@ public class JEIPlugin implements IModPlugin {
         registry.addRecipes(AlloyFurnaceRecipes.getRecipes(), AlloyFurnaceRecipeCategory.uid);
         registry.addRecipes(RefineryRecipes.getRecipes(), RefineryRecipeCategory.uid);
         registry.addRecipes(Collections.singleton(new LoxCollectorRecipe()), LoxCollectorRecipeCategory.uid);
+
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.ELON_WORKBENCH), VanillaRecipeCategoryUid.CRAFTING);
 
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.ELON_WORKBENCH), WorkbenchRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.METAL_ROLLER), MetalRollerRecipeCategory.uid);

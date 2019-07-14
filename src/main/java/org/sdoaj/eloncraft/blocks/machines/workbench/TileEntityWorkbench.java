@@ -48,7 +48,7 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
     }
 
     public Optional<ItemStack> getOutput() {
-        WorkbenchRecipe recipe = WorkbenchRecipes.getRecipeFromInput(getInputStacks());
+        WorkbenchRecipe recipe = WorkbenchRecipes.getRecipeFromInput(getInputStacks(), this.world);
 
         if (recipe == null) {
             return Optional.empty();

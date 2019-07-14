@@ -2,8 +2,12 @@ package org.sdoaj.eloncraft.blocks.machines.workbench;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.recipes.RecipeKey;
 import org.sdoaj.eloncraft.items.ModItems;
@@ -11,6 +15,8 @@ import org.sdoaj.eloncraft.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class WorkbenchRecipes {
     private static final List<WorkbenchRecipe> recipes = new ArrayList<>();
@@ -19,10 +25,23 @@ public final class WorkbenchRecipes {
         recipes.add(recipe);
     }
 
-    public static WorkbenchRecipe getRecipeFromInput(ItemStack[][] input) {
+    public static WorkbenchRecipe getRecipeFromInput(ItemStack[][] input, World world) {
         for (WorkbenchRecipe recipe : recipes) {
             if (recipe.matches(input)) {
                 return recipe;
+            }
+        }
+
+        InventoryCrafting inventory = new InventoryCrafting(null, 13, 13) {
+            @Override
+            public ItemStack getStackInSlot(int slot) {
+                return input[slot % 13][slot / 13];
+            }
+        };
+
+        for (IRecipe recipe : ForgeRegistries.RECIPES.getEntries().stream().map(Map.Entry::getValue).collect(Collectors.toList())) {
+            if (recipe.matches(inventory, world)) {
+                return new WorkbenchRecipe(recipe.getRecipeOutput());
             }
         }
 
@@ -128,23 +147,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', "ingotCopper"),
                 new RecipeKey('r', Items.REDSTONE),
                 new RecipeKey('g', "paneGlass")));
-
-
-
-        addRecipe(new WorkbenchRecipe(new String[]{
-                " t ",
-                "ttt",
-                " t ",
-        }, new ItemStack(ModItems.TITANIUM_FAN, 1),
-                new RecipeKey('t', "ingotTitanium")));
-
-        addRecipe(new WorkbenchRecipe(new String[]{
-                " p ",
-                "ptp",
-                " p ",
-        }, new ItemStack(ModItems.TITANIUM_FAN, 3),
-                new RecipeKey('t', "ingotTitanium"),
-                new RecipeKey('p', "plateTitanium")));
 
 
 

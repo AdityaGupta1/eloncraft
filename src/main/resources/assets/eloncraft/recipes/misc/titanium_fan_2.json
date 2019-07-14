@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " p ",
+    "ptp",
+    " p "
+  ],
+  "key": {
+    "t": {
+      "type": "forge:ore_dict",
+      "ore": "ingotTitanium"
+    },
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "plateTitanium"
+    }
+  },
+  "result": {
+    "item": "eloncraft:titanium_fan",
+    "count": 3
+  }
+}

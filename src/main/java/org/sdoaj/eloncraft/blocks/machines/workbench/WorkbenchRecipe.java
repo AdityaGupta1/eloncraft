@@ -2,14 +2,15 @@ package org.sdoaj.eloncraft.blocks.machines.workbench;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import org.sdoaj.eloncraft.recipes.RecipeKey;
 import org.sdoaj.eloncraft.util.StackUtil;
 
 import java.util.Arrays;
 
 public class WorkbenchRecipe {
-    private Ingredient[][] inputs; // [y][x]
-    private ItemStack output;
+    private final Ingredient[][] inputs; // [y][x]
+    private final ItemStack output;
 
     public WorkbenchRecipe(String[] grid, ItemStack output, RecipeKey... keys) {
         int maxLength = Arrays.stream(grid).mapToInt(String::length).max().getAsInt();
@@ -47,7 +48,16 @@ public class WorkbenchRecipe {
         this.output = output.copy();
     }
 
+    public WorkbenchRecipe(ItemStack output) {
+        this.inputs = null;
+        this.output = output;
+    }
+
     public boolean matches(ItemStack[][] stacks) {
+        if (inputs == null) {
+            return false;
+        }
+
         int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
         boolean sizeMatches = false;
         for (int i = 0; i < stacks.length; i++) {
