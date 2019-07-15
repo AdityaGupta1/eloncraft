@@ -7,7 +7,7 @@ public class RefineryRecipe {
     private FluidStack input;
     private FluidStack output;
 
-    public RefineryRecipe(FluidStack input, FluidStack output) {
+    RefineryRecipe(FluidStack input, FluidStack output) {
         this.input = input;
         this.output = output;
     }

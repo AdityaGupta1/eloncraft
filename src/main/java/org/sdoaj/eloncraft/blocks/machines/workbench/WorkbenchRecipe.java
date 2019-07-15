@@ -48,13 +48,17 @@ public class WorkbenchRecipe {
         this.output = output.copy();
     }
 
-    public WorkbenchRecipe(ItemStack output) {
+    WorkbenchRecipe(ItemStack output) {
         this.inputs = null;
         this.output = output;
     }
 
-    public static WorkbenchRecipe[] createMultiple(String[][] grids, ItemStack output, RecipeKey... keys) {
+    static WorkbenchRecipe[] createMultiple(String[][] grids, ItemStack output, RecipeKey... keys) {
         return Arrays.stream(grids).map(grid -> new WorkbenchRecipe(grid, output, keys)).toArray(WorkbenchRecipe[]::new);
+    }
+
+    static WorkbenchRecipe[] createMultiple(GridWithOutput[] grids, RecipeKey... keys) {
+        return Arrays.stream(grids).map(grid -> new WorkbenchRecipe(grid.grid, grid.output, keys)).toArray(WorkbenchRecipe[]::new);
     }
 
     public boolean matches(ItemStack[][] stacks) {
@@ -124,5 +128,15 @@ public class WorkbenchRecipe {
 
     public ItemStack getOutput() {
         return this.output.copy();
+    }
+}
+
+class GridWithOutput {
+    String[] grid;
+    ItemStack output;
+
+    public GridWithOutput(ItemStack output, String... grid) {
+        this.grid = grid;
+        this.output = output;
     }
 }

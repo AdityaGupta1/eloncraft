@@ -132,8 +132,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', "nuggetCopper"),
                 new RecipeKey('i', Blocks.ICE)));
 
-
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "ttttt",
                 "tbfbt",
@@ -147,8 +145,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('f', ModItems.TITANIUM_FAN),
                 new RecipeKey('b', Blocks.IRON_BARS)));
 
-
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "wgwgw",
                 "crcrc",
@@ -158,8 +154,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('c', "ingotCopper"),
                 new RecipeKey('r', Items.REDSTONE),
                 new RecipeKey('g', "paneGlass")));
-
-
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "  tcr     ",
@@ -314,8 +308,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('p', ModItems.ALUMINUM_2198_PLATE),
                 new RecipeKey('P', ModItems.FUEL_PIPE)));
 
-
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "bbbbbbbrrrrrr",
                 "bsbsbsbwwwwww",
@@ -357,8 +349,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('s', Items.NETHER_STAR),
                 new RecipeKey('F', ModItems.USA_FLAG)));
 
-
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 "iiiii",
                 "i   i",
@@ -399,8 +389,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('d', Blocks.DRAGON_EGG),
                 new RecipeKey('t', ModItems.FUEL_TANK_3)));
 
-
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 " d ",
                 " s ",
@@ -420,8 +408,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('S', ModItems.FUEL_TANK_RP1_2),
                 new RecipeKey('s', ModItems.FUEL_TANK_LOX_2),
                 new RecipeKey('d', ModItems.FALCON9_DRAGON)));
-
-
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "ccccccc",
@@ -448,8 +434,6 @@ public final class WorkbenchRecipes {
                 new RecipeKey('b', Blocks.STONE_BUTTON),
                 new RecipeKey('r', Items.REDSTONE)));
 
-
-
         addRecipe(new WorkbenchRecipe(new String[]{
                 " tttt  ",
                 "    tt ",
@@ -462,34 +446,72 @@ public final class WorkbenchRecipes {
                 new RecipeKey('s', ModItems.STEEL_ROD),
                 new RecipeKey('t', "ingotTitanium")));
 
-        addRecipe(new WorkbenchRecipe(new String[]{
-                "     ttt",
-                "    tTTT",
-                "   tTTT ",
-                "  tTT   ",
-                " sST    ",
-                "s S     ",
-                "ss      ",
-                "S       "
-        }, new ItemStack(ModItems.TITANIUM_CUTLASS),
+        addRecipe(WorkbenchRecipe.createMultiple(new GridWithOutput[]{
+                        new GridWithOutput(new ItemStack(ModItems.TITANIUM_CUTLASS),
+                                "     ttt",
+                                "    tTTT",
+                                "   tTTT ",
+                                "  tTT   ",
+                                " sST    ",
+                                "s S     ",
+                                "ss      ",
+                                "S       "
+                        ),
+                        new GridWithOutput(new ItemStack(ModItems.TITANIUM_KATANA),
+                                "     tTT",
+                                "    tTT ",
+                                "   tTT  ",
+                                "  tTT   ",
+                                " STT    ",
+                                " sS     ",
+                                "s       "
+                        )
+                },
                 new RecipeKey('s', ModItems.STEEL_ROD),
                 new RecipeKey('S', "ingotSteel"),
                 new RecipeKey('t', "nuggetTitanium"),
                 new RecipeKey('T', "plateTitanium")));
 
-        addRecipe(new WorkbenchRecipe(new String[]{
-                "     tTT",
-                "    tTT ",
-                "   tTT  ",
-                "  tTT   ",
-                " STT    ",
-                " sS     ",
-                "s       "
-        }, new ItemStack(ModItems.TITANIUM_KATANA),
-                new RecipeKey('s', ModItems.STEEL_ROD),
-                new RecipeKey('S', "ingotSteel"),
-                new RecipeKey('t', "nuggetTitanium"),
-                new RecipeKey('T', "plateTitanium")));
+
+        addRecipe(WorkbenchRecipe.createMultiple(new GridWithOutput[]{
+                        new GridWithOutput(new ItemStack(ModItems.TITANIUM_HELMET),
+                                " sttts ",
+                                "sttttts",
+                                "ttwlwtt",
+                                "ttl ltt",
+                                "ts   st"
+                        ),
+                        new GridWithOutput(new ItemStack(ModItems.TITANIUM_CHESTPLATE),
+                                " sl   ls ",
+                                "sttw wtts",
+                                "stttlttts",
+                                " ttttttt ",
+                                " sttttts ",
+                                " sttttts ",
+                                "  ttttt  ",
+                                "   ttt   "
+                        ),
+                        new GridWithOutput(new ItemStack(ModItems.TITANIUM_LEGGINGS),
+                                "tstttst",
+                                "ttttttt",
+                                "ttllltt",
+                                "twl lwt",
+                                "ttt ttt",
+                                "twt twt",
+                                "sss sss"
+                        ),
+                        new GridWithOutput(new ItemStack(ModItems.TITANIUM_BOOTS),
+                                "  tlt tlt  ",
+                                "  ttt ttt  ",
+                                " sttt ttts ",
+                                "stttt tttts",
+                                "stwww wwwts"
+                        )
+                },
+                new RecipeKey('t', "plateTitanium"),
+                new RecipeKey('s', "plateSteel"),
+                new RecipeKey('l', Items.LEATHER),
+                new RecipeKey('w', new ItemStack(Blocks.WOOL, 1, Util.WILDCARD))));
     }
 
     public static List<WorkbenchRecipe> getRecipes() {

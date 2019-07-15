@@ -17,7 +17,6 @@ public class ItemRangedWeapon extends ItemBasic {
     private final Function<World, Entity> projectileCreator;
     private final int projectiles;
     private final double velocity;
-    private final double inaccuracy;
     private final DoubleSupplier randomVelocity;
     private final ItemStack ammunition;
 
@@ -27,7 +26,6 @@ public class ItemRangedWeapon extends ItemBasic {
         this.projectileCreator = projectileCreator;
         this.projectiles = projectiles;
         this.velocity = velocity;
-        this.inaccuracy = inaccuracy;
         randomVelocity = () -> inaccuracy * ((random.nextDouble() * 2) - 1);
         this.ammunition = ammunition;
         this.setMaxStackSize(1);

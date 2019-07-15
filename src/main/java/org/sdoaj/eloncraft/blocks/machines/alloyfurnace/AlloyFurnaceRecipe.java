@@ -12,7 +12,7 @@ public class AlloyFurnaceRecipe {
     private List<IngredientStack> inputs;
     private ItemStack output;
 
-    public AlloyFurnaceRecipe(List<IngredientStack> inputs, ItemStack output) {
+    AlloyFurnaceRecipe(List<IngredientStack> inputs, ItemStack output) {
         this.inputs = inputs;
         this.output = output;
 
@@ -21,7 +21,7 @@ public class AlloyFurnaceRecipe {
         }
     }
 
-    public AlloyFurnaceRecipe(IngredientStack[] inputs, ItemStack output) {
+    AlloyFurnaceRecipe(IngredientStack[] inputs, ItemStack output) {
         this(Arrays.asList(inputs), output);
     }
 

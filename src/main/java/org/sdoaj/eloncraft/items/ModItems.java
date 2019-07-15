@@ -3,6 +3,7 @@ package org.sdoaj.eloncraft.items;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -142,6 +143,11 @@ public class ModItems {
 
     public static ItemCustomSword TITANIUM_CUTLASS;
     public static ItemCustomSword TITANIUM_KATANA;
+
+    public static ItemCustomArmor TITANIUM_HELMET;
+    public static ItemCustomArmor TITANIUM_CHESTPLATE;
+    public static ItemCustomArmor TITANIUM_LEGGINGS;
+    public static ItemCustomArmor TITANIUM_BOOTS;
 
     public static ItemRangedWeapon FLAMETHROWER;
 
@@ -297,6 +303,11 @@ public class ModItems {
 
         TITANIUM_CUTLASS = new ItemCustomSword("titanium_cutlass", ModToolMaterials.TITANIUM).setSpeed(1.3).setDamage(10);
         TITANIUM_KATANA = new ItemCustomSword("titanium_katana", ModToolMaterials.TITANIUM).setSpeed(2.0).setDamage(6.5);
+
+        TITANIUM_HELMET = new ItemCustomArmor("titanium_helmet", ModToolMaterials.TITANIUM_ARMOR, EntityEquipmentSlot.HEAD);
+        TITANIUM_CHESTPLATE = new ItemCustomArmor("titanium_chestplate", ModToolMaterials.TITANIUM_ARMOR, EntityEquipmentSlot.CHEST);
+        TITANIUM_LEGGINGS = new ItemCustomArmor("titanium_leggings", ModToolMaterials.TITANIUM_ARMOR, EntityEquipmentSlot.LEGS);
+        TITANIUM_BOOTS = new ItemCustomArmor("titanium_boots", ModToolMaterials.TITANIUM_ARMOR, EntityEquipmentSlot.FEET);
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());

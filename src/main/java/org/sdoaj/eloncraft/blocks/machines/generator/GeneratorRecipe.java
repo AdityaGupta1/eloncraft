@@ -9,7 +9,7 @@ public class GeneratorRecipe {
     private final int fuel;
     private final int output;
 
-    public GeneratorRecipe(Ingredient input, int fuel, int output) {
+    GeneratorRecipe(Ingredient input, int fuel, int output) {
         this.input = input;
         this.fuel = fuel;
         this.output = output;
