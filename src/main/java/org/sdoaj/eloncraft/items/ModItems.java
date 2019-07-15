@@ -14,6 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.items.tools.ItemCustomPickaxe;
+import org.sdoaj.eloncraft.items.tools.ItemCustomSword;
 import org.sdoaj.eloncraft.items.tools.ModToolMaterials;
 
 import java.util.ArrayList;
@@ -138,6 +139,9 @@ public class ModItems {
     // tools/weapons
 
     public static ItemPickaxe TITANIUM_PICKAXE;
+
+    public static ItemCustomSword TITANIUM_CUTLASS;
+    public static ItemCustomSword TITANIUM_KATANA;
 
     public static ItemRangedWeapon FLAMETHROWER;
 
@@ -290,6 +294,9 @@ public class ModItems {
         FALCON9.setMaxStackSize(1);
 
         TITANIUM_PICKAXE = new ItemCustomPickaxe("titanium_pickaxe", ModToolMaterials.TITANIUM);
+
+        TITANIUM_CUTLASS = new ItemCustomSword("titanium_cutlass", ModToolMaterials.TITANIUM).setSpeed(1.3).setDamage(10);
+        TITANIUM_KATANA = new ItemCustomSword("titanium_katana", ModToolMaterials.TITANIUM).setSpeed(2.0).setDamage(6.5);
 
         FLAMETHROWER = new ItemRangedWeapon("flamethrower", world -> {
             EntityFallingBlock fire = new EntityFallingBlock(world, 0, 0, 0, Blocks.FIRE.getDefaultState());

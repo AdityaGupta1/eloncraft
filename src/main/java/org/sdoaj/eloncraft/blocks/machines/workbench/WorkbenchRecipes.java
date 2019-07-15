@@ -460,7 +460,36 @@ public final class WorkbenchRecipes {
                 "s      "
         }, new ItemStack(ModItems.TITANIUM_PICKAXE),
                 new RecipeKey('s', ModItems.STEEL_ROD),
-                new RecipeKey('t', ModItems.TITANIUM_INGOT)));
+                new RecipeKey('t', "ingotTitanium")));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "     ttt",
+                "    tTTT",
+                "   tTTT ",
+                "  tTT   ",
+                " sST    ",
+                "s S     ",
+                "ss      ",
+                "S       "
+        }, new ItemStack(ModItems.TITANIUM_CUTLASS),
+                new RecipeKey('s', ModItems.STEEL_ROD),
+                new RecipeKey('S', "ingotSteel"),
+                new RecipeKey('t', "nuggetTitanium"),
+                new RecipeKey('T', "plateTitanium")));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "     tTT",
+                "    tTT ",
+                "   tTT  ",
+                "  tTT   ",
+                " STT    ",
+                " sS     ",
+                "s       "
+        }, new ItemStack(ModItems.TITANIUM_KATANA),
+                new RecipeKey('s', ModItems.STEEL_ROD),
+                new RecipeKey('S', "ingotSteel"),
+                new RecipeKey('t', "nuggetTitanium"),
+                new RecipeKey('T', "plateTitanium")));
     }
 
     public static List<WorkbenchRecipe> getRecipes() {
