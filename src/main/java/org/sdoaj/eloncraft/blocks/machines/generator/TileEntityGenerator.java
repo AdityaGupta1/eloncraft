@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.eloncraft.blocks.tileentities.ISharingEnergyProvider;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryMachine;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 import org.sdoaj.eloncraft.util.StackUtil;
@@ -23,7 +24,7 @@ public class TileEntityGenerator extends TileEntityInventoryMachine implements I
 
     public TileEntityGenerator() {
         super("generator", 1, 1, 0,
-                new CustomEnergyStorage(100000, 0, 1000), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, 0, TileEntityBase.DEFAULT_MAX_TRANSFER), BlockMachine.IS_ON);
     }
 
     @Override

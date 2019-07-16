@@ -9,6 +9,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidUtil;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.ModFluidTank;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityFluidMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
@@ -52,7 +53,7 @@ public class TileEntityRefinery extends TileEntityFluidMachine {
 
     public TileEntityRefinery() {
         super("refinery", 0, 1, 50,
-                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, TileEntityBase.DEFAULT_MAX_TRANSFER, 0), BlockMachine.IS_ON);
 
         Map<FluidTank, EnumFacing[]> fluidTanks = new HashMap<>();
         fluidTanks.put(inputTank, new EnumFacing[]{EnumFacing.UP, EnumFacing.DOWN});

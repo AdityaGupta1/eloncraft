@@ -9,7 +9,7 @@ import org.sdoaj.eloncraft.blocks.tileentities.ISharingEnergyProvider;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 
 public class TileEntityCable extends TileEntityBase implements ISharingEnergyProvider {
-    private final CustomEnergyStorage energyStorage = new CustomEnergyStorage(1000, 1000, 1000);
+    private final CustomEnergyStorage energyStorage = new CustomEnergyStorage(TileEntityBase.DEFAULT_MAX_TRANSFER, TileEntityBase.DEFAULT_MAX_TRANSFER, TileEntityBase.DEFAULT_MAX_TRANSFER);
 
     public TileEntityCable() {
         super("cable");

@@ -4,6 +4,7 @@ package org.sdoaj.eloncraft.blocks.machines.alloyfurnace;
 
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
@@ -23,7 +24,7 @@ public class TileEntityAlloyFurnace extends TileEntityInventoryMachine {
 
     public TileEntityAlloyFurnace() {
         super("alloy_furnace", 11, 600, 10000,
-                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, TileEntityBase.DEFAULT_MAX_TRANSFER, 0), BlockMachine.IS_ON);
     }
 
     @Override

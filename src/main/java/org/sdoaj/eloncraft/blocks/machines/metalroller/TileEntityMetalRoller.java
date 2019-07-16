@@ -4,6 +4,7 @@ package org.sdoaj.eloncraft.blocks.machines.metalroller;
 
 import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.machines.BlockMachine;
+import org.sdoaj.eloncraft.blocks.tileentities.TileEntityBase;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryMachine;
 import org.sdoaj.eloncraft.blocks.tileentities.CustomEnergyStorage;
 import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
@@ -19,7 +20,7 @@ public class TileEntityMetalRoller extends TileEntityInventoryMachine {
 
     public TileEntityMetalRoller() {
         super("metal_roller", 2, 120, 5000,
-                new CustomEnergyStorage(100000, 1000, 0), BlockMachine.IS_ON);
+                new CustomEnergyStorage(100000, TileEntityBase.DEFAULT_MAX_TRANSFER, 0), BlockMachine.IS_ON);
     }
 
     @Override

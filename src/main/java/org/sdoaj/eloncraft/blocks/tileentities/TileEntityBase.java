@@ -44,6 +44,8 @@ import org.sdoaj.eloncraft.blocks.pipes.TileEntityCable;
 import org.sdoaj.eloncraft.util.WorldUtil;
 
 public abstract class TileEntityBase extends TileEntity implements ITickable {
+    public static final int DEFAULT_MAX_TRANSFER = 5000; // default max energy transfer rate
+
     public final String name;
     public boolean isRedstonePowered;
     protected int ticksElapsed;
