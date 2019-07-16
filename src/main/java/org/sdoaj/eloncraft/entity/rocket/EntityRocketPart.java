@@ -90,6 +90,8 @@ public abstract class EntityRocketPart extends EntityLiving {
                 part.updatePassenger(passengers.get(0));
             }
         });
+
+        this.clearActivePotions();
     }
 
     private void damageEntity(DamageSource source, float amount, boolean initialDamage) {
@@ -109,13 +111,21 @@ public abstract class EntityRocketPart extends EntityLiving {
         if (initialDead) {
             getRocket().forEach(part -> part.setDead(false));
         } else {
-            setDead();
+            die();
         }
+    }
+
+    public final void setDead() {
+        this.setDead(true);
+    }
+
+    protected void die() {
+        super.setDead();
     }
 
     @Override
     public void onDeath(DamageSource source) {
-        setDead(true);
+        this.setDead(); // skip death animation
     }
 
     @Override

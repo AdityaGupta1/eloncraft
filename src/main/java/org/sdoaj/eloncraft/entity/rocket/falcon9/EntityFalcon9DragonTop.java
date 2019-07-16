@@ -85,7 +85,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
             final double velocity = currentPosition.subtract(previousPosition).lengthVector() * 20;
             previousPosition = currentPosition;
 
-            final double shake = MathHelper.clamp(velocity / 100.0, 0, 0.10);
+            final double shake = MathHelper.clamp(velocity / 1000.0, 0, 0.10);
 
             rider.setLocationAndAngles(rider.posX + RandomUtil.nextDouble(shake), rider.posY + RandomUtil.nextDouble(shake), rider.posZ + RandomUtil.nextDouble(shake),
                     rider.rotationYaw + (float) RandomUtil.nextDouble(shake * 20), rider.rotationPitch + (float) RandomUtil.nextDouble(shake * 20));
