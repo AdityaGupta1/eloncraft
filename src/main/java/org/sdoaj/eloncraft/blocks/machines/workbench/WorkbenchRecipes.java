@@ -400,9 +400,9 @@ public final class WorkbenchRecipes {
                 new RecipeKey('d', ModItems.FALCON9_DRAGON)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "ccccccc",
-                "ccccccc"
-        }, new ItemStack(ModBlocks.LAUNCHPAD, 7),
+                "cccccc",
+                "cccccc"
+        }, new ItemStack(ModBlocks.LAUNCHPAD, 6),
                 new RecipeKey('c', new ItemStack(Blocks.CONCRETE, 1, 8))));
 
         addRecipe(new WorkbenchRecipe(new String[]{
