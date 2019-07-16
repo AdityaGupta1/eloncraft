@@ -107,27 +107,17 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('f', Blocks.FURNACE)));
 
-        addRecipe(WorkbenchRecipe.createMultiple(new String[][]{{
-                        "ttttttt",
-                        "tiiiiit",
-                        "ticccit",
-                        "tiiicit",
-                        "ticccit",
-                        "ticiiit",
-                        "ticccit",
-                        "tiiiiit",
-                        "ttttttt"
-                }, {
-                        "ttttttt",
-                        "tiiiiit",
-                        "ticccit",
-                        "ticiiit",
-                        "ticccit",
-                        "tiiicit",
-                        "ticccit",
-                        "tiiiiit",
-                        "ttttttt"
-                }}, new ItemStack(ModBlocks.LOX_COLLECTOR),
+        addRecipe(new WorkbenchRecipe(new String[]{
+                "ttttttt",
+                "tiiiiit",
+                "ticccit",
+                "ticiiit",
+                "ticccit",
+                "tiiicit",
+                "ticccit",
+                "tiiiiit",
+                "ttttttt"
+        }, new ItemStack(ModBlocks.LOX_COLLECTOR),
                 new RecipeKey('t', "plateTitanium"),
                 new RecipeKey('c', "nuggetCopper"),
                 new RecipeKey('i', Blocks.ICE)));
