@@ -21,6 +21,12 @@ public abstract class EntityRocketPart extends EntityLiving {
         super(world);
         this.setNoGravity(true);
         this.ignoreFrustumCheck = true;
+        this.isImmuneToFire = true;
+    }
+
+    @Override
+    public boolean canRenderOnFire() {
+        return false;
     }
 
     protected void setAcceleration(Vec3d acceleration) {
