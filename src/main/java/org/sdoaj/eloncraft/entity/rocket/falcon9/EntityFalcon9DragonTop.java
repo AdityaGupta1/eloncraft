@@ -136,32 +136,34 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
         passenger.setPosition(this.posX + dx, this.posY + dy, this.posZ + dz);
     }
-
-    @Override
-    protected void removePassenger(Entity passenger) {
-        super.removePassenger(passenger);
-        Vec3d dz = new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-this.rotationYaw));
-        Vec3d dismountPos = new Vec3d(this.posX, this.posY + 3, this.posZ).add(dz);
-        passenger.setPosition(dismountPos.x, dismountPos.y, dismountPos.z);
-    }
-
+    
     @SubscribeEvent
     public static void preventDismountWhenHatchClosed(EntityMountEvent event) {
         if (!event.isDismounting()) {
             return;
         }
 
-        if (!(event.getEntityBeingMounted() instanceof EntityFalcon9DragonTop)) {
+        Entity rider = event.getEntityBeingMounted();
+        Entity ridden = event.getEntityBeingMounted();
+
+        if (!(ridden instanceof EntityFalcon9DragonTop)) {
             return;
         }
 
-        if (event.getEntityMounting().isDead || event.getEntityBeingMounted().isDead) {
+        if (rider.isDead || ridden.isDead) {
             return;
         }
 
-        if (((EntityFalcon9DragonTop) event.getEntityBeingMounted()).hatchPosition != 1.0) {
+        EntityFalcon9DragonTop dragon = (EntityFalcon9DragonTop) ridden;
+
+        if (dragon.hatchPosition != 1.0) {
             event.setCanceled(true);
+            return;
         }
+
+        Vec3d dz = new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-dragon.rotationYaw));
+        Vec3d dismountPos = new Vec3d(dragon.posX, dragon.posY - 1.5, dragon.posZ).add(dz);
+        rider.setPosition(dismountPos.x, dismountPos.y, dismountPos.z);
     }
 
     private void loadTaskFromData(double pos, double target) {
