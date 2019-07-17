@@ -86,7 +86,8 @@ public class JEIPlugin implements IModPlugin {
                 "- place it on a valid launchpad configuration",
                 "- load it up with fuel and LOX",
                 "- press \"LAUNCH\" from the launch controller",
-                "- and follow the prompts to begin your journey to space.");
+                "- and follow the prompts to begin your journey to space.",
+                "", "WARNING: If you don't have a tower directly centered with and adjacent to the launch platform, as well as in the direction the rocket's hatch is facing, you will fall to your death upon dismounting!");
         List<ItemStack> launchBlocks = new ArrayList<>();
         launchBlocks.add(new ItemStack(ModBlocks.LAUNCHPAD));
         launchBlocks.add(new ItemStack(ModBlocks.LAUNCH_CONTROLLER));

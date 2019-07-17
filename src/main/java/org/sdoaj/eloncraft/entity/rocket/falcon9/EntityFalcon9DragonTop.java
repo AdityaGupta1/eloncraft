@@ -8,7 +8,9 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
@@ -91,7 +93,24 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
                     rider.rotationYaw + (float) RandomUtil.nextDouble(shake * 20), rider.rotationPitch + (float) RandomUtil.nextDouble(shake * 20));
         }
 
+        outer:
+        if (dismountTimer > 0) {
+            dismountTimer--;
+        } else if (dismountTimer == 0) {
+            if (wasMounted.isRiding() && wasMounted.getRidingEntity() == this) {
+                dismountTimer--;
+                break outer;
+            }
+
+            wasMounted.setLocationAndAngles(dismountPos.x, dismountPos.y, dismountPos.z, wasMounted.rotationYaw, wasMounted.rotationPitch);
+            dismountPos = null;
+            wasMounted = null;
+            dismountTimer--;
+        }
+
+        // ================================
         // TODO release only
+        // ================================
         if (this.posY > 1000) {
             if (!getPassengers().isEmpty()) {
                 EntityPlayer player = (EntityPlayer) getPassengers().get(0);
@@ -104,7 +123,6 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         }
     }
 
-    // TODO release only
     private static final List<EntityPlayer> fallImmune = new ArrayList<>();
 
     @SubscribeEvent
@@ -127,6 +145,10 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         event.setCanceled(true);
     }
 
+    // ================================
+    // TODO end release only
+    // ================================
+
     @Override
     public void updatePassenger(Entity passenger) {
         double d = 0.8 / 16.0 * ModelFalcon9Stage1.modelScale;
@@ -136,21 +158,21 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         double dz = dh * Math.cos(Math.toRadians(this.rotationYaw));
         passenger.setPosition(this.posX + dx, this.posY + dy, this.posZ + dz);
     }
-    
+
+    private int dismountTimer = -1;
+    private Vec3d dismountPos = null;
+    private EntityPlayer wasMounted = null;
+
     @SubscribeEvent
-    public static void preventDismountWhenHatchClosed(EntityMountEvent event) {
-        if (!event.isDismounting()) {
+    public static void handleDismount(EntityMountEvent event) {
+        if (event.isMounting()) { // doesn't seem to work properly
             return;
         }
 
-        Entity rider = event.getEntityBeingMounted();
+        Entity rider = event.getEntityMounting();
         Entity ridden = event.getEntityBeingMounted();
 
-        if (!(ridden instanceof EntityFalcon9DragonTop)) {
-            return;
-        }
-
-        if (rider.isDead || ridden.isDead) {
+        if (!(ridden instanceof EntityFalcon9DragonTop) || (rider.isDead || ridden.isDead)) {
             return;
         }
 
@@ -161,9 +183,10 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
             return;
         }
 
-        Vec3d dz = new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-dragon.rotationYaw));
-        Vec3d dismountPos = new Vec3d(dragon.posX, dragon.posY - 1.5, dragon.posZ).add(dz);
-        rider.setPosition(dismountPos.x, dismountPos.y, dismountPos.z);
+        dragon.dismountTimer = 1;
+        dragon.dismountPos = new Vec3d(dragon.posX, dragon.posY + 2.5, dragon.posZ).add(
+                new Vec3d(0, 0, -4).rotateYaw((float) Math.toRadians(-dragon.rotationYaw)));
+        dragon.wasMounted = (EntityPlayer) rider;
     }
 
     private void loadTaskFromData(double pos, double target) {
