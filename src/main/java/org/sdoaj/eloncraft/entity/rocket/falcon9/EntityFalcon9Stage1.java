@@ -223,7 +223,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     @SideOnly(Side.CLIENT)
     private void generateSmoke() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 125; i++) {
             double theta = Math.random() * 2 * Math.PI;
             double r = Math.random() * 1.0;
 
@@ -246,7 +246,7 @@ public class EntityFalcon9Stage1 extends EntityRocketPart {
 
     @SideOnly(Side.CLIENT)
     private void generateFire() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             double theta = Math.random() * 2 * Math.PI;
             double r = Math.random() * 1.5;
 
