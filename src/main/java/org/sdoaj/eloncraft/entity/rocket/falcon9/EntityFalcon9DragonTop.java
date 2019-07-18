@@ -38,19 +38,19 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     private final TimedTaskExecutor executor = new TimedTaskExecutor();
     private TimedTask hatchTask;
 
-    private double hatchPosition = 0.0;
-
     EntityFalcon9DragonTop(World world) {
         super(world);
         this.setSize(0.5F * ModelFalcon9Stage1.modelScale, 9.0F / 16.0F * ModelFalcon9Stage1.modelScale);
     }
 
+    private static final DataParameter<Float> hatchPosition = EntityDataManager.createKey(EntityFalcon9DragonTop.class, DataSerializers.FLOAT);
     private static final DataParameter<Boolean> isHatchLocked = EntityDataManager.createKey(EntityFalcon9DragonTop.class, DataSerializers.BOOLEAN);
 
     @Override
     protected void entityInit() {
         super.entityInit();
 
+        dataManager.register(hatchPosition, 0.0F);
         dataManager.register(isHatchLocked, false);
     }
 
@@ -63,7 +63,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         executor.update();
 
         if (world.isRemote) {
-            PacketHandler.sendToServer(new MessageSetValueToServer(this, "hatch", hatchPosition));
+            PacketHandler.sendToServer(new MessageSetValueToServer(this, "hatch", dataManager.get(hatchPosition)));
             if (hatchTask != null) {
                 PacketHandler.sendToServer(new MessageSetValueToServer(this, "hatch target", hatchTask.getTarget()));
             }
@@ -75,7 +75,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
 
         if (!getPassengers().isEmpty()) {
             EntityPlayer rider = (EntityPlayer) getPassengers().get(0);
-            if (rider.isSneaking() && hatchPosition == 1.0) {
+            if (rider.isSneaking() && dataManager.get(hatchPosition) == 1.0) {
                 rider.dismountRidingEntity();
             }
 
@@ -109,7 +109,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         }
 
         // ================================
-        // TODO release only
+        // TODO start release only
         // ================================
         if (this.posY > 1000) {
             if (!getPassengers().isEmpty()) {
@@ -178,7 +178,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
 
         EntityFalcon9DragonTop dragon = (EntityFalcon9DragonTop) ridden;
 
-        if (dragon.hatchPosition != 1.0) {
+        if (dragon.dataManager.get(hatchPosition) != 1.0) {
             event.setCanceled(true);
             return;
         }
@@ -190,9 +190,9 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     }
 
     private void loadTaskFromData(double pos, double target) {
-        hatchPosition = Double.isNaN(pos) ? 0.0 : pos;
+        dataManager.set(hatchPosition, Double.isNaN(pos) ? 0.0F : (float) pos);
         if (!Double.isNaN(target)) {
-            hatchTask = new TimedTask(1.0 - target, hatchPosition, target, 2.0, x -> hatchPosition = x);
+            hatchTask = new TimedTask(1.0 - target, dataManager.get(hatchPosition), target, 2.0, x -> dataManager.set(hatchPosition, (float) x));
             executor.submit(hatchTask);
         }
     }
@@ -201,7 +201,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
 
-        compound.setDouble("HatchPos", hatchPosition);
+        compound.setDouble("HatchPos", dataManager.get(hatchPosition));
         compound.setDouble("HatchTarget", hatchTask == null ? Double.NaN : hatchTask.getTarget());
 
         compound.setBoolean("HatchLocked", dataManager.get(isHatchLocked));
@@ -229,7 +229,7 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     }
 
     private void moveHatchToggle() {
-        hatchTask = new TimedTask(hatchPosition, 1.0 - hatchPosition, 2.0, x -> hatchPosition = x);
+        hatchTask = new TimedTask(dataManager.get(hatchPosition), 1.0 - dataManager.get(hatchPosition), 2.0, x -> dataManager.set(hatchPosition, (float) x));
         executor.submit(hatchTask);
     }
 
@@ -244,9 +244,9 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
         }
 
         if (hatchTask == null) {
-            if (hatchPosition == 0.0) {
+            if (dataManager.get(hatchPosition) == 0.0) {
                 moveHatchToggle();
-            } else if (hatchPosition == 1.0) {
+            } else if (dataManager.get(hatchPosition) == 1.0) {
                 if (player.isSneaking()) {
                     moveHatchToggle();
                 } else {
@@ -265,15 +265,15 @@ public class EntityFalcon9DragonTop extends EntityRocketPart implements Receives
     }
 
     double getHatchPosition() {
-        return hatchPosition;
+        return dataManager.get(hatchPosition);
     }
 
     @Override
     public void receive(String name, double value) {
         if (name.equals("hatch")) {
-            hatchPosition = value;
+            dataManager.set(hatchPosition, (float) value);
         } else if (name.equals("hatch target") && hatchTask == null) {
-            loadTaskFromData(hatchPosition, value);
+            loadTaskFromData(dataManager.get(hatchPosition), value);
         }
     }
 
