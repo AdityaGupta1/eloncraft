@@ -55,9 +55,9 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
         ItemStack[][] inputs = getInputStacks();
         shiftClickInputs = new ItemStack[13][13];
 
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
-                shiftClickInputs[i][j] = inputs[i][j].copy();
+        for (int x = 0; x < 13; x++) {
+            for (int y = 0; y < 13; y++) {
+                shiftClickInputs[x][y] = inputs[x][y].copy();
             }
         }
 
@@ -77,9 +77,9 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
 
             ItemStack[][] inputs = getInputStacks();
 
-            for (int i = 0; i < 13; i++) {
-                for (int j = 0; j < 13; j++) {
-                    if (inputs[i][j].getItem() != shiftClickInputs[i][j].getItem()) {
+            for (int x = 0; x < 13; x++) {
+                for (int y = 0; y < 13; y++) {
+                    if (inputs[x][y].getItem() != shiftClickInputs[x][y].getItem()) {
                         return Optional.empty();
                     }
                 }

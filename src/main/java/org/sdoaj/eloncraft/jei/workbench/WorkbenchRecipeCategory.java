@@ -40,12 +40,12 @@ public class WorkbenchRecipeCategory extends RecipeCategory<WorkbenchRecipeWrapp
         int yOffset = 13 - wrapper.recipe.getHeight();
         yOffset = yOffset - yOffset / 2;
 
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
-                int slot = TileEntityWorkbench.SLOT_INPUT_1 + 13 * i + j;
-                guiStacks.init(slot, true, 3 + 18 * i, 3 + 18 * j);
+        for (int x = 0; x < 13; x++) {
+            for (int y = 0; y < 13; y++) {
+                int slot = TileEntityWorkbench.SLOT_INPUT_1 + 13 * x + y;
+                guiStacks.init(slot, true, 3 + 18 * x, 3 + 18 * y);
                 try {
-                    Ingredient ingredient = wrapper.recipe.getInputs()[i - xOffset][j - yOffset];
+                    Ingredient ingredient = wrapper.recipe.getInputs()[x - xOffset][y - yOffset];
                     if (ingredient != null) {
                         recipeLayout.getItemStacks().set(slot, Arrays.asList(ingredient.getMatchingStacks()));
                     }

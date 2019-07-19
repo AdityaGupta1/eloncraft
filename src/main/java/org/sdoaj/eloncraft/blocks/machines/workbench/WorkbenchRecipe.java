@@ -17,14 +17,14 @@ public class WorkbenchRecipe {
 
         Ingredient[][] ingredients = new Ingredient[maxLength][grid.length];
 
-        for (int i = 0; i < grid.length; i++) {
-            String row = grid[i];
+        for (int y = 0; y < grid.length; y++) {
+            String row = grid[y];
 
-            for (int j = 0; j < maxLength; j++) {
+            for (int x = 0; x < maxLength; x++) {
                 Ingredient ingredient = null;
 
-                if (j < row.length()) {
-                    char c = row.charAt(j);
+                if (x < row.length()) {
+                    char c = row.charAt(x);
 
                     if (c != ' ') {
                         for (RecipeKey key : keys) {
@@ -40,7 +40,7 @@ public class WorkbenchRecipe {
                     }
                 }
 
-                ingredients[j][i] = ingredient;
+                ingredients[x][y] = ingredient;
             }
         }
 
@@ -68,18 +68,18 @@ public class WorkbenchRecipe {
 
         int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE;
         boolean sizeMatches = false;
-        for (int i = 0; i < stacks.length; i++) {
-            for (int j = 0; j < stacks[i].length; j++) {
-                if (!StackUtil.isValid(stacks[i][j])) {
+        for (int x = 0; x < stacks.length; x++) {
+            for (int y = 0; y < stacks[x].length; y++) {
+                if (!StackUtil.isValid(stacks[x][y])) {
                     continue;
                 }
 
                 sizeMatches = true;
 
-                minX = Math.min(minX, i);
-                maxX = Math.max(maxX, i);
-                minY = Math.min(minY, j);
-                maxY = Math.max(maxY, j);
+                minX = Math.min(minX, x);
+                maxX = Math.max(maxX, x);
+                minY = Math.min(minY, y);
+                maxY = Math.max(maxY, y);
             }
         }
 
@@ -91,11 +91,11 @@ public class WorkbenchRecipe {
             return false;
         }
 
-        for (int i = 0; i < inputs.length; i++) {
-            for (int j = 0; j < inputs[i].length; j++) {
-                ItemStack stack = stacks[minX + i][minY + j];
+        for (int x = 0; x < inputs.length; x++) {
+            for (int y = 0; y < inputs[x].length; y++) {
+                ItemStack stack = stacks[minX + x][minY + y];
 
-                if (inputs[i][j] == null) {
+                if (inputs[x][y] == null) {
                     if (StackUtil.isValid(stack)) {
                        return false;
                     }
@@ -104,7 +104,7 @@ public class WorkbenchRecipe {
                         return false;
                     }
 
-                    if (!inputs[i][j].apply(stack)) {
+                    if (!inputs[x][y].apply(stack)) {
                         return false;
                     }
                 }

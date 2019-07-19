@@ -19,10 +19,10 @@ public class ContainerWorkbench extends ContainerBase {
         super(tileEntity);
         this.tileEntity = (TileEntityWorkbench) tileEntity;
 
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
+        for (int x = 0; x < 13; x++) {
+            for (int y = 0; y < 13; y++) {
                 this.addSlotToContainer(new SlotItemHandlerUnconditioned(this.tileEntity.inventory,
-                        TileEntityWorkbench.SLOT_INPUT_1 + 13 * i + j, 9 + 18 * i, 9 + 18 * j));
+                        TileEntityWorkbench.SLOT_INPUT_1 + 13 * x + y, 9 + 18 * x, 9 + 18 * y));
             }
         }
         this.addSlotToContainer(new SlotOutput(this.tileEntity.inventory, TileEntityWorkbench.SLOT_OUTPUT, 207, 291,

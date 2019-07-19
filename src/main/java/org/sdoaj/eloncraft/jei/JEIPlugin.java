@@ -119,7 +119,7 @@ public class JEIPlugin implements IModPlugin {
 
         recipeTransferRegistry.addRecipeTransferHandler(ContainerWorkbench.class, WorkbenchRecipeCategory.uid,
                 TileEntityWorkbench.SLOT_INPUT_1, TileEntityWorkbench.INPUT_SLOTS, TileEntityWorkbench.SLOT_OUTPUT + 1, 36);
-        recipeTransferRegistry.addRecipeTransferHandler(new IRecipeTransferInfo<ContainerWorkbench>() {
+        /*recipeTransferRegistry.addRecipeTransferHandler(new IRecipeTransferInfo<ContainerWorkbench>() {
             @Override
             public Class<ContainerWorkbench> getContainerClass() {
                 return ContainerWorkbench.class;
@@ -154,7 +154,7 @@ public class JEIPlugin implements IModPlugin {
                 return IntStream.range(inventoryStart, inventoryStart + 36)
                         .mapToObj(container::getSlot).collect(Collectors.toList());
             }
-        });
+        });*/
 
         recipeTransferRegistry.addRecipeTransferHandler(ContainerMetalRoller.class, MetalRollerRecipeCategory.uid,
                 TileEntityMetalRoller.SLOT_INPUT, 1, TileEntityMetalRoller.SLOT_OUTPUT + 1, 36);
