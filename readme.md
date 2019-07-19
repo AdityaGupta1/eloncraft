@@ -6,6 +6,9 @@ Who says you can't build a colony on Mars, or dig a tunnel across a city, or rid
 
 Planned features include items from three of Elon Musk's companies: SpaceX, Tesla, and The Boring Company. Currently, development is focused on SpaceX.
 
+Launch trailer:  
+[![](http://img.youtube.com/vi/PCj52-WV0Gc/0.jpg)](http://www.youtube.com/watch?v=PCj52-WV0Gc "")
+
 If you want to contribute, check out the [contributing guidelines](contributing.md).
 
 ## Credits
