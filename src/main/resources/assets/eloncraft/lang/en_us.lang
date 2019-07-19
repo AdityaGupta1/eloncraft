@@ -120,6 +120,7 @@ item.fuel_tank_3.name=§lDragon Fuel Tank
 item.falcon9_dragon.name=§lDragon
 
 item.falcon9.name=§lFalcon 9
+item.falcon9_fueled.name=§lFalcon 9 (Pre-Fueled)
 
 # ====================
 # tools/weapons

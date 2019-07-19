@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -136,6 +137,7 @@ public class ModItems {
     public static ItemBasic FALCON9_DRAGON;
 
     public static ItemBasic FALCON9;
+    public static ItemBasic FALCON9_FUELED;
 
     // tools/weapons
 
@@ -298,6 +300,9 @@ public class ModItems {
         FALCON9 = new ItemBasic("falcon9");
         FALCON9.addLore("One small step for a Steve, one giant leap for mankind.");
         FALCON9.setMaxStackSize(1);
+        FALCON9_FUELED = new ItemBasic("falcon9_fueled");
+        FALCON9_FUELED.addLore(TextFormatting.AQUA + "Creative only");
+        FALCON9_FUELED.setMaxStackSize(1);
 
         TITANIUM_PICKAXE = new ItemCustomPickaxe("titanium_pickaxe", ModToolMaterials.TITANIUM);
 
@@ -319,7 +324,7 @@ public class ModItems {
                 NIOBIUM_C103_INGOT, INCONEL_PLATE, ALUMINUM_2198_PLATE, ALUMINUM_7XXX_PLATE, NIOBIUM_C103_PLATE,
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
                 GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2, SUPERDRACO_ENGINE,
-                FUEL_TANK_3, FALCON9_DRAGON, FALCON9);
+                FUEL_TANK_3, FALCON9_DRAGON, FALCON9, FALCON9_FUELED);
 
         ModCreativeTabs.BORING_COMPANY.addAll(FLAMETHROWER);
     }

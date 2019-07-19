@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -16,12 +17,14 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.sdoaj.eloncraft.blocks.BlockNotFull;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.Eloncraft;
 import org.sdoaj.eloncraft.entity.rocket.falcon9.EntityFalcon9Stage1;
+import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
 
 import java.util.*;
@@ -222,7 +225,9 @@ public class BlockLaunchpad extends BlockNotFull {
             return onBlockActivated(world, center.get(), state, player, hand, facing, hitX, hitY, hitZ);
         }
 
-        if (world.isRemote || player.getHeldItem(hand).getItem() != ModItems.FALCON9) {
+        Item heldItem = player.getHeldItem(hand).getItem();
+
+        if (world.isRemote || (heldItem != ModItems.FALCON9 && heldItem != ModItems.FALCON9_FUELED)) {
             return false;
         }
 
@@ -241,6 +246,12 @@ public class BlockLaunchpad extends BlockNotFull {
         EntityFalcon9Stage1 rocket = new EntityFalcon9Stage1(world);
         rocket.setLaunchpad(centerPos, player.getHorizontalFacing().getHorizontalAngle());
         rockets.put(centerPos, rocket);
+
+        if (heldItem == ModItems.FALCON9_FUELED) {
+            rocket.fuelTank.fill(new FluidStack(ModFluids.RP1, EntityFalcon9Stage1.tankCapacity), true);
+            rocket.oxygenTank.fill(new FluidStack(ModFluids.LOX, EntityFalcon9Stage1.tankCapacity), true);
+        }
+
         world.spawnEntity(rocket);
 
         return true;
