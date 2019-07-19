@@ -7,19 +7,33 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
+import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
+import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
+import org.sdoaj.eloncraft.blocks.gui.slot.SlotItemHandlerUnconditioned;
 import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipe;
 import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.AlloyFurnaceRecipes;
+import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.ContainerAlloyFurnace;
+import org.sdoaj.eloncraft.blocks.machines.alloyfurnace.TileEntityAlloyFurnace;
+import org.sdoaj.eloncraft.blocks.machines.crusher.ContainerCrusher;
 import org.sdoaj.eloncraft.blocks.machines.crusher.CrusherRecipes;
+import org.sdoaj.eloncraft.blocks.machines.crusher.TileEntityCrusher;
+import org.sdoaj.eloncraft.blocks.machines.metalroller.ContainerMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.metalroller.MetalRollerRecipes;
+import org.sdoaj.eloncraft.blocks.machines.metalroller.TileEntityMetalRoller;
 import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipe;
 import org.sdoaj.eloncraft.blocks.machines.refinery.RefineryRecipes;
+import org.sdoaj.eloncraft.blocks.machines.workbench.ContainerWorkbench;
+import org.sdoaj.eloncraft.blocks.machines.workbench.TileEntityWorkbench;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipe;
 import org.sdoaj.eloncraft.blocks.machines.workbench.WorkbenchRecipes;
+import org.sdoaj.eloncraft.blocks.pipes.TileEntityCable;
 import org.sdoaj.eloncraft.fluids.ModFluids;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.jei.alloyfurnace.AlloyFurnaceRecipeCategory;
@@ -37,6 +51,8 @@ import org.sdoaj.eloncraft.jei.workbench.WorkbenchRecipeWrapper;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @mezz.jei.api.JEIPlugin
 public class JEIPlugin implements IModPlugin {
@@ -80,7 +96,6 @@ public class JEIPlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.REFINERY), RefineryRecipeCategory.uid);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.LOX_COLLECTOR), LoxCollectorRecipeCategory.uid);
 
-
         registry.addIngredientInfo(Collections.singletonList(new ItemStack(ModItems.FALCON9)), VanillaTypes.ITEM,
                 "To launch the Falcon 9,",
                 "- place it on a valid launchpad configuration",
@@ -99,5 +114,53 @@ public class JEIPlugin implements IModPlugin {
         fuelFluids.add(new FluidStack(ModFluids.RP1, Fluid.BUCKET_VOLUME));
         registry.addIngredientInfo(fuelFluids, VanillaTypes.FLUID,
                 "Oil can be found in lakes across the Overworld. Its main purpose is to be refined into RP-1 for fueling rockets.");
+
+        IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
+
+        recipeTransferRegistry.addRecipeTransferHandler(ContainerWorkbench.class, WorkbenchRecipeCategory.uid,
+                TileEntityWorkbench.SLOT_INPUT_1, TileEntityWorkbench.INPUT_SLOTS, TileEntityWorkbench.SLOT_OUTPUT + 1, 36);
+        recipeTransferRegistry.addRecipeTransferHandler(new IRecipeTransferInfo<ContainerWorkbench>() {
+            @Override
+            public Class<ContainerWorkbench> getContainerClass() {
+                return ContainerWorkbench.class;
+            }
+
+            @Override
+            public String getRecipeCategoryUid() {
+                return VanillaRecipeCategoryUid.CRAFTING;
+            }
+
+            @Override
+            public boolean canHandle(ContainerWorkbench container) {
+                return true;
+            }
+
+            @Override
+            public List<Slot> getRecipeSlots(ContainerWorkbench container) {
+                List<Slot> slots = new ArrayList<>();
+
+                for (int i = 5; i < 8; i++) {
+                    for (int j = 5; j < 8; j++) {
+                        slots.add(container.getSlot(TileEntityWorkbench.SLOT_INPUT_1 + 13 * i + j));
+                    }
+                }
+
+                return slots;
+            }
+
+            @Override
+            public List<Slot> getInventorySlots(ContainerWorkbench container) {
+                int inventoryStart = TileEntityWorkbench.SLOT_OUTPUT + 1;
+                return IntStream.range(inventoryStart, inventoryStart + 36)
+                        .mapToObj(container::getSlot).collect(Collectors.toList());
+            }
+        });
+
+        recipeTransferRegistry.addRecipeTransferHandler(ContainerMetalRoller.class, MetalRollerRecipeCategory.uid,
+                TileEntityMetalRoller.SLOT_INPUT, 1, TileEntityMetalRoller.SLOT_OUTPUT + 1, 36);
+        recipeTransferRegistry.addRecipeTransferHandler(ContainerCrusher.class, CrusherRecipeCategory.uid,
+                TileEntityCrusher.SLOT_INPUT, 1, TileEntityCrusher.SLOT_OUTPUT + 1, 36);
+        recipeTransferRegistry.addRecipeTransferHandler(ContainerAlloyFurnace.class, AlloyFurnaceRecipeCategory.uid,
+                TileEntityAlloyFurnace.SLOT_INPUT_1, TileEntityAlloyFurnace.INPUT_SLOTS, TileEntityAlloyFurnace.SLOT_OUTPUT + 1, 36);
     }
 }
