@@ -54,16 +54,21 @@ public class ContainerWorkbench extends ContainerBase {
             // purposely leaving out shift-clicking into input slots (similar to crafting table)
             if (slotId < inventoryStart) {
                 if (slotId == TileEntityWorkbench.SLOT_OUTPUT) {
+                    tileEntity.prepareShiftClick();
+
                     boolean merged;
+
                     do {
                         if (tileEntity.getOutput().isPresent()) {
                             merged = this.mergeItemStack(tileEntity.getOutput().get().copy(), inventoryStart, hotbarEnd + 1, true);
                             if (merged) {
                                 tileEntity.finishCraftingIfPossible();
                             } else {
+                                tileEntity.stopShiftClick();
                                 return ItemStack.EMPTY;
                             }
                         } else {
+                            tileEntity.stopShiftClick();
                             return ItemStack.EMPTY;
                         }
                     } while(true);

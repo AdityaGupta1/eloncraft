@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import org.sdoaj.eloncraft.blocks.tileentities.TileEntityInventoryBase;
 import org.sdoaj.eloncraft.util.ItemStackHandler;
 import org.sdoaj.eloncraft.util.StackUtil;
+import scala.tools.cmd.Opt;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -47,7 +48,50 @@ public class TileEntityWorkbench extends TileEntityInventoryBase {
         return stacks;
     }
 
+    private ItemStack[][] shiftClickInputs = null;
+    private ItemStack shiftClickOutput = null;
+
+    void prepareShiftClick() {
+        ItemStack[][] inputs = getInputStacks();
+        shiftClickInputs = new ItemStack[13][13];
+
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 13; j++) {
+                shiftClickInputs[i][j] = inputs[i][j].copy();
+            }
+        }
+
+        shiftClickOutput = getRecipeOutput().orElse(null);
+    }
+
+    void stopShiftClick() {
+        shiftClickInputs = null;
+        shiftClickOutput = null;
+    }
+
     public Optional<ItemStack> getOutput() {
+        if (shiftClickInputs != null) {
+            if (shiftClickOutput == null) {
+                return Optional.empty();
+            }
+
+            ItemStack[][] inputs = getInputStacks();
+
+            for (int i = 0; i < 13; i++) {
+                for (int j = 0; j < 13; j++) {
+                    if (inputs[i][j].getItem() != shiftClickInputs[i][j].getItem()) {
+                        return Optional.empty();
+                    }
+                }
+            }
+
+            return Optional.of(shiftClickOutput.copy());
+        }
+
+       return getRecipeOutput();
+    }
+
+    private Optional<ItemStack> getRecipeOutput() {
         WorkbenchRecipe recipe = WorkbenchRecipes.getRecipeFromInput(getInputStacks(), this.world);
 
         if (recipe == null) {
