@@ -1,6 +1,7 @@
 package org.sdoaj.eloncraft.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
@@ -84,5 +85,9 @@ public class BlockBasic extends Block {
     @Override
     public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
         return this.isBeaconBase;
+    }
+
+    public void setSound(SoundType sound) {
+        this.setSoundType(sound);
     }
 }

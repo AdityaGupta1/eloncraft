@@ -1,6 +1,7 @@
 package org.sdoaj.eloncraft.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
@@ -155,6 +156,7 @@ public class ModBlocks {
         CABLE = new BlockCable("cable", Material.CLOTH);
         CABLE.setHardness(0.5F).setResistance(4.0F);
         CABLE.setHarvestLevel("", 0);
+        CABLE.setSound(SoundType.CLOTH);
 
         LAUNCH_CONTROLLER = new BlockLaunchController("launch_controller", Material.IRON);
         LAUNCH_CONTROLLER.setHardness(20.0F).setResistance(50.0F).setHarvestLevel("pickaxe", 2);

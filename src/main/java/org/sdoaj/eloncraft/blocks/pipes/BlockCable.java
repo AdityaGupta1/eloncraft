@@ -30,7 +30,6 @@ public class BlockCable extends BlockPipeBase implements ITileEntityProvider {
 		return new BlockStateContainer(this, CONNECTED_PROPERTIES.toArray(new IProperty[0]));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
 		return getDefaultState();
