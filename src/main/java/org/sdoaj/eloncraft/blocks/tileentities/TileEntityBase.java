@@ -43,8 +43,11 @@ import org.sdoaj.eloncraft.blocks.machines.workbench.TileEntityWorkbench;
 import org.sdoaj.eloncraft.blocks.pipes.TileEntityCable;
 import org.sdoaj.eloncraft.util.WorldUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class TileEntityBase extends TileEntity implements ITickable {
-    public static final int DEFAULT_MAX_TRANSFER = 5000; // default max energy transfer rate
+    public static final int DEFAULT_MAX_TRANSFER = 1000; // default max energy transfer rate
 
     public final String name;
     public boolean isRedstonePowered;
@@ -171,6 +174,7 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
         this.ticksElapsed++;
 
         if (!this.world.isRemote) {
+            energy:
             if (this instanceof ISharingEnergyProvider) {
                 ISharingEnergyProvider provider = (ISharingEnergyProvider) this;
                 if (provider.doesShareEnergy()) {
@@ -178,17 +182,21 @@ public abstract class TileEntityBase extends TileEntity implements ITickable {
                     if (total > 0) {
                         EnumFacing[] sides = provider.getEnergyShareSides();
 
-                        int amount = total / sides.length;
-                        if (amount <= 0) {
-                            amount = total;
-                        }
-
+                        List<EnumFacing> canShareTo = new ArrayList<>();
                         for (EnumFacing side : sides) {
                             TileEntity tile = world.getTileEntity(this.pos.offset(side));
                             if (tile != null && provider.canShareTo(tile)) {
-                                WorldUtil.doEnergyInteraction(this, tile, side, amount);
+                                canShareTo.add(side);
                             }
                         }
+
+                        if (canShareTo.size() == 0) {
+                            break energy;
+                        }
+
+                        int amount = total / canShareTo.size();
+
+                        canShareTo.forEach(side -> WorldUtil.doEnergyInteraction(this, world.getTileEntity(this.pos.offset(side)), side, amount));
                     }
                 }
             }
