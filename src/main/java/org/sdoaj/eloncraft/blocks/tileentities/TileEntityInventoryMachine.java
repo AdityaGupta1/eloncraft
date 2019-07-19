@@ -90,19 +90,21 @@ public abstract class TileEntityInventoryMachine extends TileEntityInventoryBase
         boolean processed = false;
 
         if (this.canProcess()) {
-            if (!hasEnergyStorage || this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
-                this.processTime++;
-                if (this.processTime >= this.maxProcessTime) {
-                    this.finishProcessing();
-                    this.processTime = 0;
+            if (!this.isRedstonePowered) {
+                if (!hasEnergyStorage || this.energyStorage.getEnergyStored() >= getEnergyPerTick()) {
+                    this.processTime++;
+                    if (this.processTime >= this.maxProcessTime) {
+                        this.finishProcessing();
+                        this.processTime = 0;
+                    }
+                    if (hasEnergyStorage) {
+                        this.energyStorage.extractEnergyInternal(getEnergyPerTick(), false);
+                    }
                 }
-                if (hasEnergyStorage) {
-                    this.energyStorage.extractEnergyInternal(getEnergyPerTick(), false);
-                }
-            }
 
-            if (hasEnergyStorage) {
-                processed = this.energyStorage.getEnergyStored() >= getEnergyPerTick();
+                if (hasEnergyStorage) {
+                    processed = this.energyStorage.getEnergyStored() >= getEnergyPerTick();
+                }
             }
         } else {
             this.processTime = 0;
