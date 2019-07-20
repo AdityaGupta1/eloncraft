@@ -11,6 +11,10 @@ Launch trailer:
 
 If you want to contribute, check out the [contributing guidelines](contributing.md).
 
+Should you encounter any bugs or issues, make sure to [file an issue](https://github.com/AdityaGupta1/eloncraft/issues/new) so they can be fixed.
+
+CurseForge page: https://www.curseforge.com/minecraft/mc-mods/eloncraft
+
 ## Credits
 
 [@AdityaGupta1](https://github.com/AdityaGupta1) - main developer  
