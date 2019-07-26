@@ -362,11 +362,23 @@ public final class WorkbenchRecipes {
                 new RecipeKey('t', "plateTitanium")));
 
         addRecipe(new WorkbenchRecipe(new String[]{
+                " ere ",
+                "eeEee",
+                "rESEr",
+                "eeEee",
+                " ere "
+        }, new ItemStack(ModItems.WARP_CORE, 1),
+                new RecipeKey('e', Items.ENDER_PEARL),
+                new RecipeKey('E', Items.ENDER_EYE),
+                new RecipeKey('r', Blocks.END_ROD),
+                new RecipeKey('S', Items.NETHER_STAR)));
+
+        addRecipe(new WorkbenchRecipe(new String[]{
                 "  sds  ",
                 " gsssg ",
                 " gsssg ",
                 "eesssee",
-                "eesssee",
+                "eeswsee",
                 "ttssstt",
                 "sssssss",
                 "sssssss",
@@ -377,7 +389,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('g', new ItemStack(Blocks.STAINED_GLASS_PANE, 1, 15)),
                 new RecipeKey('e', ModItems.SUPERDRACO_ENGINE),
                 new RecipeKey('d', Blocks.DRAGON_EGG),
-                new RecipeKey('t', ModItems.FUEL_TANK_3)));
+                new RecipeKey('t', ModItems.FUEL_TANK_3),
+                new RecipeKey('w', ModItems.WARP_CORE)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 " d ",

@@ -134,6 +134,7 @@ public class ModItems {
 
     public static ItemBasic SUPERDRACO_ENGINE;
     public static ItemBasic FUEL_TANK_3;
+    public static ItemBasic WARP_CORE;
     public static ItemBasic FALCON9_DRAGON;
 
     public static ItemBasic FALCON9;
@@ -293,12 +294,18 @@ public class ModItems {
         FUEL_TANK_3 = new ItemBasic("fuel_tank_3");
         FUEL_TANK_3.addLore("SuperDraco engines don't actually use RP-1 and LOX, but making fuel is annoying enough already.");
         FUEL_TANK_3.setMaxStackSize(4);
+        WARP_CORE = new ItemBasic("warp_core");
+        WARP_CORE.addLore("An essential piece of the Dragon that allows it and its passenger to return to the Overworld.");
+        WARP_CORE.setMaxStackSize(1);
+        WARP_CORE.setGlows();
         FALCON9_DRAGON = new ItemBasic("falcon9_dragon");
         FALCON9_DRAGON.addLore("\"Dragon is a free-flying spacecraft designed to deliver both cargo and people to orbiting destinations.\"");
         FALCON9_DRAGON.setMaxStackSize(1);
 
         FALCON9 = new ItemBasic("falcon9");
-        FALCON9.addLore("One small step for a Steve, one giant leap for mankind.");
+        FALCON9.addLore(TextFormatting.GOLD + "One small step for a Steve, one giant leap for mankind.");
+        FALCON9.addLore(TextFormatting.AQUA + "Using magical items found only in the world of Minecraft, this rocket and its crew capsule can go much farther than their real-life counterparts.");
+        FALCON9.addLore(TextFormatting.LIGHT_PURPLE + "The mystical powers of the End allow it to warp itself and its passenger back to the Overworld from anywhere in the universe.");
         FALCON9.setMaxStackSize(1);
         FALCON9_FUELED = new ItemBasic("falcon9_fueled");
         FALCON9_FUELED.addLore(TextFormatting.AQUA + "Creative only");

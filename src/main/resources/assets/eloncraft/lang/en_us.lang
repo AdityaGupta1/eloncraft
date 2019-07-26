@@ -117,6 +117,7 @@ item.usa_flag_epic.name=§4§lEpic §f§lAmerican §1§lFlag
 
 item.superdraco_engine.name=§lSuperDraco Engine
 item.fuel_tank_3.name=§lDragon Fuel Tank
+item.warp_core.name=§d§lWarp Core
 item.falcon9_dragon.name=§lDragon
 
 item.falcon9.name=§lFalcon 9
@@ -216,7 +217,7 @@ container.generator.name=Coal Generator
 tile.cable.name=Power Cable
 
 # ====================
-# rocket stuff
+# launch
 # ====================
 
 tile.launch_controller.name=Launch Controller
