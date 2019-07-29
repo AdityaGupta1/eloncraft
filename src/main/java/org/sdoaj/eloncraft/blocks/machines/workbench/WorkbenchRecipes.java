@@ -146,11 +146,11 @@ public final class WorkbenchRecipes {
                 new RecipeKey('g', "paneGlass")));
 
         addRecipe(new WorkbenchRecipe(new String[]{
-                "  tcr     ",
+                "  tcR     ",
                 "  nnn     ",
-                " n   pPp  ",
-                " n   n I  ",
-                " n   nPp  ",
+                " n  rpPp  ",
+                " n  rn I  ",
+                " n  rpPp  ",
                 "  n n p   ",
                 "  n n pAAA",
                 " n   n pPA",
@@ -166,7 +166,8 @@ public final class WorkbenchRecipes {
                 new RecipeKey('I', ModItems.INCONEL_PLATE),
                 new RecipeKey('t', Blocks.REDSTONE_TORCH),
                 new RecipeKey('c', Items.COMPARATOR),
-                new RecipeKey('r', Items.REPEATER)));
+                new RecipeKey('R', Items.REPEATER),
+                new RecipeKey('r', ModItems.REDSTONE_CATALYST)));
 
         addRecipe(new WorkbenchRecipe(new String[]{
                 "    ppppp    ",

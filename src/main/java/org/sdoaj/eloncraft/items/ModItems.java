@@ -114,6 +114,7 @@ public class ModItems {
     public static ItemBasic CARBON_FIBER_PLATE;
     public static ItemBasic HEAT_SHIELD;
     public static ItemBasic STEEL_ROD;
+    public static ItemBasic REDSTONE_CATALYST;
 
     // rocket parts
 
@@ -249,6 +250,8 @@ public class ModItems {
         HEAT_SHIELD.addLore("Magical heat shielding made from void-resistant plants and pulverized hellfire. What more could you ask for?");
         HEAT_SHIELD.setGlows();
         STEEL_ROD = new ItemBasic("steel_rod");
+        REDSTONE_CATALYST = new ItemBasic("redstone_catalyst");
+        REDSTONE_CATALYST.addLore("Enhances the reaction between fuel and LOX to produce more thrust and increase acceleration.");
 
         MERLIN_ENGINE = new ItemBasic("merlin_engine");
         MERLIN_ENGINE.addLore("\"Merlin's thrust-to-weight ratio exceeds 150, making the Merlin the most efficient booster engine ever built, while still maintaining the structural and thermal safety margins needed to carry astronauts.\"");

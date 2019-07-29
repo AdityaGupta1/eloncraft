@@ -86,7 +86,7 @@ item.titanium_fan.name=Titanium Impeller
 item.fuel_pipe.name=Fuel Pipe
 
 # ====================
-# other metal items
+# misc items
 # ====================
 
 item.crushed_coal.name=Crushed Coal
@@ -95,6 +95,7 @@ item.carbon_fibers.name=§8Carbon Fibers
 item.carbon_fiber_plate.name=§8Carbon Fiber Plate
 item.heat_shield.name=§dHeat Shield
 item.steel_rod.name=Steel Rod
+item.redstone_catalyst.name=Redstone Combustion Catalyst
 
 # ====================
 # rocket parts
