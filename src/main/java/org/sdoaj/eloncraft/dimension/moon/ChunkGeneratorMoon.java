@@ -1,4 +1,4 @@
-package org.sdoaj.eloncraft.dimension;
+package org.sdoaj.eloncraft.dimension.moon;
 
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
@@ -12,6 +12,7 @@ import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import org.sdoaj.eloncraft.dimension.TerrainGeneratorNormal;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

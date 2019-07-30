@@ -3,6 +3,7 @@ package org.sdoaj.eloncraft.dimension;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.DimensionManager;
+import org.sdoaj.eloncraft.dimension.moon.WorldProviderMoon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
