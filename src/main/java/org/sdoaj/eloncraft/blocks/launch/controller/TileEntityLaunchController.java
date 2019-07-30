@@ -61,7 +61,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
 
     private boolean isLoading = false;
 
-    private Destination destination = Destination.ISS;
+    private Destination destination = Destination.MOON;
 
     public static final int mbPerOperation = 20;
 
@@ -100,7 +100,7 @@ public class TileEntityLaunchController extends TileEntityFluidMachine {
     public void readSyncableNBT(NBTTagCompound compound, NBTType type) {
         super.readSyncableNBT(compound, type);
 
-        destination = compound.hasKey("Destination") ? Destination.valueOf(compound.getString("Destination")) : Destination.ISS;
+        destination = compound.hasKey("Destination") ? Destination.valueOf(compound.getString("Destination")) : Destination.MOON;
 
         launchStatus = compound.hasKey("LaunchStatus") ? ErrorCode.valueOf(compound.getString("LaunchStatus")) : ErrorCode.ROCKET_MISSING;
         canLoad = compound.getBoolean("CanLoad");

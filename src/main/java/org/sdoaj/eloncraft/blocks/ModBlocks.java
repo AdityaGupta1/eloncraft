@@ -41,33 +41,33 @@ public class ModBlocks {
 
     // ores
 
-    public static Block COMPONENTS;
+    public static BlockBasic COMPONENTS;
 
-    public static Block ALUMINUM_ORE;
-    public static Block TITANIUM_ORE;
-    public static Block LITHIUM_ORE;
-    public static Block NICKEL_ORE;
-    public static Block CHROMIUM_ORE;
-    public static Block COPPER_ORE;
-    public static Block NIOBIUM_ORE;
-    public static Block HAFNIUM_ORE;
-    public static Block MAGNESIUM_ORE;
-    public static Block ZINC_ORE;
+    public static BlockBasic ALUMINUM_ORE;
+    public static BlockBasic TITANIUM_ORE;
+    public static BlockBasic LITHIUM_ORE;
+    public static BlockBasic NICKEL_ORE;
+    public static BlockBasic CHROMIUM_ORE;
+    public static BlockBasic COPPER_ORE;
+    public static BlockBasic NIOBIUM_ORE;
+    public static BlockBasic HAFNIUM_ORE;
+    public static BlockBasic MAGNESIUM_ORE;
+    public static BlockBasic ZINC_ORE;
 
-    public static Block ALUMINUM_BLOCK;
-    public static Block TITANIUM_BLOCK;
-    public static Block LITHIUM_BLOCK;
-    public static Block NICKEL_BLOCK;
-    public static Block CHROMIUM_BLOCK;
-    public static Block COPPER_BLOCK;
-    public static Block NIOBIUM_BLOCK;
-    public static Block HAFNIUM_BLOCK;
-    public static Block MAGNESIUM_BLOCK;
-    public static Block ZINC_BLOCK;
+    public static BlockBasic ALUMINUM_BLOCK;
+    public static BlockBasic TITANIUM_BLOCK;
+    public static BlockBasic LITHIUM_BLOCK;
+    public static BlockBasic NICKEL_BLOCK;
+    public static BlockBasic CHROMIUM_BLOCK;
+    public static BlockBasic COPPER_BLOCK;
+    public static BlockBasic NIOBIUM_BLOCK;
+    public static BlockBasic HAFNIUM_BLOCK;
+    public static BlockBasic MAGNESIUM_BLOCK;
+    public static BlockBasic ZINC_BLOCK;
 
     // alloys
 
-    public static Block STEEL_BLOCK;
+    public static BlockBasic STEEL_BLOCK;
 
     // machines
 
@@ -88,7 +88,12 @@ public class ModBlocks {
     // launch
 
     public static BlockLaunchController LAUNCH_CONTROLLER;
-    public static Block LAUNCHPAD;
+    public static BlockLaunchpad LAUNCHPAD;
+
+    // moon
+
+    public static BlockBasic MOON_DIRT;
+    public static BlockBasic MOON_ROCK;
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
@@ -96,9 +101,8 @@ public class ModBlocks {
                 new Drop(ModItems.DAMAGED_AIRCRAFT_PLATING, 0, 1, 0.5),
                 new Drop(ModItems.NICKEL_NUGGET, 1, 3, 1),
                 new Drop(ModItems.LITHIUM_NUGGET, 1, 2, 1),
-                new Drop(Items.IRON_NUGGET, 1, 3, 1.5)))
-                .setHardness(5.0F).setResistance(10.0F);
-        COMPONENTS.setHarvestLevel("pickaxe", 2);
+                new Drop(Items.IRON_NUGGET, 1, 3, 1.5)));
+        COMPONENTS.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 
         ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3, 8);
         TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 5, 15);
@@ -164,7 +168,13 @@ public class ModBlocks {
         LAUNCHPAD = new BlockLaunchpad("launchpad", Material.IRON);
         LAUNCHPAD.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 
-        ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD);
+        MOON_DIRT = new BlockBasic("moon_dirt", Material.ROCK);
+        MOON_DIRT.setHardness(1.0F).setResistance(10.0F).setHarvestLevel("pickaxe", -1);
+        MOON_ROCK = new BlockBasic("moon_rock", Material.ROCK);
+        MOON_ROCK.setHardness(1.5F).setResistance(30.0F).setHarvestLevel("pickaxe", -1);
+
+        ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD, MOON_DIRT,
+                MOON_ROCK);
     }
 
     public static void addBlock(Block block) {

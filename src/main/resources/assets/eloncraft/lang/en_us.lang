@@ -237,6 +237,13 @@ tile.rp1.name=RP-1
 fluid.lox=LOX
 tile.lox.name=LOX
 
+# ====================
+# moon
+# ====================
+
+tile.moon_dirt.name=Lunar Regolith
+tile.moon_rock.name=Lunar Rock
+
 
 # ========================================
 # OTHER
