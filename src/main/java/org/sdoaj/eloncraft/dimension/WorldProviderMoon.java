@@ -7,7 +7,9 @@ import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
 
 public class WorldProviderMoon extends WorldProvider {
-    public WorldProviderMoon() {
+    @Override
+    protected void init() {
+        this.hasSkyLight = true;
         this.biomeProvider = new BiomeProviderSingle(Biomes.JUNGLE);
     }
 
