@@ -104,26 +104,26 @@ public class ModBlocks {
                 new Drop(Items.IRON_NUGGET, 1, 3, 1.5)));
         COMPONENTS.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 
-        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3, 8);
-        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 5, 15);
-        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3, 8);
-        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5, 12);
-        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3, 8);
-        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3, 8);
-        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4, 10);
-        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4, 12);
-        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3, 8);
-        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3, 8);
+        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3F, 4F);
+        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 5F, 6F);
+        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3F, 5F);
+        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5F, 5F);
+        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3F, 5F);
+        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3F, 4F);
+        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4F, 5F);
+        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4F, 5F);
+        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3F, 4F);
+        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3F, 4F);
 
-        ALUMINUM_BLOCK = BlockBasic.newMetalBlock("aluminum", 2, 5, 16);
-        TITANIUM_BLOCK = BlockBasic.newMetalBlock("titanium", 3, 8, 30);
-        LITHIUM_BLOCK = BlockBasic.newMetalBlock("lithium", 2, 5, 16);
-        NICKEL_BLOCK = BlockBasic.newMetalBlock("nickel", 2, 8, 24);
-        CHROMIUM_BLOCK = BlockBasic.newMetalBlock("chromium", 2, 5, 16);
-        COPPER_BLOCK = BlockBasic.newMetalBlock("copper", 2, 5, 16);
-        NIOBIUM_BLOCK = BlockBasic.newMetalBlock("niobium", 3, 6, 20);
-        HAFNIUM_BLOCK = BlockBasic.newMetalBlock("hafnium", 3, 6, 24);
-        MAGNESIUM_BLOCK = BlockBasic.newMetalBlock("magnesium", 2, 5, 16);
+        ALUMINUM_BLOCK = BlockBasic.newMetalBlock("aluminum", 2, 5F, 8F);
+        TITANIUM_BLOCK = BlockBasic.newMetalBlock("titanium", 3, 8F, 12F);
+        LITHIUM_BLOCK = BlockBasic.newMetalBlock("lithium", 2, 5F, 10F);
+        NICKEL_BLOCK = BlockBasic.newMetalBlock("nickel", 2, 8F, 10F);
+        CHROMIUM_BLOCK = BlockBasic.newMetalBlock("chromium", 2, 5F, 10F);
+        COPPER_BLOCK = BlockBasic.newMetalBlock("copper", 2, 5F, 8F);
+        NIOBIUM_BLOCK = BlockBasic.newMetalBlock("niobium", 3, 6F, 10F);
+        HAFNIUM_BLOCK = BlockBasic.newMetalBlock("hafnium", 3, 6F, 8F);
+        MAGNESIUM_BLOCK = BlockBasic.newMetalBlock("magnesium", 2, 5F, 8F);
         ZINC_BLOCK = BlockBasic.newMetalBlock("zinc", 2, 5, 16);
 
         STEEL_BLOCK = BlockBasic.newMetalBlock("steel", 2, 8, 35);
@@ -169,9 +169,9 @@ public class ModBlocks {
         LAUNCHPAD.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 
         MOON_DIRT = new BlockBasic("moon_dirt", Material.ROCK);
-        MOON_DIRT.setHardness(1.0F).setResistance(10.0F).setHarvestLevel("pickaxe", -1);
+        MOON_DIRT.setHardness(1.0F).setResistance(2.0F).setHarvestLevel("pickaxe", -1);
         MOON_ROCK = new BlockBasic("moon_rock", Material.ROCK);
-        MOON_ROCK.setHardness(1.5F).setResistance(30.0F).setHarvestLevel("pickaxe", -1);
+        MOON_ROCK.setHardness(1.5F).setResistance(10.0F).setHarvestLevel("pickaxe", -1);
 
         ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD, MOON_DIRT,
                 MOON_ROCK);
