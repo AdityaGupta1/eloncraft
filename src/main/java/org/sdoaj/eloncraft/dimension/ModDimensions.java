@@ -18,6 +18,8 @@ public class ModDimensions {
     private static final int firstId = -33;
 
     public static void init() {
+        dimensions.put("earth", DimensionManager.getProviderType(0));
+
         int id = firstId;
 
         MOON = registerDimension("moon", id++, WorldProviderMoon.class);
