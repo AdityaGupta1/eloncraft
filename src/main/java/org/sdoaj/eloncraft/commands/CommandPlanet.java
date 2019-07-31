@@ -15,6 +15,7 @@ import org.sdoaj.eloncraft.dimension.ModDimensions;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommandPlanet extends CommandBase {
     @Override
@@ -54,6 +55,6 @@ public class CommandPlanet extends CommandBase {
 
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
-        return ModDimensions.getDimensionNames();
+        return ModDimensions.getDimensionNames().stream().filter(name -> name.startsWith(args[0])).collect(Collectors.toList());
     }
 }
