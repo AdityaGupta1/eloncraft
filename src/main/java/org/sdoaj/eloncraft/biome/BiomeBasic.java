@@ -6,14 +6,21 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
+import org.sdoaj.eloncraft.Eloncraft;
 
 import java.util.Random;
+import java.util.function.UnaryOperator;
 
 public class BiomeBasic extends Biome {
     public IBlockState stoneBlock = Blocks.STONE.getDefaultState();
 
-    public BiomeBasic(BiomeProperties properties) {
-        super(properties);
+    public BiomeBasic(String name) {
+        this(name, properties -> properties);
+    }
+
+    public BiomeBasic(String name, UnaryOperator<BiomeProperties> additionalProperties) {
+        super(additionalProperties.apply(new BiomeProperties(name)));
+        setRegistryName(Eloncraft.MODID, name);
         ModBiomes.addBiome(this);
     }
 

@@ -20,6 +20,7 @@ public class ModBiomes {
     @SubscribeEvent
     public static void registerBiomes(RegistryEvent.Register<Biome> event) {
         IForgeRegistry<Biome> registry = event.getRegistry();
+        biomes.forEach(registry::register);
     }
 
     public static void addBiome(Biome biome) {

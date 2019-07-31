@@ -9,10 +9,11 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.dimension.TerrainGeneratorNormal;
+import org.sdoaj.eloncraft.world.CaveGenerator;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class ChunkGeneratorMoon implements IChunkGenerator {
 
     private final List<Biome.SpawnListEntry> mobs = new ArrayList<>();
 
-    private final MapGenBase caveGen = TerrainGen.getModdedMapGen(new MapGenCaves(), InitMapGenEvent.EventType.CAVE);
+    private final MapGenBase caveGen = TerrainGen.getModdedMapGen(new CaveGenerator(ModBlocks.MOON_DIRT, ModBlocks.MOON_ROCK),
+            InitMapGenEvent.EventType.CAVE);
     private final TerrainGeneratorNormal terrainGen = new TerrainGeneratorNormal();
 
     public ChunkGeneratorMoon(World world) {

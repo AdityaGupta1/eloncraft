@@ -28,6 +28,12 @@ public abstract class WorldProviderSpace extends WorldProvider {
         return getSkyColor();
     }
 
+    @Nullable
+    @Override
+    public float[] calcSunriseSunsetColors(float celestialAngle, float partialTicks) {
+        return null;
+    }
+
     public Vec3d getFogColor() {
         return new Vec3d(0, 0, 0);
     }
