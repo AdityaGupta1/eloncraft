@@ -244,6 +244,8 @@ tile.lox.name=LOX
 tile.moon_dirt.name=Lunar Regolith
 tile.moon_rock.name=Lunar Rock
 
+tile.abyssal_ore.name=Abyssal Ore
+
 
 # ========================================
 # OTHER

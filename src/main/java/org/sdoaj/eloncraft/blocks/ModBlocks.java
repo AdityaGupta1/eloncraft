@@ -95,6 +95,8 @@ public class ModBlocks {
     public static BlockBasic MOON_DIRT;
     public static BlockBasic MOON_ROCK;
 
+    public static BlockBasic ABYSSAL_ORE;
+
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
                 new Drop(ModItems.BROKEN_STEEL_GEAR, 1, 3, 1),
@@ -104,16 +106,16 @@ public class ModBlocks {
                 new Drop(Items.IRON_NUGGET, 1, 3, 1.5)));
         COMPONENTS.setHardness(5.0F).setResistance(10.0F).setHarvestLevel("pickaxe", 2);
 
-        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3F, 4F);
-        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 5F, 6F);
-        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3F, 5F);
-        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5F, 5F);
-        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3F, 5F);
-        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3F, 4F);
-        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4F, 5F);
-        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4F, 5F);
-        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3F, 4F);
-        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3F, 4F);
+        ALUMINUM_ORE = BlockOre.newStoneOre("aluminum", 2, 3F, 4F, true);
+        TITANIUM_ORE = BlockOre.newStoneOre("titanium", 3, 5F, 6F, true);
+        LITHIUM_ORE = BlockOre.newStoneOre("lithium", 2, 3F, 5F, true);
+        NICKEL_ORE = BlockOre.newStoneOre("nickel", 2, 5F, 5F, true);
+        CHROMIUM_ORE = BlockOre.newStoneOre("chromium", 2, 3F, 5F, true);
+        COPPER_ORE = BlockOre.newStoneOre("copper", 2, 3F, 4F, true);
+        NIOBIUM_ORE = BlockOre.newStoneOre("niobium", 3, 4F, 5F, true);
+        HAFNIUM_ORE = BlockOre.newStoneOre("hafnium", 3, 4F, 5F, true);
+        MAGNESIUM_ORE = BlockOre.newStoneOre("magnesium", 2, 3F, 4F, true);
+        ZINC_ORE = BlockOre.newStoneOre("zinc", 2, 3F, 4F, true);
 
         ALUMINUM_BLOCK = BlockBasic.newMetalBlock("aluminum", 2, 5F, 8F);
         TITANIUM_BLOCK = BlockBasic.newMetalBlock("titanium", 3, 8F, 12F);
@@ -172,6 +174,8 @@ public class ModBlocks {
         MOON_DIRT.setHardness(1.0F).setResistance(2.0F).setHarvestLevel("pickaxe", -1);
         MOON_ROCK = new BlockBasic("moon_rock", Material.ROCK);
         MOON_ROCK.setHardness(1.5F).setResistance(10.0F).setHarvestLevel("pickaxe", -1);
+
+        ABYSSAL_ORE = BlockOre.newStoneOre("abyssal", 4, 6F, 8F, true);
 
         ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD, MOON_DIRT,
                 MOON_ROCK);

@@ -1,5 +1,6 @@
 package org.sdoaj.eloncraft.world;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
@@ -23,44 +24,49 @@ public class OreGenerator implements IWorldGenerator {
                 break;
             // overworld
             case 0:
-                runGenerator(ModBlocks.COMPONENTS.getDefaultState(), 6, 15, 8, 63,
+                runGenerator(ModBlocks.COMPONENTS, 6, 15, 8, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
-                runGenerator(ModBlocks.ALUMINUM_ORE.getDefaultState(), 10, 60, 0, 63,
+                runGenerator(ModBlocks.ALUMINUM_ORE, 10, 60, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.TITANIUM_ORE.getDefaultState(), 8, 40, 0, 47,
+                runGenerator(ModBlocks.TITANIUM_ORE, 8, 40, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.LITHIUM_ORE.getDefaultState(), 5, 20, 0, 47,
+                runGenerator(ModBlocks.LITHIUM_ORE, 5, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.NICKEL_ORE.getDefaultState(), 8, 35, 0, 47,
+                runGenerator(ModBlocks.NICKEL_ORE, 8, 35, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.CHROMIUM_ORE.getDefaultState(), 5, 15, 0, 31,
+                runGenerator(ModBlocks.CHROMIUM_ORE, 5, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.COPPER_ORE.getDefaultState(), 10, 50, 0, 63,
+                runGenerator(ModBlocks.COPPER_ORE, 10, 50, 0, 63,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.NIOBIUM_ORE.getDefaultState(), 8, 30, 0, 31,
+                runGenerator(ModBlocks.NIOBIUM_ORE, 8, 30, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.HAFNIUM_ORE.getDefaultState(), 4, 15, 0, 31,
+                runGenerator(ModBlocks.HAFNIUM_ORE, 4, 15, 0, 31,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.MAGNESIUM_ORE.getDefaultState(), 6, 20, 0, 47,
+                runGenerator(ModBlocks.MAGNESIUM_ORE, 6, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-                runGenerator(ModBlocks.ZINC_ORE.getDefaultState(), 5, 20, 0, 47,
+                runGenerator(ModBlocks.ZINC_ORE, 5, 20, 0, 47,
                         BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
                 break;
             // end
             case 1:
+                break;
+            // moon
+            case -33:
+                runGenerator(ModBlocks.ABYSSAL_ORE, 8, 20, 0, 47,
+                        BlockMatcher.forBlock(ModBlocks.MOON_ROCK), world, random, chunkX, chunkZ);
                 break;
             default:
                 break;
         }
     }
 
-    private void runGenerator(IBlockState blockToGenerate, int veinSize, int spawnChances, int minY, int maxY,
+    private void runGenerator(Block blockToGenerate, int veinSize, int spawnChances, int minY, int maxY,
                               Predicate<IBlockState> blockToReplace, World world, Random random, int chunkX, int chunkZ) {
         if (minY < 0 || maxY > 256 || minY > maxY)
             throw new IllegalArgumentException("illegal height arguments for OreGenerator");
 
-        WorldGenMinable generator = new WorldGenMinable(blockToGenerate, veinSize, (com.google.common.base.Predicate<IBlockState>) blockToReplace);
+        WorldGenMinable generator = new WorldGenMinable(blockToGenerate.getDefaultState(), veinSize, (com.google.common.base.Predicate<IBlockState>) blockToReplace);
         int dy = maxY - minY + 1;
         for (int i = 0; i < spawnChances; i++) {
             int x = chunkX * 16 + random.nextInt(16);

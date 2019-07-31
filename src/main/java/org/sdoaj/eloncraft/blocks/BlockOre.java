@@ -27,14 +27,16 @@ public class BlockOre extends BlockBasic {
         drops.addAll(this.drops.getDrops(fortune));
     }
 
-    static BlockOre newStoneOre(String material, Drops drops, int harvestLevel, float hardness, float resistance) {
+    static BlockOre newStoneOre(String material, Drops drops, int harvestLevel, float hardness, float resistance, boolean oreDict) {
         BlockOre ore = new BlockOre(material + "_ore", Material.ROCK, drops);
         ore.setHardness(hardness).setResistance(resistance).setHarvestLevel("pickaxe", harvestLevel);
-        ore.setOreDictName("ore" + StringUtil.capitalizeFirstLetter(material));
+        if (oreDict) {
+            ore.setOreDictName("ore" + StringUtil.capitalizeFirstLetter(material));
+        }
         return ore;
     }
 
-    static BlockOre newStoneOre(String material, int harvestLevel, float hardness, float resistance) {
-        return newStoneOre(material, null, harvestLevel, hardness, resistance);
+    static BlockOre newStoneOre(String material, int harvestLevel, float hardness, float resistance, boolean oreDict) {
+        return newStoneOre(material, null, harvestLevel, hardness, resistance, oreDict);
     }
 }
