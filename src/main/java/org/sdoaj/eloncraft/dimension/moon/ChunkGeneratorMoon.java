@@ -29,7 +29,7 @@ public class ChunkGeneratorMoon implements IChunkGenerator {
             InitMapGenEvent.EventType.CAVE);
     private final TerrainGeneratorNormal terrainGen = new TerrainGeneratorNormal();
 
-    private final WorldGenCrater craterGen = new WorldGenCrater(0.0001, 8, 30);
+    private final WorldGenCrater craterGen = new WorldGenCrater(0.00002, 5, 45);
 
     public ChunkGeneratorMoon(World world) {
         this.world = world;
