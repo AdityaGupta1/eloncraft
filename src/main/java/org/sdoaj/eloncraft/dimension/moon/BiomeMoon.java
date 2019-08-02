@@ -2,7 +2,6 @@ package org.sdoaj.eloncraft.dimension.moon;
 
 import org.sdoaj.eloncraft.biome.BiomeBasic;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
-import org.sdoaj.eloncraft.world.WorldGenCrater;
 
 import java.util.List;
 
@@ -19,7 +18,5 @@ public class BiomeMoon extends BiomeBasic {
         this.spawnableWaterCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.modSpawnableLists.values().forEach(List::clear);
-
-        this.addWorldGenerator(new WorldGenCrater(0.1, 8, 30));
     }
 }

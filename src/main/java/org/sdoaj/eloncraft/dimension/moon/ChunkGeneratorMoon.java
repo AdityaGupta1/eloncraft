@@ -14,6 +14,7 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.dimension.TerrainGeneratorNormal;
 import org.sdoaj.eloncraft.world.CaveGenerator;
+import org.sdoaj.eloncraft.world.WorldGenCrater;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -28,6 +29,8 @@ public class ChunkGeneratorMoon implements IChunkGenerator {
             InitMapGenEvent.EventType.CAVE);
     private final TerrainGeneratorNormal terrainGen = new TerrainGeneratorNormal();
 
+    private final WorldGenCrater craterGen = new WorldGenCrater(0.0001, 8, 30);
+
     public ChunkGeneratorMoon(World world) {
         this.world = world;
         this.random = new Random((world.getSeed() + 516) * 314);
@@ -36,18 +39,20 @@ public class ChunkGeneratorMoon implements IChunkGenerator {
 
     @Override
     public Chunk generateChunk(int x, int z) {
-        ChunkPrimer chunkprimer = new ChunkPrimer();
+        ChunkPrimer primer = new ChunkPrimer();
 
         this.biomes = this.world.getBiomeProvider().getBiomesForGeneration(this.biomes, x * 4 - 2, z * 4 - 2, 10, 10);
         terrainGen.setBiomes(biomes);
-        terrainGen.generate(x, z, chunkprimer);
+        terrainGen.generate(x, z, primer);
 
         this.biomes = this.world.getBiomeProvider().getBiomes(this.biomes, x * 16, z * 16, 16, 16);
-        terrainGen.replaceBiomeBlocks(x, z, chunkprimer, this, biomes);
+        terrainGen.replaceBiomeBlocks(x, z, primer, this, biomes);
 
-        this.caveGen.generate(this.world, x, z, chunkprimer);
+        this.caveGen.generate(this.world, x, z, primer);
 
-        Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
+        this.craterGen.generate(this.world.getSeed(), x, z, primer);
+
+        Chunk chunk = new Chunk(this.world, primer, x, z);
 
         byte[] biomeArray = chunk.getBiomeArray();
         for (int i = 0; i < biomeArray.length; ++i) {
