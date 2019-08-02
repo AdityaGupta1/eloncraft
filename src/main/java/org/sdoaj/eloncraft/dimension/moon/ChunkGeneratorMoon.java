@@ -16,7 +16,6 @@ import org.sdoaj.eloncraft.dimension.TerrainGeneratorNormal;
 import org.sdoaj.eloncraft.world.CaveGenerator;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -24,8 +23,6 @@ public class ChunkGeneratorMoon implements IChunkGenerator {
     private final World world;
     private Random random;
     private Biome[] biomes;
-
-    private final List<Biome.SpawnListEntry> mobs = new ArrayList<>();
 
     private final MapGenBase caveGen = TerrainGen.getModdedMapGen(new CaveGenerator(ModBlocks.MOON_DIRT, ModBlocks.MOON_ROCK),
             InitMapGenEvent.EventType.CAVE);

@@ -20,6 +20,6 @@ public class BiomeMoon extends BiomeBasic {
         this.spawnableMonsterList.clear();
         this.modSpawnableLists.values().forEach(List::clear);
 
-        this.addWorldGenerator(new WorldGenCrater(0.1));
+        this.addWorldGenerator(new WorldGenCrater(0.1, 8, 30));
     }
 }
