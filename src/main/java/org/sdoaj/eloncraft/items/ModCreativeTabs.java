@@ -40,7 +40,7 @@ public class ModCreativeTabs {
         }
 
         public void addAll(Block... blocks) {
-            Arrays.stream(blocks).forEach(item -> item.setCreativeTab(this));
+            Arrays.stream(blocks).forEach(block -> block.setCreativeTab(this));
         }
     }
 }

@@ -65,6 +65,9 @@ public class ModBlocks {
     public static BlockBasic MAGNESIUM_BLOCK;
     public static BlockBasic ZINC_BLOCK;
 
+    public static BlockBasic ABYSSAL_ORE;
+    public static BlockBasic PALLASITE_ORE;
+
     // alloys
 
     public static BlockBasic STEEL_BLOCK;
@@ -94,9 +97,6 @@ public class ModBlocks {
 
     public static BlockBasic MOON_DIRT;
     public static BlockBasic MOON_ROCK;
-
-    public static BlockBasic ABYSSAL_ORE;
-    public static BlockBasic PALLASITE_ORE;
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
@@ -128,6 +128,11 @@ public class ModBlocks {
         HAFNIUM_BLOCK = BlockBasic.newMetalBlock("hafnium", 3, 6F, 8F);
         MAGNESIUM_BLOCK = BlockBasic.newMetalBlock("magnesium", 2, 5F, 8F);
         ZINC_BLOCK = BlockBasic.newMetalBlock("zinc", 2, 5, 16);
+
+        ABYSSAL_ORE = BlockOre.newStoneOre("abyssal", 4, 6F, 10F, false);
+        ABYSSAL_ORE.addLore("Mythical blue metal created by intense pressure and lack of an atmosphere. Said to represent Earth's tides and the Moon's \"seas\".");
+        PALLASITE_ORE = BlockOre.newStoneOre("pallasite", 4, 6F, 8F, false);
+        PALLASITE_ORE.addLore("A type of stony-iron meteorite containing olivine (peridot) crystals in an iron-nickel matrix.");
 
         STEEL_BLOCK = BlockBasic.newMetalBlock("steel", 2, 8, 35);
 
@@ -175,11 +180,6 @@ public class ModBlocks {
         MOON_DIRT.setHardness(1.0F).setResistance(2.0F).setHarvestLevel("pickaxe", -1);
         MOON_ROCK = new BlockBasic("moon_rock", Material.ROCK);
         MOON_ROCK.setHardness(1.5F).setResistance(10.0F).setHarvestLevel("pickaxe", -1);
-
-        ABYSSAL_ORE = BlockOre.newStoneOre("abyssal", 4, 6F, 10F, false);
-        ABYSSAL_ORE.addLore("Mythical blue metal created by intense pressure and lack of an atmosphere. Said to represent Earth's tides and the Moon's \"seas\".");
-        PALLASITE_ORE = BlockOre.newStoneOre("pallasite", 4, 6F, 8F, false);
-        PALLASITE_ORE.addLore("A type of stony-iron meteorite containing olivine (peridot) crystals in an iron-nickel matrix.");
 
         ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD, MOON_DIRT,
                 MOON_ROCK, ABYSSAL_ORE, PALLASITE_ORE);

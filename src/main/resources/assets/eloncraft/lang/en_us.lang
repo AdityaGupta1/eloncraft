@@ -55,6 +55,8 @@ item.hafnium_dust.name=Crushed Hafnium
 item.magnesium_dust.name=Crushed Magnesium
 item.zinc_dust.name=Crushed Zinc
 
+item.refined_pallasite.name=Refined Pallasite
+
 # ====================
 # alloys
 # ====================
@@ -174,6 +176,9 @@ tile.hafnium_block.name=Block of Hafnium
 tile.magnesium_block.name=Block of Magnesium
 tile.zinc_block.name=Block of Zinc
 
+tile.abyssal_ore.name=Abyssal Ore
+tile.pallasite_ore.name=Pallasite Ore
+
 # ====================
 # alloys
 # ====================
@@ -243,8 +248,6 @@ tile.lox.name=LOX
 
 tile.moon_dirt.name=Lunar Regolith
 tile.moon_rock.name=Lunar Rock
-
-tile.abyssal_ore.name=Abyssal Ore
 
 
 # ========================================
