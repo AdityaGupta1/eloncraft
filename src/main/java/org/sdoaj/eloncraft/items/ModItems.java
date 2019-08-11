@@ -80,6 +80,8 @@ public class ModItems {
     public static ItemBasic MAGNESIUM_DUST;
     public static ItemBasic ZINC_DUST;
 
+    public static ItemBasic REFINED_PALLASITE;
+
     // alloys
 
     public static ItemBasic STEEL_INGOT;
@@ -203,6 +205,8 @@ public class ModItems {
         HAFNIUM_DUST = newDust("hafnium");
         MAGNESIUM_DUST = newDust("magnesium");
         ZINC_DUST = newDust("zinc");
+
+        REFINED_PALLASITE = new ItemBasic("refined_pallasite");
 
         STEEL_INGOT = newIngot("steel");
 
@@ -335,6 +339,8 @@ public class ModItems {
                 TITANIUM_FAN, FUEL_PIPE, MERLIN_ENGINE, OCTAWEB, LANDING_LEG, FUEL_TANK_LOX_1, FUEL_TANK_RP1_1,
                 GRID_FIN, COLD_GAS_THRUSTER, INTERSTAGE, FUEL_TANK_LOX_2, FUEL_TANK_RP1_2, SUPERDRACO_ENGINE,
                 FUEL_TANK_3, FALCON9_DRAGON, FALCON9, FALCON9_FUELED);
+
+        ModCreativeTabs.SPACEX.addAll(REFINED_PALLASITE);
 
         ModCreativeTabs.BORING_COMPANY.addAll(FLAMETHROWER);
     }

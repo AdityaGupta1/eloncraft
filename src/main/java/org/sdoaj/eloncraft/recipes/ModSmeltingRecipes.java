@@ -38,9 +38,23 @@ public class ModSmeltingRecipes {
         addSmelting(ModItems.HAFNIUM_DUST, ModItems.HAFNIUM_INGOT);
         addSmelting(ModItems.MAGNESIUM_DUST, ModItems.MAGNESIUM_INGOT);
         addSmelting(ModItems.ZINC_DUST, ModItems.ZINC_INGOT);
+
+        addSmelting(ModBlocks.PALLASITE_ORE, new ItemStack(ModItems.REFINED_PALLASITE, 2));
     }
 
     private static void addSmelting(Item input, Item output) {
+        GameRegistry.addSmelting(input, new ItemStack(output), 0.7f);
+    }
+
+    private static void addSmelting(Item input, Block output) {
+        GameRegistry.addSmelting(input, new ItemStack(output), 0.7f);
+    }
+
+    private static void addSmelting(Item input, ItemStack output) {
+        GameRegistry.addSmelting(input, output.copy(), 0.7f);
+    }
+
+    private static void addSmelting(Block input, Item output) {
         GameRegistry.addSmelting(input, new ItemStack(output), 0.7f);
     }
 
@@ -48,11 +62,7 @@ public class ModSmeltingRecipes {
         GameRegistry.addSmelting(input, new ItemStack(output), 0.7f);
     }
 
-    private static void addSmelting(Block input, Item output) {
-        GameRegistry.addSmelting(input, new ItemStack(output), 0.7f);
-    }
-
-    private static void addSmelting(Item input, Block output) {
-        GameRegistry.addSmelting(input, new ItemStack(output), 0.7f);
+    private static void addSmelting(Block input, ItemStack output) {
+        GameRegistry.addSmelting(input, output.copy(), 0.7f);
     }
 }

@@ -1,6 +1,7 @@
 package org.sdoaj.eloncraft.dimension.moon;
 
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
@@ -29,7 +30,8 @@ public class ChunkGeneratorMoon implements IChunkGenerator {
             InitMapGenEvent.EventType.CAVE);
     private final TerrainGeneratorNormal terrainGen = new TerrainGeneratorNormal();
 
-    private final WorldGenCrater craterGen = new WorldGenCrater(0.00002, 5, 45);
+    private final WorldGenCrater craterGen = new WorldGenCrater(0.00002, 5, 45)
+            .setMeteor(ModBlocks.PALLASITE_ORE.getDefaultState(), 25, 2.0, 0.2);
 
     public ChunkGeneratorMoon(World world) {
         this.world = world;

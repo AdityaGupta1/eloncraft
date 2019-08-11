@@ -96,6 +96,7 @@ public class ModBlocks {
     public static BlockBasic MOON_ROCK;
 
     public static BlockBasic ABYSSAL_ORE;
+    public static BlockBasic PALLASITE_ORE;
 
     public static void init() {
         COMPONENTS = new BlockOre("components", Material.IRON, new Drops(
@@ -175,10 +176,13 @@ public class ModBlocks {
         MOON_ROCK = new BlockBasic("moon_rock", Material.ROCK);
         MOON_ROCK.setHardness(1.5F).setResistance(10.0F).setHarvestLevel("pickaxe", -1);
 
-        ABYSSAL_ORE = BlockOre.newStoneOre("abyssal", 4, 6F, 8F, true);
+        ABYSSAL_ORE = BlockOre.newStoneOre("abyssal", 4, 6F, 10F, false);
+        ABYSSAL_ORE.addLore("Mythical blue metal created by intense pressure and lack of an atmosphere. Said to represent Earth's tides and the Moon's \"seas\".");
+        PALLASITE_ORE = BlockOre.newStoneOre("pallasite", 4, 6F, 8F, false);
+        PALLASITE_ORE.addLore("A type of stony-iron meteorite containing olivine (peridot) crystals in an iron-nickel matrix.");
 
         ModCreativeTabs.SPACEX.addAll(REFINERY, LOX_COLLECTOR, LAUNCH_CONTROLLER, LAUNCHPAD, MOON_DIRT,
-                MOON_ROCK);
+                MOON_ROCK, ABYSSAL_ORE, PALLASITE_ORE);
     }
 
     public static void addBlock(Block block) {
