@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancement.eloncraft.root.desc"
     },
-    "background": "eloncraft:textures/misc/space_background.png"
+    "background": "eloncraft:textures/blocks/moon_rock.png"
   },
   "criteria": {
     "item": {

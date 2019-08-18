@@ -39,7 +39,10 @@ public class ModSmeltingRecipes {
         addSmelting(ModItems.MAGNESIUM_DUST, ModItems.MAGNESIUM_INGOT);
         addSmelting(ModItems.ZINC_DUST, ModItems.ZINC_INGOT);
 
+        addSmelting(ModBlocks.ABYSSAL_ORE, ModItems.ABYSSAL_INGOT);
         addSmelting(ModBlocks.PALLASITE_ORE, new ItemStack(ModItems.REFINED_PALLASITE, 2));
+
+        addSmelting(ModItems.ABYSSAL_DUST, ModItems.ABYSSAL_INGOT);
     }
 
     private static void addSmelting(Item input, Item output) {

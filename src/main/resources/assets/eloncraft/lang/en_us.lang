@@ -55,7 +55,10 @@ item.hafnium_dust.name=Crushed Hafnium
 item.magnesium_dust.name=Crushed Magnesium
 item.zinc_dust.name=Crushed Zinc
 
+item.abyssal_ingot.name=Abyssal Ingot
 item.refined_pallasite.name=Refined Pallasite
+
+item.abyssal_dust.name=Crushed Abyssal Metal
 
 # ====================
 # alloys
@@ -184,6 +187,8 @@ tile.pallasite_ore.name=Pallasite Ore
 # ====================
 
 tile.steel_block.name=Block of Steel
+
+tile.leviathan_block.name=Block of Leviathan Alloy
 
 # ====================
 # machines

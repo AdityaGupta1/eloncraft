@@ -1,9 +1,11 @@
 package org.sdoaj.eloncraft.blocks.machines.crusher;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.blocks.machines.LinearRecipe;
 import org.sdoaj.eloncraft.util.StringUtil;
@@ -44,6 +46,8 @@ public final class CrusherRecipes {
         addOreRecipe("hafnium", ModItems.HAFNIUM_DUST);
         addOreRecipe("magnesium", ModItems.MAGNESIUM_DUST);
         addOreRecipe("zinc", ModItems.ZINC_DUST);
+
+        addOreRecipe(ModBlocks.ABYSSAL_ORE, ModItems.ABYSSAL_INGOT, null, ModItems.ABYSSAL_DUST);
     }
 
     public static void addOreRecipe(String material, Item dust) {
@@ -51,6 +55,14 @@ public final class CrusherRecipes {
         addRecipe(new LinearRecipe().setInput("ore" + capitalized).setOutput(new ItemStack(dust, 2)));
         addRecipe(new LinearRecipe().setInput("ingot" + capitalized).setOutput(dust));
         addRecipe(new LinearRecipe().setInput("plate" + capitalized).setOutput(dust));
+    }
+
+    public static void addOreRecipe(Block ore, Item ingot, Item plate, Item dust) {
+        addRecipe(new LinearRecipe().setInput(ore).setOutput(new ItemStack(dust, 2)));
+        addRecipe(new LinearRecipe().setInput(ingot).setOutput(dust));
+        if (plate != null) {
+            addRecipe(new LinearRecipe().setInput(plate).setOutput(dust));
+        }
     }
 
     public static List<LinearRecipe> getRecipes() {

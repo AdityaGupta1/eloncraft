@@ -3,6 +3,8 @@ package org.sdoaj.eloncraft.blocks.machines.alloyfurnace;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import org.sdoaj.eloncraft.blocks.ModBlocks;
 import org.sdoaj.eloncraft.items.ModItems;
 import org.sdoaj.eloncraft.recipes.IngredientStack;
 import org.sdoaj.eloncraft.util.StringUtil;
@@ -72,6 +74,15 @@ public final class AlloyFurnaceRecipes {
                 new IngredientStack(Items.CHORUS_FRUIT_POPPED, 2),
                 new IngredientStack(Blocks.OBSIDIAN, 3)
         }, new ItemStack(ModItems.HEAT_SHIELD, 7)));
+
+
+
+        addRecipe(new AlloyFurnaceRecipe(new IngredientStack[]{
+                new IngredientStack(Ingredient.fromItems(ModItems.ABYSSAL_INGOT, ModItems.ABYSSAL_DUST), 3),
+                new IngredientStack(ModItems.REFINED_PALLASITE, 2),
+                new IngredientStack(new ItemStack(Items.DYE, 2, 4)),
+                new IngredientStack(ModItems.TITANIUM_INGOT, 3)
+        }, new ItemStack(ModBlocks.LEVIATHAN_BLOCK, 1)));
     }
 
     public static List<AlloyFurnaceRecipe> getRecipes() {

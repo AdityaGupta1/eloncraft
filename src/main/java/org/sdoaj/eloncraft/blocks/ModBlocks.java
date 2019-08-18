@@ -72,6 +72,8 @@ public class ModBlocks {
 
     public static BlockBasic STEEL_BLOCK;
 
+    public static BlockBasic LEVIATHAN_BLOCK;
+
     // machines
 
     public static BlockWorkbench ELON_WORKBENCH;
@@ -135,6 +137,8 @@ public class ModBlocks {
         PALLASITE_ORE.addLore("A type of stony-iron meteorite containing olivine (peridot) crystals in an iron-nickel matrix.");
 
         STEEL_BLOCK = BlockBasic.newMetalBlock("steel", 2, 8, 35);
+
+        LEVIATHAN_BLOCK = BlockBasic.newMetalBlock("leviathan", 4, 10F, 20F);
 
         ELON_WORKBENCH = new BlockWorkbench("elon_workbench", Material.IRON);
         ELON_WORKBENCH.setHardness(10.0F).setResistance(25.0F).setHarvestLevel("pickaxe", 3);

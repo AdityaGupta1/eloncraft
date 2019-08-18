@@ -70,9 +70,15 @@ public class BlockBasic extends Block {
     }
 
     static BlockBasic newMetalBlock(String material, int harvestLevel, float hardness, float resistance) {
+        return newMetalBlock(material, harvestLevel, hardness, resistance, true);
+    }
+
+    static BlockBasic newMetalBlock(String material, int harvestLevel, float hardness, float resistance, boolean oreDict) {
         BlockBasic block = new BlockBasic(material + "_block", Material.IRON);
         block.setHardness(hardness).setResistance(resistance).setHarvestLevel("pickaxe", harvestLevel);
-        block.setOreDictName("block" + StringUtil.capitalizeFirstLetter(material));
+        if (oreDict) {
+            block.setOreDictName("block" + StringUtil.capitalizeFirstLetter(material));
+        }
         block.setBeaconBase();
         return block;
     }
